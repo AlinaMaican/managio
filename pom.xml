@@ -24,6 +24,7 @@
 		<java.version>1.8</java.version>
       
         <spock-spring.version>1.0-groovy-2.4</spock-spring.version>
+		<gmavenplus.plugin.version>1.5</gmavenplus.plugin.version>
 	</properties>
 
 	<dependencies>
@@ -111,6 +112,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>
