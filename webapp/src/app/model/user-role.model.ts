@@ -1,0 +1,4 @@
+class UserRole {
+  public constructor() {
+  }
+}
