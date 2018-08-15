@@ -1,4 +1,4 @@
-class UserRole {
-  public constructor() {
+export class UserRole {
+  public constructor(public test) {
   }
 }

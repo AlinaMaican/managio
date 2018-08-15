@@ -1,0 +1,23 @@
+<div class="row-fluid">
+  <button>Add</button>
+</div>
+<div class="row-fluid">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Surname</th>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Role</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <app-user-item
+      *ngFor="let user of users; let i = index">
+    </app-user-item>
+    </tbody>
+  </table>
+</div>
+
