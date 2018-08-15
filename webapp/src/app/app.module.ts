@@ -2,16 +2,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { UserComponent } from './user/user.component';
-import { DetailsComponent } from './user/details/details.component';
-import { AddeditComponent } from './user/addedit/addedit.component';
+import { UserComponent } from './users/user.component';
+import { DetailsComponent } from './users/details/details.component';
+import { FormComponent } from './users/form/form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
     DetailsComponent,
-    AddeditComponent
+    FormComponent
   ],
   imports: [
     BrowserModule
