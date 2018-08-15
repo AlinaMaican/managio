@@ -1,3 +1,5 @@
+import {UserRole} from "./user-role.model";
+
 export class User {
 
   constructor(public id: number,
@@ -5,6 +7,8 @@ export class User {
               public firstName: String,
               public lastName: String,
               public password: String,
-              public userRole: UserRole) {
+              public userRole: UserRole,
+              public status: boolean
+  ) {
   }
 }

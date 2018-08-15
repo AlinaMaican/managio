@@ -2,21 +2,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { UserComponent } from './users/user.component';
+import { UserListComponent } from './users/user-list.component';
 import { DetailsComponent } from './users/details/details.component';
 import { FormComponent } from './users/form/form.component';
+import { UserItemComponent } from './users/user-item/user-item.component';
+import { UserService } from './users/user.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
+    UserListComponent,
     DetailsComponent,
-    FormComponent
+    FormComponent,
+    UserItemComponent
   ],
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
