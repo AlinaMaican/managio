@@ -1,6 +1,3 @@
-CREATE TYPE e_user_role AS ENUM (
-  'USER','ADMIN','MANAGER','CONSULTANT');
-
 CREATE TABLE users(
 id bigint NOT NULL,
 username character varying(255),

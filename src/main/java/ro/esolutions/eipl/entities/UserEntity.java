@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @Builder
 @Entity
 @Table(name = "users")
-public class User {
+public class UserEntity {
 
     @Id
     @GeneratedValue(generator = "USER_GEN_SEQ", strategy = GenerationType.SEQUENCE)
