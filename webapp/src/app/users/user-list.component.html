@@ -14,8 +14,12 @@
     </tr>
     </thead>
     <tbody>
+
     <app-user-item
-      *ngFor="let user of users; let i = index">
+      *ngFor="let user of users; let i = index"
+      [user]=" user "
+      [index]="i"
+    >
     </app-user-item>
     </tbody>
   </table>
