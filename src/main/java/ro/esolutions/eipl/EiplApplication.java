@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class EiplApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(EiplApplication.class, args);
 	}
 }
