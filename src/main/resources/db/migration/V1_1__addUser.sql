@@ -1,11 +1,11 @@
 CREATE TABLE users(
 id bigint NOT NULL,
-username character varying(255),
-first_name character varying(255),
-last_name character varying(255),
-password character varying(100),
-user_role e_user_role,
-is_active boolean,
+username character varying(255) NOT NULL,
+first_name character varying(255) NOT NULL,
+last_name character varying(255) NOT NULL,
+password character varying(100) NOT NULL,
+user_role character varying(100) NOT NULL,
+is_active boolean NOT NULL,
 CONSTRAINT user_pkey PRIMARY KEY(id)
 );
 

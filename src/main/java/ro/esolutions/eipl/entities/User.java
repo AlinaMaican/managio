@@ -6,15 +6,13 @@ import ro.esolutions.eipl.models.UserRole;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @Builder
 @Entity
 @Table(name = "users")
-public class UserEntity {
+public class User {
 
     @Id
     @GeneratedValue(generator = "USER_GEN_SEQ", strategy = GenerationType.SEQUENCE)
