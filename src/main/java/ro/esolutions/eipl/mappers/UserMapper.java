@@ -30,5 +30,4 @@ public class UserMapper {
                 .isActive(userModel.getIsActive())
                 .build();
     }
-
 }

@@ -45,7 +45,7 @@ public class UserService {
     }
 
     public List<UserModel> getAllUsers() {
-        return userRepository.findAll()
+        return userRepository.findAllByOrderByIdAsc()
                 .stream()
                 .map(UserMapper::fromEntityToModel)
                 .collect(Collectors.toList());
