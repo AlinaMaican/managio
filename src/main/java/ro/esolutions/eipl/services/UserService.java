@@ -62,13 +62,8 @@ public class UserService {
     }
 
     public UserModel editUserById(Long userId, @Valid UserModel userModel) {
-//        Optional<User> userOptional = userRepository.findById(userId);
-//        if (userOptional.isPresent()) {
-//            return UserMapper.fromEntityToModel(userOptional.get());
-//        } else {
-//            throw new UserWithGivenIdDoesNotExistException();
-//        }
-        return null;
-        //TODO
+
+        User user = userRepository.save(UserMapper.fromModelToEntity(userModel));
+        return UserMapper.fromEntityToModel(user);
     }
 }

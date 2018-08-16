@@ -24,6 +24,7 @@ public class UserController {
         if(bindingResult.hasErrors()){
             return ResponseEntity.badRequest().build();
         }
+        userModel.setId(null);
         return ResponseEntity.ok(userService.addNewUser(userModel));
     }
 

@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @Builder
 public class UserModel {
-    @NotNull
+
     private Long id;
     @NotNull
     private String username;
