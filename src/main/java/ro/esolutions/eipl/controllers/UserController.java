@@ -46,7 +46,7 @@ public class UserController {
     }
 
     @PutMapping("/{user_id}")
-    public ResponseEntity<Object> editUserById(@RequestBody @Valid UserModel userModel, @PathVariable("user_id") Long userId, final BindingResult bindingResult) {
+    public ResponseEntity<Object> editUserById(@RequestBody @Valid UserModel userModel, final BindingResult bindingResult, @PathVariable("user_id") Long userId) {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().body(Collections.singletonMap("error",BINDING_RESULT_ERROR_MESSAGE));
 

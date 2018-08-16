@@ -30,7 +30,7 @@ public class UserService {
         if (!userOptional.isPresent()) {
             userRepository.save(UserMapper.fromModelToEntity(userModel));
         } else {
-            throw new UserAlreadyExistsException();
+            throw new UserAlreadyExistsException(userModel.getId());
         }
         return userModel;
     }
@@ -40,7 +40,7 @@ public class UserService {
         if (userOptional.isPresent()) {
             return UserMapper.fromEntityToModel(userOptional.get());
         } else {
-            throw new UserNotFoundException();
+            throw new UserNotFoundException(userId);
         }
     }
 
@@ -57,7 +57,7 @@ public class UserService {
             userRepository.deleteById(userId);
             return UserMapper.fromEntityToModel(userOptional.get());
         } else {
-            throw new UserNotFoundException();
+            throw new UserNotFoundException(userId);
         }
     }
 
@@ -67,7 +67,7 @@ public class UserService {
             User user = userRepository.save(UserMapper.fromModelToEntity(userModel));
             return UserMapper.fromEntityToModel(user);
         } else {
-            throw new UserNotFoundException();
+            throw new UserNotFoundException(userId);
         }
     }
 }
