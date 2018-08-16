@@ -1,4 +1,10 @@
 package ro.esolutions.eipl.repositories;
 
-public class UserRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import ro.esolutions.eipl.entities.User;
+
+import java.util.List;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+    List<User> findAll();
 }
