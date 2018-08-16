@@ -1,7 +1,7 @@
 import {UserRole} from "./model/user-role.model";
 import {User} from "./model/user.model";
-import {HttpClient, HttpResponse} from "@angular/common/http";
-import {Subject} from "rxjs/internal/Subject";
+import {of} from "rxjs/internal/observable/of";
+import {Observable} from "rxjs/internal/Observable";
 
 export class UserService {
 
@@ -10,12 +10,8 @@ export class UserService {
     new User(2, 'GigiMasinuta', 'ninle', 'Masinuta', 'vroom', new UserRole(1), false),
 
   ];
-  usersSubject = new Subject<User[]>();
 
-  constructor(private httpClient: HttpClient) {
-  }
-
-  getAllUsers() {
-    return this.usersSubject.next(this.users.slice());
+  getAllUsers(): Observable<User[]> {
+    return of(this.users);
   }
 }

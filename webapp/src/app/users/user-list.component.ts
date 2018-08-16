@@ -18,14 +18,11 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.users = this.userService.getAllUsers();
-
-    this.usersSubscription =
-      this.userService.usersSubject.subscribe(
-        (users: User[]) => {
-          this.users = users;
-        }
-      );
+    this.usersSubscription = this.userService.getAllUsers().subscribe(
+      (users: User[]) => {
+        this.users = users;
+      }
+    );
   }
 
   ngOnDestroy(): void {
