@@ -1,5 +1,7 @@
 import {UserRole} from "./model/user-role.model";
 import {User} from "./model/user.model";
+import {HttpClient, HttpResponse} from "@angular/common/http";
+import {Subject} from "rxjs/internal/Subject";
 
 export class UserService {
 
@@ -8,8 +10,12 @@ export class UserService {
     new User(2, 'GigiMasinuta', 'ninle', 'Masinuta', 'vroom', new UserRole(1), false),
 
   ];
+  usersSubject = new Subject<User[]>();
 
-  getAllUsers(): User[] {
-    return this.users.slice();
+  constructor(private httpClient: HttpClient) {
+  }
+
+  getAllUsers() {
+    return this.usersSubject.next(this.users.slice());
   }
 }
