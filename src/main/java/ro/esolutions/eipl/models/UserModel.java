@@ -26,5 +26,4 @@ public class UserModel {
     private UserRole userRole;
     @NotNull
     private Boolean isActive;
-
 }
