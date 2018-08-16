@@ -3,13 +3,13 @@ package ro.esolutions.eipl.mappers;
 import ro.esolutions.eipl.entities.User;
 import ro.esolutions.eipl.models.UserModel;
 
-public final class UserMapper {
+public class UserMapper {
 
-    private UserMapper() {
-    }
+    private UserMapper() {}
 
     public static UserModel fromEntityToModel(final User user) {
         return UserModel.builder()
+                .id(user.getId())
                 .username(user.getUsername())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
@@ -21,6 +21,7 @@ public final class UserMapper {
 
     public static User fromModelToEntity(final UserModel userModel) {
         return User.builder()
+                .id(userModel.getId())
                 .username(userModel.getUsername())
                 .firstName(userModel.getFirstName())
                 .lastName(userModel.getLastName())

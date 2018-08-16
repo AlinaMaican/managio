@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @GetMapping("/{user_id}")
-    public ResponseEntity<UserModel> getUserById(@PathVariable("user_id") Integer userId){
+    public ResponseEntity<UserModel> getUserById(@PathVariable("user_id") Long userId){
         return ResponseEntity.ok(userService.getUserById(userId));
     }
 
@@ -38,12 +38,12 @@ public class UserController {
     }
 
     @DeleteMapping("/{user_id}")
-    public ResponseEntity<UserModel> deleteUserById(@PathVariable("user_id") Integer userId){
-        return ResponseEntity.ok(userService.deleteUserById());
+    public ResponseEntity<UserModel> deleteUserById(@PathVariable("user_id") Long userId){
+        return ResponseEntity.ok(userService.deleteUserById(userId));
     }
 
     @PostMapping("/{user_id}")
-    public ResponseEntity<UserModel> editUserById(@RequestBody @Valid UserModel userModel, @PathVariable("user_id") Integer userId){
+    public ResponseEntity<UserModel> editUserById(@RequestBody @Valid UserModel userModel, @PathVariable("user_id") Long userId){
         return ResponseEntity.ok(userService.editUserById(userId, userModel));
     }
 

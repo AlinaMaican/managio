@@ -8,7 +8,7 @@ import ro.esolutions.eipl.models.UserRole;
 @Data
 @Builder
 public class User {
-    private Integer id;
+    private Long id;
     private String username;
     private String firstName;
     private String lastName;

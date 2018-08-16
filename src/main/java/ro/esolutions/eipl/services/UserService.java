@@ -1,7 +1,9 @@
 package ro.esolutions.eipl.services;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ro.esolutions.eipl.entities.User;
+import ro.esolutions.eipl.exceptions.UserAlreadyExistsException;
+import ro.esolutions.eipl.exceptions.UserWithGivenIdDoesNotExistException;
 import ro.esolutions.eipl.mappers.UserMapper;
 import ro.esolutions.eipl.models.UserModel;
 import ro.esolutions.eipl.repositories.UserRepository;
@@ -10,6 +12,7 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,11 +26,22 @@ public class UserService {
     }
 
     public UserModel addNewUser(UserModel userModel) {
-        return null;
+        Optional<User> userOptional = userRepository.findByUsername(userModel.getUsername());
+        if (!userOptional.isPresent()) {
+            userRepository.save(UserMapper.fromModelToEntity(userModel));
+        } else {
+            throw new UserAlreadyExistsException();
+        }
+        return userModel;
     }
 
-    public UserModel getUserById(Integer userId) {
-        return null;
+    public UserModel getUserById(Long userId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isPresent()) {
+            return UserMapper.fromEntityToModel(userOptional.get());
+        } else {
+            throw new UserWithGivenIdDoesNotExistException();
+        }
     }
 
     public List<UserModel> getAllUsers() {
@@ -37,11 +51,24 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public UserModel deleteUserById() {
-        return null;
+    public UserModel deleteUserById(Long userId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isPresent()) {
+            userRepository.deleteById(userId);
+            return UserMapper.fromEntityToModel(userOptional.get());
+        } else {
+            throw new UserWithGivenIdDoesNotExistException();
+        }
     }
 
-    public UserModel editUserById(Integer userId, @Valid UserModel userModel) {
+    public UserModel editUserById(Long userId, @Valid UserModel userModel) {
+//        Optional<User> userOptional = userRepository.findById(userId);
+//        if (userOptional.isPresent()) {
+//            return UserMapper.fromEntityToModel(userOptional.get());
+//        } else {
+//            throw new UserWithGivenIdDoesNotExistException();
+//        }
         return null;
+        //TODO
     }
 }
