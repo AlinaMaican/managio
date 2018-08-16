@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { UserListComponent } from './users/user-list.component';
 import { DetailsComponent } from './users/details/details.component';
 import { FormComponent } from './users/form/form.component';
-import { UserItemComponent } from './users/user-item/user-item.component';
 import { UserService } from './users/user.service';
 
 @NgModule({
