@@ -8,6 +8,7 @@ import ro.esolutions.eipl.models.UserRole;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Builder
 public class UserEntity {
     private Integer id;
     private String username;

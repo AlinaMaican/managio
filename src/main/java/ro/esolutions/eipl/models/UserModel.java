@@ -13,7 +13,6 @@ import javax.validation.constraints.NotNull;
 @Data
 @Builder
 public class UserModel {
-
     @NotNull
     private String username;
     @NotNull
