@@ -13,8 +13,7 @@ import { UserService } from './users/user.service';
     AppComponent,
     UserListComponent,
     DetailsComponent,
-    FormComponent,
-    UserItemComponent
+    FormComponent
   ],
   imports: [
     BrowserModule
