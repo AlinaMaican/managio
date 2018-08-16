@@ -7,6 +7,7 @@ import ro.esolutions.eipl.models.UserModel;
 import ro.esolutions.eipl.services.UserService;
 
 import javax.validation.Valid;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -14,15 +15,16 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private static final String BINDING_RESULT_ERROR_MESSAGE = "User model not valid";
 
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
     @PostMapping
-    public ResponseEntity<UserModel> addNewUser(@RequestBody @Valid UserModel userModel, BindingResult bindingResult){
+    public ResponseEntity<Object> addNewUser(@RequestBody @Valid UserModel userModel, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().body(Collections.singletonMap("error",BINDING_RESULT_ERROR_MESSAGE));
         }
         userModel.setId(null);
         return ResponseEntity.ok(userService.addNewUser(userModel));
@@ -43,10 +45,16 @@ public class UserController {
         return ResponseEntity.ok(userService.deleteUserById(userId));
     }
 
-    @PostMapping("/{user_id}")
-    public ResponseEntity<UserModel> editUserById(@RequestBody @Valid UserModel userModel, @PathVariable("user_id") Long userId){
+    @PutMapping("/{user_id}")
+    public ResponseEntity<Object> editUserById(@RequestBody @Valid UserModel userModel, @PathVariable("user_id") Long userId, final BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(Collections.singletonMap("error",BINDING_RESULT_ERROR_MESSAGE));
+
+        }
         return ResponseEntity.ok(userService.editUserById(userId, userModel));
     }
+
 
 
 }

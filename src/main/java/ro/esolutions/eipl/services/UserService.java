@@ -3,7 +3,7 @@ package ro.esolutions.eipl.services;
 import org.springframework.stereotype.Service;
 import ro.esolutions.eipl.entities.User;
 import ro.esolutions.eipl.exceptions.UserAlreadyExistsException;
-import ro.esolutions.eipl.exceptions.UserWithGivenIdDoesNotExistException;
+import ro.esolutions.eipl.exceptions.UserNotFoundException;
 import ro.esolutions.eipl.mappers.UserMapper;
 import ro.esolutions.eipl.models.UserModel;
 import ro.esolutions.eipl.repositories.UserRepository;
@@ -40,7 +40,7 @@ public class UserService {
         if (userOptional.isPresent()) {
             return UserMapper.fromEntityToModel(userOptional.get());
         } else {
-            throw new UserWithGivenIdDoesNotExistException();
+            throw new UserNotFoundException();
         }
     }
 
@@ -57,13 +57,17 @@ public class UserService {
             userRepository.deleteById(userId);
             return UserMapper.fromEntityToModel(userOptional.get());
         } else {
-            throw new UserWithGivenIdDoesNotExistException();
+            throw new UserNotFoundException();
         }
     }
 
     public UserModel editUserById(Long userId, @Valid UserModel userModel) {
-
-        User user = userRepository.save(UserMapper.fromModelToEntity(userModel));
-        return UserMapper.fromEntityToModel(user);
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isPresent()) {
+            User user = userRepository.save(UserMapper.fromModelToEntity(userModel));
+            return UserMapper.fromEntityToModel(user);
+        } else {
+            throw new UserNotFoundException();
+        }
     }
 }
