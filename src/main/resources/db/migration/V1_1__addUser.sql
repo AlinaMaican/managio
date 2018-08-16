@@ -1,6 +1,6 @@
 CREATE TABLE users(
-id bigint NOT NULL,
-username character varying(255) NOT NULL,
+id bigint,
+username character varying(255) NOT NULL unique,
 first_name character varying(255) NOT NULL,
 last_name character varying(255) NOT NULL,
 password character varying(100) NOT NULL,

@@ -1,6 +1,9 @@
 package ro.esolutions.eipl.entities;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import ro.esolutions.eipl.models.UserRole;
 
 import javax.persistence.*;
@@ -20,6 +23,7 @@ public class User {
     private Long id;
 
     @NotNull
+    @Column(unique = true)
     private String username;
 
     @NotNull
