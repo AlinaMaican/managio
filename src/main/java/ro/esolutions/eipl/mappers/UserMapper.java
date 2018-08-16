@@ -1,23 +1,26 @@
 package ro.esolutions.eipl.mappers;
 
-import ro.esolutions.eipl.entities.UserEntity;
+import ro.esolutions.eipl.entities.User;
 import ro.esolutions.eipl.models.UserModel;
 
-public class UserMapper {
+public final class UserMapper {
 
-    public UserModel fromEntityToModel(UserEntity userEntity) {
+    private UserMapper() {
+    }
+
+    public static UserModel fromEntityToModel(final User user) {
         return UserModel.builder()
-                .username(userEntity.getUsername())
-                .firstName(userEntity.getFirstName())
-                .lastName(userEntity.getLastName())
-                .password(userEntity.getPassword())
-                .userRole(userEntity.getUserRole())
-                .isActive(userEntity.getIsActive())
+                .username(user.getUsername())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .password(user.getPassword())
+                .userRole(user.getUserRole())
+                .isActive(user.getIsActive())
                 .build();
     }
 
-    public UserEntity fromModelToEntity(UserModel userModel) {
-        return UserEntity.builder()
+    public static User fromModelToEntity(final UserModel userModel) {
+        return User.builder()
                 .username(userModel.getUsername())
                 .firstName(userModel.getFirstName())
                 .lastName(userModel.getLastName())
@@ -26,4 +29,5 @@ public class UserMapper {
                 .isActive(userModel.getIsActive())
                 .build();
     }
+
 }

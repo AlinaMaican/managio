@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
@@ -25,6 +24,5 @@ public class UserModel {
     private UserRole userRole;
     @NotNull
     private Boolean isActive;
-
 
 }

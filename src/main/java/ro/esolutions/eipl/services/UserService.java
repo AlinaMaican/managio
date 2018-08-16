@@ -8,18 +8,21 @@ import ro.esolutions.eipl.repositories.UserRepository;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Objects;
 
 @Service
-@RequiredArgsConstructor
 @Transactional
 public class UserService {
 
+
     private final UserRepository userRepository;
 
+    public UserService(UserRepository userRepository) {
+        this.userRepository = Objects.requireNonNull(userRepository, "UserRepository must not be null");
+    }
+
     public UserModel addNewUser(UserModel userModel) {
-
         return null;
-
     }
 
     public UserModel getUserById(Integer userId) {
