@@ -6,6 +6,7 @@ import { UserListComponent } from './users/user-list.component';
 import { DetailsComponent } from './users/details/details.component';
 import { FormComponent } from './users/form/form.component';
 import { UserService } from './users/user.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { UserService } from './users/user.service';
     FormComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
