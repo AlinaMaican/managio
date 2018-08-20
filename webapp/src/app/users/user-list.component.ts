@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {User} from './model/user.model';
 import {UserService} from './user.service';
 import {Subscription} from 'rxjs/internal/Subscription';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-list',
@@ -14,7 +15,7 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   users: User[];
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -23,6 +24,10 @@ export class UserListComponent implements OnInit, OnDestroy {
         this.users = users;
       }
     );
+  }
+
+  editUserById(id) {
+    this.router.navigate(['edit/' + id]);
   }
 
   ngOnDestroy(): void {
