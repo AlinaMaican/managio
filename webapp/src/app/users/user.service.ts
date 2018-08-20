@@ -1,7 +1,7 @@
-import {UserRole} from "./model/user-role.model";
-import {User} from "./model/user.model";
-import {of} from "rxjs/internal/observable/of";
-import {Observable} from "rxjs/internal/Observable";
+import {UserRole} from './model/user-role.model';
+import {User} from './model/user.model';
+import {of} from 'rxjs/internal/observable/of';
+import {Observable} from 'rxjs/internal/Observable';
 
 export class UserService {
 

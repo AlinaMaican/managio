@@ -1,4 +1,4 @@
-import {UserRole} from "./user-role.model";
+import {UserRole} from './user-role.model';
 
 export class User {
 
