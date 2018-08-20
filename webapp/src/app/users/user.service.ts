@@ -11,12 +11,6 @@ export class UserService {
 
   private usersUrl = environment.resourcesUrl + '/user';
 
-  private users: User[] = [
-    new User(1, 'GigiMasinuta', 'Gigi', 'Masinuta', 'vroom', new UserRole(1), true),
-    new User(2, 'GigiMasinuta', 'ninle', 'Masinuta', 'vroom', new UserRole(1), false),
-
-  ];
-
   constructor(private httpClient: HttpClient) {
   }
 
