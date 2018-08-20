@@ -1,0 +1,35 @@
+<h1 align="center" >User List</h1>
+<div class="row">
+  <button class="add_button">Add</button>
+</div>
+<div class="row">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Username</th>
+      <th>Surname</th>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Role</th>
+      <th>View</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr
+      *ngFor="let user of users; let i = index"
+    >
+      <td>{{user.username}}</td>
+      <td>{{user.firstName}}</td>
+      <td>{{user.lastName}}</td>
+      <td>{{user.status}}</td>
+      <td>{{user.userRole}}</td>
+      <td><button type="button" class="btn btn-sm btn-primary buttons">View</button></td>
+      <td><button type="button" class="btn btn-sm btn-primary">Edit</button> </td>
+      <td><button type="button" class="btn btn-sm btn-primary">Delete</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
