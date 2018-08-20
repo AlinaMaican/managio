@@ -1,10 +1,8 @@
 <h1 align="center" >User List</h1>
-
-<div class="row-fluid add_button">
-  <button>Add</button>
-
+<div class="row">
+  <button class="add_button">Add</button>
 </div>
-<div class="row-fluid">
+<div class="row">
   <table class="table">
     <thead>
     <tr>
@@ -16,11 +14,9 @@
       <th>View</th>
       <th>Edit</th>
       <th>Delete</th>
-
     </tr>
     </thead>
     <tbody>
-
     <tr
       *ngFor="let user of users; let i = index"
     >
@@ -32,8 +28,6 @@
       <td><button type="button" class="btn btn-sm btn-primary buttons">View</button></td>
       <td><button type="button" class="btn btn-sm btn-primary">Edit</button> </td>
       <td><button type="button" class="btn btn-sm btn-primary">Delete</button></td>
-
-
     </tr>
     </tbody>
   </table>
