@@ -41,4 +41,7 @@ public class User {
 
     @NotNull
     private Boolean isActive;
+
+    @NotNull
+    private String email;
 }

@@ -15,4 +15,8 @@ export class UserService {
   getAllUsers(): Observable<User[]> {
     return this.httpClient.get<User[]>(this.usersUrl + '/all');
   }
+
+  addUser(newUser: User): Observable<{}> {
+    return this.httpClient.post<User>(this.usersUrl, newUser, {});
+  }
 }
