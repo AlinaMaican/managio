@@ -4,8 +4,8 @@ public class UserAlreadyExistsException extends RuntimeException {
 
     private static final String MESSAGE = "User with id %s already exists!";
 
-    public UserAlreadyExistsException(final Long userId) {
+    public UserAlreadyExistsException(final String  username) {
 
-        super(String.format(MESSAGE, userId));
+        super(String.format(MESSAGE, username));
     }
 }

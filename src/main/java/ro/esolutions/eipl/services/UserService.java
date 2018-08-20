@@ -30,7 +30,7 @@ public class UserService {
         if (!userOptional.isPresent()) {
             userRepository.save(UserMapper.fromModelToEntity(userModel));
         } else {
-            throw new UserAlreadyExistsException(userModel.getId());
+            throw new UserAlreadyExistsException(userModel.getUsername());
         }
         return userModel;
     }
