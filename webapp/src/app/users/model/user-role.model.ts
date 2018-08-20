@@ -1,4 +1,3 @@
-export class UserRole {
-  public constructor(public test) {
-  }
+export enum UserRole {
+  USER, ADMIN, MANAGER, CONSULTANT
 }
