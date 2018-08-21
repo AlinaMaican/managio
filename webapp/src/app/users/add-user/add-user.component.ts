@@ -32,9 +32,9 @@ export class AddUserComponent implements OnInit, OnDestroy {
     this.adduser = new FormGroup({
       'username': new FormControl('', Validators.required),
       'password': new FormControl('', Validators.required),
-      'firstname': new FormControl('', Validators.required),
-      'lastname': new FormControl('', Validators.required),
-      'role': new FormControl('', Validators.required),
+      'firstName': new FormControl('', Validators.required),
+      'lastName': new FormControl('', Validators.required),
+      'userRole': new FormControl('', Validators.required),
       'email': new FormControl('', Validators.required),
     });
   }
