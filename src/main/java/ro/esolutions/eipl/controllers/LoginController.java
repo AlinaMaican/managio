@@ -1,13 +1,12 @@
 package ro.esolutions.eipl.controllers;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ro.esolutions.eipl.models.LoginFormModel;
 
 import java.security.Principal;
@@ -22,10 +21,11 @@ public class LoginController {
         return "login";
     }
 
-    @PostMapping("/welcome")
-    public String welcome(Principal principal, Model model) {
-        System.out.println(principal);
-        model.addAttribute("username", "red");
+    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST}, path = "/welcome")
+    public String welcome(Model model) {
+        // TODO why arg injection for Principal doesn't work
+        Authentication principal = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("username", principal.getName());
         return "welcome";
     }
 
