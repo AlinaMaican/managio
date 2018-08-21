@@ -20,7 +20,4 @@ export class UserService {
     return this.httpClient.get<User>(this.usersUrl + '/' + index);
   }
 
-  updateUser(index: number, updatedUser: User) {
-
-  }
 }
