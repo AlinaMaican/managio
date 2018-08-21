@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.DefaultRedirectStrategy;
 
 @Configuration
 @EnableWebSecurity
@@ -31,11 +32,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                 .formLogin()
                     .loginPage("/login")
-                    .defaultSuccessUrl("/welcome")
+                    .successHandler((request, response, authentication) ->
+                        new DefaultRedirectStrategy().sendRedirect(request, response, "/welcome"))
                     .permitAll()
-                .and()
-                    .logout()
-                    .permitAll();
+                    .and()
+                .logout().permitAll();
     }
 
     @Bean
