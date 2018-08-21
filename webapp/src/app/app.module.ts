@@ -9,6 +9,7 @@ import { UserService } from './users/user.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRouterModule} from "./app.router.module";
 import { EditComponent } from './users/edit/edit.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { EditComponent } from './users/edit/edit.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRouterModule
+    AppRouterModule,
+    ReactiveFormsModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

@@ -26,9 +26,7 @@ export class UserListComponent implements OnInit, OnDestroy {
     );
   }
 
-  editUserById(id) {
-    this.router.navigate(['edit/' + id]);
-  }
+
 
   ngOnDestroy(): void {
     this.usersSubscription.unsubscribe();

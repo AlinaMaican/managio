@@ -19,4 +19,8 @@ export class UserService {
   getUserById(index: number): Observable<User> {
     return this.httpClient.get<User>(this.usersUrl + '/' + index);
   }
+
+  updateUser(index: number, updatedUser: User) {
+
+  }
 }
