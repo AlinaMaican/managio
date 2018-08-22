@@ -23,10 +23,8 @@ public class LoginController {
 
     @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST}, path = "/welcome")
     public String welcome(Model model) {
-        // TODO why arg injection for Principal doesn't work
         Authentication principal = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", principal.getName());
         return "welcome";
     }
-
 }

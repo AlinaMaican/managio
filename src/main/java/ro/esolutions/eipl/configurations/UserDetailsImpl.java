@@ -8,7 +8,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Collections;
 
 @Data
 @NoArgsConstructor
@@ -25,7 +24,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return grantedAuthorities;
     }
 
     @Override
@@ -44,10 +43,6 @@ public class UserDetailsImpl implements UserDetails {
 
     public boolean isAccountNonLocked() {
         return accountNonLocked;
-    }
-
-    public Collection<? extends GrantedAuthority> getGrantedAuthorities() {
-        return grantedAuthorities;
     }
 
     public boolean isCredentialsNonExpired() {
