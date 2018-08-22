@@ -5,7 +5,7 @@ import ro.esolutions.eipl.entities.User;
 
 import java.util.Collections;
 
-public class UserDetailsImplMapper {
+public final class UserDetailsImplMapper {
     private UserDetailsImplMapper() {
     }
 
