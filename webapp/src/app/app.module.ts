@@ -7,13 +7,15 @@ import { DetailsComponent } from './users/details/details.component';
 import { FormComponent } from './users/form/form.component';
 import { UserService } from './users/user.service';
 import {HttpClientModule} from '@angular/common/http';
+import {UserProfileComponent} from "./user-profile/user-profile.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
     DetailsComponent,
-    FormComponent
+    FormComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
