@@ -8,11 +8,12 @@ import {User} from "../users/model/user.model";
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.scss']
+  styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit{
   subscription: Subscription = null;
   userprofile: FormGroup;
+  isReadOnly: boolean = true;
 
   constructor(private route: ActivatedRoute, private router: Router,
                             private userService: UserService) {}
