@@ -7,6 +7,7 @@ export class User {
               public firstName: String,
               public lastName: String,
               public password: String,
+              public resetPassword: String,
               public userRole: UserRole,
               public status: boolean
   ) {
