@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmnls:th="http://www.tyhmeleaf.org" xmlns:xmnls="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -14,15 +13,11 @@
             Username:
             <input type="text" name="username" th:field="*{username}">
         </label>
-        <br>
-        <br>
         <label>
             Password:
             <input type="password" name="password" th:field="*{password}">
         </label>
         <p th:if="${(param.error != null)}">Login credentials incorrect!</p>
-        <br>
-        <br>
         <input type="submit" value="Submit">
     </fieldset>
 </form>
