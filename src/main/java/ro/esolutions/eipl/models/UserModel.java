@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,6 +16,7 @@ public class UserModel {
 
     private Long id;
     @NotNull
+    @Size(min = 1)
     private String username;
     @NotNull
     private String firstName;

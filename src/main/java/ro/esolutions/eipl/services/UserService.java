@@ -64,6 +64,7 @@ public class UserService {
     public UserModel editUserById(Long userId, @Valid UserModel userModel) {
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
+            userModel.setId(userId);
             User user = userRepository.save(UserMapper.fromModelToEntity(userModel));
             return UserMapper.fromEntityToModel(user);
         } else {

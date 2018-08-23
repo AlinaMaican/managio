@@ -27,8 +27,10 @@ export class EditComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.edituser.value);
-    // this.userService.updateUser(this.id, this.edituser.value);
+    console.log('blabalba');
+    this.userService.updateUserById(this.id, this.edituser.value).subscribe(
+      () => {}
+    );
   }
 
 
@@ -44,8 +46,7 @@ export class EditComponent implements OnInit {
 
     });
 
-    let userName = '';
-    const user = this.userService.getUserById(this.id).subscribe(
+    this.userService.getUserById(this.id).subscribe(
       (user) => {
         this.edituser.patchValue({
           username: user.username,
@@ -55,8 +56,10 @@ export class EditComponent implements OnInit {
           userRole: user.userRole,
           isActive: user.isActive + ''
         });
+
         console.log(this.edituser.value);
         console.log(user);
+
     });
 
   }

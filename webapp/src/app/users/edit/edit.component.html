@@ -1,33 +1,65 @@
 <form [formGroup]="edituser" (ngSubmit)="onSubmit()">
   <fieldset class="form-group">
+  <legend> Edit user </legend>
 
+
+    <div class="form-group">
     <label for="username"> Username: </label>
     <input type="text" name="username" id="username" formControlName="username"/>
+    </div>
 
-    <label> First name: </label>
-    <input type="text" name="firstName" formControlName="firstName"/>
+    <div class="form-group">
+    <label>
+      First name:
+      <input type="text" name="firstName" formControlName="firstName"/>
+    </label>
+    </div>
 
-    <label> Last name: </label>
-    <input type="text" name="lastName" formControlName="lastName"/>
+    <div class="form-group">
+    <label>
+      Last name:
+      <input type="text" name="lastName" formControlName="lastName"/>
+    </label>
+    </div>
 
-    <label>Password: </label>
-    <input type="password" name="password" formControlName="password"/>
+    <div class="form-group">
+    <label>
+      Password:
+      <input type="password" name="password" formControlName="password"/>
+    </label>
+    </div>
 
-    <label> Choose your role: </label>
-    <input type="radio" name="userRole" value="USER" formControlName="userRole"/>
-    <label> User </label>
-    <input type="radio" name="userRole" value="ADMIN" formControlName="userRole"/>
-    <label> Admin </label>
-    <input type="radio" name="userRole" value="MANAGER" formControlName="userRole"/>
-    <label> Manager </label>
-    <input type="radio" name="userRole" value="CONSULTANT" formControlName="userRole"/>
-    <label> Consultant </label>
+    <div class="form-group">
+    <label>
+      Choose your role:
+    </label>
 
-    <label> Active: </label>
-    <input type="radio" name="isActive" value="true" formControlName="isActive"/>
-    <label> true </label>
-    <input type="radio" name="isActive" value="false" formControlName="isActive"/>
-    <label> false </label>
+    <label>
+      User
+      <input type="radio" name="userRole" value="USER" formControlName="userRole"/>
+    </label>
+
+    <label>
+      Admin
+      <input type="radio" name="userRole" value="ADMIN" formControlName="userRole"/>
+    </label>
+
+    <label>
+      Manager
+      <input type="radio" name="userRole" value="MANAGER" formControlName="userRole"/>
+     </label>
+
+    <label>
+      Consultant
+      <input type="radio" name="userRole" value="CONSULTANT" formControlName="userRole"/>
+    </label>
+    </div>
+
+    <div class="form-group">
+    <label> isActive:
+      <input type="checkbox" name="isActive" [checked]="user.isActive" formControlName="isActive"/>
+    </label>
+    </div>
 
     <button type="submit">Send</button>
   </fieldset>

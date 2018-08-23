@@ -20,4 +20,8 @@ export class UserService {
     return this.httpClient.get<User>(this.usersUrl + '/' + index);
   }
 
+  updateUserById(index: number, user: User): Observable<User> {
+    return this.httpClient.put<User>( this.usersUrl + '/' + index, user, {});
+  }
+
 }
