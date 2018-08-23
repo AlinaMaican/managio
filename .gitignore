@@ -27,3 +27,15 @@ mvnw.cmd
 /dist/
 /nbdist/
 /.nb-gradle/
+
+
+### Angular Compiled application ###
+/src/main/resources/static/3rdpartylicenses.txt
+/src/main/resources/static/favicon.ico
+/src/main/resources/static/index.html
+/src/main/resources/static/index.html
+/src/main/resources/static/main.js
+/src/main/resources/static/polyfills.js
+/src/main/resources/static/runtime.js
+/src/main/resources/static/styles.js
+/src/main/resources/static/vendor.js
