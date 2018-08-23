@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {UserService} from "../users/user.service";
 import {Subscription} from "rxjs";
 import {User} from "../users/model/user.model";
+import {UserProfileModel} from "../users/model/user-profile.model";
 
 @Component({
   selector: 'app-user-profile',
@@ -13,11 +14,14 @@ import {User} from "../users/model/user.model";
 export class UserProfileComponent implements OnInit{
   subscription: Subscription = null;
   userprofile: FormGroup;
-  isReadOnly: boolean = true;
+  user: UserProfileModel = {
+    'username': '',
+    'firstName': '',
+    'lastName': ''
+  };
 
   constructor(private route: ActivatedRoute, private router: Router,
                             private userService: UserService) {}
-
   ngOnInit(): void {
     this.route.params
       .subscribe(
@@ -25,6 +29,15 @@ export class UserProfileComponent implements OnInit{
           this.initForm();
         }
       );
+    this.subscription = this.userService.getAuthUser().subscribe(
+      (user: User) => {
+        this.user= user;
+        console.log("Subscribe response");
+        console.log(this.user);
+      }
+    );
+    console.log("Init");
+    console.log(this.user);
   }
 
   initForm() {

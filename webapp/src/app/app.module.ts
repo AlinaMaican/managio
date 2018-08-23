@@ -6,8 +6,10 @@ import { UserListComponent } from './users/user-list.component';
 import { DetailsComponent } from './users/details/details.component';
 import { FormComponent } from './users/form/form.component';
 import { UserService } from './users/user.service';
-import {HttpClientModule} from '@angular/common/http';
-import {UserProfileComponent} from "./user-profile/user-profile.component";
+import { HttpClientModule} from '@angular/common/http';
+import { UserProfileComponent} from "./user-profile/user-profile.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {AppRooterModule} from "./app.router.module";
 
 @NgModule({
   declarations: [
@@ -19,7 +21,10 @@ import {UserProfileComponent} from "./user-profile/user-profile.component";
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    AppRooterModule,
+    FormsModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

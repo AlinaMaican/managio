@@ -40,6 +40,11 @@ public class UserController {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 
+    @GetMapping("/me")
+    public ResponseEntity<UserModel> getAuthUser() {
+        return ResponseEntity.ok(userService.getFirstUser());
+    }
+
     @DeleteMapping("/{user_id}")
     public ResponseEntity<UserModel> deleteUserById(@PathVariable("user_id") Long userId){
         return ResponseEntity.ok(userService.deleteUserById(userId));

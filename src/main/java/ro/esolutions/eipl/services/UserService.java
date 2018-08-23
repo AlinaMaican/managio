@@ -70,4 +70,8 @@ public class UserService {
             throw new UserNotFoundException(userId);
         }
     }
+
+    public UserModel getFirstUser(){
+        return UserMapper.fromEntityToModel(userRepository.findOneByOrderById());
+    }
 }

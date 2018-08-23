@@ -1,25 +1,46 @@
-<div class="row">
-  <h1>User profile settings</h1>
+<div class="container">
+  <div class="row title-style">
+    <div class="col-sm-6 offset-3">
+      <h2>User profile settings</h2>
+    </div>
+  </div>
 </div>
 <div class="container">
   <form [formGroup]="userprofile" (ngSubmit)="resetPassword()">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-sm-6 offset-3">
         <div class="form-group">
           <label>Username</label>
-          <input type="text" class="form-control" [readonly]="isReadOnly">
+          <input type="text"
+                 class="form-control"
+                 readonly
+                 [(ngModel)]="user.username"
+                 [ngModelOptions]="{standalone: true}"
+          >
         </div>
         <div class="form-group">
           <label>Last Name</label>
-          <input type="text" class="form-control">
+          <input type="text"
+                 class="form-control"
+                 readonly
+                 [(ngModel)]="user.lastName"
+                 [ngModelOptions]="{standalone: true}"
+          >
         </div>
         <div class="form-group">
           <label>First Name</label>
-          <input type="text" class="form-control">
+          <input type="text"
+                 class="form-control"
+                 readonly
+                 [(ngModel)]="user.firstName"
+                 [ngModelOptions]="{standalone: true}"
+          >
         </div>
         <div class="form-group">
           <label>Email</label>
-          <input type="email" class="form-control">
+          <input type="email"
+                 class="form-control"
+                 readonly>
         </div>
         <div class="form-group">
           <label>Password</label>
@@ -31,7 +52,17 @@
         </div>
       </div>
     </div>
-    <a type="btn btn-success">Save changes</a>
-    <a type="btn btn-danger">Cancel</a>
+    <div class="row">
+        <div class="col-sm-3 offset-3">
+          <button class="btn btn-secondary btn-lg rounded" style="width:140px">
+            <span>CANCEL</span>
+          </button>
+        </div>
+        <div class="col-sm-3">
+          <a type="submit button" class="btn btn-primary btn-lg rounded" style="width: 140px">
+            <span>SAVE</span>
+          </a>
+        </div>
+    </div>
   </form>
 </div>

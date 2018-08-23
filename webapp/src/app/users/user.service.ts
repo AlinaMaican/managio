@@ -19,4 +19,8 @@ export class UserService {
   resetPassword(userResetPassword: User): Observable<{}> {
     return this.httpClient.post<User>(this.usersUrl + '/resetPassword', userResetPassword, {});
   }
+
+  getAuthUser(): Observable<User> {
+    return this.httpClient.get<User>(this.usersUrl + '/me' );
+  }
 }
