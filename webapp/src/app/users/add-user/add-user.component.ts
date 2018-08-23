@@ -14,38 +14,32 @@ export class AddUserComponent implements OnInit, OnDestroy {
   subscription: Subscription = null;
   adduser: FormGroup;
 
-
   constructor(private route: ActivatedRoute, private router: Router,
               private userService: UserService) {
   }
 
   ngOnInit(): void {
-    this.route.params
-      .subscribe(
-        (params: Params) => {
-          this.initForm();
-        }
-      );
+    this.initForm();
   }
 
   initForm() {
     this.adduser = new FormGroup({
       'username': new FormControl('', Validators.required),
-      'password': new FormControl('', Validators.required),
+      'password': new FormControl('', [Validators.required, Validators.minLength(4)]),
       'firstName': new FormControl('', Validators.required),
       'lastName': new FormControl('', Validators.required),
       'userRole': new FormControl('', Validators.required),
-      'email': new FormControl('', Validators.required),
+      'email': new FormControl('', [Validators.required, Validators.email]),
     });
   }
 
   createUser() {
-   let userObject: User = this.adduser.value;
-   userObject.isActive = true;
-   console.log(userObject);
+    let userObject: User = this.adduser.value;
+    userObject.isActive = true;
     this.subscription =
       this.userService.addUser(userObject).subscribe(
-        () => {}
+        () => {
+        }
       );
   }
 
@@ -55,4 +49,3 @@ export class AddUserComponent implements OnInit, OnDestroy {
     }
   }
 }
-
