@@ -1,68 +1,66 @@
-<div class="container">
-  <div class="row title-style">
-    <div class="col-sm-6 offset-3">
-      <h2>User profile settings</h2>
-    </div>
-  </div>
-</div>
-<div class="container">
-  <form [formGroup]="userprofile" (ngSubmit)="resetPassword()">
-    <div class="row">
-      <div class="col-sm-6 offset-3">
-        <div class="form-group">
-          <label>Username</label>
-          <input type="text"
-                 class="form-control"
-                 readonly
-                 [(ngModel)]="user.username"
-                 [ngModelOptions]="{standalone: true}"
-          >
-        </div>
-        <div class="form-group">
-          <label>Last Name</label>
-          <input type="text"
-                 class="form-control"
-                 readonly
-                 [(ngModel)]="user.lastName"
-                 [ngModelOptions]="{standalone: true}"
-          >
-        </div>
-        <div class="form-group">
-          <label>First Name</label>
-          <input type="text"
-                 class="form-control"
-                 readonly
-                 [(ngModel)]="user.firstName"
-                 [ngModelOptions]="{standalone: true}"
-          >
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email"
-                 class="form-control"
-                 readonly>
-        </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password" class="form-control" placeholder="Password" formControlName="password">
-        </div>
-        <div class="form-group">
-          <label>Confirm password</label>
-          <input type="password" class="form-control" placeholder="Confirm password" formControlName="confirmPassword">
+<div class="container-fluid ">
+  <div class="row">
+    <div class="col-xs-4 offset-4">
+      <div class="row card-body text-secondary">
+        <h2>User profile settings</h2>
+      </div>
+      <div class="row">
+        <div class="col-xs-10 offset-1">
+          <form [formGroup]="userprofile" (ngSubmit)="resetPassword()">
+            <div class="form-group">
+              <label>Username</label>
+              <input type="text"
+                     class="form-control"
+                     readonly
+                     [(ngModel)]="user.username"
+                     [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text"
+                     class="form-control"
+                     readonly
+                     [(ngModel)]="user.lastName"
+                     [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text"
+                     class="form-control"
+                     readonly
+                     [(ngModel)]="user.firstName"
+                     [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email"
+                     class="form-control"
+                     readonly>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" class="form-control" placeholder="Password" formControlName="password">
+            </div>
+            <div class="form-group">
+              <label>Confirm password</label>
+              <input type="password" class="form-control" placeholder="Confirm password"
+                     formControlName="confirmPassword">
+            </div>
+            <div class="col-xs-12">
+              <div class="d-flex w-100 justify-content-between">
+                <button class="btn btn-secondary btn-block rounded m-0">
+                  <span>CANCEL</span>
+                </button>
+                <div class="m-3"></div>
+                <button type="submit button" class="btn btn-primary btn-block rounded m-0">
+                  <span>SAVE</span>
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-    <div class="row">
-        <div class="col-sm-3 offset-3">
-          <button class="btn btn-secondary btn-lg rounded" style="width:140px">
-            <span>CANCEL</span>
-          </button>
-        </div>
-        <div class="col-sm-3">
-          <a type="submit button" class="btn btn-primary btn-lg rounded" style="width: 140px">
-            <span>SAVE</span>
-          </a>
-        </div>
-    </div>
-  </form>
+  </div>
 </div>
+
