@@ -16,7 +16,7 @@ public final class UserDetailsImplMapper {
                 .accountNonExpired(true)
                 .accountNonLocked(true)
                 .credentialsNonExpired(true)
-                .grantedAuthorities(Collections.singletonList(user.getUserRole()))
+                .authorities(Collections.singletonList(user.getUserRole()))
                 .enabled(user.getIsActive())
                 .build();
     }

@@ -18,38 +18,7 @@ public class UserDetailsImpl implements UserDetails {
     private String username;
     private boolean accountNonExpired;
     private boolean accountNonLocked;
-    private Collection<? extends GrantedAuthority> grantedAuthorities;
+    private Collection<? extends GrantedAuthority> authorities;
     private boolean credentialsNonExpired;
     private boolean enabled;
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return grantedAuthorities;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
-    public boolean isAccountNonExpired() {
-        return accountNonExpired;
-    }
-
-    public boolean isAccountNonLocked() {
-        return accountNonLocked;
-    }
-
-    public boolean isCredentialsNonExpired() {
-        return credentialsNonExpired;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
 }
