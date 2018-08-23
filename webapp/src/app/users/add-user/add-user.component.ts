@@ -4,6 +4,8 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {UserService} from "../user.service";
 import {User} from "../model/user.model";
 import {Subscription} from "rxjs";
+import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
+import {FieldError} from "../model/field-error.model";
 
 @Component({
   selector: 'app-add-user',
@@ -13,6 +15,9 @@ import {Subscription} from "rxjs";
 export class AddUserComponent implements OnInit, OnDestroy {
   subscription: Subscription = null;
   adduser: FormGroup;
+  usernameError;
+  emailError;
+  errorMessage;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private userService: UserService) {
@@ -39,6 +44,10 @@ export class AddUserComponent implements OnInit, OnDestroy {
     this.subscription =
       this.userService.addUser(userObject).subscribe(
         () => {
+          this.router.navigate(['/']);
+        },
+        (response: HttpErrorResponse) => {
+          this.parseError(response.error)
         }
       );
   }
@@ -47,5 +56,24 @@ export class AddUserComponent implements OnInit, OnDestroy {
     if (this.subscription !== null) {
       this.subscription.unsubscribe();
     }
+  }
+
+  private parseError(fieldError: FieldError) {
+    this.resetErrors()
+    switch (fieldError.fieldName){
+      case 'username': {
+        this.usernameError = true;
+      }
+      case 'email': {
+        this.emailError = true;
+      }
+    }
+    this.errorMessage = fieldError.message;
+  }
+
+  private resetErrors(){
+    this.errorMessage = null;
+    this.usernameError = null;
+    this.emailError = null;
   }
 }

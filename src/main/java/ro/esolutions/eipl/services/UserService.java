@@ -27,11 +27,8 @@ public class UserService {
     }
 
     public UserModel addNewUser(UserModel userModel) {
-        Optional<User> userOptional = userRepository.findByUsername(userModel.getUsername());
-        if (userOptional.isPresent()) {
-            throw new UserAlreadyExistsException(userModel.getUsername());
-        }
-        checkEmail(userModel.getEmail());
+        checkUsername(userModel);
+        checkEmail(userModel);
         UserModel resultUser = UserMapper.fromEntityToModel(userRepository.save(UserMapper.fromModelToEntity(userModel)));
         return resultUser;
     }
@@ -72,12 +69,21 @@ public class UserService {
         }
     }
 
-    private boolean checkEmail(String email) {
-        Optional<User> user = userRepository.findFirstByEmail(email);
-        if (user.isPresent()) {
+    private boolean checkEmail(UserModel userModel) {
+        String email = userModel.getEmail();
+        Optional<User> persistedUser = userRepository.findFirstByEmail(email);
+        if (persistedUser.isPresent()) {
             throw new UserEmailAlreadyExists(email);
-        } else {
-            return true;
         }
+            return true;
+
+    }
+
+    private boolean checkUsername(UserModel userModel){
+        Optional<User> userOptional = userRepository.findByUsername(userModel.getUsername());
+        if (userOptional.isPresent()) {
+            throw new UserAlreadyExistsException(userModel.getUsername());
+        }
+        return true;
     }
 }

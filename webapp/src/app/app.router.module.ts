@@ -4,7 +4,7 @@ import {UserListComponent} from "./users/user-list.component";
 import {AddUserComponent} from "./users/add-user/add-user.component";
 
 const routes: Routes = [
-  {path: '', component: UserListComponent},
+  {path: '', component: UserListComponent, pathMatch: 'full'},
   {path: 'add-user', component: AddUserComponent}
 ];
 
@@ -15,4 +15,4 @@ const routes: Routes = [
   exports: [RouterModule],
   declarations: []
 })
-export class AppRooterModule { }
+export class AppRouterModule { }

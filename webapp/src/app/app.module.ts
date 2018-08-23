@@ -8,7 +8,7 @@ import {FormComponent} from './users/form/form.component';
 import {UserService} from './users/user.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AddUserComponent} from "./users/add-user/add-user.component";
-import {AppRooterModule} from "./app.rooter.module";
+import {AppRouterModule} from "./app.router.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
@@ -22,7 +22,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRooterModule,
+    AppRouterModule,
     FormsModule,
     ReactiveFormsModule
   ],
