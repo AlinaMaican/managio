@@ -10,6 +10,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { UserProfileComponent} from "./user-profile/user-profile.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppRooterModule} from "./app.router.module";
+import { ResetPasswordModalComponent } from './user-profile/reset-password-modal/reset-password-modal.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {AppRooterModule} from "./app.router.module";
     UserListComponent,
     DetailsComponent,
     FormComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ResetPasswordModalComponent
   ],
   imports: [
     BrowserModule,
