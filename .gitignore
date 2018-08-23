@@ -35,7 +35,12 @@ mvnw.cmd
 /src/main/resources/static/index.html
 /src/main/resources/static/index.html
 /src/main/resources/static/main.js
+/src/main/resources/static/main.js.map
 /src/main/resources/static/polyfills.js
+/src/main/resources/static/polyfills.js.map
 /src/main/resources/static/runtime.js
+/src/main/resources/static/runtime.js.map
 /src/main/resources/static/styles.js
+/src/main/resources/static/styles.js.map
 /src/main/resources/static/vendor.js
+/src/main/resources/static/vendor.js.map
