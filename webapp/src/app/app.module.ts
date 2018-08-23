@@ -9,7 +9,7 @@ import { UserService } from './users/user.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRouterModule} from "./app.router.module";
 import { EditComponent } from './users/edit/edit.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -23,7 +23,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     BrowserModule,
     HttpClientModule,
     AppRouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

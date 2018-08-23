@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -15,17 +16,27 @@ import javax.validation.constraints.Size;
 public class UserModel {
 
     private Long id;
-    @NotNull
-    @Size(min = 1)
+
+    @NotEmpty
+    @Size(min = 2)
     private String username;
-    @NotNull
+
+    @NotEmpty
+    @Size(min = 2)
     private String firstName;
-    @NotNull
+
+    @NotEmpty
+    @Size(min = 2)
     private String lastName;
-    @NotNull
+
+    @NotEmpty
+    @Size(min = 2)
     private String password;
+
     @NotNull
     private UserRole userRole;
+
     @NotNull
     private Boolean isActive;
+
 }
