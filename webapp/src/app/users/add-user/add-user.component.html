@@ -3,43 +3,53 @@
   <form [formGroup]="adduser" (ngSubmit)="createUser()">
     <div class="row-fluid">
       <div class="form-group">
-        <label>Username</label>
-        <input type="text" class="form-control" placeholder="Username" formControlName="username" required="required">
+        <label>Username
+          <input type="text" class="form-control" placeholder="Username" formControlName="username" required="required">
+        </label>
       </div>
       <div class="form-group">
-        <label>Password</label>
-        <input type="password" class="form-control" placeholder="Password" formControlName="password"
-               required="required">
+        <label>Password
+          <input type="password" class="form-control" placeholder="Password" formControlName="password"
+                 required="required">
+        </label>
       </div>
       <div class="form-group">
-        <label>First Name</label>
-        <input type="text" class="form-control" placeholder="First Name" formControlName="firstName"
-               required="required">
+        <label>First Name
+          <input type="text" class="form-control" placeholder="First Name" formControlName="firstName"
+                 required="required">
+        </label>
       </div>
       <div class="form-group">
-        <label>Last Name</label>
-        <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName" required="required">
+        <label>Last Name
+          <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName"
+                 required="required">
+        </label>
       </div>
       <div class="form-group">
-        <label>Email</label>
-        <input type="email" class="form-control" placeholder="Email" formControlName="email" required="required">
+        <label>Email
+          <input type="email" class="form-control" placeholder="Email" formControlName="email" required="required">
+        </label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="userRole" value="USER" formControlName="userRole"
-               required="required">
-        <label class="form-check-label">User</label>
+        <label class="form-check-label">
+          <input class="form-check-input" type="radio" name="userRole" value="USER" formControlName="userRole"
+                 required="required">
+          User</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="userRole" value="ADMIN" formControlName="userRole">
-        <label class="form-check-label">Admin</label>
+        <label class="form-check-label"><input class="form-check-input" type="radio" name="userRole" value="ADMIN"
+                                               formControlName="userRole">
+          Admin</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="userRole" value="MANAGER" formControlName="userRole">
-        <label class="form-check-label">Manager</label>
+        <label class="form-check-label"><input class="form-check-input" type="radio" name="userRole" value="MANAGER"
+                                               formControlName="userRole">
+          Manager</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="userRole" value="CONSULTANT" formControlName="userRole">
-        <label class="form-check-label">Consultant</label>
+        <label class="form-check-label"><input class="form-check-input" type="radio" name="userRole" value="CONSULTANT"
+                                                formControlName="userRole">
+          Consultant</label>
       </div>
     </div>
     <button type="submit" class="btn btn-primary" [disabled]="!adduser.valid">Submit</button>
