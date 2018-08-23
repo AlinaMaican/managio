@@ -60,7 +60,23 @@
     </label>
     </div>
 
-    <button type="submit" class="btn btn-primary">Send</button>
+    <button type="button" data-toggle="modal" data-target="#confirmModal">Send</button>
+
+    <!-- Modal -->
+    <div class="modal" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalTitle"
+         aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            Are you sure you want to save?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="onSubmit()">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </fieldset>
 </form>

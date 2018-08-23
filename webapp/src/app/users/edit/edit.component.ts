@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../model/user.model";
 import {UserService} from "../user.service";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -16,7 +16,9 @@ export class EditComponent implements OnInit {
 
   edituser: FormGroup;
 
-  constructor(private userService: UserService, private route: ActivatedRoute) { }
+  constructor(private userService: UserService,
+              private route: ActivatedRoute,
+              private router: Router) {}
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
@@ -29,7 +31,7 @@ export class EditComponent implements OnInit {
   onSubmit() {
     // console.log(this.edituser.get('firstName').errors);
     this.userService.updateUserById(this.id, this.edituser.value).subscribe(
-      () => {}
+      () => {this.router.navigateByUrl('/')}
     );
   }
 
