@@ -43,5 +43,6 @@ public class User {
     private Boolean isActive;
 
     @NotNull
+    @Column(unique=true)
     private String email;
 }

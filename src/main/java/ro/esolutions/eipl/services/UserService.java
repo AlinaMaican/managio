@@ -3,6 +3,7 @@ package ro.esolutions.eipl.services;
 import org.springframework.stereotype.Service;
 import ro.esolutions.eipl.entities.User;
 import ro.esolutions.eipl.exceptions.UserAlreadyExistsException;
+import ro.esolutions.eipl.exceptions.UserEmailAlreadyExists;
 import ro.esolutions.eipl.exceptions.UserNotFoundException;
 import ro.esolutions.eipl.mappers.UserMapper;
 import ro.esolutions.eipl.models.UserModel;
@@ -27,12 +28,12 @@ public class UserService {
 
     public UserModel addNewUser(UserModel userModel) {
         Optional<User> userOptional = userRepository.findByUsername(userModel.getUsername());
-        if (!userOptional.isPresent()) {
-            userRepository.save(UserMapper.fromModelToEntity(userModel));
-        } else {
+        if (userOptional.isPresent()) {
             throw new UserAlreadyExistsException(userModel.getUsername());
         }
-        return userModel;
+        checkEmail(userModel.getEmail());
+        UserModel resultUser = UserMapper.fromEntityToModel(userRepository.save(UserMapper.fromModelToEntity(userModel)));
+        return resultUser;
     }
 
     public UserModel getUserById(Long userId) {
@@ -68,6 +69,15 @@ public class UserService {
             return UserMapper.fromEntityToModel(user);
         } else {
             throw new UserNotFoundException(userId);
+        }
+    }
+
+    private boolean checkEmail(String email) {
+        Optional<User> user = userRepository.findFirstByEmail(email);
+        if (user.isPresent()) {
+            throw new UserEmailAlreadyExists(email);
+        } else {
+            return true;
         }
     }
 }
