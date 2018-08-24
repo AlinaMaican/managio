@@ -9,7 +9,7 @@ export class User {
               public password: String,
               public resetPassword: String,
               public userRole: UserRole,
-              public status: boolean
+              public isActive: boolean
   ) {
   }
 }

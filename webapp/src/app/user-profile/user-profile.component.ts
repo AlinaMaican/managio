@@ -17,8 +17,11 @@ export class UserProfileComponent implements OnInit{
   user: UserProfileModel = {
     'username': '',
     'firstName': '',
-    'lastName': ''
+    'lastName': '',
+    'password': '',
+    'resetPassword': ''
   };
+  min8Min1LetterMin1Number="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
 
   constructor(private route: ActivatedRoute, private router: Router,
                             private userService: UserService) {}
@@ -42,16 +45,21 @@ export class UserProfileComponent implements OnInit{
 
   initForm() {
     this.userprofile = new FormGroup({
-      'password': new FormControl('', Validators.required),
-      'confirmPassword': new FormControl('', Validators.required)
+      'password': new FormControl('', Validators.compose([Validators.required, Validators.pattern(this.min8Min1LetterMin1Number)])),
+      'confirmPassword': new FormControl('', Validators.compose([Validators.required]))
     });
   }
 
   resetPassword() {
-    let userResetPassword: User = this.userprofile.value;
-    this.subscription = this.userService.resetPassword(userResetPassword).subscribe(
-      () => {}
-    );
+    console.log(this.userprofile.get('password').errors);
+    // let userResetPassword: User = this.userprofile.value;
+    // this.subscription = this.userService.resetPassword(userResetPassword).subscribe(
+    //   () => {}
+    // );
+  }
+
+  getField(fieldName: string):any{
+    return this.userprofile.get(fieldName);
   }
 
   ngOnDestroy(): void {

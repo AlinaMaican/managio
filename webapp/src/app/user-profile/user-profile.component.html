@@ -6,45 +6,63 @@
       </div>
       <div class="row">
         <div class="col-xs-10 offset-1">
+          <div class="form-group">
+            <label>Username</label>
+            <input type="text"
+                   class="form-control"
+                   readonly
+                   [(ngModel)]="user.username"/>
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text"
+                   class="form-control"
+                   readonly
+                   [(ngModel)]="user.lastName"/>
+          </div>
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text"
+                   class="form-control"
+                   readonly
+                   [(ngModel)]="user.firstName"/>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email"
+                   class="form-control"
+                   readonly/>
+          </div>
           <form [formGroup]="userprofile" (ngSubmit)="resetPassword()">
             <div class="form-group">
-              <label>Username</label>
-              <input type="text"
-                     class="form-control"
-                     readonly
-                     [(ngModel)]="user.username"
-                     [ngModelOptions]="{standalone: true}">
-            </div>
-            <div class="form-group">
-              <label>Last Name</label>
-              <input type="text"
-                     class="form-control"
-                     readonly
-                     [(ngModel)]="user.lastName"
-                     [ngModelOptions]="{standalone: true}">
-            </div>
-            <div class="form-group">
-              <label>First Name</label>
-              <input type="text"
-                     class="form-control"
-                     readonly
-                     [(ngModel)]="user.firstName"
-                     [ngModelOptions]="{standalone: true}">
-            </div>
-            <div class="form-group">
-              <label>Email</label>
-              <input type="email"
-                     class="form-control"
-                     readonly>
-            </div>
-            <div class="form-group">
               <label>Password</label>
-              <input type="password" class="form-control" placeholder="Password" formControlName="password">
+              <input type="password"
+                     class="form-control"
+                     placeholder="Password"
+                     name="password"
+                     formControlName="password"
+                     required
+                     pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+              <small *ngIf="getField('password').errors.required && getField('password').dirty"
+                     class="text-danger">
+                Password is required!</small>
+              <small *ngIf="getField('password').errors.pattern  && getField('password').dirty"
+                     class="text-danger">
+                <div>Password must contain at least 8 characters, including one letter and one number</div>
+              </small>
             </div>
             <div class="form-group">
               <label>Confirm password</label>
-              <input type="password" class="form-control" placeholder="Confirm password"
-                     formControlName="confirmPassword">
+              <input type="password"
+                     class="form-control"
+                     placeholder="Confirm password"
+                     name="confirmPassword"
+                     formControlName="confirmPassword"
+                     required>
+              <small *ngIf="getField('confirmPassword').errors && getField('confirmPassword').dirty"
+                     class="text-danger">
+                Password mismatch!
+              </small>
             </div>
             <div class="col-xs-12">
               <div class="d-flex w-100 justify-content-between">
