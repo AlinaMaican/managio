@@ -2,8 +2,6 @@ package ro.esolutions.eipl.services;
 
 import org.springframework.stereotype.Service;
 import ro.esolutions.eipl.entities.User;
-import ro.esolutions.eipl.exceptions.UserAlreadyExistsException;
-import ro.esolutions.eipl.exceptions.UserEmailAlreadyExists;
 import ro.esolutions.eipl.exceptions.UserNotFoundException;
 import ro.esolutions.eipl.mappers.UserMapper;
 import ro.esolutions.eipl.models.UserModel;
@@ -16,6 +14,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static ro.esolutions.eipl.mappers.UserMapper.fromEntityToModel;
+import static ro.esolutions.eipl.mappers.UserMapper.fromModelToEntity;
+
 @Service
 @Transactional
 public class UserService {
@@ -27,15 +28,13 @@ public class UserService {
     }
 
     public UserModel addNewUser(final UserModel userModel) {
-        checkUsername(userModel);
-        checkEmail(userModel);
         return UserMapper.fromEntityToModel(userRepository.save(UserMapper.fromModelToEntity(userModel)));
     }
 
     public UserModel getUserById(final Long userId) {
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
-            return UserMapper.fromEntityToModel(userOptional.get());
+            return fromEntityToModel(userOptional.get());
         } else {
             throw new UserNotFoundException(userId);
         }
@@ -52,7 +51,7 @@ public class UserService {
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
             userRepository.deleteById(userId);
-            return UserMapper.fromEntityToModel(userOptional.get());
+            return fromEntityToModel(userOptional.get());
         } else {
             throw new UserNotFoundException(userId);
         }
@@ -69,21 +68,8 @@ public class UserService {
         }
     }
 
-    private boolean checkEmail(final UserModel userModel) {
-        final String email = userModel.getEmail();
-        Optional<User> persistedUser = userRepository.findFirstByEmail(email);
-        if (persistedUser.isPresent()) {
-            throw new UserEmailAlreadyExists(email);
-        }
-        return true;
-    }
-
-    private boolean checkUsername(final UserModel userModel) {
-        Optional<User> userOptional = userRepository.findByUsername(userModel.getUsername());
-        if (userOptional.isPresent()) {
-            throw new UserAlreadyExistsException(userModel.getUsername());
-        }
-        return true;
+    private UserModel addUser(final UserModel userModel) {
+        return fromEntityToModel(userRepository.save(fromModelToEntity(userModel)));
     }
 
     public UserModel getFirstUser() {
