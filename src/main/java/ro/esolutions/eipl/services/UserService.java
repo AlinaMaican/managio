@@ -22,18 +22,18 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(final UserRepository userRepository) {
         this.userRepository = Objects.requireNonNull(userRepository, "UserRepository must not be null");
     }
 
-    public UserModel addNewUser(UserModel userModel) {
+    public UserModel addNewUser(final UserModel userModel) {
         checkUsername(userModel);
         checkEmail(userModel);
         UserModel resultUser = UserMapper.fromEntityToModel(userRepository.save(UserMapper.fromModelToEntity(userModel)));
         return resultUser;
     }
 
-    public UserModel getUserById(Long userId) {
+    public UserModel getUserById(final Long userId) {
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
             return UserMapper.fromEntityToModel(userOptional.get());
@@ -49,7 +49,7 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public UserModel deleteUserById(Long userId) {
+    public UserModel deleteUserById(final Long userId) {
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
             userRepository.deleteById(userId);
@@ -59,7 +59,7 @@ public class UserService {
         }
     }
 
-    public UserModel editUserById(Long userId, @Valid UserModel userModel) {
+    public UserModel editUserById(final Long userId, final @Valid UserModel userModel) {
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
             User user = userRepository.save(UserMapper.fromModelToEntity(userModel));
@@ -69,7 +69,7 @@ public class UserService {
         }
     }
 
-    private boolean checkEmail(UserModel userModel) {
+    private boolean checkEmail(final UserModel userModel) {
         String email = userModel.getEmail();
         Optional<User> persistedUser = userRepository.findFirstByEmail(email);
         if (persistedUser.isPresent()) {
@@ -78,7 +78,7 @@ public class UserService {
         return true;
     }
 
-    private boolean checkUsername(UserModel userModel) {
+    private boolean checkUsername(final UserModel userModel) {
         Optional<User> userOptional = userRepository.findByUsername(userModel.getUsername());
         if (userOptional.isPresent()) {
             throw new UserAlreadyExistsException(userModel.getUsername());
