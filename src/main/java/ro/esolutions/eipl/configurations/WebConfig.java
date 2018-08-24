@@ -10,6 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 @EnableWebMvc
 public class WebConfig {
+    public static final String ROOT_PATH = "/";
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {

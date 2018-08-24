@@ -8,20 +8,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ro.esolutions.eipl.models.LoginFormModel;
 
-@Controller
+import static ro.esolutions.eipl.configurations.WebConfig.ROOT_PATH;
+
+@Controller(ROOT_PATH)
 @RequestMapping
 public class LoginController {
+    public static final String WELCOME_PATH = "welcome";
+    public static final String LOGIN_PATH = "login";
+    public static final String LOGIN_PATH_FULL = ROOT_PATH + LOGIN_PATH;
 
-    @GetMapping("/login")
+    @GetMapping(LOGIN_PATH)
     public String getLogin(Model model) {
         model.addAttribute("loginForm", new LoginFormModel());
-        return "login";
+        return LOGIN_PATH;
     }
 
-    @GetMapping(path = "/welcome")
+    @GetMapping(path = WELCOME_PATH)
     public String welcome(Model model) {
         Authentication principal = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", principal.getName());
-        return "welcome";
+        return WELCOME_PATH;
     }
 }

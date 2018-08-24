@@ -5,11 +5,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import ro.esolutions.eipl.entities.User;
-import ro.esolutions.eipl.mappers.UserDetailsImplMapper;
+import ro.esolutions.eipl.mappers.UserDetailsMapper;
 import ro.esolutions.eipl.repositories.UserRepository;
-
-import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -19,7 +16,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username)
-                .map(UserDetailsImplMapper::fromUser)
+                .map(UserDetailsMapper::fromUser)
                 .orElseThrow(() -> new UsernameNotFoundException("Username not found"));
     }
 }

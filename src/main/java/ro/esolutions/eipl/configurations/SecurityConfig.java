@@ -13,27 +13,29 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.DefaultRedirectStrategy;
 
+import static ro.esolutions.eipl.controllers.LoginController.LOGIN_PATH_FULL;
+
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
-    public void configure(HttpSecurity http) throws Exception {
+    public void configure(final HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                    .anyRequest().authenticated()
-                    .and()
+                .anyRequest().authenticated()
+                .and()
                 .formLogin()
-                    .loginPage("/login")
-                    .successHandler((request, response, authentication) ->
+                .loginPage(LOGIN_PATH_FULL)
+                .successHandler((request, response, authentication) ->
                         new DefaultRedirectStrategy().sendRedirect(request, response, "/welcome"))
-                    .permitAll()
-                    .and()
+                .permitAll()
+                .and()
                 .logout().permitAll();
     }
 
     @Bean
-    public UserDetailsService userDetailsService(UserDetailsServiceImpl userDetailsServiceImpl) {
+    public UserDetailsService userDetailsService(final UserDetailsServiceImpl userDetailsServiceImpl) {
         return userDetailsServiceImpl;
     }
 
@@ -43,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth, PasswordEncoder passwordEncoder, UserDetailsService userDetailsService) throws Exception {
+    public void configureGlobal(final AuthenticationManagerBuilder auth, final PasswordEncoder passwordEncoder, final UserDetailsService userDetailsService) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     }
 }

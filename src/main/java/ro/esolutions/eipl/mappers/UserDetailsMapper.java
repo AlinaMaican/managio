@@ -5,11 +5,11 @@ import ro.esolutions.eipl.entities.User;
 
 import java.util.Collections;
 
-public final class UserDetailsImplMapper {
-    private UserDetailsImplMapper() {
+public final class UserDetailsMapper {
+    private UserDetailsMapper() {
     }
 
-    public static UserDetailsImpl fromUser(User user) {
+    public static UserDetailsImpl fromUser(final User user) {
         return UserDetailsImpl.builder()
                 .username(user.getUsername())
                 .password(user.getPassword())
