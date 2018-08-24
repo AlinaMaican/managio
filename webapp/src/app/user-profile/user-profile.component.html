@@ -1,84 +1,83 @@
-<div class="container-fluid ">
-  <div class="row">
-    <div class="col-xs-4 offset-4">
-      <div class="row card-body text-secondary">
-        <h2>User profile settings</h2>
-      </div>
-      <div class="row">
-        <div class="col-xs-10 offset-1">
-          <div class="form-group">
-            <label>Username</label>
-            <input type="text"
-                   class="form-control"
-                   readonly
-                   [(ngModel)]="user.username"/>
-          </div>
-          <div class="form-group">
-            <label>Last Name</label>
-            <input type="text"
-                   class="form-control"
-                   readonly
-                   [(ngModel)]="user.lastName"/>
-          </div>
-          <div class="form-group">
-            <label>First Name</label>
-            <input type="text"
-                   class="form-control"
-                   readonly
-                   [(ngModel)]="user.firstName"/>
-          </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email"
-                   class="form-control"
-                   readonly/>
-          </div>
-          <form [formGroup]="userprofile" (ngSubmit)="resetPassword()">
-            <div class="form-group">
-              <label>Password</label>
-              <input type="password"
-                     class="form-control"
-                     placeholder="Password"
-                     name="password"
-                     formControlName="password"
-                     required
-                     pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
-              <small *ngIf="getField('password').errors.required && getField('password').dirty"
-                     class="text-danger">
-                Password is required!</small>
-              <small *ngIf="getField('password').errors.pattern  && getField('password').dirty"
-                     class="text-danger">
-                <div>Password must contain at least 8 characters, including one letter and one number</div>
-              </small>
-            </div>
-            <div class="form-group">
-              <label>Confirm password</label>
-              <input type="password"
-                     class="form-control"
-                     placeholder="Confirm password"
-                     name="confirmPassword"
-                     formControlName="confirmPassword"
-                     required>
-              <small *ngIf="getField('confirmPassword').errors && getField('confirmPassword').dirty"
-                     class="text-danger">
-                Password mismatch!
-              </small>
-            </div>
-            <div class="col-xs-12">
-              <div class="d-flex w-100 justify-content-between">
-                <button class="btn btn-secondary btn-block rounded m-0">
-                  <span>CANCEL</span>
-                </button>
-                <div class="m-3"></div>
-                <button type="submit button" class="btn btn-primary btn-block rounded m-0">
-                  <span>SAVE</span>
-                </button>
-              </div>
-            </div>
-          </form>
+<div class="row">
+  <div class="col-xs-4 offset-4">
+    <div class="row card-body text-secondary">
+      <h2>User profile settings</h2>
+    </div>
+    <div class="row">
+      <div class="col-xs-10 offset-1">
+
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text"
+                 class="form-control"
+                 readonly
+                 [(ngModel)]="user.username"/>
         </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text"
+                 class="form-control"
+                 readonly
+                 [(ngModel)]="user.lastName"/>
+        </div>
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text"
+                 class="form-control"
+                 readonly
+                 [(ngModel)]="user.firstName"/>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email"
+                 class="form-control"
+                 readonly/>
+        </div>
+        <form [formGroup]="userprofile" (ngSubmit)="resetPassword()">
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password"
+                   class="form-control"
+                   placeholder="Password"
+                   name="password"
+                   formControlName="password"
+                   pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+            <div
+              *ngIf="checkForErrors('password') && getField('password').errors.required && getField('password').dirty"
+              class="text-danger">Password is required!
+            </div>
+            <div
+              *ngIf="checkForErrors('password') && getField('password').errors.pattern && getField('password').dirty"
+              class="text-danger">Password must contain at least 8 characters, including one letter and one
+              number!
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Confirm password</label>
+            <input type="password"
+                   class="form-control"
+                   placeholder="Confirm password"
+                   name="confirmPassword"
+                   formControlName="confirmPassword">
+            <small
+              *ngIf="validate(getField('password').value, getField('confirmPassword').value) && getField('confirmPassword').dirty"
+              class="text-danger ng-hide">
+              Password mismatch!
+            </small>
+          </div>
+          <div class="col-xs-12">
+            <div class="d-flex w-100 justify-content-between">
+              <button class="btn btn-secondary btn-block rounded m-0">
+                <span>CANCEL</span>
+              </button>
+              <div class="m-3"></div>
+              <button type="submit button" class="btn btn-primary btn-block rounded m-0">
+                <span>SAVE</span>
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </div>
-
