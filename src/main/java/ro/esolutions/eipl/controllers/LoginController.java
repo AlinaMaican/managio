@@ -18,13 +18,13 @@ public class LoginController {
     public static final String LOGIN_PATH_FULL = ROOT_PATH + LOGIN_PATH;
 
     @GetMapping(LOGIN_PATH)
-    public String getLogin(Model model) {
+    public String getLogin(final Model model) {
         model.addAttribute("loginForm", new LoginFormModel());
         return LOGIN_PATH;
     }
 
     @GetMapping(path = WELCOME_PATH)
-    public String welcome(Model model) {
+    public String welcome(final Model model) {
         Authentication principal = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", principal.getName());
         return WELCOME_PATH;
