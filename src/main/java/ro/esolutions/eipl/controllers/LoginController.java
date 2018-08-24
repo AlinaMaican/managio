@@ -25,8 +25,7 @@ public class LoginController {
 
     @GetMapping(path = WELCOME_PATH)
     public String welcome(final Model model) {
-        Authentication principal = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("username", principal.getName());
+        model.addAttribute("username", SecurityContextHolder.getContext().getAuthentication().getName());
         return WELCOME_PATH;
     }
 }
