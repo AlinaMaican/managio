@@ -75,11 +75,10 @@ public class UserService {
         if (persistedUser.isPresent()) {
             throw new UserEmailAlreadyExists(email);
         }
-            return true;
-
+        return true;
     }
 
-    private boolean checkUsername(UserModel userModel){
+    private boolean checkUsername(UserModel userModel) {
         Optional<User> userOptional = userRepository.findByUsername(userModel.getUsername());
         if (userOptional.isPresent()) {
             throw new UserAlreadyExistsException(userModel.getUsername());
