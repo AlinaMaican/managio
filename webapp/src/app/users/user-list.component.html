@@ -1,6 +1,6 @@
 <h1 align="center" >User List</h1>
-<div class="row">
-  <button class="add_button">Add</button>
+<div class="row padding-button-10">
+  <a class="btn btn-primary" [routerLink]="'/add-user'">Add</a>
 </div>
 <div class="row">
   <table class="table">
@@ -17,9 +17,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr
-      *ngFor="let user of users; let i = index"
-    >
+    <tr *ngFor="let user of users;">
       <td>{{user.username}}</td>
       <td>{{user.firstName}}</td>
       <td>{{user.lastName}}</td>

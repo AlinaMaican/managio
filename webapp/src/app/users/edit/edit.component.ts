@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "../model/user.model";
 import {UserService} from "../user.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -11,54 +10,59 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class EditComponent implements OnInit {
 
-  user: User;
   id: number;
-
-  edituser: FormGroup;
+  formGroup: FormGroup;
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
-              private router: Router) {}
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
-      this.userService.getUserById(this.id).subscribe();
       this.initForm();
     });
   }
 
   onSubmit() {
-    this.userService.updateUserById(this.id, this.edituser.value).subscribe(
-      () => {this.router.navigateByUrl('/')}
-    );
+    this.userService.updateUserById(this.id, this.formGroup.value)
+      .subscribe(
+        () => {
+          this.router.navigateByUrl('/')
+        }
+      );
   }
 
-
   initForm() {
-
-    this.edituser = new FormGroup({
+    this.formGroup = new FormGroup({
       'username': new FormControl('', Validators.required),
-      'firstName': new FormControl('', Validators.required),
-      'lastName': new FormControl('', Validators.required),
+      'firstName': new FormControl('', [
+        Validators.required, Validators.pattern('^[a-zA-Z]+(([\',. -][a-zA-Z ])?[a-zA-Z]*)*$')
+      ]),
+      'lastName': new FormControl('', [
+        Validators.required, Validators.pattern('^[a-zA-Z]+(([\',. -][a-zA-Z ])?[a-zA-Z]*)*$')
+      ]),
       'password': new FormControl('', Validators.required),
       'userRole': new FormControl('', Validators.required),
       'isActive': new FormControl('', Validators.required),
+      'email': new FormControl('', Validators.required)
 
     });
 
-    this.userService.getUserById(this.id).subscribe(
-      (user) => {
-        this.edituser.patchValue({
-          username: user.username.trim(),
-          firstName: user.firstName,
-          lastName: user.lastName.trim(),
-          password: user.password.trim(),
-          userRole: user.userRole,
-          isActive: user.isActive + ""
+    this.userService.getUserById(this.id)
+      .subscribe(
+        user => {
+          this.formGroup.patchValue({
+            username: user.username,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            password: user.password,
+            userRole: user.userRole,
+            isActive: user.isActive,
+            email: user.email,
+          });
         });
-    });
-
   }
 
 }

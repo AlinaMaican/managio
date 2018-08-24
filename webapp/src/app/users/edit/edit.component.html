@@ -6,7 +6,7 @@
       </div>
       <div class="row">
         <div class="col-xs-10 offset-1">
-          <form [formGroup]="edituser" (ngSubmit)="onSubmit()">
+          <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
 
             <div class="form-group">
               <label for="username">
@@ -17,7 +17,16 @@
               </label>
             </div>
 
-            <small *ngIf="edituser.get('firstName').errors">Firstname is required</small>
+            <div class="form-group">
+              <label for="email">
+                Username:
+                <input type="text" class="form-control" name="email" id="email" formControlName="email"
+                       readonly
+                       required>
+              </label>
+            </div>
+
+            <small *ngIf="formGroup.get('firstName').errors">Firstname is required</small>
             <div class="form-group">
               <label>
                 First name:
@@ -25,7 +34,7 @@
               </label>
             </div>
 
-            <small *ngIf="edituser.get('lastName').errors">Lastname is required</small>
+            <small *ngIf="formGroup.get('lastName').errors">Lastname is required</small>
             <div class="form-group">
               <label>
                 Last name:
@@ -74,7 +83,6 @@
                 </button>
               </div>
             </div>
-            <!--<button type="button" data-toggle="modal" data-target="#confirmModal">Send</button>-->
 
             <!-- Modal -->
             <div class="modal" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalTitle"
@@ -99,5 +107,3 @@
     </div>
   </div>
 </div>
-
-

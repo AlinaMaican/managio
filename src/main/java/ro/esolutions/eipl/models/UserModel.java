@@ -39,4 +39,6 @@ public class UserModel {
     @NotNull
     private Boolean isActive;
 
+    @NotNull
+    private String email;
 }

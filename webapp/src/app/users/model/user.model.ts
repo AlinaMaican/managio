@@ -8,7 +8,8 @@ export class User {
               public lastName: String,
               public password: String,
               public userRole: UserRole,
-              public isActive: boolean
+              public isActive: boolean,
+              public email: String
   ) {
   }
 }
