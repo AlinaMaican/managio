@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from "../model/user.model";
 import {UserService} from "../user.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
@@ -29,7 +29,6 @@ export class EditComponent implements OnInit {
   }
 
   onSubmit() {
-    // console.log(this.edituser.get('firstName').errors);
     this.userService.updateUserById(this.id, this.edituser.value).subscribe(
       () => {this.router.navigateByUrl('/')}
     );
@@ -56,7 +55,7 @@ export class EditComponent implements OnInit {
           lastName: user.lastName.trim(),
           password: user.password.trim(),
           userRole: user.userRole,
-          isActive: user.isActive
+          isActive: user.isActive + ""
         });
     });
 
