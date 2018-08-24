@@ -1,0 +1,7 @@
+.center_div{
+  margin: 0 auto;
+  width:50% /* value of your choice which suits your alignment */
+}
+.btn-add-user{
+  padding-top: 15px;
+}
