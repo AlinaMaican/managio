@@ -14,6 +14,7 @@ import static ro.esolutions.eipl.configurations.WebConfig.ROOT_PATH;
 @RequestMapping
 public class LoginController {
     public static final String WELCOME_PATH = "welcome";
+    public static final String WELCOME_PATH_FULL = ROOT_PATH + WELCOME_PATH;
     public static final String LOGIN_PATH = "login";
     public static final String LOGIN_PATH_FULL = ROOT_PATH + LOGIN_PATH;
 
