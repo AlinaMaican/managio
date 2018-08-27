@@ -78,7 +78,7 @@
                 </button>
                 <div class="m-3"></div>
                 <button type="button" data-toggle="modal" data-target="#confirmModal"
-                        class="btn btn-primary btn-block rounded m-0">
+                        class="btn btn-primary btn-block rounded m-0" [disabled]="!formGroup.valid">
                   <span>SAVE</span>
                 </button>
               </div>
