@@ -22,6 +22,8 @@ public class UserModel {
     @NotNull
     private String lastName;
     @NotNull
+    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$",
+            message = "Password must contain at least 8 characters, including  one letter and one number!")
     private String password;
     @NotNull
     private UserRole userRole;
