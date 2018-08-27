@@ -7,10 +7,9 @@ import { DetailsComponent } from './users/details/details.component';
 import { FormComponent } from './users/form/form.component';
 import { UserService } from './users/user.service';
 import { HttpClientModule} from '@angular/common/http';
-import { UserProfileComponent} from "./user-profile/user-profile.component";
+import { UserProfileComponent} from "./users/user-profile/user-profile.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppRooterModule} from "./app.router.module";
-import { ResetPasswordModalComponent } from './user-profile/reset-password-modal/reset-password-modal.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +17,7 @@ import { ResetPasswordModalComponent } from './user-profile/reset-password-modal
     UserListComponent,
     DetailsComponent,
     FormComponent,
-    UserProfileComponent,
-    ResetPasswordModalComponent
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

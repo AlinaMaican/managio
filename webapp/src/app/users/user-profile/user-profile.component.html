@@ -68,11 +68,11 @@
           </div>
           <div class="col-xs-12">
             <div class="d-flex w-100 justify-content-between">
-              <button type="button" class="btn btn-secondary btn-block rounded m-0">
+              <button type="button" class="btn btn-secondary btn-block rounded m-0" (click)="onClickCancelButton()" >
                 <span>CANCEL</span>
               </button>
               <div class="m-3"></div>
-              <button type="submit" class="btn btn-primary btn-block rounded m-0">
+              <button type="submit" class="btn btn-primary btn-block rounded m-0" [disabled]="!passwordMatchesConditions(userprofile)">
                 <span>SAVE</span>
               </button>
             </div>
