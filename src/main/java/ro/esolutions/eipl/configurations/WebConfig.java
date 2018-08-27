@@ -6,10 +6,12 @@ import org.springframework.web.servlet.config.annotation.*;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+    public static final String ROOT_PATH = "/";
+    public static final String ANGULAR_FORWARD_VIEW_NAME = "index.html";
 
     @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("forward:index.html");
+    public void addViewControllers(final ViewControllerRegistry registry) {
+        registry.addViewController(ROOT_PATH).setViewName(ANGULAR_FORWARD_VIEW_NAME);
     }
 
     @Bean
