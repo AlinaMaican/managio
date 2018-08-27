@@ -1,8 +1,10 @@
 export class UserProfileModel {
 
-  constructor(public username: String,
-              public firstName: String,
-              public lastName: String,
-              public password: String,
-              public resetPassword: String) {}
+  constructor(public id: number,
+              public username: string,
+              public firstName: string,
+              public lastName: string,
+              public password: string,
+              public resetPassword: string) {
+  }
 }

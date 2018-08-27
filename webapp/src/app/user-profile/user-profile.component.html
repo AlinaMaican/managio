@@ -33,7 +33,7 @@
                  class="form-control"
                  readonly/>
         </div>
-        <form [formGroup]="userprofile" (ngSubmit)="resetPassword()">
+        <form [formGroup]="userprofile" class="form" (ngSubmit)="resetPassword()">
           <div class="form-group">
             <label>Password</label>
             <input type="password"
@@ -42,15 +42,16 @@
                    name="password"
                    formControlName="password"
                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
-            <div
-              *ngIf="checkForErrors('password') && getField('password').errors.required && getField('password').dirty"
-              class="text-danger">Password is required!
-            </div>
-            <div
-              *ngIf="checkForErrors('password') && getField('password').errors.pattern && getField('password').dirty"
-              class="text-danger">Password must contain at least 8 characters, including one letter and one
-              number!
-            </div>
+              <small
+                *ngIf="checkForErrors('password') && getField('password').errors.required && getField('password').dirty"
+                class="text-danger">Password is required!
+              </small>
+
+              <small
+                *ngIf="checkForErrors('password') && getField('password').errors.pattern && getField('password').dirty"
+                class="text-danger">Password must contain at least <br/> 8 characters, including  one letter and <br/>one
+                number!
+              </small>
           </div>
           <div class="form-group">
             <label>Confirm password</label>
@@ -67,11 +68,11 @@
           </div>
           <div class="col-xs-12">
             <div class="d-flex w-100 justify-content-between">
-              <button class="btn btn-secondary btn-block rounded m-0">
+              <button type="button" class="btn btn-secondary btn-block rounded m-0">
                 <span>CANCEL</span>
               </button>
               <div class="m-3"></div>
-              <button type="submit button" class="btn btn-primary btn-block rounded m-0">
+              <button type="submit" class="btn btn-primary btn-block rounded m-0">
                 <span>SAVE</span>
               </button>
             </div>

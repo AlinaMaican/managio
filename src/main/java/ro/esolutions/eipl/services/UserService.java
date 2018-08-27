@@ -74,4 +74,14 @@ public class UserService {
     public UserModel getFirstUser(){
         return UserMapper.fromEntityToModel(userRepository.findOneByOrderById());
     }
+
+    public User changePasswordById(Long userId, String newPassword) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if(userOptional.isPresent()) {
+          userOptional.get().setPassword(newPassword);
+          return userRepository.save(userOptional.get());
+        } else {
+            throw new UserNotFoundException(userId);
+        }
+    }
 }

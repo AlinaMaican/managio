@@ -15,6 +15,7 @@ export class UserProfileComponent implements OnInit {
   subscription: Subscription = null;
   userprofile: FormGroup;
   user: UserProfileModel = {
+    'id': undefined,
     'username': '',
     'firstName': '',
     'lastName': '',
@@ -37,8 +38,6 @@ export class UserProfileComponent implements OnInit {
     this.subscription = this.userService.getAuthUser().subscribe(
       (user: User) => {
         this.user = user;
-        console.log("Subscribe response");
-        console.log(this.user);
       }
     );
   }
@@ -51,11 +50,13 @@ export class UserProfileComponent implements OnInit {
   }
 
   resetPassword() {
-    let userResetPassword: User = this.userprofile.value;
-    this.subscription = this.userService.resetPassword(userResetPassword).subscribe(
-      () => {}
+    this.userService.resetPassword(this.userprofile.value.password).subscribe(
+      () => {/*success*/},
+      () => {/*error*/}
     );
+
   }
+
 
   getField(fieldName: string): any {
     return this.userprofile.get(fieldName);

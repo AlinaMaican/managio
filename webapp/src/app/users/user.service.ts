@@ -3,6 +3,7 @@ import {Observable} from 'rxjs/internal/Observable';
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
+import {UserProfileModel} from "./model/user-profile.model";
 
 @Injectable()
 export class UserService {
@@ -16,11 +17,11 @@ export class UserService {
     return this.httpClient.get<User[]>(this.usersUrl + '/all');
   }
 
-  resetPassword(userResetPassword: User): Observable<{}> {
-    return this.httpClient.post<User>(this.usersUrl + '/resetPassword', userResetPassword, {});
-  }
-
   getAuthUser(): Observable<User> {
     return this.httpClient.get<User>(this.usersUrl + '/me' );
+  }
+
+  resetPassword(password: string): Observable<User> {
+    return this.httpClient.post<User>(this.usersUrl + '/password', password, {});
   }
 }

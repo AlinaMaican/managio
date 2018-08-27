@@ -7,7 +7,8 @@ import {UserProfileComponent} from "./user-profile/user-profile.component";
 const routes: Routes = [
   {path: '', component: UserListComponent},
   // {path: 'add-user', component: AddUserComponent},
-  {path: 'resetPassword', component: UserProfileComponent}
+  {path: 'resetPassword', component: UserProfileComponent},
+  {path: 'password', component: UserProfileComponent}
 ];
 
 @NgModule({

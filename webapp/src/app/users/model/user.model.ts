@@ -3,11 +3,11 @@ import {UserRole} from './user-role.model';
 export class User {
 
   constructor(public id: number,
-              public username: String,
-              public firstName: String,
-              public lastName: String,
-              public password: String,
-              public resetPassword: String,
+              public username: string,
+              public firstName: string,
+              public lastName: string,
+              public password: string,
+              public resetPassword: string,
               public userRole: UserRole,
               public isActive: boolean
   ) {
