@@ -5,27 +5,26 @@
     </div>
     <div class="row">
       <div class="col-xs-10 offset-1">
-
         <div class="form-group">
           <label>Username</label>
           <input type="text"
                  class="form-control"
                  readonly
-                 [(ngModel)]="user.username"/>
+                 [(ngModel)]="userProfileModel.username"/>
         </div>
         <div class="form-group">
           <label>Last Name</label>
           <input type="text"
                  class="form-control"
                  readonly
-                 [(ngModel)]="user.lastName"/>
+                 [(ngModel)]="userProfileModel.lastName"/>
         </div>
         <div class="form-group">
           <label>First Name</label>
           <input type="text"
                  class="form-control"
                  readonly
-                 [(ngModel)]="user.firstName"/>
+                 [(ngModel)]="userProfileModel.firstName"/>
         </div>
         <div class="form-group">
           <label>Email</label>
@@ -33,7 +32,7 @@
                  class="form-control"
                  readonly/>
         </div>
-        <form [formGroup]="userprofile" class="form" (ngSubmit)="resetPassword()">
+        <form [formGroup]="userProfileForm" class="form" (ngSubmit)="resetPassword()">
           <div class="form-group">
             <label>Password</label>
             <input type="password"
@@ -42,16 +41,15 @@
                    name="password"
                    formControlName="password"
                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
-              <small
-                *ngIf="checkForErrors('password') && getField('password').errors.required && getField('password').dirty"
-                class="text-danger">Password is required!
-              </small>
-
-              <small
-                *ngIf="checkForErrors('password') && getField('password').errors.pattern && getField('password').dirty"
-                class="text-danger">Password must contain at least <br/> 8 characters, including  one letter and <br/>one
-                number!
-              </small>
+            <small
+              *ngIf="checkForErrors('password') && getField('password').errors.required && getField('password').dirty"
+              class="text-danger">Password is required!
+            </small>
+            <small
+              *ngIf="checkForErrors('password') && getField('password').errors.pattern && getField('password').dirty"
+              class="text-danger">
+              <span>Password must contain at least <br/> 8 characters, including  one letter and <br/>one number!</span>
+            </small>
           </div>
           <div class="form-group">
             <label>Confirm password</label>
@@ -61,18 +59,23 @@
                    name="confirmPassword"
                    formControlName="confirmPassword">
             <small
-              *ngIf="validate(getField('password').value, getField('confirmPassword').value) && getField('confirmPassword').dirty"
+              *ngIf="validatePasswordsEquality(getField('password').value,getField('confirmPassword').value)
+                  && getField('confirmPassword').dirty"
               class="text-danger ng-hide">
-              Password mismatch!
+              <span>Password mismatch!</span>
             </small>
           </div>
           <div class="col-xs-12">
             <div class="d-flex w-100 justify-content-between">
-              <button type="button" class="btn btn-secondary btn-block rounded m-0" (click)="onClickCancelButton()" >
+              <button type="button"
+                      class="btn btn-secondary btn-block rounded m-0"
+                      (click)="onClickCancelButton()">
                 <span>CANCEL</span>
               </button>
               <div class="m-3"></div>
-              <button type="submit" class="btn btn-primary btn-block rounded m-0" [disabled]="!passwordMatchesConditions(userprofile)">
+              <button type="submit"
+                      class="btn btn-primary btn-block rounded m-0"
+                      [disabled]="!passwordMatchesConditions(userProfileForm)">
                 <span>SAVE</span>
               </button>
             </div>

@@ -11,10 +11,11 @@ import {UserProfileModel} from "../model/user-profile.model";
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css']
 })
+
 export class UserProfileComponent implements OnInit {
   subscription: Subscription = null;
-  userprofile: FormGroup;
-  user: UserProfileModel = {
+  userProfileForm: FormGroup;
+  userProfileModel: UserProfileModel = {
     'id': undefined,
     'username': '',
     'firstName': '',
@@ -22,7 +23,7 @@ export class UserProfileComponent implements OnInit {
     'password': '',
     'resetPassword': ''
   };
-  min8Min1LetterMin1Number = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
+  minLength8Min1LetterMin1Number = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
 
   constructor(private route: ActivatedRoute, private router: Router,
               private userService: UserService) {
@@ -35,30 +36,31 @@ export class UserProfileComponent implements OnInit {
           this.initForm();
         }
       );
+
     this.subscription = this.userService.getAuthUser().subscribe(
       (user: User) => {
-        this.user = user;
+        this.userProfileModel = user;
       }
     );
   }
 
   initForm() {
-    this.userprofile = new FormGroup({
+    this.userProfileForm = new FormGroup({
       'password': new FormControl('', Validators.compose(
-        [Validators.required, Validators.pattern(this.min8Min1LetterMin1Number)]
+        [Validators.required, Validators.pattern(this.minLength8Min1LetterMin1Number)]
       )),
       'confirmPassword': new FormControl('', Validators.compose([Validators.required]))
     });
   }
 
   resetPassword() {
-    this.userService.resetPassword(this.userprofile.value.password).subscribe(
+    this.userService.resetPassword(this.userProfileForm.value.password).subscribe(
       () => {this.router.navigateByUrl('/')}
     );
   }
 
   getField(fieldName: string): any {
-    return this.userprofile.get(fieldName);
+    return this.userProfileForm.get(fieldName);
   }
 
   checkForErrors(fieldName: string): boolean {
@@ -74,18 +76,18 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  validate(password: string, confirmPassword: string): boolean {
+  validatePasswordsEquality(password: string, confirmPassword: string): boolean {
     if (confirmPassword !== password) {
       return true;
     }
     return false;
   }
 
-  passwordMatchesConditions(userProfile: FormGroup): boolean {
-    let password: string = userProfile.get('password').value;
-    let confirmPassword: string = userProfile.get('confirmPassword').value;
-    if(password.match(this.min8Min1LetterMin1Number)
-      && confirmPassword.match(this.min8Min1LetterMin1Number)
+  passwordMatchesConditions(userProfileForm: FormGroup): boolean {
+    let password: string = userProfileForm.get('password').value;
+    let confirmPassword: string = userProfileForm.get('confirmPassword').value;
+    if(password.match(this.minLength8Min1LetterMin1Number)
+      && confirmPassword.match(this.minLength8Min1LetterMin1Number)
       && password === confirmPassword){
       return true;
     } else{
