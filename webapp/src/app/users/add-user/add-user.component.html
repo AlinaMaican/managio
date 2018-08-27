@@ -17,11 +17,6 @@
               <p *ngIf="usernameError">{{errorMessage}}</p>
             </div>
             <div class="form-group">
-              <label>Password</label>
-              <input type="password" class="form-control" placeholder="Password" formControlName="password"
-                     required="required">
-            </div>
-            <div class="form-group">
               <label>First Name</label>
               <input type="text" class="form-control" placeholder="First Name" formControlName="firstName"
                      required="required">
@@ -37,6 +32,11 @@
                      [ngClass]="{'is-invalid' : usernameError}">
               <p *ngIf="emailError">{{errorMessage}}</p>
 
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" class="form-control" placeholder="Password" formControlName="password"
+                     required="required">
             </div>
             <div class="form-check form-check-inline">
               <label class="form-check-label">
