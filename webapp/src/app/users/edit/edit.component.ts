@@ -59,7 +59,7 @@ export class EditComponent implements OnInit {
             lastName: user.lastName,
             password: user.password,
             userRole: user.userRole,
-            isActive: user.isActive,
+            isActive: user.isActive + '',
             email: user.email,
           });
         });
