@@ -95,7 +95,7 @@ public class UserService {
         }
     }
 
-    public UserModel changePasswordById(Long userId, String newPassword) {
+    public UserModel changePasswordById(final Long userId, final String newPassword) {
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
             userOptional.get().setPassword(newPassword);

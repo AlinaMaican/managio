@@ -63,7 +63,7 @@ public class UserController {
     }
 
     @PostMapping("/password")
-    public ResponseEntity<Object> resetPassword(@RequestBody String newPassword) {
+    public ResponseEntity<Object> resetPassword(@RequestBody final String newPassword) {
         if(!Strings.isNotBlank(newPassword)) {
             return ResponseEntity.badRequest().body(Collections.singletonMap("error", PASSWORD_ERROR));
         }
