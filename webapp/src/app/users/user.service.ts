@@ -1,4 +1,3 @@
-
 import {User} from './model/user.model';
 import {Observable} from 'rxjs/internal/Observable';
 import {HttpClient} from '@angular/common/http';
@@ -24,6 +23,13 @@ export class UserService {
   resetPassword(password: string): Observable<User> {
     return this.httpClient.post<User>(this.usersUrl + '/password', password, {});
   }
+
+  getUserById(index: number): Observable<User> {
+    return this.httpClient.get<User>(this.usersUrl + '/' + index);
+  }
+
+  updateUserById(user: User, index: number): Observable<User> {
+    return this.httpClient.put<User>(this.usersUrl + '/' + index, user, {});
+  }
+
 }
-
-

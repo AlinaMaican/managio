@@ -24,27 +24,27 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> addNewUser(@RequestBody @Valid UserModel userModel, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            return ResponseEntity.badRequest().body(Collections.singletonMap("error",BINDING_RESULT_ERROR_MESSAGE));
+    public ResponseEntity<Object> addNewUser(@RequestBody @Valid UserModel userModel, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(Collections.singletonMap("error", BINDING_RESULT_ERROR_MESSAGE));
         }
         userModel.setId(null);
         return ResponseEntity.ok(userService.addNewUser(userModel));
     }
 
     @GetMapping("/{user_id}")
-    public ResponseEntity<UserModel> getUserById(@PathVariable("user_id") Long userId){
+    public ResponseEntity<UserModel> getUserById(@PathVariable("user_id") Long userId) {
         return ResponseEntity.ok(userService.getUserById(userId));
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<UserModel>> getAllUsers(){
+    public ResponseEntity<List<UserModel>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 
 
     @DeleteMapping("/{user_id}")
-    public ResponseEntity<UserModel> deleteUserById(@PathVariable("user_id") Long userId){
+    public ResponseEntity<UserModel> deleteUserById(@PathVariable("user_id") Long userId) {
         return ResponseEntity.ok(userService.deleteUserById(userId));
     }
 
@@ -53,8 +53,7 @@ public class UserController {
                                                final BindingResult bindingResult,
                                                @PathVariable("user_id") Long userId) {
         if (bindingResult.hasErrors()) {
-            return ResponseEntity.badRequest().body(Collections.singletonMap("error",BINDING_RESULT_ERROR_MESSAGE));
-
+            return ResponseEntity.badRequest().body(Collections.singletonMap("error", BINDING_RESULT_ERROR_MESSAGE));
         }
         return ResponseEntity.ok(userService.editUserById(userId, userModel));
     }
