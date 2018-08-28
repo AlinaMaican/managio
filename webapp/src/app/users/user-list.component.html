@@ -1,6 +1,6 @@
 <h1 align="center" >User List</h1>
-<div class="row">
-  <button class="add_button">Add</button>
+<div class="row padding-button-10">
+  <a class="btn btn-primary" [routerLink]="'/add-user'">Add User</a>
 </div>
 <div class="row">
   <table class="table">
@@ -9,11 +9,11 @@
       <th>Username</th>
       <th>Surname</th>
       <th>Name</th>
+      <th>Email</th>
       <th>Status</th>
-      <th>Role</th>
-      <th>View</th>
-      <th>Edit</th>
-      <th>Delete</th>
+      <th>Rol</th>
+      <th>Actiuni</th>
+
     </tr>
     </thead>
     <tbody>
@@ -23,11 +23,11 @@
       <td>{{user.username}}</td>
       <td>{{user.firstName}}</td>
       <td>{{user.lastName}}</td>
-      <td>{{user.status}}</td>
-      <td>{{user.userRole}}</td>
-      <td><button type="button" class="btn btn-sm btn-primary buttons">View</button></td>
-      <td><button type="button" class="btn btn-sm btn-primary">Edit</button> </td>
-      <td><button type="button" class="btn btn-sm btn-primary">Delete</button></td>
+      <td>{{user.email}}</td>
+      <td>{{user.isActive}}</td>
+      <td>{{user.userRole | lowercase}}</td>
+      <td><i class="fas fa-pencil-alt"></i>&nbsp;
+          <i class="fas fa-trash-alt"></i></td>
     </tr>
     </tbody>
   </table>

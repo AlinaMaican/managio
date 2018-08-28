@@ -3,6 +3,7 @@ package ro.esolutions.eipl.services;
 import org.springframework.stereotype.Service;
 import ro.esolutions.eipl.entities.User;
 import ro.esolutions.eipl.exceptions.UserAlreadyExistsException;
+import ro.esolutions.eipl.exceptions.UserEmailAlreadyExists;
 import ro.esolutions.eipl.exceptions.UserNotFoundException;
 import ro.esolutions.eipl.mappers.UserMapper;
 import ro.esolutions.eipl.models.UserModel;
@@ -21,21 +22,18 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(final UserRepository userRepository) {
         this.userRepository = Objects.requireNonNull(userRepository, "UserRepository must not be null");
     }
 
-    public UserModel addNewUser(UserModel userModel) {
-        Optional<User> userOptional = userRepository.findByUsername(userModel.getUsername());
-        if (!userOptional.isPresent()) {
-            userRepository.save(UserMapper.fromModelToEntity(userModel));
-        } else {
-            throw new UserAlreadyExistsException(userModel.getUsername());
-        }
-        return userModel;
+    public UserModel addNewUser(final UserModel userModel) {
+        checkUsername(userModel);
+        checkEmail(userModel);
+        UserModel resultUser = UserMapper.fromEntityToModel(userRepository.save(UserMapper.fromModelToEntity(userModel)));
+        return resultUser;
     }
 
-    public UserModel getUserById(Long userId) {
+    public UserModel getUserById(final Long userId) {
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
             return UserMapper.fromEntityToModel(userOptional.get());
@@ -51,7 +49,7 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public UserModel deleteUserById(Long userId) {
+    public UserModel deleteUserById(final Long userId) {
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
             userRepository.deleteById(userId);
@@ -61,7 +59,7 @@ public class UserService {
         }
     }
 
-    public UserModel editUserById(Long userId, @Valid UserModel userModel) {
+    public UserModel editUserById(final Long userId, final @Valid UserModel userModel) {
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
             User user = userRepository.save(UserMapper.fromModelToEntity(userModel));
@@ -69,5 +67,22 @@ public class UserService {
         } else {
             throw new UserNotFoundException(userId);
         }
+    }
+
+    private boolean checkEmail(final UserModel userModel) {
+        String email = userModel.getEmail();
+        Optional<User> persistedUser = userRepository.findFirstByEmail(email);
+        if (persistedUser.isPresent()) {
+            throw new UserEmailAlreadyExists(email);
+        }
+        return true;
+    }
+
+    private boolean checkUsername(final UserModel userModel) {
+        Optional<User> userOptional = userRepository.findByUsername(userModel.getUsername());
+        if (userOptional.isPresent()) {
+            throw new UserAlreadyExistsException(userModel.getUsername());
+        }
+        return true;
     }
 }
