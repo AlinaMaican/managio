@@ -16,6 +16,15 @@ export class UserService {
     return this.httpClient.get<User[]>(this.usersUrl + '/all');
   }
 
+  getUserById(index: number): Observable<User> {
+    return this.httpClient.get<User>(this.usersUrl + '/' + index);
+  }
+
+  updateUserById(user: User, index: number): Observable<User> {
+    return this.httpClient.put<User>(this.usersUrl + '/' + index, user, {});
+  }
+
+
   addUser(newUser: User): Observable<{}> {
     return this.httpClient.post<User>(this.usersUrl, newUser, {});
   }

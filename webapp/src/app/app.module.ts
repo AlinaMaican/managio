@@ -7,9 +7,10 @@ import {DetailsComponent} from './users/details/details.component';
 import {FormComponent} from './users/form/form.component';
 import {UserService} from './users/user.service';
 import {HttpClientModule} from '@angular/common/http';
-import {AddUserComponent} from "./users/add-user/add-user.component";
 import {AppRouterModule} from "./app.router.module";
+import {EditComponent} from './users/edit/edit.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {AddUserComponent} from "./users/add-user/add-user.component";
 
 @NgModule({
   declarations: [
@@ -17,16 +18,18 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     UserListComponent,
     DetailsComponent,
     FormComponent,
+    EditComponent,
     AddUserComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRouterModule,
-    FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -29,8 +29,7 @@ public class UserService {
     public UserModel addNewUser(final UserModel userModel) {
         checkUsername(userModel);
         checkEmail(userModel);
-        UserModel resultUser = UserMapper.fromEntityToModel(userRepository.save(UserMapper.fromModelToEntity(userModel)));
-        return resultUser;
+        return UserMapper.fromEntityToModel(userRepository.save(UserMapper.fromModelToEntity(userModel)));
     }
 
     public UserModel getUserById(final Long userId) {
@@ -62,6 +61,7 @@ public class UserService {
     public UserModel editUserById(final Long userId, final @Valid UserModel userModel) {
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
+            userModel.setId(userId);
             User user = userRepository.save(UserMapper.fromModelToEntity(userModel));
             return UserMapper.fromEntityToModel(user);
         } else {
@@ -70,7 +70,7 @@ public class UserService {
     }
 
     private boolean checkEmail(final UserModel userModel) {
-        String email = userModel.getEmail();
+        final String email = userModel.getEmail();
         Optional<User> persistedUser = userRepository.findFirstByEmail(email);
         if (persistedUser.isPresent()) {
             throw new UserEmailAlreadyExists(email);
