@@ -8,10 +8,10 @@ import { FormComponent } from './users/form/form.component';
 import { UserService } from './users/user.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AppDropdownDirective} from "./shared/app-dropdown.directive";
-import {HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './header/header.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppRouterModule} from "./app.router.module";
 import {EditComponent} from './users/edit/edit.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AddUserComponent} from "./users/add-user/add-user.component";
 
 @NgModule({
@@ -19,8 +19,9 @@ import {AddUserComponent} from "./users/add-user/add-user.component";
     AppComponent,
     UserListComponent,
     DetailsComponent,
+    FormComponent,
     AppDropdownDirective,
-    HeaderComponent
+    HeaderComponent,
     FormComponent,
     EditComponent,
     AddUserComponent
@@ -35,5 +36,4 @@ import {AddUserComponent} from "./users/add-user/add-user.component";
   providers: [UserService],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }
