@@ -48,8 +48,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(final AuthenticationManagerBuilder auth, final PasswordEncoder passwordEncoder, final UserDetailsService userDetailsService) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     }
-
-    public static void main(String[] args) {
-        System.out.println(new BCryptPasswordEncoder().encode("asd"));
-    }
 }
