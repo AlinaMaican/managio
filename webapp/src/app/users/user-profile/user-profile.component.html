@@ -35,8 +35,9 @@
         </div>
         <form [formGroup]="userProfileForm" class="form" (ngSubmit)="resetPassword()">
           <div class="form-group">
-            <label>Password</label>
-            <input type="password"
+            <label for="password">Password</label>
+            <input id="password"
+              type="password"
                    class="form-control"
                    placeholder="Password"
                    name="password"
@@ -53,8 +54,9 @@
             </small>
           </div>
           <div class="form-group">
-            <label>Confirm password</label>
-            <input type="password"
+            <label for="confirmPassword">Confirm password</label>
+            <input id="confirmPassword"
+              type="password"
                    class="form-control"
                    placeholder="Confirm password"
                    name="confirmPassword"
