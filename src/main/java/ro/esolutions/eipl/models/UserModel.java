@@ -32,7 +32,6 @@ public class UserModel {
 
     @NotEmpty
     @Size(min = 2)
-    @Pattern(regexp = "^(?=.[a-z])(?=.[!@#$%^&*+=])(?=\\S+$).{8,}$")
     private String password;
 
     @NotNull
@@ -43,6 +42,5 @@ public class UserModel {
 
     @NotNull
     @Size(min = 5)
-    @Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$")
     private String email;
 }
