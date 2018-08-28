@@ -40,5 +40,6 @@ public class UserModel {
     private Boolean isActive;
 
     @NotNull
+    @Size(min = 5)
     private String email;
 }

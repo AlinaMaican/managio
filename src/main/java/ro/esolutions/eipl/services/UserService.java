@@ -26,7 +26,7 @@ public class UserService {
         this.userRepository = Objects.requireNonNull(userRepository, "UserRepository must not be null");
     }
 
-    public UserModel addNewUser(UserModel userModel) {
+    public UserModel addNewUser(final UserModel userModel) {
         checkUsername(userModel);
         checkEmail(userModel);
         return UserMapper.fromEntityToModel(userRepository.save(UserMapper.fromModelToEntity(userModel)));
@@ -69,7 +69,7 @@ public class UserService {
         }
     }
 
-    private boolean checkEmail(UserModel userModel) {
+    private boolean checkEmail(final UserModel userModel) {
         String email = userModel.getEmail();
         Optional<User> persistedUser = userRepository.findFirstByEmail(email);
         if (persistedUser.isPresent()) {
@@ -78,7 +78,7 @@ public class UserService {
         return true;
     }
 
-    private boolean checkUsername(UserModel userModel) {
+    private boolean checkUsername(final UserModel userModel) {
         Optional<User> userOptional = userRepository.findByUsername(userModel.getUsername());
         if (userOptional.isPresent()) {
             throw new UserAlreadyExistsException(userModel.getUsername());

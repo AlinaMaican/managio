@@ -11,8 +11,7 @@ import {Router} from "@angular/router";
 })
 export class UserListComponent implements OnInit, OnDestroy {
 
-  usersSubscription: Subscription;
-
+  private usersSubscription: Subscription;
   users: User[];
 
   constructor(private userService: UserService, private router: Router) {
@@ -25,8 +24,6 @@ export class UserListComponent implements OnInit, OnDestroy {
       }
     );
   }
-
-
 
   ngOnDestroy(): void {
     this.usersSubscription.unsubscribe();

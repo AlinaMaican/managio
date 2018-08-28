@@ -10,8 +10,9 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class EditComponent implements OnInit {
 
-  id: number;
-  formGroup: FormGroup;
+  private id: number;
+  public formGroup: FormGroup;
+  private REGEX_NAME: string = '^[a-zA-Z]+(([\',. -][a-zA-Z ])?[a-zA-Z]*)*$';
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
@@ -26,7 +27,7 @@ export class EditComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService.updateUserById(this.id, this.formGroup.value)
+    this.userService.updateUserById(this.formGroup.value, this.id)
       .subscribe(
         () => {
           this.router.navigateByUrl('/')
@@ -38,10 +39,10 @@ export class EditComponent implements OnInit {
     this.formGroup = new FormGroup({
       'username': new FormControl('', Validators.required),
       'firstName': new FormControl('', [
-        Validators.required, Validators.pattern('^[a-zA-Z]+(([\',. -][a-zA-Z ])?[a-zA-Z]*)*$')
+        Validators.required, Validators.pattern(this.REGEX_NAME)
       ]),
       'lastName': new FormControl('', [
-        Validators.required, Validators.pattern('^[a-zA-Z]+(([\',. -][a-zA-Z ])?[a-zA-Z]*)*$')
+        Validators.required, Validators.pattern(this.REGEX_NAME)
       ]),
       'password': new FormControl('', Validators.required),
       'userRole': new FormControl('', Validators.required),
