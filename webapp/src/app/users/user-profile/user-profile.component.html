@@ -31,7 +31,8 @@
           <label>Email</label>
           <input type="email"
                  class="form-control"
-                 readonly/>
+                 readonly
+                 [(ngModel)]="userProfileModel.email"/>
         </div>
         <form [formGroup]="userProfileForm" class="form" (ngSubmit)="resetPassword()">
           <div class="form-group">

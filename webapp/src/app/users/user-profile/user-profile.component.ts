@@ -21,7 +21,8 @@ export class UserProfileComponent implements OnInit {
     'firstName': '',
     'lastName': '',
     'password': '',
-    'resetPassword': ''
+    'resetPassword': '',
+    'email' : ''
   };
   minLength8Min1LetterMin1Number = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
 

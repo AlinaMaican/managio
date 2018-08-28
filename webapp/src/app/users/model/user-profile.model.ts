@@ -5,6 +5,7 @@ export class UserProfileModel {
               public firstName: string,
               public lastName: string,
               public password: string,
-              public resetPassword: string) {
+              public resetPassword: string,
+              public email: string) {
   }
 }

@@ -10,7 +10,7 @@ import { UserService } from './users/user.service';
 import { HttpClientModule} from '@angular/common/http';
 import { UserProfileComponent } from "./users/user-profile/user-profile.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { AppRooterModule } from "./app.router.module";
+import { AppRouterModule } from "./app.router.module";
 
 @NgModule({
   declarations: [
@@ -27,7 +27,7 @@ import { AppRooterModule } from "./app.router.module";
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRooterModule,
+    AppRouterModule,
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
