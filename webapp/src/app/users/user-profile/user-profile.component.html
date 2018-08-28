@@ -1,10 +1,11 @@
+<div class="container-fluid">
 <div class="row">
-  <div class="col-xs-4 offset-4">
-    <div class="row card-body text-secondary">
+  <div class="col-sm-8 offset-sm-2 col-md-4 offset-md-4">
+    <div class="row">
       <h2>User profile settings</h2>
     </div>
     <div class="row">
-      <div class="col-xs-10 offset-1">
+      <div class="col-sm-10 offset-sm-1" style="padding-left: 0;padding-right: 0;">
         <div class="form-group">
           <label>Username</label>
           <input type="text"
@@ -48,7 +49,7 @@
             <small
               *ngIf="checkForErrors('password') && getField('password').errors.pattern && getField('password').dirty"
               class="text-danger">
-              <span>Password must contain at least <br/> 8 characters, including  one letter and <br/>one number!</span>
+              <span>Password must contain at least 8 characters, including one letter and one number!</span>
             </small>
           </div>
           <div class="form-group">
@@ -65,23 +66,21 @@
               <span>Password mismatch!</span>
             </small>
           </div>
-          <div class="col-xs-12">
-            <div class="d-flex w-100 justify-content-between">
-              <button type="button"
-                      class="btn btn-secondary btn-block rounded m-0"
-                      (click)="onClickCancelButton()">
-                <span>CANCEL</span>
-              </button>
-              <div class="m-3"></div>
-              <button type="submit"
-                      class="btn btn-primary btn-block rounded m-0"
-                      [disabled]="!passwordMatchesConditions(userProfileForm)">
-                <span>SAVE</span>
-              </button>
-            </div>
+          <div class="form-group">
+            <button type="button"
+                    class="btn btn-secondary btn-sm float-left"
+                    (click)="onClickCancelButton()">
+              <span>CANCEL</span>
+            </button>
+            <button type="submit" style="padding-right:20px; padding-left:20px"
+                    class="btn btn-primary btn-sm float-right"
+                    [disabled]="!passwordMatchesConditions(userProfileForm)">
+              <span>SAVE</span>
+            </button>
           </div>
         </form>
       </div>
     </div>
   </div>
+</div>
 </div>
