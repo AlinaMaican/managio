@@ -72,25 +72,13 @@ public class UserService {
     }
 
     public UserModel getFirstUser() {
-        return UserMapper.fromEntityToModel(userRepository.findOneByOrderById());
+        Optional<User> userOptional = userRepository.findById(1L);
+        if(userOptional.isPresent()) {
+            return UserMapper.fromEntityToModel(userOptional.get());
+        }else {
+            throw new UserNotFoundException(1L);
+        }
     }
-
-//    public User changePasswordById(Long userId, String newPassword, BindingResult bindingResult) {
-//        Optional<User> userOptional = userRepository.findById(userId);
-//        if (userOptional.isPresent()) {
-//            Pattern passwordPattern = Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$");
-//            Matcher passwordMatcher = passwordPattern.matcher(newPassword);
-//            if (!passwordMatcher.matches()) {
-//                bindingResult.addError(new ObjectError("PasswordError", "Password must contain at " +
-//                        "least 8 characters, including  one letter and one number!"));
-//                return null;
-//            }
-//            userOptional.get().setPassword(newPassword);
-//            return userRepository.save(userOptional.get());
-//        } else {
-//            throw new UserNotFoundException(userId);
-//        }
-//    }
 
     public User changePasswordById(Long userId, String newPassword) {
         Optional<User> userOptional = userRepository.findById(userId);

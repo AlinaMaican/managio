@@ -1,3 +1,4 @@
+
 import {User} from './model/user.model';
 import {Observable} from 'rxjs/internal/Observable';
 import {HttpClient} from '@angular/common/http';
@@ -24,3 +25,5 @@ export class UserService {
     return this.httpClient.post<User>(this.usersUrl + '/password', password, {});
   }
 }
+
+

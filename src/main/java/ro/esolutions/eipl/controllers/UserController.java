@@ -60,8 +60,7 @@ public class UserController {
     }
 
     @GetMapping("/me")
-    public ResponseEntity<UserModel> getAuthUser() {
-        return ResponseEntity.ok(userService.getFirstUser());
+    public ResponseEntity<UserModel> getAuthUser() { return ResponseEntity.ok(userService.getFirstUser());
     }
 
     @PostMapping("/password")
