@@ -24,10 +24,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> addNewUser(@RequestBody @Valid UserModel userModel, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return ResponseEntity.badRequest().body(Collections.singletonMap("error", BINDING_RESULT_ERROR_MESSAGE));
-        }
+    public ResponseEntity<Object> addNewUser(@RequestBody @Valid UserModel userModel) {
         userModel.setId(null);
         return ResponseEntity.ok(userService.addNewUser(userModel));
     }

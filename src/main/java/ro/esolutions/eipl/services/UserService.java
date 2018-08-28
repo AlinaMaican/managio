@@ -28,7 +28,7 @@ public class UserService {
     }
 
     public UserModel addNewUser(final UserModel userModel) {
-        return UserMapper.fromEntityToModel(userRepository.save(UserMapper.fromModelToEntity(userModel)));
+        return fromEntityToModel(userRepository.save(fromModelToEntity(userModel)));
     }
 
     public UserModel getUserById(final Long userId) {

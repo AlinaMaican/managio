@@ -5,12 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
 public class FieldErrorModel {
-
-    private String fieldName;
-    private String message;
+    private String rejectedValue;
+    private List<String> messages;
 }

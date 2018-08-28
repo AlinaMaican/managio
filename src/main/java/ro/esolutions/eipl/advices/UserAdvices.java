@@ -9,14 +9,4 @@ import ro.esolutions.eipl.models.FieldErrorModel;
 
 @RestControllerAdvice
 public class UserAdvices {
-
-    @ExceptionHandler(value = {UserAlreadyExistsException.class})
-    public ResponseEntity<FieldErrorModel> handleUserAlreadyExists(UserAlreadyExistsException ex) {
-        return ResponseEntity.badRequest().body(new FieldErrorModel("username", ex.getMessage()));
-    }
-
-    @ExceptionHandler(value = {UserEmailAlreadyExists.class})
-    public ResponseEntity<FieldErrorModel> handleUserEmailAlreadyExists(UserEmailAlreadyExists ex) {
-        return ResponseEntity.badRequest().body(new FieldErrorModel("email", ex.getMessage()));
-    }
 }
