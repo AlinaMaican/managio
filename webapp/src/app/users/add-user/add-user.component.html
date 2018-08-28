@@ -9,34 +9,34 @@
         <form [formGroup]="adduser" (ngSubmit)="createUser()">
           <div class="row-fluid">
             <div class="form-group">
-              <label>Username</label>
+              <label for="username">Username</label>
               <input type="text" class="form-control" placeholder="Username" formControlName="username"
-                     required="required"
+                     required="required" id="username"
                      [ngClass]="{'is-invalid' : usernameError}"
               >
               <p *ngIf="usernameError">{{errorMessage}}</p>
             </div>
             <div class="form-group">
-              <label>First Name</label>
+              <label for="firstName">First Name</label>
               <input type="text" class="form-control" placeholder="First Name" formControlName="firstName"
-                     required="required">
+                     required="required" id="firstName">
             </div>
             <div class="form-group">
-              <label>Last Name</label>
+              <label for="lastName">Last Name</label>
               <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName"
-                     required="required">
+                     required="required" id="lastName">
             </div>
             <div class="form-group">
-              <label>Email</label>
-              <input type="email" class="form-control" placeholder="Email" formControlName="email" required="required"
+              <label for="email">Email</label>
+              <input type="email" class="form-control" placeholder="Email" formControlName="email" required="required" id="email"
                      [ngClass]="{'is-invalid' : usernameError}">
               <p *ngIf="emailError">{{errorMessage}}</p>
 
             </div>
             <div class="form-group">
-              <label>Password</label>
+              <label for="password">Password</label>
               <input type="password" class="form-control" placeholder="Password" formControlName="password"
-                     required="required">
+                     required="required" id="password">
             </div>
             <div class="form-check form-check-inline">
               <label class="form-check-label">
