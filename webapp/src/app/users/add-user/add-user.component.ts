@@ -15,9 +15,10 @@ import {FieldError} from "../model/field-error.model";
 export class AddUserComponent implements OnInit, OnDestroy {
   subscription: Subscription = null;
   adduser: FormGroup;
-  usernameError;
-  emailError;
-  errorMessage;
+  isUsernameError = false;
+  usernameFieldError: FieldError;
+  isEmailError = false;
+  emailFieldError: FieldError;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private userService: UserService) {
@@ -47,7 +48,8 @@ export class AddUserComponent implements OnInit, OnDestroy {
           this.router.navigate(['/']);
         },
         (response: HttpErrorResponse) => {
-          this.parseError(response.error)
+          var error = response.error;
+          this.handleErrors(new Map(Object.entries(response.error)))
         }
       );
   }
@@ -58,22 +60,33 @@ export class AddUserComponent implements OnInit, OnDestroy {
     }
   }
 
-  private parseError(fieldError: FieldError) {
+  private handleErrors(fieldErrorsMap: Map<String, FieldError>) {
     this.resetErrors()
-    switch (fieldError.fieldName){
-      case 'username': {
-        this.usernameError = true;
-      }
-      case 'email': {
-        this.emailError = true;
-      }
-    }
-    this.errorMessage = fieldError.message;
+    fieldErrorsMap.forEach(
+      (fieldError: FieldError, fieldName: String) => {
+        switch (fieldName) {
+          case 'username': {
+            this.isUsernameError = true;
+            this.usernameFieldError = fieldError;
+          }
+            break;
+          case 'email': {
+            this.isEmailError = true;
+            this.emailFieldError = fieldError;
+          }
+            break;
+          default:
+            throw new Error('Field error not managed');
+        }
+      });
+
   }
 
-  private resetErrors(){
-    this.errorMessage = null;
-    this.usernameError = null;
-    this.emailError = null;
+  private resetErrors() {
+    this.isEmailError = false;
+    this.emailFieldError = null;
+
+    this.isUsernameError = false;
+    this.usernameFieldError = null;
   }
 }
