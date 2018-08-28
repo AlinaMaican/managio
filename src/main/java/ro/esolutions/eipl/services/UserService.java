@@ -70,7 +70,7 @@ public class UserService {
     }
 
     private boolean checkEmail(final UserModel userModel) {
-        String email = userModel.getEmail();
+        final String email = userModel.getEmail();
         Optional<User> persistedUser = userRepository.findFirstByEmail(email);
         if (persistedUser.isPresent()) {
             throw new UserEmailAlreadyExists(email);
