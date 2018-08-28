@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+@media screen and (max-width: 400px)
+{
+  .my-icon{
+    display:flex !important;
+    flex-wrap:wrap !important;
+    flex-direction:column !important;
+  }
+}
