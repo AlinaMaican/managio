@@ -10,6 +10,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppRouterModule} from "./app.router.module";
 import {EditComponent} from './users/edit/edit.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {AddUserComponent} from "./users/add-user/add-user.component";
 
 @NgModule({
   declarations: [
@@ -18,19 +19,17 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     DetailsComponent,
     FormComponent,
     EditComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRouterModule,
-    FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    AppRouterModule,
-    ReactiveFormsModule,
-    FormsModule,
+    FormsModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
