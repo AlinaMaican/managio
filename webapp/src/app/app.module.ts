@@ -1,5 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { UserListComponent } from './users/user-list.component';
@@ -12,6 +12,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppRouterModule} from "./app.router.module";
 import {EditComponent} from './users/edit/edit.component';
 import {AddUserComponent} from "./users/add-user/add-user.component";
+import { UserProfileComponent } from "./users/user-profile/user-profile.component";
 
 @NgModule({
   declarations: [
@@ -20,8 +21,8 @@ import {AddUserComponent} from "./users/add-user/add-user.component";
     DetailsComponent,
     FormComponent,
     HeaderComponent,
-    FormComponent,
     EditComponent,
+    UserProfileComponent,
     AddUserComponent
   ],
   imports: [
@@ -34,4 +35,5 @@ import {AddUserComponent} from "./users/add-user/add-user.component";
   providers: [UserService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

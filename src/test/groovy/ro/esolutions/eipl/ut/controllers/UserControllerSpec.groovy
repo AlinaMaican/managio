@@ -37,4 +37,34 @@ class UserControllerSpec extends Specification {
         true      | 0   | ResponseEntity.badRequest().body(Collections.singletonMap("error", UserController.BINDING_RESULT_ERROR_MESSAGE))
         false     | 1   | ResponseEntity.ok(aUserModel())
     }
+
+    def "getAuthUser"() {
+        given:
+
+        when:
+        def result = userController.getAuthUser()
+
+        then:
+        result == ResponseEntity.ok(aUserModel())
+
+
+        and:
+        1 * userService.getFirstUser() >> aUserModel()
+        0 * _
+    }
+
+    @Unroll
+    def "resetPassword"() {
+        when:
+        def responseEntity = userController.resetPassword(newPassword)
+
+        then:
+        responseEntity == expectedResponseEntity
+        no1 * userService.changePasswordById(1L, newPassword) >> aUserModel([password: newPassword])
+
+        where:
+        newPassword   | no1 | expectedResponseEntity
+        ' '           | 0   | ResponseEntity.badRequest().body(Collections.singletonMap("error", UserController.PASSWORD_ERROR))
+        'newPassword' | 1   | ResponseEntity.ok(aUserModel([password: 'newPassword']))
+    }
 }
