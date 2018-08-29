@@ -1,12 +1,12 @@
 CREATE SEQUENCE equipment_seq START 1;
 
 CREATE TABLE equipments(
-  id bigint NOT NULL DEFAULT nextval('equipment_seq'),
-  name character varying(255) NOT NULL,
-  code character varying(255) NOT NULL unique,
-  mabec_code character varying(255) NOT NULL,
-  protection_type character varying(255) NOT NULL,
-  size character varying(255) NOT NULL,
-  sex character varying(255) NOT NULL,
+  id BIGINT NOT NULL DEFAULT nextval('equipment_seq'),
+  name CHARACTER VARYING(255) NOT NULL,
+  code CHARACTER VARYING(255) NOT NULL unique,
+  mabec_code CHARACTER VARYING(255) NOT NULL,
+  protection_type CHARACTER VARYING(255) NOT NULL,
+  size CHARACTER VARYING(255) NOT NULL,
+  sex CHARACTER VARYING(255) NOT NULL,
   CONSTRAINT equipment_pkey PRIMARY KEY(id)
 );
