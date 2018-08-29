@@ -12,6 +12,7 @@ import {EditComponent} from './users/edit/edit.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AddUserComponent} from "./users/add-user/add-user.component";
 import { EquipmentsComponent } from './equipments/equipments.component';
+import {EquipmentService} from "./equipments/equipment.service";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { EquipmentsComponent } from './equipments/equipments.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [UserService],
+  providers: [UserService, EquipmentService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

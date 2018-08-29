@@ -32,13 +32,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <th scope="row"></th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr *ngFor="let equipment of equipments;">
+          <td>{{equipment.name}}</td>
+          <td>{{equipment.code}}</td>
+          <td>{{equipment.mabelCode}}</td>
+          <td>{{equipment.protectionType}}</td>
+          <td>{{equipment.size}}</td>
+          <td>{{equipment.sex}}</td>
         </tr>
         </tbody>
       </table>
