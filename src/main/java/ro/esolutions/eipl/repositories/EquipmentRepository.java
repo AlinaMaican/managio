@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import ro.esolutions.eipl.entities.Equipment;
 
 @Repository
-public interface EquipmentsRepository extends JpaRepository<Equipment,Long> {
+public interface EquipmentRepository extends JpaRepository<Equipment,Long> {
 }
