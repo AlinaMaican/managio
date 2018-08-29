@@ -45,15 +45,12 @@ class UserControllerSpec extends Specification {
         def result = userController.getAuthUser()
 
         then:
-        result == expectedResult
+        result == ResponseEntity.ok(aUserModel())
+
 
         and:
-        no1 * userService.getFirstUser() >> aUserModel()
+        1 * userService.getFirstUser() >> aUserModel()
         0 * _
-
-        where:
-        no1 | expectedResult
-        1   | ResponseEntity.ok(aUserModel())
     }
 
     @Unroll
