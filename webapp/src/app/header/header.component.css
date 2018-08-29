@@ -1,11 +1,3 @@
-@media screen and (max-width: 400px)
-{
-  .my-icon{
-    display:flex;
-    flex-wrap:wrap;
-    flex-direction:column;
-  }
-}
 .my-pointer{
   cursor:pointer;
 }
