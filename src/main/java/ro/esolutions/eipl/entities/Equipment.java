@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 import ro.esolutions.eipl.types.MabecCode;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
@@ -28,22 +26,16 @@ public class Equipment {
     @SequenceGenerator(name = "EQUIPMENTS_GEN_SEQ", sequenceName = "equipment_seq", allocationSize = 1)
     private Long id;
 
-    @NotBlank
     private String name;
 
-    @NotBlank
     private String code;
 
-    @NotNull
     @Enumerated(EnumType.STRING)
     private MabecCode mabecCode;
 
-    @NotBlank
     private String protectionType;
 
-    @NotBlank
     private String size;
 
-    @NotBlank
     private String sex;
 }
