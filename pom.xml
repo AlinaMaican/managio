@@ -30,6 +30,13 @@
         <node.version>v8.9.0</node.version>
         <npm.version>5.5.1</npm.version>
 
+
+        <!-- Docker -->
+        <docker.plugin.version>0.4.9</docker.plugin.version>
+        <buildNumber>1</buildNumber>
+        <docker.repository.url>nexus.esolutions.ro</docker.repository.url>
+        <docker.repository.namespace>eipl</docker.repository.namespace>
+        <docker.repository.projectName>eipl</docker.repository.projectName>
     </properties>
 
     <dependencies>
@@ -169,6 +176,35 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${docker.plugin.version}</version>
+                <executions>
+                    <execution>
+
+                    </execution>
+                </executions>
+                <configuration>
+                    <baseImage>anapsix/alpine-java:8</baseImage>
+                    <registryUrl>${docker.repository.url}</registryUrl>
+                    <imageName>${docker.repository.url}/${docker.repository.namespace}/${docker.repository.projectName}</imageName>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                    <imageTags>
+                        <imageTag>${buildNumber}</imageTag>
+                        <imageTag>latest</imageTag>
+                    </imageTags>
+                    <entryPoint>exec java $JAVA_OPTS -jar ${project.build.finalName}.jar</entryPoint>
+                    <useConfigFile>true</useConfigFile>
+                </configuration>
             </plugin>
         </plugins>
     </build>
