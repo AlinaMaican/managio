@@ -48,7 +48,58 @@ class UserServiceSpec extends Specification {
 
         and:
         1 * userRepository.findById(userId) >> Optional.empty()
-
     }
 
+    def "getFirstUser"() {
+        given:
+        def user = aUser()
+        def id = 1L
+        def userModel = aUserModel()
+
+        when:
+        def result = userService.getFirstUser()
+
+        then:
+        result == userModel
+        0*_
+
+        and:
+        1 * userRepository.findById(id) >> Optional.of(user)
+    }
+
+    def "changePasswordById"() {
+        given:
+        def userModel = aUserModel([password: "newPassword"])
+        def id = 1L
+        def user = aUser()
+        def newPassword = "newPassword"
+
+        when:
+        def result = userService.changePasswordById(id, newPassword)
+
+        then:
+        result == userModel
+        0 * _
+
+        and:
+        1 * userRepository.findById(id) >> Optional.of(user)
+        1 * userRepository.save(user) >> user
+    }
+
+    def "changePasswordByIdError"() {
+        given:
+        def id = 0
+        def newPassword = "newPassword"
+
+        when:
+        def result = userService.changePasswordById(id, newPassword)
+
+        then:
+        result == null
+        0 * _
+        thrown(UserNotFoundException)
+
+        and:
+        1 * userRepository.findById(id) >> Optional.empty()
+    }
 }
