@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-inverse navbar-expand-lg navbar-light bg-light my-nav">
   <div class="container-fluid">
     <div class="navbar-header">
       <a href="#" class="navbar-brand white-color">
@@ -17,7 +17,7 @@
           <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="/management-users">MANAGEMENT
             USERS</a></li>
           <li class="nav-item dropdown" routerLinkActive="active">
-            <a class="nav-link" routerLink="/management-forms" role="button" id="dropdownManagementForms"
+            <a class="nav-link" role="button" id="dropdownManagementForms"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MANAGEMENT FORMS</a>
             <ul class="dropdown-menu" aria-labelledby="dropdownManagementForms">
               <li><a class="dropdown-item" href="#">Tip protectie</a></li>
@@ -30,8 +30,8 @@
               <li><a class="dropdown-item" href="#">Marmimi casca</a></li>
             </ul>
           </li>
-          <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="/employees">EMPLOYEES</a></li>
-          <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="/reports">REPORTS</a></li>
+          <li class="nav-item" routerLinkActive="active"><a class="nav-link">EMPLOYEES</a></li>
+          <li class="nav-item" routerLinkActive="active"><a class="nav-link">REPORTS</a></li>
         </ul>
       </div>
     </div>
@@ -41,7 +41,7 @@
           <i class="fas fa-user"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Edit profile</a>
+          <a class="dropdown-item" routerLink="/resetPassword">Edit profile</a>
           <a class="dropdown-item" href="#">Sign out</a>
         </div>
       </div>
