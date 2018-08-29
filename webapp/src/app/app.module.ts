@@ -1,17 +1,18 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
-import { EditComponent} from './users/edit/edit.component';
 import { AppComponent } from './app.component';
 import { UserListComponent } from './users/user-list.component';
 import { DetailsComponent } from './users/details/details.component';
 import { FormComponent } from './users/form/form.component';
 import { UserService } from './users/user.service';
-import { HttpClientModule} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
+import { HeaderComponent } from './header/header.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {AppRouterModule} from "./app.router.module";
+import {EditComponent} from './users/edit/edit.component';
+import {AddUserComponent} from "./users/add-user/add-user.component";
 import { UserProfileComponent } from "./users/user-profile/user-profile.component";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { AppRouterModule } from "./app.router.module";
-import { AddUserComponent} from "./users/add-user/add-user.component";
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { AddUserComponent} from "./users/add-user/add-user.component";
     UserListComponent,
     DetailsComponent,
     FormComponent,
+    HeaderComponent,
     EditComponent,
     UserProfileComponent,
     AddUserComponent
@@ -27,9 +29,8 @@ import { AddUserComponent} from "./users/add-user/add-user.component";
     BrowserModule,
     HttpClientModule,
     AppRouterModule,
-    FormsModule,
     ReactiveFormsModule,
-
+    FormsModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

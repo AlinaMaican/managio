@@ -6,10 +6,11 @@ import {EditComponent} from "./users/edit/edit.component";
 import {AddUserComponent} from "./users/add-user/add-user.component";
 
 const routes: Routes = [
-  {path: '', component: UserListComponent, pathMatch: 'full'},
-  {path: 'edit/:id', component: EditComponent},
+  {path: '', redirectTo: 'management-users', pathMatch: 'full'},
+  {path: 'management-users', component: UserListComponent},
+  {path: 'management-users/edit/:id', component: EditComponent},
   {path: 'resetPassword', component: UserProfileComponent},
-  {path: 'add-user', component: AddUserComponent}
+  {path: 'management-users/add', component: AddUserComponent}
   ];
 
 @NgModule({
