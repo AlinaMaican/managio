@@ -7,8 +7,8 @@ import {AddUserComponent} from "./users/add-user/add-user.component";
 
 const routes: Routes = [
   {path: '', component: UserListComponent, pathMatch: 'full'},
-  {path: 'resetPassword', component: UserProfileComponent},
   {path: 'edit/:id', component: EditComponent},
+  {path: 'resetPassword', component: UserProfileComponent},
   {path: 'add-user', component: AddUserComponent}
   ];
 

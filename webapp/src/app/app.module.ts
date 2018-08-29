@@ -20,7 +20,7 @@ import { AddUserComponent} from "./users/add-user/add-user.component";
     DetailsComponent,
     FormComponent,
     EditComponent,
-    UserProfileComponent
+    UserProfileComponent,
     AddUserComponent
   ],
   imports: [
@@ -29,12 +29,10 @@ import { AddUserComponent} from "./users/add-user/add-user.component";
     AppRouterModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    AppRouterModule,
-    ReactiveFormsModule,
-    FormsModule,
+
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
