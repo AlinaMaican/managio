@@ -1,13 +1,13 @@
 package ro.esolutions.eipl.types;
 
 public enum MabecCode {
-    CODE_01("01"),
-    CODE_02("02"),
-    CODE_03("03"),
-    CODE_04("04"),
-    CODE_05("05"),
-    CODE_06("06"),
-    CODE_07("07");
+    MABEC_01("01"),
+    MABEC_02("02"),
+    MABEC_03("03"),
+    MABEC_04("04"),
+    MABEC_05("05"),
+    MABEC_06("06"),
+    MABEC_07("07");
 
     private final String code;
 
