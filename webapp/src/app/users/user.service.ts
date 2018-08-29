@@ -16,6 +16,14 @@ export class UserService {
     return this.httpClient.get<User[]>(this.usersUrl + '/all');
   }
 
+  getAuthUser(): Observable<User> {
+    return this.httpClient.get<User>(this.usersUrl + '/me' );
+  }
+
+  resetPassword(password: string): Observable<User> {
+    return this.httpClient.post<User>(this.usersUrl + '/password', password, {});
+  }
+
   getUserById(index: number): Observable<User> {
     return this.httpClient.get<User>(this.usersUrl + '/' + index);
   }
