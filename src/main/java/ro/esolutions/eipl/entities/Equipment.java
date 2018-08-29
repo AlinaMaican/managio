@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ro.esolutions.eipl.types.MabecCode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -33,8 +34,9 @@ public class Equipment {
     @NotBlank
     private String code;
 
-    @NotBlank
-    private String mabecCode;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private MabecCode mabecCode;
 
     @NotBlank
     private String protectionType;
