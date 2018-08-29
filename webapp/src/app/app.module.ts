@@ -11,6 +11,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { UserProfileComponent } from "./users/user-profile/user-profile.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AppRouterModule } from "./app.router.module";
+import { AddUserComponent} from "./users/add-user/add-user.component";
 
 @NgModule({
   declarations: [
@@ -19,15 +20,19 @@ import { AppRouterModule } from "./app.router.module";
     DetailsComponent,
     FormComponent,
     EditComponent,
-    FormComponent,
     UserProfileComponent
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    AppRouterModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     AppRouterModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
