@@ -11,6 +11,7 @@ import {AppRouterModule} from "./app.router.module";
 import {EditComponent} from './users/edit/edit.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AddUserComponent} from "./users/add-user/add-user.component";
+import { EquipmentsComponent } from './equipments/equipments.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {AddUserComponent} from "./users/add-user/add-user.component";
     DetailsComponent,
     FormComponent,
     EditComponent,
-    AddUserComponent
+    AddUserComponent,
+    EquipmentsComponent
   ],
   imports: [
     BrowserModule,
