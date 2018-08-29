@@ -7,7 +7,6 @@ import { DetailsComponent } from './users/details/details.component';
 import { FormComponent } from './users/form/form.component';
 import { UserService } from './users/user.service';
 import {HttpClientModule} from '@angular/common/http';
-import {AppDropdownDirective} from "./shared/app-dropdown.directive";
 import { HeaderComponent } from './header/header.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppRouterModule} from "./app.router.module";
@@ -20,7 +19,6 @@ import {AddUserComponent} from "./users/add-user/add-user.component";
     UserListComponent,
     DetailsComponent,
     FormComponent,
-    AppDropdownDirective,
     HeaderComponent,
     FormComponent,
     EditComponent,
