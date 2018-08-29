@@ -96,12 +96,9 @@ public class UserService {
     }
 
     public UserModel changePasswordById(final Long userId, final String newPassword) {
-        Optional<User> userOptional = userRepository.findById(userId);
-        if (userOptional.isPresent()) {
-            userOptional.get().setPassword(newPassword);
-            return UserMapper.fromEntityToModel(userRepository.save(userOptional.get()));
-        } else {
-            throw new UserNotFoundException(userId);
-        }
+        return userRepository.findById(userId).map(user -> { user.setPassword(newPassword);
+                               return UserMapper.fromEntityToModel(userRepository.save(user));})
+	            .orElseThrow( () -> new UserNotFoundException(userId));
+
     }
 }
