@@ -6,3 +6,6 @@
     flex-direction:column;
   }
 }
+.my-pointer{
+  cursor:pointer;
+}
