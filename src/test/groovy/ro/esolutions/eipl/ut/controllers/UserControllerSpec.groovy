@@ -7,7 +7,7 @@ import ro.esolutions.eipl.services.UserService
 import spock.lang.Specification
 import spock.lang.Unroll
 
-import static ro.esolutions.eipl.generator.UserModelGenerator.aUserModel
+import static ro.esolutions.eipl.generators.UserModelGenerator.aUserModel
 
 class UserControllerSpec extends Specification {
 

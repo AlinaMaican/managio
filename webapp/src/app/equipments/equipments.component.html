@@ -1,0 +1,46 @@
+<div class="container-fluid">
+  <div class="row" style="padding-top: 30px; padding-bottom: 10px">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb breadcrumb-white-14">
+        <li class="breadcrumb-item"><a href="#">EIPL</a></li>
+        <li class="breadcrumb-item"><a href="#">Management forms</a></li>
+        <li class="breadcrumb-item active" aria-current="page">EquipmentModel</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-sm-8 offset-sm-2 col-md-4 offset-md-4">
+      <h2 class="text-center">Equipments</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-10 offset-sm-1">
+      <button type="button" class="btn btn-outline-secondary margin-br-15">Upload
+      </button>
+      <button type="button" class="btn btn-outline-secondary mb-15-pl-pr-25">Add
+      </button>
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Code</th>
+          <th scope="col">Mabec Code</th>
+          <th scope="col">Protection Type</th>
+          <th scope="col">Size</th>
+          <th scope="col">Sex</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let equipment of equipments;">
+          <td>{{equipment.name}}</td>
+          <td>{{equipment.code}}</td>
+          <td>{{equipment.mabelCode}}</td>
+          <td>{{equipment.protectionType}}</td>
+          <td>{{equipment.size}}</td>
+          <td>{{equipment.sex}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

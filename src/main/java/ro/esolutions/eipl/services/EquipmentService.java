@@ -1,12 +1,16 @@
 package ro.esolutions.eipl.services;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ro.esolutions.eipl.entities.Equipment;
 import ro.esolutions.eipl.repositories.EquipmentRepository;
 import ro.esolutions.eipl.types.MabecCode;
+import org.springframework.transaction.annotation.Transactional;
+import ro.esolutions.eipl.mappers.EquipmentMapper;
+import ro.esolutions.eipl.models.EquipmentModel;
 
-import javax.transaction.Transactional;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,15 +18,25 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class EquipmentService {
 
+    @NonNull
     private final EquipmentRepository equipmentRepository;
 
     public EquipmentService(EquipmentRepository equipmentRepository) {
         this.equipmentRepository = equipmentRepository;
+    }
+
+    public List<EquipmentModel> getAllEquipments() {
+        return equipmentRepository.findAll()
+                .stream()
+                .map(EquipmentMapper::fromEntityToModel)
+                .collect(Collectors.toList());
     }
 
     public List<Equipment> uploadEquipmentFromCSV(final MultipartFile file){
