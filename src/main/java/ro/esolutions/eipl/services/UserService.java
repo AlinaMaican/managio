@@ -52,6 +52,7 @@ public class UserService {
         }
     }
 
+//  TODO popescustefanradu 2018-08-30T11:06 refactor into editUser(UserModel)
     public UserModel editUserById(final Long userId, final @Valid UserModel userModel) {
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
