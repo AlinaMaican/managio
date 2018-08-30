@@ -12,8 +12,6 @@ class EquipmentServiceSpec extends Specification {
     def equipmentService = new EquipmentService(equipmentRepository)
 
     def "getAllEquipments"() {
-        given:
-
         when:
         equipmentService.getAllEquipments()
 

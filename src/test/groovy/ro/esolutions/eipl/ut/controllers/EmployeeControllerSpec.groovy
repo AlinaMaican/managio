@@ -15,8 +15,6 @@ class EmployeeControllerSpec extends Specification {
 
     @Unroll
     def "getAllEmployees"() {
-        given:
-
         when:
         def result = employeeController.getAllEmployees()
 

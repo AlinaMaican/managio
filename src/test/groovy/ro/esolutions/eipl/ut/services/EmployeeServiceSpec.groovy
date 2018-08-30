@@ -5,6 +5,7 @@ import ro.esolutions.eipl.services.EmployeeService
 import spock.lang.Specification
 
 import static ro.esolutions.eipl.generators.EmployeeGenerator.aEmployee
+import static ro.esolutions.eipl.generators.EmployeeModelGenerator.aEmployeeModel
 
 
 class EmployeeServiceSpec extends Specification {
@@ -13,12 +14,13 @@ class EmployeeServiceSpec extends Specification {
     def employeeService = new EmployeeService(employeeRepository)
 
     def "getAllEmployees"() {
-        given:
-
         when:
-        employeeService.getAllEmployees()
+        def result = employeeService.getAllEmployees()
 
         then:
+        result == [aEmployeeModel()]
+
+        and:
         1 * employeeRepository.findAll() >> [aEmployee()]
         0 * _
     }
