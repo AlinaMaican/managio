@@ -35,7 +35,17 @@
         <maven.compiler.target>1.8</maven.compiler.target>
 
         <!-- Docker -->
+        <docker.repository.url>nexus.esolutions.ro</docker.repository.url>
         <docker.plugin.version>0.4.9</docker.plugin.version>
+
+        <surefire.plugin.version>2.18.1</surefire.plugin.version>
+        <failsafe.plugin.version>2.19.1</failsafe.plugin.version>
+        <cglib-nodep.version>3.2.4</cglib-nodep.version>
+
+        <sonar.plugin.version>3.3.0.603</sonar.plugin.version>
+        <sonar.jacoco.reportPath>${project.build.directory}/coverage-reports/jacoco-ut.exec</sonar.jacoco.reportPath>
+        <sonar.jacoco.itReportPath>${project.build.directory}/coverage-reports/jacoco-it.exec</sonar.jacoco.itReportPath>
+        <jacoco.plugin.version>0.7.4.201502262128</jacoco.plugin.version>
     </properties>
 
     <dependencies>
