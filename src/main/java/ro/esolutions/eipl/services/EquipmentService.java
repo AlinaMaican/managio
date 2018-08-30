@@ -41,6 +41,7 @@ public class EquipmentService {
         try {
             InputStream inputStream = file.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            bufferedReader.readLine();
             while((line = bufferedReader.readLine()) != null){
                 String[] attributes = line.split(",");
                 Equipment equipment = createEquipmentEntity(attributes);
