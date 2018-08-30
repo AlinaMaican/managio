@@ -18,4 +18,16 @@ public final class EquipmentMapper {
                 .sex(equipment.getSex())
                 .build();
     }
+
+    public static Equipment fromModelToEntity(final EquipmentModel equipmentModel) {
+        return Equipment.builder()
+                .id(equipmentModel.getId())
+                .name(equipmentModel.getName())
+                .code(equipmentModel.getCode())
+                .mabecCode(equipmentModel.getMabecCode())
+                .protectionType(equipmentModel.getProtectionType())
+                .size(equipmentModel.getSize())
+                .sex(equipmentModel.getSex())
+                .build();
+    }
 }

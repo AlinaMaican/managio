@@ -2,7 +2,9 @@ package ro.esolutions.eipl.services;
 
 import org.springframework.stereotype.Service;
 import ro.esolutions.eipl.mappers.EquipmentMapper;
+import ro.esolutions.eipl.mappers.UserMapper;
 import ro.esolutions.eipl.models.EquipmentModel;
+import ro.esolutions.eipl.models.UserModel;
 import ro.esolutions.eipl.repositories.EquipmentRepository;
 
 import javax.transaction.Transactional;
@@ -26,4 +28,9 @@ public class EquipmentService {
                 .map(EquipmentMapper::fromEntityToModel)
                 .collect(Collectors.toList());
     }
+
+    public EquipmentModel addNewEquipment(final EquipmentModel equipmentModel) {
+        return EquipmentMapper.fromEntityToModel(equipmentRepository.save(EquipmentMapper.fromModelToEntity(equipmentModel)));
+    }
+
 }
