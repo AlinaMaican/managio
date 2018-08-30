@@ -28,10 +28,6 @@ public class EquipmentService {
     @NonNull
     private final EquipmentRepository equipmentRepository;
 
-    public EquipmentService(EquipmentRepository equipmentRepository) {
-        this.equipmentRepository = equipmentRepository;
-    }
-
     public List<EquipmentModel> getAllEquipments() {
         return equipmentRepository.findAll()
                 .stream()
