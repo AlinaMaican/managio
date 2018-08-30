@@ -16,7 +16,7 @@ public class EquipmentController {
     }
 
     @PostMapping(value = "/file")
-    public ResponseEntity<Object> uploadEquipmentFromCSV(@RequestPart("file") final MultipartFile filesss){
-        return ResponseEntity.ok(equipmentService.uploadEquipmentFromCSV(filesss));
+    public ResponseEntity<Object> uploadEquipmentFromCSV(@RequestPart("file") final MultipartFile fileToBeUploaded){
+        return ResponseEntity.ok(equipmentService.uploadEquipmentFromCSV(fileToBeUploaded));
     }
 }
