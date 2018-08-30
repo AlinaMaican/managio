@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { Subscription} from "rxjs";
-import { Equipment} from "../users/model/equipment";
+import { EquipmentModel} from "./model/equipment.model";
 import { EquipmentService} from "./equipment.service";
 import { Router} from "@angular/router";
 
@@ -12,13 +12,13 @@ import { Router} from "@angular/router";
 export class EquipmentsComponent implements OnInit {
 
   private equipmentSubscription: Subscription;
-  equipments: Equipment[];
+  equipments: EquipmentModel[];
 
   constructor(private equimentService: EquipmentService, private router: Router) { }
 
   ngOnInit(): void {
     this.equipmentSubscription = this.equimentService.getAllEquipments().subscribe(
-      (equipment: Equipment[]) => {
+      (equipment: EquipmentModel[]) => {
         this.equipments = equipment;
       }
     );
