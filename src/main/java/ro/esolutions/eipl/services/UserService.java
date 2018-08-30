@@ -32,12 +32,7 @@ public class UserService {
     }
 
     public UserModel getUserById(final Long userId) {
-        Optional<User> userOptional = userRepository.findById(userId);
-        if (userOptional.isPresent()) {
-            return fromEntityToModel(userOptional.get());
-        } else {
-            throw new UserNotFoundException(userId);
-        }
+        return fromEntityToModel(userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId)));
     }
 
     public List<UserModel> getAllUsers() {
@@ -70,17 +65,19 @@ public class UserService {
 
     public UserModel getFirstUser() {
         Optional<User> userOptional = userRepository.findById(1L);
-        if(userOptional.isPresent()) {
+        if (userOptional.isPresent()) {
             return UserMapper.fromEntityToModel(userOptional.get());
-        }else {
+        } else {
             throw new UserNotFoundException(1L);
         }
     }
 
     public UserModel changePasswordById(final Long userId, final String newPassword) {
-        return userRepository.findById(userId).map(user -> { user.setPassword(newPassword);
-                               return UserMapper.fromEntityToModel(userRepository.save(user));})
-	            .orElseThrow( () -> new UserNotFoundException(userId));
+        return userRepository.findById(userId).map(user -> {
+            user.setPassword(newPassword);
+            return UserMapper.fromEntityToModel(userRepository.save(user));
+        })
+                .orElseThrow(() -> new UserNotFoundException(userId));
 
     }
 }
