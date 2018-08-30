@@ -26,7 +26,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity<Object> addNewUser(@RequestBody @Valid UserModel userModel) {
         userModel.setId(null);
-        return ResponseEntity.ok(userService.addNewUser(userModel));
+        return ResponseEntity.ok(userService.addUser(userModel));
     }
 
     @GetMapping("/{user_id}")

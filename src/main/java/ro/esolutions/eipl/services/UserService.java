@@ -27,7 +27,7 @@ public class UserService {
         this.userRepository = Objects.requireNonNull(userRepository, "UserRepository must not be null");
     }
 
-    public UserModel addNewUser(final UserModel userModel) {
+    public UserModel addUser(final UserModel userModel) {
         return fromEntityToModel(userRepository.save(fromModelToEntity(userModel)));
     }
 
@@ -66,10 +66,6 @@ public class UserService {
         } else {
             throw new UserNotFoundException(userId);
         }
-    }
-
-    private UserModel addUser(final UserModel userModel) {
-        return fromEntityToModel(userRepository.save(fromModelToEntity(userModel)));
     }
 
     public UserModel getFirstUser() {
