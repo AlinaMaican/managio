@@ -325,7 +325,12 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <imageName>${project.artifactId}</imageName>
+                    <registryUrl>${docker.repository.url}</registryUrl>
+                    <imageName>${docker.repository.url}/internship/${project.artifactId}</imageName>
+                    <imageTags>
+                        <imageTag>${buildNumber}</imageTag>
+                        <imageTag>latest</imageTag>
+                    </imageTags>
                     <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
                     <resources>
                         <resource>
