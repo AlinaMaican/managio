@@ -4,9 +4,9 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import ro.esolutions.eipl.models.EquipmentModel;
 import ro.esolutions.eipl.services.EquipmentService;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -15,8 +15,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EquipmentController {
 
-    @NonNull
     private final EquipmentService equipmentService;
+
 
     @GetMapping("/all")
     public ResponseEntity<List<EquipmentModel>> getAllEquipments() {

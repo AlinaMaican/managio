@@ -3,13 +3,13 @@ package ro.esolutions.eipl.services;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import ro.esolutions.eipl.entities.Equipment;
-import ro.esolutions.eipl.repositories.EquipmentRepository;
-import ro.esolutions.eipl.types.MabecCode;
-import org.springframework.transaction.annotation.Transactional;
 import ro.esolutions.eipl.mappers.EquipmentMapper;
 import ro.esolutions.eipl.models.EquipmentModel;
+import ro.esolutions.eipl.repositories.EquipmentRepository;
+import ro.esolutions.eipl.types.MabecCode;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,12 +28,6 @@ public class EquipmentService {
     @NonNull
     private final EquipmentRepository equipmentRepository;
 
-    public List<EquipmentModel> getAllEquipments() {
-        return equipmentRepository.findAll()
-                .stream()
-                .map(EquipmentMapper::fromEntityToModel)
-                .collect(Collectors.toList());
-    }
 
     public List<Equipment> uploadEquipmentFromCSV(final MultipartFile file){
         List<Equipment> equipmentList = new ArrayList<>();
@@ -41,7 +35,6 @@ public class EquipmentService {
         try {
             InputStream inputStream = file.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            bufferedReader.readLine();
             while((line = bufferedReader.readLine()) != null){
                 String[] attributes = line.split(",");
                 Equipment equipment = createEquipmentEntity(attributes);
@@ -69,5 +62,12 @@ public class EquipmentService {
         String sex = attributes[5];
 
         return new Equipment(null, name, code, mabecCode, protectionType, size, sex);
+    }
+
+    public List<EquipmentModel> getAllEquipments() {
+        return equipmentRepository.findAll()
+                .stream()
+                .map(EquipmentMapper::fromEntityToModel)
+                .collect(Collectors.toList());
     }
 }
