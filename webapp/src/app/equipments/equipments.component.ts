@@ -12,14 +12,14 @@ import { Router} from "@angular/router";
 export class EquipmentsComponent implements OnInit {
 
   private equipmentSubscription: Subscription;
-  equipment: Equipment[];
+  equipments: Equipment[];
 
   constructor(private equimentService: EquipmentService, private router: Router) { }
 
   ngOnInit(): void {
     this.equipmentSubscription = this.equimentService.getAllEquipments().subscribe(
       (equipment: Equipment[]) => {
-        this.equipment = equipment;
+        this.equipments = equipment;
       }
     );
   }
