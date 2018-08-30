@@ -48,7 +48,6 @@ export class AddUserComponent implements OnInit, OnDestroy {
           this.router.navigate(['/']);
         },
         (response: HttpErrorResponse) => {
-          var error = response.error;
           this.handleErrors(new Map(Object.entries(response.error)))
         }
       );
