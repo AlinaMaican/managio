@@ -1,4 +1,4 @@
-import {MabecCode} from "./equipment-mabecCode.model";
+import {MabecCode} from "./mabec-code.model";
 
 export class EquipmentModel {
   constructor(public id: number,
