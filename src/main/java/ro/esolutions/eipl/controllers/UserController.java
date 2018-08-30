@@ -45,6 +45,7 @@ public class UserController {
     }
 
     @PutMapping("/{user_id}")
+//  TODO popescustefanradu 2018-08-30T11:10 Refactor after auth integration
     public ResponseEntity<Object> editUserById(@RequestBody @Valid UserModel userModel,
                                                final BindingResult bindingResult,
                                                @PathVariable("user_id") Long userId) {
@@ -55,12 +56,15 @@ public class UserController {
     }
 
     @GetMapping("/me")
-    public ResponseEntity<UserModel> getAuthUser() { return ResponseEntity.ok(userService.getFirstUser());
+//  TODO popescustefanradu 2018-08-30T11:10 Refactor after auth integration
+    public ResponseEntity<UserModel> getAuthUser() {
+        return ResponseEntity.ok(userService.getFirstUser());
     }
 
     @PostMapping("/password")
+//  TODO popescustefanradu 2018-08-30T11:10 Refactor after auth integration
     public ResponseEntity<Object> resetPassword(@RequestBody final String newPassword) {
-        if(!Strings.isNotBlank(newPassword)) {
+        if (!Strings.isNotBlank(newPassword)) {
             return ResponseEntity.badRequest().body(Collections.singletonMap("error", PASSWORD_ERROR));
         }
         return ResponseEntity.ok(userService.changePasswordById(1L, newPassword));
