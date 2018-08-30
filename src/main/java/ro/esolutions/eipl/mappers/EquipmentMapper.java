@@ -3,8 +3,8 @@ package ro.esolutions.eipl.mappers;
 import ro.esolutions.eipl.entities.Equipment;
 import ro.esolutions.eipl.models.EquipmentModel;
 
-public class EquipmentMapper {
 
+public final class EquipmentMapper {
     private EquipmentMapper(){}
 
     public static EquipmentModel fromEntityToModel(final Equipment equipment) {

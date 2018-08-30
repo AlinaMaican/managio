@@ -1,6 +1,4 @@
-import {UserRole} from './user-role.model';
-
-export class User {
+export class UserProfileModel {
 
   constructor(public id: number,
               public username: string,
@@ -8,9 +6,6 @@ export class User {
               public lastName: string,
               public password: string,
               public resetPassword: string,
-              public userRole: UserRole,
-              public isActive: boolean,
-              public email: string
-  ) {
+              public email: string) {
   }
 }
