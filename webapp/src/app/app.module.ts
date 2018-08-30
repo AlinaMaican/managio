@@ -13,6 +13,7 @@ import {AppRouterModule} from "./app.router.module";
 import {EditComponent} from './users/edit/edit.component';
 import {AddUserComponent} from "./users/add-user/add-user.component";
 import { UserProfileComponent } from "./users/user-profile/user-profile.component";
+import {EmployeeService} from "./employees/employee.service";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { UserProfileComponent } from "./users/user-profile/user-profile.componen
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [UserService],
+  providers: [UserService, EmployeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
