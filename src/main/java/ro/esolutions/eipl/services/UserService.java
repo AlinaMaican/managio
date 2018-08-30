@@ -22,6 +22,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+
     public UserService(final UserRepository userRepository) {
         this.userRepository = Objects.requireNonNull(userRepository, "UserRepository must not be null");
     }
@@ -99,6 +100,5 @@ public class UserService {
         return userRepository.findById(userId).map(user -> { user.setPassword(newPassword);
                                return UserMapper.fromEntityToModel(userRepository.save(user));})
 	            .orElseThrow( () -> new UserNotFoundException(userId));
-
     }
 }

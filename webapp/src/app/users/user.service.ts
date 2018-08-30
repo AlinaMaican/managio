@@ -32,8 +32,9 @@ export class UserService {
     return this.httpClient.put<User>(this.usersUrl + '/' + index, user, {});
   }
 
-
   addUser(newUser: User): Observable<{}> {
     return this.httpClient.post<User>(this.usersUrl, newUser, {});
   }
+
+
 }
