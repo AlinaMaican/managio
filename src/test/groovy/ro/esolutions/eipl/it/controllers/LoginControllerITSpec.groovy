@@ -61,7 +61,7 @@ class LoginControllerITSpec extends Specification {
         '/asd'          | status().is3xxRedirection() | redirectedUrlPattern(DOMAIN_MATCHER + LOGIN_PATH_FULL)
     }
 
-    @Unroll("Authentication with #username/#password should yield #resultStatusName and redirect to #redirectUrl")
+    @Unroll("Authentication with #username/#password should redirect to #redirectUrl")
     def 'test authentication'() {
         when:
         def result = mockMvc.perform(post(LOGIN_PATH_FULL)
@@ -73,12 +73,11 @@ class LoginControllerITSpec extends Specification {
             result.andExpect(expectedRedirectUrlMatcher)
         }
         where:
-        resultStatusName << ['3xxRedirection'] * 4
-        username | password | expectedResultStatus | expectedRedirectUrlMatcher | redirectUrl
-        'activeUser' | 'asd' | status().is3xxRedirection() | redirectedUrl(WELCOME_PATH_FULL) | WELCOME_PATH_FULL
-        'inactiveUser' | 'asd' | status().is3xxRedirection() | LOGIN_ERROR_REDIRECT_MATCHER | LOGIN_ERROR_PATH
-        'inexistentUser' | 'asd' | status().is3xxRedirection() | LOGIN_ERROR_REDIRECT_MATCHER | LOGIN_ERROR_PATH
-        'activeUser' | 'wrongPass' | status().is3xxRedirection() | LOGIN_ERROR_REDIRECT_MATCHER | LOGIN_ERROR_PATH
+        username         | password    | expectedResultStatus        | expectedRedirectUrlMatcher       | redirectUrl
+        'activeUser'     | 'asd'       | status().is3xxRedirection() | redirectedUrl(WELCOME_PATH_FULL) | WELCOME_PATH_FULL
+        'inactiveUser'   | 'asd'       | status().is3xxRedirection() | LOGIN_ERROR_REDIRECT_MATCHER     | LOGIN_ERROR_PATH
+        'inexistentUser' | 'asd'       | status().is3xxRedirection() | LOGIN_ERROR_REDIRECT_MATCHER     | LOGIN_ERROR_PATH
+        'activeUser'     | 'wrongPass' | status().is3xxRedirection() | LOGIN_ERROR_REDIRECT_MATCHER     | LOGIN_ERROR_PATH
     }
 
 //  page lacks role-based security
