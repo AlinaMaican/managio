@@ -1,12 +1,9 @@
 package ro.esolutions.eipl.controllers;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import ro.esolutions.eipl.services.EquipmentService;
-
-import java.io.File;
 
 @RestController
 @RequestMapping("/equipment")
@@ -18,8 +15,8 @@ public class EquipmentController {
         this.equipmentService = equipmentService;
     }
 
-    @PostMapping("/upload")
-    public ResponseEntity<Object> uploadEquipmentFromCSV(final File file){
-        return ResponseEntity.ok(equipmentService.uploadEquipmentFromCSV(file));
+    @PostMapping(value = "/file")
+    public ResponseEntity<Object> uploadEquipmentFromCSV(@RequestPart("file") final MultipartFile filesss){
+        return ResponseEntity.ok(equipmentService.uploadEquipmentFromCSV(filesss));
     }
 }

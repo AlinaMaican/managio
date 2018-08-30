@@ -1,13 +1,15 @@
 package ro.esolutions.eipl.services;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import ro.esolutions.eipl.entities.Equipment;
 import ro.esolutions.eipl.repositories.EquipmentRepository;
 import ro.esolutions.eipl.types.MabecCode;
 
 import javax.transaction.Transactional;
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,12 +25,13 @@ public class EquipmentService {
         this.equipmentRepository = equipmentRepository;
     }
 
-    public List<Equipment> uploadEquipmentFromCSV(final File file){
+    public List<Equipment> uploadEquipmentFromCSV(final MultipartFile file){
         List<Equipment> equipmentList = new ArrayList<>();
-
-        try (Scanner scanner =  new Scanner(file)){
-            while(scanner.hasNextLine()){
-                String line = scanner.nextLine();
+        String line;
+        try {
+            InputStream inputStream = file.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            while((line = bufferedReader.readLine()) != null){
                 String[] attributes = line.split(",");
                 Equipment equipment = createEquipmentEntity(attributes);
                 Optional<Equipment> equipmentOptional = equipmentRepository.findByCode(equipment.getCode());
@@ -39,7 +42,7 @@ public class EquipmentService {
                     equipmentList.add(equipment);
                 }
             }
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         equipmentList.stream().forEach(equipmentRepository::save);
