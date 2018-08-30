@@ -1,4 +1,4 @@
-package groovy.ro.esolutions.eipl.ut.services
+package ro.esolutions.eipl.ut.services
 
 
 import ro.esolutions.eipl.exceptions.UserNotFoundException
@@ -6,8 +6,8 @@ import ro.esolutions.eipl.repositories.UserRepository
 import ro.esolutions.eipl.services.UserService
 import spock.lang.Specification
 
-import static ro.esolutions.eipl.generator.UserGenerator.aUser
-import static ro.esolutions.eipl.generator.UserModelGenerator.aUserModel
+import static ro.esolutions.eipl.generators.UserGenerator.aUser
+import static ro.esolutions.eipl.generators.UserModelGenerator.aUserModel
 
 class UserServiceSpec extends Specification {
 
