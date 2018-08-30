@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.*;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
     public static final String ROOT_PATH = "/";
-    public static final String ANGULAR_FORWARD_VIEW_NAME = "index.html";
+    public static final String ANGULAR_FORWARD_VIEW_NAME = "forward: index.html";
 
     @Override
     public void addViewControllers(final ViewControllerRegistry registry) {

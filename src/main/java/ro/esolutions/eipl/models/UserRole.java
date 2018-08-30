@@ -1,5 +1,12 @@
 package ro.esolutions.eipl.models;
 
-public enum UserRole {
-    USER, ADMIN, MANAGER, CONSULTANT
+import org.springframework.security.core.GrantedAuthority;
+
+public enum UserRole implements GrantedAuthority {
+    USER, ADMIN, MANAGER, CONSULTANT;
+
+    @Override
+    public String getAuthority() {
+        return this.toString();
+    }
 }
