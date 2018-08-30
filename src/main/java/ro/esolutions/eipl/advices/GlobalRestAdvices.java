@@ -14,6 +14,6 @@ import static ro.esolutions.eipl.mappers.BindingResultMapper.fromBindingResultTo
 public class GlobalRestAdvices extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        return ResponseEntity.badRequest().body(fromBindingResultToMap(ex.getBindingResult()));
+        return ResponseEntity.badRequest().headers(headers).body(fromBindingResultToMap(ex.getBindingResult()));
     }
 }
