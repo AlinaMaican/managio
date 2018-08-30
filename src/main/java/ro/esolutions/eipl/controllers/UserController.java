@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ro.esolutions.eipl.models.UserModel;
+import ro.esolutions.eipl.models.UserModelWithPassword;
 import ro.esolutions.eipl.services.UserService;
 
 import javax.validation.Valid;
@@ -24,7 +25,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> addNewUser(@RequestBody @Valid UserModel userModel) {
+    public ResponseEntity<Object> addNewUser(@RequestBody @Valid UserModelWithPassword userModel) {
         userModel.setId(null);
         return ResponseEntity.ok(userService.addUser(userModel));
     }
