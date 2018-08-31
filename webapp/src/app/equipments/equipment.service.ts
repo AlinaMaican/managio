@@ -4,18 +4,20 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {Equipment} from "../users/model/equipment";
 
+
 @Injectable()
 export class EquipmentService {
   private equipmentUrl = environment.resourcesUrl + '/equipment';
 
-  constructor(private httpclient: HttpClient) {
+  constructor(private httpClient: HttpClient) {
   }
 
   getAllEquipments(): Observable<Equipment[]> {
-    return this.httpclient.get<Equipment[]> (this.equipmentUrl + '/all');
+    return this.httpClient.get<Equipment[]> (this.equipmentUrl + '/all');
   }
   addEquipment(newEquipment:Equipment ):Observable<{}>{
-    return this.httpclient.post<Equipment>(this.equipmentUrl,newEquipment,{});
+    return this.httpClient.post<Equipment>(this.equipmentUrl,newEquipment,{});
+
 
   }
 }

@@ -58,7 +58,7 @@
 
           <div class="row">
             <div class="col-xs-4 offset-3">
-              <form [formGroup]="addEquipment" >
+              <form [formGroup]="addequipment" >
                 <div class="row-fluid">
 
                   <div class="form-group">
@@ -76,7 +76,7 @@
 
                   <div class="form-group">
                     <label>Choose the MabecCode:
-                      <select class="form-control" formControlName="mabecCode"  >
+                      <select class="form-control" formControlName="mabecCode" >
                         <option value="MABEC_01">MABEC_01</option>
                         <option value="MABEC_02">MABEC_02</option>
                         <option value="MABEC_03">MABEC_03</option>
@@ -102,18 +102,20 @@
                            required="required" id="size" class="form-control" formControlName="size">
                   </div>
 
-                  <fieldset class="form-group"  >
+                  <fieldset class="form-group">
                     <label>Sex:
 
                       <label class="form-check-label form-check">
                         <input type="radio" class="form-check-input " name="sex"
-                               value="true" formControlName="sex" >
+                               value="M"
+                                formControlName="sex" >
                         MALE
                       </label>
 
                       <label class="form-check-label form-check">
-                        <input type="radio" class="form-check-input " name="sex"
-                               value="false" formControlName="sex">
+                        <input type="radio" class="form-check-input" name="sex"
+                               value="F"
+                                formControlName="sex">
                         FEMALE
                       </label>
 
@@ -145,8 +147,8 @@
                 <span>CANCEL</span>
               </button>
               <div class="m-3"></div>
-              <button type="submit" data-toggle="modal" data-target="#confirmModal"
-                      class="btn btn-primary btn-block rounded m-0" [disabled]="!formGroup.valid" data-dismiss="modal" (click)="createEquipment()">
+              <button type="submit"
+                      class="btn btn-primary btn-block rounded m-0" [disabled]="!addequipment.valid" data-dismiss="modal" (click)="createEquipment()">
                 <span>SAVE</span>
               </button>
             </div>
