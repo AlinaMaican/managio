@@ -31,3 +31,12 @@
   </table>
 </div>
 
+<app-pagination
+  [(pageSize)]="pageSize"
+  [pageNumber]="pageNumber"
+  [totalPages]="totalPages"
+  (goPrev)="onPrev()"
+  (goNext)="onNext()"
+  (goFirst)="onFirst($event)"
+  (goLast)="onLast()">
+</app-pagination>

@@ -3,6 +3,7 @@ import {Observable} from 'rxjs/internal/Observable';
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
+import {Page} from "./model/page.model";
 
 @Injectable()
 export class UserService {
@@ -12,8 +13,12 @@ export class UserService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getAllUsers(): Observable<User[]> {
-    return this.httpClient.get<User[]>(this.usersUrl + '/all');
+  // getAllUsers(): Observable<User[]> {
+  //   return this.httpClient.get<User[]>(this.usersUrl + '/all');
+  // }
+
+  getAllUsers(page: number, size: number): Observable<Page<User>> {
+    return this.httpClient.get<Page<User>>(this.usersUrl + '/all?page=' + page + '&size=' + size);
   }
 
   getAuthUser(): Observable<User> {
