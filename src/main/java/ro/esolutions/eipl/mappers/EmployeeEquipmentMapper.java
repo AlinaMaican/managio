@@ -11,15 +11,15 @@ public final class EmployeeEquipmentMapper {
     public static EmployeeEquipmentModel fromEntityToModel(final EmployeeEquipment employeeEquipment) {
         return EmployeeEquipmentModel.builder()
                 .id(employeeEquipment.getId())
-                .employee(employeeEquipment.getEmployee())
-                .equipment(employeeEquipment.getEquipment())
+                .employee(EmployeeMapper.fromEntityToModel(employeeEquipment.getEmployee()))
+                .equipment(EquipmentMapper.fromEntityToModel(employeeEquipment.getEquipment()))
                 .build();
     }
 
     public static EmployeeEquipment fromModelToEntity(final EmployeeEquipmentModel employeeEquipmentModel) {
         return EmployeeEquipment.builder()
                 .id(employeeEquipmentModel.getId())
-                .employee(employeeEquipmentModel.getEmployee())
-                .equipment(employeeEquipmentModel.getEquipment())
+                .employee(EmployeeMapper.fromModelToEntity(employeeEquipmentModel.getEmployee()))
+                .equipment(EquipmentMapper.fromModelToEntity(employeeEquipmentModel.getEquipment()))
                 .build();
     }}
