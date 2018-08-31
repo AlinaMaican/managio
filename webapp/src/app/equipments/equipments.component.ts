@@ -26,6 +26,7 @@ export class EquipmentsComponent implements OnInit,OnDestroy{
         this.equipments = equipment;
       }
     );
+
     this.initForm();
   }
   initForm() {
@@ -46,8 +47,7 @@ export class EquipmentsComponent implements OnInit,OnDestroy{
          () => {
            this.router.navigate(['/equipment/all']);
          }
-
-       );
+         );
    }
 
   ngOnDestroy(): void {
