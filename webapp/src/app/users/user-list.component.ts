@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {User} from './model/user.model';
 import {UserService} from './user.service';
 import {Subscription} from 'rxjs/internal/Subscription';
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Paginable} from "../paginable";
 
 @Component({
@@ -14,7 +14,6 @@ export class UserListComponent extends Paginable<User> implements OnInit, OnDest
 
   public subscription: Subscription;
   list: User[];
-
   baseURL: string = 'management-users';
 
   constructor(public service: UserService,
@@ -24,17 +23,7 @@ export class UserListComponent extends Paginable<User> implements OnInit, OnDest
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: Params) => {
-      this.pageNumber = +params['page'];
-      this.pageSize = +params['size'];
-      if (isNaN(this.pageNumber) || isNaN(this.pageSize) ||
-        !this.PAGE_SIZES.includes(this.pageSize) || this.pageNumber < 1) {
-        this.pageNumber = this.DEFAULT_PAGE_NUMBER;
-        this.pageSize = this.DEFAULT_PAGE_SIZE;
-        this.router.navigateByUrl(this.baseURL + '/page/' + this.pageNumber + '/size/' + this.pageSize);
-      }
-    });
-    this.getAll();
+    this.init();
   }
 
   ngOnDestroy(): void {

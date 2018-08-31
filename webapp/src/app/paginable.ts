@@ -1,5 +1,5 @@
 import {Page} from "./users/model/page.model";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {Service} from "./service";
 
@@ -12,6 +12,7 @@ export class Paginable<T> {
   pageSize: number = this.DEFAULT_PAGE_SIZE;
   totalPages: number;
   baseURL: string;
+  route: ActivatedRoute;
 
   router: Router;
   subscription: Subscription;
@@ -39,9 +40,23 @@ export class Paginable<T> {
     this.getAll();
   }
 
+  init(): void {
+    this.route.queryParams.subscribe((params) => {
+      this.pageNumber = +params['page'];
+      this.pageSize = +params['size'];
+      if (isNaN(this.pageNumber) || isNaN(this.pageSize) ||
+        !this.PAGE_SIZES.includes(this.pageSize) || this.pageNumber < 1) {
+        this.pageNumber = this.DEFAULT_PAGE_NUMBER;
+        this.pageSize = this.DEFAULT_PAGE_SIZE;
+        this.router.navigate([this.baseURL], { queryParams: { page: this.pageNumber, size: this.pageSize } });
+      }
+    });
+    this.getAll();
+  }
+
   getAll(): void {
-    this.router.navigateByUrl(this.baseURL + '/page/' + this.pageNumber + '/size/' + this.pageSize);
-    this.subscription = this.service.getAllUsers(this.pageNumber - 1, this.pageSize).subscribe(
+    this.router.navigate([this.baseURL], { queryParams: { page: this.pageNumber, size: this.pageSize } });
+    this.subscription = this.service.getAll(this.pageNumber - 1, this.pageSize).subscribe(
       (page: Page<T>) => {
         this.list = page.content;
         this.totalPages = page.totalPages;

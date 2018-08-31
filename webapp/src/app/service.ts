@@ -5,9 +5,9 @@ import {HttpClient} from "../../node_modules/@angular/common/http";
 export class Service<T> {
 
   httpClient: HttpClient;
-  usersUrl: String;
+  basicUrl: String;
 
-  getAllUsers(page: number, size: number): Observable<Page<T>> {
-    return this.httpClient.get<Page<T>>(this.usersUrl + '/all?page=' + page + '&size=' + size);
+  getAll(page: number, size: number): Observable<Page<T>> {
+    return this.httpClient.get<Page<T>>(this.basicUrl + '/all?page=' + page + '&size=' + size);
   }
 }
