@@ -58,8 +58,12 @@ export class Paginable<T> {
     this.router.navigate([this.baseURL], { queryParams: { page: this.pageNumber, size: this.pageSize } });
     this.subscription = this.service.getAll(this.pageNumber - 1, this.pageSize).subscribe(
       (page: Page<T>) => {
-        this.list = page.content;
         this.totalPages = page.totalPages;
+        if (this.pageNumber > this.totalPages) {
+          this.onFirst(this.pageSize);
+        } else {
+          this.list = page.content;
+        }
       }
     );
   }
