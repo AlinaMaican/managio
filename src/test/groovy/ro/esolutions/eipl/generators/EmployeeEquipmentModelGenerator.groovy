@@ -9,8 +9,8 @@ class EmployeeEquipmentModelGenerator {
 
     static aEmployeeEquipmentModel(Map overrides = [:]) {
         Map values = [id       : 0L,
-                      employee : aEmployeeModel().id,
-                      equipment: anEquipmentModel().id]
+                      employee : aEmployeeModel(),
+                      equipment: anEquipmentModel()]
         values << overrides
         return EmployeeEquipmentModel.newInstance(values)
     }
