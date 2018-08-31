@@ -1,5 +1,6 @@
 package ro.esolutions.eipl.controllers;
 
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EmployeeEquipmentController {
 
+    @NonNull
     private final EmployeeEquipmentService employeeEquipmentService;
 
     @GetMapping("/all")

@@ -1,5 +1,6 @@
 package ro.esolutions.eipl.services;
 
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class EmployeeEquipmentService {
 
+    @NonNull
     private final EmployeeEquipmentRepository employeeEquipmentRepository;
 
     public List<EmployeeEquipmentModel> getAllEmployeesEquipments() {
