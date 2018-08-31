@@ -35,7 +35,7 @@
         <tr *ngFor="let equipment of equipments;">
           <td>{{equipment.name}}</td>
           <td>{{equipment.code}}</td>
-          <td>{{equipment.mabelCode}}</td>
+          <td>{{equipment.mabecCode}}</td>
           <td>{{equipment.protectionType}}</td>
           <td>{{equipment.size}}</td>
           <td>{{equipment.sex}}</td>
@@ -44,10 +44,11 @@
       </table>
     </div>
   </div>
-   <!--Modal-->
+  <!--Modal-->
   <div class="modal" id="addEquipmentModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalTitle"
        aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-m" role="document">
+
       <div class="modal-content">
         <div class="modal-header col-xs-4 offset-2">
           <h2>Add new equipment</h2>
@@ -57,25 +58,25 @@
 
           <div class="row">
             <div class="col-xs-4 offset-3">
-              <form >
+              <form [formGroup]="addEquipment" >
                 <div class="row-fluid">
 
                   <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" placeholder="Name" formControlName="name"
-                           required="required" id="name">
+                    <input type="text"  placeholder="Name"
+                           required="required" id="name" class="form-control" formControlName="name">
                   </div>
 
                   <div class="form-group">
                     <label for="code">Code</label>
-                    <input type="text" class="form-control" placeholder="Code" formControlName="code"
-                           required="required" id="code">
+                    <input type="text"  placeholder="Code"
+                           required="required" id="code" class="form-control" formControlName="code">
                   </div>
 
 
                   <div class="form-group">
                     <label>Choose the MabecCode:
-                      <select formControlName="Mabeccodes" class="form-control">
+                      <select class="form-control" formControlName="mabecCode"  >
                         <option value="MABEC_01">MABEC_01</option>
                         <option value="MABEC_02">MABEC_02</option>
                         <option value="MABEC_03">MABEC_03</option>
@@ -91,28 +92,28 @@
 
                   <div class="form-group">
                     <label for="protectionType">Protection type</label>
-                    <input type="text" class="form-control" placeholder="Protection type"
-                           formControlName="protectionType" required="required" id="protectionType">
+                    <input type="text"  placeholder="Protection type"
+                            required="required" id="protectionType" class="form-control" formControlName="protectionType">
                   </div>
 
                   <div class="form-group">
                     <label for="size">Size</label>
-                    <input type="text" class="form-control" placeholder="Size" formControlName="size"
-                           required="required" id="size">
+                    <input type="text"  placeholder="Size"
+                           required="required" id="size" class="form-control" formControlName="size">
                   </div>
 
-                  <fieldset class="form-group">
+                  <fieldset class="form-group"  >
                     <label>Sex:
 
                       <label class="form-check-label form-check">
-                        <input type="radio" class="form-check-input" name="sex"
-                               value="true" formControlName="isActive">
+                        <input type="radio" class="form-check-input " name="sex"
+                               value="true" formControlName="sex" >
                         MALE
                       </label>
 
                       <label class="form-check-label form-check">
-                        <input type="radio" class="form-check-input" name="sex"
-                               value="false" formControlName="isActive">
+                        <input type="radio" class="form-check-input " name="sex"
+                               value="false" formControlName="sex">
                         FEMALE
                       </label>
 
@@ -120,24 +121,148 @@
                   </fieldset>
 
                 </div>
-                <div class="modal-footer">
-
-                  <div class="row btn-add-user">
-                    <div class="col-sm-6">
-                      <button class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    </div>
-                    <div class="col-sm-6">
-                      <button type="submit" class="btn btn-primary" [disabled]="!addEquipment.valid">Save</button>
-                    </div>
-                  </div>
-
-                </div>
-
               </form>
             </div>
           </div>
         </div>
+
+        <div class="modal-footer my-modal">
+
+          <!--<div class="row btn-add-user">-->
+            <!--<div class="col-sm-6">-->
+              <!--<button class="btn btn-default" data-dismiss="modal">Cancel</button>-->
+            <!--</div>-->
+            <!--<div class="col-sm-6">-->
+              <!--<button type="submit" class="btn btn-primary" [disabled]="!addEquipment.valid">Save</button>-->
+            <!--</div>-->
+          <!--</div>-->
+
+
+
+          <div class="col-xs-12">
+            <div class="d-flex w-100 justify-content-between">
+              <button class="btn btn-secondary btn-block rounded m-0" data-dismiss="modal" >
+                <span>CANCEL</span>
+              </button>
+              <div class="m-3"></div>
+              <button type="submit" data-toggle="modal" data-target="#confirmModal"
+                      class="btn btn-primary btn-block rounded m-0" [disabled]="!formGroup.valid" data-dismiss="modal" (click)="createEquipment()">
+                <span>SAVE</span>
+              </button>
+            </div>
+          </div>
+
+
+
+
+
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-  </div>
+
+  <!--<div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
+    <!--<div class="modal-dialog" role="document">-->
+      <!--<div class="modal-content">-->
+        <!--<div class="modal-header text-center">-->
+          <!--<h4 class="modal-title w-100 font-weight-bold">Add new equipment</h4>-->
+          <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+            <!--<span aria-hidden="true">&times;</span>-->
+          <!--</button>-->
+        <!--</div>-->
+        <!--<div class="modal-body mx-3">-->
+          <!---->
+          <!---->
+          <!--<div class="md-form mb-5">-->
+            <!--<label data-error="wrong" data-success="right" for="form34">Name</label>-->
+            <!--<input type="text" id="form34" class="form-control validate" required="required">-->
+
+          <!--</div>-->
+
+          <!--<div class="md-form mb-5">-->
+            <!--<label data-error="wrong" data-success="right" for="form29">Code</label>-->
+            <!--<input type="email" id="form29" class="form-control validate" required="required">-->
+
+          <!--</div>-->
+
+
+          <!--<div class="form-group">-->
+          <!--<label>Choose the MabecCode:-->
+          <!--<select class="form-control" required="required">-->
+          <!--<option value="MABEC_01">MABEC_01</option>-->
+          <!--<option value="MABEC_02">MABEC_02</option>-->
+          <!--<option value="MABEC_03">MABEC_03</option>-->
+          <!--<option value="MABEC_04">MABEC_04</option>-->
+          <!--<option value="MABEC_05">MABEC_05</option>-->
+          <!--<option value="MABEC_06">MABEC_06</option>-->
+          <!--<option value="MABEC_07">MABEC_07</option>-->
+
+          <!--</select>-->
+          <!--</label>-->
+          <!--</div>-->
+
+
+
+          <!--<div class="md-form mb-5">-->
+            <!--<label data-error="wrong" data-success="right" for="form32">Protection type</label>-->
+            <!--<input type="text" id="form32" class="form-control validate" required="required">-->
+
+          <!--</div>-->
+
+
+          <!--<div class="md-form mb-5">-->
+            <!--<label data-error="wrong" data-success="right" for="form32">Size</label>-->
+            <!--<input type="text" id="form31" class="form-control validate" required="required">-->
+
+          <!--</div>-->
+
+          <!--<fieldset class="form-group" required="required">-->
+          <!--<label>Sex:-->
+
+          <!--<label class="form-check-label form-check">-->
+          <!--<input type="radio" class="form-check-input " name="sex"-->
+          <!--value="true" formControlName="sex">-->
+          <!--MALE-->
+          <!--</label>-->
+
+          <!--<label class="form-check-label form-check">-->
+          <!--<input type="radio" class="form-check-input " name="sex"-->
+          <!--value="false" formControlName="sex">-->
+          <!--FEMALE-->
+          <!--</label>-->
+
+          <!--</label>-->
+          <!--</fieldset>-->
+
+
+
+        <!--</div>-->
+
+
+        <!--<div class="col-xs-12">-->
+        <!--<div class="d-flex w-100 justify-content-between">-->
+        <!--<button class="btn btn-secondary btn-block rounded m-0" data-dismiss="modal" >-->
+        <!--<span>CANCEL</span>-->
+        <!--</button>-->
+        <!--<div class="m-3"></div>-->
+        <!--<button type="button" data-toggle="modal" data-target="#confirmModal"-->
+        <!--class="btn btn-primary btn-block rounded m-0" [disabled]="!formGroup.valid">-->
+        <!--<span>SAVE</span>-->
+        <!--</button>-->
+        <!--</div>-->
+        <!--</div>-->
+
+
+
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+
+
+
+
+
+
+
 </div>

@@ -14,4 +14,8 @@ export class EquipmentService {
   getAllEquipments(): Observable<Equipment[]> {
     return this.httpclient.get<Equipment[]> (this.equipmentUrl + '/all');
   }
+  addEquipment(newEquipment:Equipment ):Observable<{}>{
+    return this.httpclient.post<Equipment>(this.equipmentUrl,newEquipment,{});
+
+  }
 }

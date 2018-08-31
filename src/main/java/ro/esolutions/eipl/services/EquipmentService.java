@@ -29,8 +29,8 @@ public class EquipmentService {
                 .collect(Collectors.toList());
     }
 
+
     public EquipmentModel addNewEquipment(final EquipmentModel equipmentModel) {
         return EquipmentMapper.fromEntityToModel(equipmentRepository.save(EquipmentMapper.fromModelToEntity(equipmentModel)));
     }
-
 }
