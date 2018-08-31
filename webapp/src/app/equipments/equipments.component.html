@@ -74,9 +74,10 @@
                   </div>
 
 
-                  <div class="form-group">
+                  <div class="form-group" >
                     <label>Choose the MabecCode:
                       <select class="form-control" formControlName="mabecCode" >
+                        <option value="" disabled selected>Mabec code</option>
                         <option value="MABEC_01">MABEC_01</option>
                         <option value="MABEC_02">MABEC_02</option>
                         <option value="MABEC_03">MABEC_03</option>
@@ -96,13 +97,16 @@
                             required="required" id="protectionType" class="form-control" formControlName="protectionType">
                   </div>
 
+
                   <div class="form-group">
                     <label for="size">Size</label>
                     <input type="text"  placeholder="Size"
                            required="required" id="size" class="form-control" formControlName="size">
+                    <small *ngIf="addequipment.get('size').errors">*Size should only contain capital letters and numbers</small>
                   </div>
 
-                  <fieldset class="form-group">
+
+                  <fieldset class="form-group" >
                     <label>Sex:
 
                       <label class="form-check-label form-check">

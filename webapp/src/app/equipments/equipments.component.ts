@@ -16,6 +16,7 @@ export class EquipmentsComponent implements OnInit,OnDestroy{
    equipmentSubscription: Subscription=null;
    addequipment:FormGroup;
    equipments: Equipment[];
+   REGEX_NAME: string = '^[A-Z0-9]+';
 
   constructor(private route:ActivatedRoute,private router: Router,private equipmentService: EquipmentService) { }
 
@@ -33,7 +34,7 @@ export class EquipmentsComponent implements OnInit,OnDestroy{
       'code': new FormControl('', Validators.required),
       'mabecCode': new FormControl('', Validators.required),
       'protectionType': new FormControl('', Validators.required),
-      'size': new FormControl('', Validators.required),
+      'size': new FormControl('',[ Validators.required, Validators.pattern(this.REGEX_NAME)]),
       'sex': new FormControl('', Validators.required),
     });
   }
