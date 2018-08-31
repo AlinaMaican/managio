@@ -54,9 +54,11 @@ export class EquipmentsComponent implements OnInit {
   }
 
   onSubmit() {
+    const formModel = this.equipmentForm.value;
     this.loading = true;
     setTimeout(() => {
       alert('done!');
+      console.log(formModel);
       this.loading = false;
     }, 1000);
   }
