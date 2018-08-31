@@ -3,26 +3,19 @@ import {Observable} from 'rxjs/internal/Observable';
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
-import {Page} from "./model/page.model";
+import {Service} from "../service";
 
 @Injectable()
-export class UserService {
+export class UserService extends Service<User> {
 
-  private usersUrl = environment.resourcesUrl + '/user';
+  public usersUrl = environment.resourcesUrl + '/user';
 
-  constructor(private httpClient: HttpClient) {
-  }
-
-  // getAllUsers(): Observable<User[]> {
-  //   return this.httpClient.get<User[]>(this.usersUrl + '/all');
-  // }
-
-  getAllUsers(page: number, size: number): Observable<Page<User>> {
-    return this.httpClient.get<Page<User>>(this.usersUrl + '/all?page=' + page + '&size=' + size);
+  constructor(public httpClient: HttpClient) {
+    super();
   }
 
   getAuthUser(): Observable<User> {
-    return this.httpClient.get<User>(this.usersUrl + '/me' );
+    return this.httpClient.get<User>(this.usersUrl + '/me');
   }
 
   resetPassword(password: string): Observable<User> {

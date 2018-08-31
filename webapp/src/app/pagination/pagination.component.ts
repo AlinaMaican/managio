@@ -7,10 +7,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class PaginationComponent implements OnInit {
 
-  // DEFAULT_PAGE_NUMBER: number = 1;
-  // DEFAULT_PAGE_SIZE: number = 5;
-  // PAGE_SIZES: number[] = [5, 10, 15];
-
   @Input() pageNumber: number;
   @Input() pageSize: number;
   @Input() totalPages: number;
@@ -20,7 +16,8 @@ export class PaginationComponent implements OnInit {
   @Output() goFirst = new EventEmitter<number>();
   @Output() goLast = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
