@@ -9,7 +9,7 @@ export class PaginationComponent implements OnInit {
 
   // DEFAULT_PAGE_NUMBER: number = 1;
   // DEFAULT_PAGE_SIZE: number = 5;
-  PAGE_SIZES: number[] = [5, 10, 15];
+  // PAGE_SIZES: number[] = [5, 10, 15];
 
   @Input() pageNumber: number;
   @Input() pageSize: number;
