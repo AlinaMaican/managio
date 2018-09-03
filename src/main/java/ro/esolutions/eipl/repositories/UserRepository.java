@@ -1,5 +1,7 @@
 package ro.esolutions.eipl.repositories;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import ro.esolutions.eipl.entities.User;
 
@@ -13,4 +15,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findAllByOrderByIdAsc();
     Optional<User> findById(Long id);
     Optional<User> findFirstByEmail(String email);
+
+    Page<User> findAllByOrderByIdAsc(Pageable pageable);
 }
