@@ -1,0 +1,22 @@
+<div class="row bigger-size">
+
+  <div>
+    <label for="itemsPerPage">Items per page: &nbsp;
+    </label>
+
+    <select id="itemsPerPage" [(ngModel)]="pageSize" (click)="onFirst(pageSize)">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+    </select>
+  </div>
+
+  <div class="offset-8">
+    <button class="fas fa-angle-double-left" (click)="onFirst(pageSize)" [disabled]="pageNumber == 1"></button>&nbsp;
+    <button class="fas fa-angle-left" (click)="onPrev()" [disabled]="pageNumber == 1"></button>&nbsp;
+    {{pageNumber}}&nbsp;
+    <button class="fas fa-angle-right" (click)="onNext()" [disabled]="pageNumber == totalPages"></button>&nbsp;
+    <button class="fas fa-angle-double-right" (click)="onLast()" [disabled]="pageNumber == totalPages"></button>
+  </div>
+
+</div>

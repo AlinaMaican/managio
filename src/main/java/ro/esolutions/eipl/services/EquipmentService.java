@@ -10,7 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import ro.esolutions.eipl.entities.Equipment;
 import ro.esolutions.eipl.mappers.EquipmentMapper;
+import ro.esolutions.eipl.mappers.UserMapper;
 import ro.esolutions.eipl.models.EquipmentModel;
+import ro.esolutions.eipl.models.UserModel;
 import ro.esolutions.eipl.repositories.EquipmentRepository;
 import ro.esolutions.eipl.types.MabecCode;
 
@@ -36,6 +38,10 @@ public class EquipmentService {
                 .stream()
                 .map(EquipmentMapper::fromEntityToModel)
                 .collect(Collectors.toList());
+    }
+
+    public EquipmentModel addNewEquipment(final EquipmentModel equipmentModel) {
+        return EquipmentMapper.fromEntityToModel(equipmentRepository.save(EquipmentMapper.fromModelToEntity(equipmentModel)));
     }
 
     public List<Equipment> uploadEquipmentFromCSV(final MultipartFile file) {

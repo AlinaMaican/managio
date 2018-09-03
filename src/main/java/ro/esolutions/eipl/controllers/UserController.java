@@ -1,6 +1,8 @@
 package ro.esolutions.eipl.controllers;
 
 import org.apache.logging.log4j.util.Strings;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -38,8 +40,10 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<UserModel>> getAllUsers() {
-        return ResponseEntity.ok(userService.getAllUsers());
+    public ResponseEntity<Page<UserModel>> getAllUsers(@RequestParam(defaultValue = "0", name = "page") int page,
+                                                       @RequestParam(defaultValue = "2", name = "size") int size) {
+
+        return ResponseEntity.ok(userService.getAllUsers(PageRequest.of(page, size)));
     }
 
     @DeleteMapping("/{user_id}")

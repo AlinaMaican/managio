@@ -19,3 +19,9 @@ input[type="file"] {
 .width-140 {
   width: 140px;
 }
+.my-modal{
+  margin-right: 160px;
+}
+small{
+  color:red;
+}
