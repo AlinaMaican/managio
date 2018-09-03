@@ -58,7 +58,7 @@ public class EquipmentService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        equipmentList.forEach(equipmentRepository::save);
+        equipmentRepository.saveAll(equipmentList);
         return equipmentList;
     }
 }
