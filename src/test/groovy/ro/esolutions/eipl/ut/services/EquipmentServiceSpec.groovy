@@ -5,7 +5,7 @@ import ro.esolutions.eipl.repositories.EquipmentRepository
 import ro.esolutions.eipl.services.EquipmentService
 import spock.lang.Specification
 
-import static ro.esolutions.eipl.generator.EquipmentGenerator.anEquipment
+import static ro.esolutions.eipl.generators.EquipmentGenerator.anEquipment
 
 class EquipmentServiceSpec extends Specification {
     def equipmentRepository = Mock(EquipmentRepository)

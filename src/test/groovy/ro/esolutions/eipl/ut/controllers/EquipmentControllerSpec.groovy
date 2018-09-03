@@ -2,7 +2,7 @@ package ro.esolutions.eipl.ut.controllers
 
 import org.springframework.http.ResponseEntity
 import ro.esolutions.eipl.controllers.EquipmentController
-import ro.esolutions.eipl.generator.EquipmentModelGenerator
+import ro.esolutions.eipl.generators.EquipmentModelGenerator
 import ro.esolutions.eipl.services.EquipmentService
 import spock.lang.Specification
 
