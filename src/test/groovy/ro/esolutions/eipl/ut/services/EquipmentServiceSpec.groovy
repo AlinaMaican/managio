@@ -23,7 +23,8 @@ class EquipmentServiceSpec extends Specification {
 
     def "uploadEquipmentFromCSV"() {
         given:
-        def file = new MockMultipartFile("testUploadEquipmentFIle.csv", this.getClass().getResourceAsStream("/testUploadEquipmentFIle.csv"))
+        def file = new MockMultipartFile("testUploadEquipmentFIle.csv",
+                this.getClass().getResourceAsStream("/testUploadEquipmentFIle.csv"))
         def equipment = anEquipment()
         def equipmentList = [anEquipment()]
         def code = anEquipment().getCode()

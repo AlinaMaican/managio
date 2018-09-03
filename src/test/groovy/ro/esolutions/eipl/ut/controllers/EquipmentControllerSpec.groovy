@@ -1,7 +1,9 @@
 package ro.esolutions.eipl.ut.controllers
 
 import org.springframework.http.ResponseEntity
+import org.springframework.mock.web.MockMultipartFile
 import ro.esolutions.eipl.controllers.EquipmentController
+import ro.esolutions.eipl.generator.EquipmentGenerator
 import ro.esolutions.eipl.generator.EquipmentModelGenerator
 import ro.esolutions.eipl.services.EquipmentService
 import spock.lang.Specification
@@ -23,6 +25,23 @@ class EquipmentControllerSpec extends Specification{
 
         and:
         1 * equipmentService.getAllEquipments() >> equipmentModelList
+        0 * _
+    }
+
+    def "uploadEquipmentFromCSV"() {
+        given:
+        def file = new MockMultipartFile("testUploadEquipmentFIle.csv",
+                this.getClass().getResourceAsStream("/testUploadEquipmentFIle.csv"))
+        def equipmentList = [EquipmentGenerator.anEquipment()]
+
+        when:
+        def result = equipmentController.uploadEquipmentFromCSV(file)
+
+        then:
+        result == ResponseEntity.ok(equipmentList)
+
+        and:
+        1 * equipmentService.uploadEquipmentFromCSV(file) >> equipmentList
         0 * _
     }
 }
