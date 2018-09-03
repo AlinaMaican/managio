@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="row" style="padding-top: 30px; padding-bottom: 10px">
+  <div class="row pt-30-pb-10">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb breadcrumb-white-14">
         <li class="breadcrumb-item"><a href="#">EIPL</a></li>
@@ -15,10 +15,19 @@
   </div>
   <div class="row">
     <div class="col-sm-10 offset-sm-1">
-      <button type="button" class="btn btn-outline-secondary margin-br-15">Upload
-      </button>
-      <button type="button" class="btn btn-outline-secondary mb-15-pl-pr-25">Add
-      </button>
+
+      <form [formGroup]="equipmentForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="uploadEquipment">Upload</label>
+          <input type="file" id="uploadEquipment" (cancel)="onFileChange($event)" #fileInput>
+        </div>
+        <button type="submit" [disabled]="equipmentForm.invalid || loading"
+                class="btn btn-outline-secondary margin-br-15">Upload
+          <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i>
+        </button>
+      </form>
+
+      <button type="button" class="btn btn-outline-secondary mb-15-pl-pr-25">Add</button>
       <table class="table table-hover">
         <thead>
         <tr>
@@ -34,7 +43,7 @@
         <tr *ngFor="let equipment of equipments;">
           <td>{{equipment.name}}</td>
           <td>{{equipment.code}}</td>
-          <td>{{equipment.mabelCode}}</td>
+          <td>{{equipment.mabecCode}}</td>
           <td>{{equipment.protectionType}}</td>
           <td>{{equipment.size}}</td>
           <td>{{equipment.sex}}</td>
