@@ -19,6 +19,8 @@ import static ro.esolutions.eipl.controllers.LoginController.LOGIN_PATH_FULL;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    public static final String LOGOUT_PATH_FULL = "/logout";
+
     @Override
     public void configure(final HttpSecurity http) throws Exception {
         http.csrf().disable()
@@ -31,7 +33,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         new DefaultRedirectStrategy().sendRedirect(request, response, "/welcome"))
                 .permitAll()
                 .and()
-                .logout().permitAll();
+                .logout()
+                .logoutUrl(LOGOUT_PATH_FULL)
+                .logoutSuccessHandler((request, response, authentication) ->
+                        new DefaultRedirectStrategy().sendRedirect(request, response, LOGIN_PATH_FULL))
+                .permitAll();
     }
 
     @Bean
