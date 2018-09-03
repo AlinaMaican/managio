@@ -1,6 +1,8 @@
 package ro.esolutions.eipl.services;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,6 +42,10 @@ public class UserService {
                 .stream()
                 .map(UserMapper::fromEntityToModel)
                 .collect(Collectors.toList());
+    }
+
+    public Page<UserModel> getAllUsers(Pageable pageable) {
+        return userRepository.findAllByOrderByIdAsc(pageable).map(UserMapper::fromEntityToModel);
     }
 
     public UserModel deleteUserById(final Long userId) {
