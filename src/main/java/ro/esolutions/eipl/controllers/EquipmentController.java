@@ -1,5 +1,7 @@
 package ro.esolutions.eipl.controllers;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -10,19 +12,16 @@ import ro.esolutions.eipl.services.EquipmentService;
 import javax.validation.Valid;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/equipment")
+@RequiredArgsConstructor
 public class EquipmentController {
 
+    @NonNull
     private final EquipmentService equipmentService;
     private static final String BINDING_RESULT_ERROR_MESSAGE = "Equipment not valid";
 
-
-    public EquipmentController(EquipmentService equipmentService) {
-        this.equipmentService = Objects.requireNonNull(equipmentService, "EquipmentService must not be null");
-    }
 
     @GetMapping("/all")
     public ResponseEntity<List<EquipmentModel>> getAllEquipments() {

@@ -1,10 +1,10 @@
 <div class="container-fluid">
   <div class="row" style="padding-top: 30px; padding-bottom: 10px">
     <nav aria-label="breadcrumb">
-      <ol class="breadcrumb" style="background-color: white; font-size: 14px">
+      <ol class="breadcrumb breadcrumb-white-14">
         <li class="breadcrumb-item"><a href="#">EIPL</a></li>
         <li class="breadcrumb-item"><a href="#">Management forms</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Equipment</li>
+        <li class="breadcrumb-item active" aria-current="page">EquipmentModel</li>
       </ol>
     </nav>
   </div>
@@ -15,10 +15,10 @@
   </div>
   <div class="row">
     <div class="col-sm-10 offset-sm-1">
-      <button type="button" class="btn btn-outline-secondary" style="margin-bottom: 15px; margin-right: 15px;">Upload
+      <button type="button" class="btn btn-outline-secondary margin-br-15">Upload
       </button>
-      <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#addEquipmentModal"
-              style="margin-bottom: 15px; padding-left: 25px; padding-right: 25px;" (click)="initForm()" >Add
+      <button type="button" class="btn btn-outline-secondary mb-15-pl-pr-25 " data-toggle="modal" data-target="#addEquipmentModal"
+              (click)="initForm()">Add
       </button>
       <table class="table table-hover">
         <thead>
@@ -132,18 +132,6 @@
         </div>
 
         <div class="modal-footer my-modal">
-
-          <!--<div class="row btn-add-user">-->
-            <!--<div class="col-sm-6">-->
-              <!--<button class="btn btn-default" data-dismiss="modal">Cancel</button>-->
-            <!--</div>-->
-            <!--<div class="col-sm-6">-->
-              <!--<button type="submit" class="btn btn-primary" [disabled]="!addEquipment.valid">Save</button>-->
-            <!--</div>-->
-          <!--</div>-->
-
-
-
           <div class="col-xs-12">
             <div class="d-flex w-100 justify-content-between">
               <button class="btn btn-secondary btn-block rounded m-0" data-dismiss="modal" >
@@ -156,118 +144,8 @@
               </button>
             </div>
           </div>
-
-
-
-
-
         </div>
       </div>
     </div>
   </div>
-
-  <!--<div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
-    <!--<div class="modal-dialog" role="document">-->
-      <!--<div class="modal-content">-->
-        <!--<div class="modal-header text-center">-->
-          <!--<h4 class="modal-title w-100 font-weight-bold">Add new equipment</h4>-->
-          <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-            <!--<span aria-hidden="true">&times;</span>-->
-          <!--</button>-->
-        <!--</div>-->
-        <!--<div class="modal-body mx-3">-->
-          <!---->
-          <!---->
-          <!--<div class="md-form mb-5">-->
-            <!--<label data-error="wrong" data-success="right" for="form34">Name</label>-->
-            <!--<input type="text" id="form34" class="form-control validate" required="required">-->
-
-          <!--</div>-->
-
-          <!--<div class="md-form mb-5">-->
-            <!--<label data-error="wrong" data-success="right" for="form29">Code</label>-->
-            <!--<input type="email" id="form29" class="form-control validate" required="required">-->
-
-          <!--</div>-->
-
-
-          <!--<div class="form-group">-->
-          <!--<label>Choose the MabecCode:-->
-          <!--<select class="form-control" required="required">-->
-          <!--<option value="MABEC_01">MABEC_01</option>-->
-          <!--<option value="MABEC_02">MABEC_02</option>-->
-          <!--<option value="MABEC_03">MABEC_03</option>-->
-          <!--<option value="MABEC_04">MABEC_04</option>-->
-          <!--<option value="MABEC_05">MABEC_05</option>-->
-          <!--<option value="MABEC_06">MABEC_06</option>-->
-          <!--<option value="MABEC_07">MABEC_07</option>-->
-
-          <!--</select>-->
-          <!--</label>-->
-          <!--</div>-->
-
-
-
-          <!--<div class="md-form mb-5">-->
-            <!--<label data-error="wrong" data-success="right" for="form32">Protection type</label>-->
-            <!--<input type="text" id="form32" class="form-control validate" required="required">-->
-
-          <!--</div>-->
-
-
-          <!--<div class="md-form mb-5">-->
-            <!--<label data-error="wrong" data-success="right" for="form32">Size</label>-->
-            <!--<input type="text" id="form31" class="form-control validate" required="required">-->
-
-          <!--</div>-->
-
-          <!--<fieldset class="form-group" required="required">-->
-          <!--<label>Sex:-->
-
-          <!--<label class="form-check-label form-check">-->
-          <!--<input type="radio" class="form-check-input " name="sex"-->
-          <!--value="true" formControlName="sex">-->
-          <!--MALE-->
-          <!--</label>-->
-
-          <!--<label class="form-check-label form-check">-->
-          <!--<input type="radio" class="form-check-input " name="sex"-->
-          <!--value="false" formControlName="sex">-->
-          <!--FEMALE-->
-          <!--</label>-->
-
-          <!--</label>-->
-          <!--</fieldset>-->
-
-
-
-        <!--</div>-->
-
-
-        <!--<div class="col-xs-12">-->
-        <!--<div class="d-flex w-100 justify-content-between">-->
-        <!--<button class="btn btn-secondary btn-block rounded m-0" data-dismiss="modal" >-->
-        <!--<span>CANCEL</span>-->
-        <!--</button>-->
-        <!--<div class="m-3"></div>-->
-        <!--<button type="button" data-toggle="modal" data-target="#confirmModal"-->
-        <!--class="btn btn-primary btn-block rounded m-0" [disabled]="!formGroup.valid">-->
-        <!--<span>SAVE</span>-->
-        <!--</button>-->
-        <!--</div>-->
-        <!--</div>-->
-
-
-
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-
-
-
-
-
-
-
-
 </div>

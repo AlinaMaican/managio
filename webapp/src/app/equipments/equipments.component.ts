@@ -1,6 +1,6 @@
 import { Component, OnInit,OnDestroy} from '@angular/core';
 import { Subscription} from "rxjs";
-import { Equipment} from "../users/model/equipment";
+import { EquipmentModel} from "./model/equipment.model";
 import { EquipmentService} from "./equipment.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -13,16 +13,16 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class EquipmentsComponent implements OnInit,OnDestroy{
 
-   equipmentSubscription: Subscription=null;
+   equipmentSubscription: Subscription = null;
    addequipment:FormGroup;
-   equipments: Equipment[];
+   equipments: EquipmentModel[];
    REGEX_NAME: string = '^[A-Z0-9]+';
 
   constructor(private route:ActivatedRoute,private router: Router,private equipmentService: EquipmentService) { }
 
   ngOnInit(): void {
     this.equipmentSubscription = this.equipmentService.getAllEquipments().subscribe(
-      (equipment: Equipment[]) => {
+      (equipment: EquipmentModel[]) => {
         this.equipments = equipment;
       }
     );
@@ -40,7 +40,7 @@ export class EquipmentsComponent implements OnInit,OnDestroy{
     });
   }
    createEquipment(){
-    let equipmentObject: Equipment = this.addequipment.value;
+    let equipmentObject: EquipmentModel = this.addequipment.value;
     this.equipments.unshift(equipmentObject);
     this.equipmentSubscription =
        this.equipmentService.addEquipment(equipmentObject).subscribe(

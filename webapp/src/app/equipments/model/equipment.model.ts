@@ -1,6 +1,6 @@
-import {MabecCode} from "./equipment-mabecCode.model";
+import {MabecCode} from "./mabec-code.model";
 
-export class Equipment {
+export class EquipmentModel {
   constructor(public id: number,
               public name: string,
               public code: string,

@@ -1,13 +1,17 @@
 package ro.esolutions.eipl.ut.controllers
 
 import org.springframework.http.ResponseEntity
+<<<<<<< HEAD
 import org.springframework.validation.BindingResult
 import ro.esolutions.eipl.controllers.EquipmentController
 import ro.esolutions.eipl.services.EquipmentService
 import spock.lang.Specification
 
-import static ro.esolutions.eipl.generator.EquipmentModelGenerator.aEquipmentModel
+=======
 
+import ro.esolutions.eipl.generators.EquipmentModelGenerator
+
+>>>>>>> master
 class EquipmentControllerSpec extends Specification{
 
     def equipmentService = Mock(EquipmentService)
@@ -38,4 +42,18 @@ class EquipmentControllerSpec extends Specification{
     }
 
 
+    def getAllEquipments() {
+        given:
+        def equipmentModelList = [EquipmentModelGenerator.anEquipmentModel()]
+
+        when:
+        def result = equipmentController.getAllEquipments()
+
+        then:
+        result == ResponseEntity.ok(equipmentModelList)
+
+        and:
+        1 * equipmentService.getAllEquipments() >> equipmentModelList
+        0 * _
+    }
 }

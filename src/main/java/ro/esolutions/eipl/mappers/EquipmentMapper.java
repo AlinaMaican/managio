@@ -5,7 +5,8 @@ import ro.esolutions.eipl.models.EquipmentModel;
 
 
 public final class EquipmentMapper {
-    private EquipmentMapper(){}
+    private EquipmentMapper() {
+    }
 
     public static EquipmentModel fromEntityToModel(final Equipment equipment) {
         return EquipmentModel.builder()

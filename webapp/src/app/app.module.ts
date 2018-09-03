@@ -7,14 +7,15 @@ import {DetailsComponent} from './users/details/details.component';
 import {FormComponent} from './users/form/form.component';
 import {UserService} from './users/user.service';
 import {HttpClientModule} from '@angular/common/http';
-import { HeaderComponent } from './header/header.component';
+import {HeaderComponent} from './header/header.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppRouterModule} from "./app.router.module";
 import {EditComponent} from './users/edit/edit.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AddUserComponent} from "./users/add-user/add-user.component";
-import { EquipmentsComponent } from './equipments/equipments.component';
-import {EquipmentService} from "./equipments/equipment.service";
 import {UserProfileComponent} from "./users/user-profile/user-profile.component";
+import {EmployeeService} from "./employees/employee.service";
+import {EquipmentsComponent} from "./equipments/equipments.component";
+import {EquipmentService} from "./equipments/equipment.service";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import {UserProfileComponent} from "./users/user-profile/user-profile.component"
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [UserService, EquipmentService],
+  providers: [UserService, EquipmentService, EmployeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
