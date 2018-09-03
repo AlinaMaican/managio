@@ -2,6 +2,9 @@ package ro.esolutions.eipl.services;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,46 +31,34 @@ public class EquipmentService {
     @NonNull
     private final EquipmentRepository equipmentRepository;
 
+    public List<EquipmentModel> getAllEquipments() {
+        return equipmentRepository.findAll()
+                .stream()
+                .map(EquipmentMapper::fromEntityToModel)
+                .collect(Collectors.toList());
+    }
 
-    public List<Equipment> uploadEquipmentFromCSV(final MultipartFile file){
+    public List<Equipment> uploadEquipmentFromCSV(final MultipartFile file) {
         List<Equipment> equipmentList = new ArrayList<>();
-        String line;
         try {
             InputStream inputStream = file.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            while((line = bufferedReader.readLine()) != null){
-                String[] attributes = line.split(",");
-                Equipment equipment = createEquipmentEntity(attributes);
+            CSVParser csvParser = new CSVParser(bufferedReader, CSVFormat.DEFAULT);
+            for (CSVRecord csvRecord : csvParser) {
+                Equipment equipment = new Equipment(null, csvRecord.get(0), csvRecord.get(1),
+                        MabecCode.valueOf(csvRecord.get(2)), csvRecord.get(3), csvRecord.get(4), csvRecord.get(5));
                 Optional<Equipment> equipmentOptional = equipmentRepository.findByCode(equipment.getCode());
-                if(equipmentOptional.isPresent()){
+                if (equipmentOptional.isPresent()) {
                     equipment.setId(equipmentOptional.get().getId());
                     equipmentList.add(equipment);
-                } else{
+                } else {
                     equipmentList.add(equipment);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        equipmentList.stream().forEach(equipmentRepository::save);
+        equipmentList.forEach(equipmentRepository::save);
         return equipmentList;
-    }
-
-    public Equipment createEquipmentEntity(final String[] attributes){
-        String name = attributes[0];
-        String code = attributes[1];
-        MabecCode mabecCode = MabecCode.valueOf(attributes[2]);
-        String protectionType = attributes[3];
-        String size = attributes[4];
-        String sex = attributes[5];
-
-        return new Equipment(null, name, code, mabecCode, protectionType, size, sex);
-    }
-
-    public List<EquipmentModel> getAllEquipments() {
-        return equipmentRepository.findAll()
-                .stream()
-                .map(EquipmentMapper::fromEntityToModel)
-                .collect(Collectors.toList());
     }
 }
