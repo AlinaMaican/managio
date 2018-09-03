@@ -12,11 +12,10 @@ export class EquipmentService {
   }
 
   getAllEquipments(): Observable<EquipmentModel[]> {
-    return this.httpclient.get<EquipmentModel[]> (this.equipmentUrl + '/all');
+    return this.httpClient.get<EquipmentModel[]>(this.equipmentUrl + '/all');
+  }
 
-  addEquipment(newEquipment:Equipment ):Observable<{}>{
-    return this.httpClient.post<Equipment>(this.equipmentUrl,newEquipment,{});
-
-
+  addEquipment(newEquipmentModel:EquipmentModel ):Observable<{}>{
+    return this.httpClient.post<EquipmentModel>(this.equipmentUrl,newEquipmentModel,{});
   }
 }
