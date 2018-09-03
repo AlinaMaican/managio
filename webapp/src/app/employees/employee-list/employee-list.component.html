@@ -14,9 +14,7 @@
     </div>
   </div>
   <div class="row">
-
     <div class="col-sm-8">
-
       <div class="input-group col-md-6 offset-6" style="padding-bottom: 20px">
         <input class="form-control py-2" type="search" value="search" id="example-search-input">
         <span class="input-group-append">
@@ -24,9 +22,7 @@
             <i class="fa fa-search"></i>
         </button>
       </span>
-
       </div>
-
       <table class="table table-hover">
         <thead>
         <tr>
@@ -38,26 +34,14 @@
           <th scope="col">Actions</th>
           <th scope="col">Employee</th>
           <th scope="col">Actions</th>
-
-
-
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let employeeGroup of  this.groupedEmployees">
           <ng-container *ngFor="let employee of employeeGroup">
             <td>{{employee.firstName}} {{employee.lastName}}</td>
-            <td><i class="fas fa-user"></i> &nbsp;<i class="fas fa-tshirt"></i> </td>
+            <td><i class="fas fa-user"></i> &nbsp;<i class="fas fa-tshirt"></i></td>
           </ng-container>
-
-
-          <!--<td>{{employee.firstName}} {{employee.lastName}}</td>-->
-          <!--<td><i class="fas fa-user"></i> &nbsp;<i class="fas fa-tshirt"></i> </td>-->
-
-
-
-
-
         </tr>
         </tbody>
       </table>
