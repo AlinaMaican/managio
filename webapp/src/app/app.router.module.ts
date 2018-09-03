@@ -5,6 +5,7 @@ import {UserProfileComponent} from "./users/user-profile/user-profile.component"
 import {EditComponent} from "./users/edit/edit.component";
 import {AddUserComponent} from "./users/add-user/add-user.component";
 import {EquipmentsComponent} from "./equipments/equipments.component";
+import {EmployeeListComponent} from "./employees/employee-list/employee-list.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'management-users', pathMatch: 'full'},
@@ -14,11 +15,12 @@ const routes: Routes = [
   {path: 'edit/:id', component: EditComponent},
   {path: 'equipment/all', component:EquipmentsComponent},
   {path: 'resetPassword', component: UserProfileComponent},
+  {path: 'employee', component: EmployeeListComponent}
   ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, {useHash:true})
   ],
   exports: [RouterModule],
   declarations: []
