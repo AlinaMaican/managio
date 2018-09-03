@@ -38,6 +38,7 @@ export class EquipmentsComponent implements OnInit {
 
   upload(event) {
     this.file = event.srcElement.files[0];
+
     this.saveFile();
   }
 
