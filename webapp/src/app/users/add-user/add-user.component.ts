@@ -2,10 +2,10 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {UserService} from "../user.service";
-import {User} from "../model/user.model";
 import {Subscription} from "rxjs";
 import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
 import {FieldError} from "../model/field-error.model";
+import {UserWithPassword} from "../model/user-with-password.model";
 
 @Component({
   selector: 'app-add-user',
@@ -40,7 +40,7 @@ export class AddUserComponent implements OnInit, OnDestroy {
   }
 
   createUser() {
-    let userObject: User = this.adduser.value;
+    let userObject: UserWithPassword = this.adduser.value;
     userObject.isActive = true;
     this.subscription =
       this.userService.addUser(userObject).subscribe(

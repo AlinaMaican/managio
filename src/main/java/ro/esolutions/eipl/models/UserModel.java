@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ro.esolutions.eipl.models.constraints.UniqueEmail;
-import ro.esolutions.eipl.models.constraints.UniqueUsername;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Email;
@@ -16,11 +14,10 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @Data
 @Builder
-public class UserModel {
+public class UserModel implements HasUsernameAndEmail {
 
     private Long id;
 
-    @UniqueUsername
     @NotEmpty
     @Size(min = 2)
     private String username;
@@ -41,7 +38,6 @@ public class UserModel {
 
     @NotNull
     @Size(min = 5)
-    @UniqueEmail(message = "Email ${validatedValue} already exists")
     @Email
     private String email;
 }

@@ -3,6 +3,7 @@ import {Observable} from 'rxjs/internal/Observable';
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
+import {UserWithPassword} from "./model/user-with-password.model";
 
 @Injectable()
 export class UserService {
@@ -32,8 +33,7 @@ export class UserService {
     return this.httpClient.put<User>(this.usersUrl + '/' + index, user, {});
   }
 
-
-  addUser(newUser: User): Observable<{}> {
+  addUser(newUser: UserWithPassword): Observable<{}> {
     return this.httpClient.post<User>(this.usersUrl, newUser, {});
   }
 }

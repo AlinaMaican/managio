@@ -12,14 +12,9 @@
                    required="required"
                    [ngClass]="{'is-invalid' : isUsernameError}"
             >
-            <div *ngIf="isUsernameError && usernameFieldError && usernameFieldError.messages">
-              <p *ngFor="let message of usernameFieldError.messages">{{message}}</p>
+            <div *ngIf="isUsernameError && usernameFieldError && usernameFieldError.codeMessageMap">
+              <p *ngFor="let message of usernameFieldError.codeMessageMap | keyvalue">{{message.value}}</p>
             </div>
-          </div>
-          <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" placeholder="Password" formControlName="password"
-                   required="required">
           </div>
           <div class="form-group">
             <label>First Name</label>
@@ -35,8 +30,8 @@
             <label>Email</label>
             <input type="email" class="form-control" placeholder="Email" formControlName="email" required="required"
                    [ngClass]="{'is-invalid' : isEmailError}">
-            <div *ngIf="isEmailError && emailFieldError && emailFieldError.messages">
-              <p *ngFor="let message of emailFieldError.messages">{{message}}</p>
+            <div *ngIf="isEmailError && emailFieldError && emailFieldError.codeMessageMap">
+              <p *ngFor="let message of emailFieldError.codeMessageMap | keyvalue">{{message.value}}</p>
             </div>
           </div>
           <div class="form-group">

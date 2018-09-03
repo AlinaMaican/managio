@@ -1,7 +1,7 @@
 export class FieldError {
   constructor(
     public rejectedValue: string,
-    public messages: string[]
+    public codeMessageMap: Map<String,String>
   ) {
   }
 
