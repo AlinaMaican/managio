@@ -1,4 +1,4 @@
-package ro.esolutions.eipl.generator
+package ro.esolutions.eipl.generators
 
 import ro.esolutions.eipl.models.EquipmentModel
 import ro.esolutions.eipl.types.MabecCode
