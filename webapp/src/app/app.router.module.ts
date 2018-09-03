@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'management-users/edit/:id', component: EditComponent},
   {path: 'management-users/add', component: AddUserComponent},
   {path: 'edit/:id', component: EditComponent},
-  {path: 'equipment/all', component:EquipmentsComponent},
+  {path: 'api/equipment/all', component:EquipmentsComponent},
   {path: 'resetPassword', component: UserProfileComponent},
   ];
 

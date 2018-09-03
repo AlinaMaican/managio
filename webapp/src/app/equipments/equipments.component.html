@@ -76,16 +76,9 @@
 
                   <div class="form-group">
                     <label>Choose the MabecCode:
-                      <select class="form-control" formControlName="mabecCode" >
+                      <select class="form-control"  formControlName="mabecCode" id="'my-select">
                         <option value="" disabled selected>Mabec code</option>
-                        <option value="MABEC_01">MABEC_01</option>
-                        <option value="MABEC_02">MABEC_02</option>
-                        <option value="MABEC_03">MABEC_03</option>
-                        <option value="MABEC_04">MABEC_04</option>
-                        <option value="MABEC_05">MABEC_05</option>
-                        <option value="MABEC_06">MABEC_06</option>
-                        <option value="MABEC_07">MABEC_07</option>
-
+                        <option *ngFor="let o of optionArray" [value]="o" > {{o}}</option>
                       </select>
                     </label>
                   </div>
@@ -135,12 +128,12 @@
           <div class="col-xs-12">
             <div class="d-flex w-100 justify-content-between">
               <button class="btn btn-secondary btn-block rounded m-0" data-dismiss="modal" >
-                <span>CANCEL</span>
+                <span>Cancel</span>
               </button>
               <div class="m-3"></div>
               <button type="submit"
                       class="btn btn-primary btn-block rounded m-0" [disabled]="!addequipment.valid" data-dismiss="modal" (click)="createEquipment()">
-                <span>SAVE</span>
+                <span>Save</span>
               </button>
             </div>
           </div>
