@@ -1,0 +1,108 @@
+<div class="container-fluid ">
+  <div class="row">
+    <div class="col-xs-4 offset-4">
+      <div class="row card-body text-secondary">
+        <h2>Edit user</h2>
+      </div>
+      <div class="row">
+        <div class="col-xs-10 offset-1">
+
+          <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="username">
+                Username:
+                <input type="text" class="form-control" name="username" id="username" formControlName="username"
+                       readonly
+                       required>
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label for="email">
+                Email:
+                <input type="text" class="form-control" name="email" id="email" formControlName="email"
+                       readonly
+                       required>
+              </label>
+            </div>
+
+            <small *ngIf="formGroup.get('firstName').errors">Firstname is required</small>
+            <div class="form-group">
+              <label>
+                First name:
+                <input type="text" class="form-control" name="firstName" formControlName="firstName" required/>
+              </label>
+            </div>
+
+            <small *ngIf="formGroup.get('lastName').errors">Lastname is required</small>
+            <div class="form-group">
+              <label>
+                Last name:
+                <input type="text" class="form-control" name="lastName" formControlName="lastName"/>
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label>Choose your role:
+                <select formControlName="userRole" class="form-control">
+                  <option value="USER">USER</option>
+                  <option value="ADMIN">ADMIN</option>
+                  <option value="MANAGER">MANAGER</option>
+                  <option value="CONSULTANT">CONSULTANT</option>
+                </select>
+              </label>
+            </div>
+
+            <fieldset class="form-group">
+              <label>User Status:
+
+                <label class="form-check-label form-check">
+                  <input type="radio" class="form-check-input" name="isActive"
+                         value="true" formControlName="isActive">
+                  Active
+                </label>
+
+                <label class="form-check-label form-check">
+                  <input type="radio" class="form-check-input" name="isActive"
+                         value="false" formControlName="isActive">
+                  Not Active
+                </label>
+
+              </label>
+            </fieldset>
+
+            <div class="col-xs-12">
+              <div class="d-flex w-100 justify-content-between">
+                <button class="btn btn-secondary btn-block rounded m-0" routerLink="/">
+                  <span>CANCEL</span>
+                </button>
+                <div class="m-3"></div>
+                <button type="button" data-toggle="modal" data-target="#confirmModal"
+                        class="btn btn-primary btn-block rounded m-0" [disabled]="!formGroup.valid">
+                  <span>SAVE</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalTitle"
+                 aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-body">
+                    Are you sure you want to save?
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button class="btn btn-primary" data-dismiss="modal" (click)="onSubmit()">Yes
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

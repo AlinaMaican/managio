@@ -2,14 +2,17 @@ package ro.esolutions.eipl.configurations;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.*;
 
 @Configuration
-@EnableWebMvc
-public class WebConfig {
+public class WebConfig implements WebMvcConfigurer {
+    public static final String ROOT_PATH = "/";
+    public static final String ANGULAR_FORWARD_VIEW_NAME = "forward: index.html";
+
+    @Override
+    public void addViewControllers(final ViewControllerRegistry registry) {
+        registry.addViewController(ROOT_PATH).setViewName(ANGULAR_FORWARD_VIEW_NAME);
+    }
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {

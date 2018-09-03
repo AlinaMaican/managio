@@ -4,13 +4,12 @@ import {EquipmentModel} from "./model/equipment.model";
 import {EquipmentService} from "./equipment.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {$} from "protractor";
 
 
 @Component({
   selector: 'app-equipments',
   templateUrl: './equipments.component.html',
-  styleUrls: ['./equipments.component.css'],
+  styleUrls: ['./equipments.component.css']
 })
 export class EquipmentsComponent implements OnInit,OnDestroy{
 
@@ -29,7 +28,6 @@ export class EquipmentsComponent implements OnInit,OnDestroy{
       }
     );
     this.initForm();
-
   }
   initForm() {
     this.addequipment = new FormGroup({
@@ -59,10 +57,4 @@ export class EquipmentsComponent implements OnInit,OnDestroy{
 
    }
   }
-
-
-
-
-
-
 }

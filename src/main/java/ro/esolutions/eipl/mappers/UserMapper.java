@@ -16,6 +16,7 @@ public class UserMapper {
                 .password(user.getPassword())
                 .userRole(user.getUserRole())
                 .isActive(user.getIsActive())
+                .email(user.getEmail())
                 .build();
     }
 
@@ -28,6 +29,7 @@ public class UserMapper {
                 .password(userModel.getPassword())
                 .userRole(userModel.getUserRole())
                 .isActive(userModel.getIsActive())
+                .email(userModel.getEmail())
                 .build();
     }
 }

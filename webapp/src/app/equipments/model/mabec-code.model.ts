@@ -1,0 +1,3 @@
+export enum MabecCode {
+  MABEC_01, MABEC_02, MABEC_03, MABEC_04, MABEC_05, MABEC_06, MABEC_07
+}
