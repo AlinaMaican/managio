@@ -44,7 +44,7 @@ public class EquipmentService {
             InputStream inputStream = file.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             CSVParser csvParser = new CSVParser(bufferedReader, CSVFormat.DEFAULT);
-            for (CSVRecord csvRecord : csvParser) {
+            for(CSVRecord csvRecord : csvParser) {
                 Equipment equipment = new Equipment(null, csvRecord.get(0), csvRecord.get(1),
                         MabecCode.valueOf(csvRecord.get(2)), csvRecord.get(3), csvRecord.get(4), csvRecord.get(5));
                 Optional<Equipment> equipmentOptional = equipmentRepository.findByCode(equipment.getCode());
