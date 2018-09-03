@@ -14,4 +14,11 @@ export class EquipmentService {
   getAllEquipments(): Observable<EquipmentModel[]> {
     return this.httpclient.get<EquipmentModel[]> (this.equipmentUrl + '/all');
   }
+
+  saveFile(importedFile: File){
+    const formData: FormData = new FormData();
+    formData.append('file', importedFile, importedFile.name);
+    return this.httpclient.post(this.equipmentUrl + '/file', formData);
+  }
+
 }
