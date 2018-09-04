@@ -5,11 +5,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import ro.esolutions.eipl.entities.Equipment;
+import ro.esolutions.eipl.exceptions.EquipmentUploadFileNotValid;
 import ro.esolutions.eipl.mappers.EquipmentMapper;
 import ro.esolutions.eipl.models.EquipmentModel;
 import ro.esolutions.eipl.repositories.EquipmentRepository;
@@ -19,10 +19,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 @RequiredArgsConstructor
@@ -44,27 +43,23 @@ public class EquipmentService {
         return EquipmentMapper.fromEntityToModel(equipmentRepository.save(EquipmentMapper.fromModelToEntity(equipmentModel)));
     }
 
-    public List<Equipment> uploadEquipmentFromCSV(final MultipartFile file) {
-        List<Equipment> equipmentList = new ArrayList<>();
+    public void uploadEquipmentFromCSV(final MultipartFile file){
         try {
             InputStream inputStream = file.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             CSVParser csvParser = new CSVParser(bufferedReader, CSVFormat.DEFAULT);
-            for (CSVRecord csvRecord : csvParser) {
-                try {
-                    Equipment equipment = new Equipment(null, csvRecord.get(0), csvRecord.get(1),
-                            MabecCode.valueOf(csvRecord.get(2)), csvRecord.get(3), csvRecord.get(4), csvRecord.get(5));
-                    Optional<Equipment> equipmentOptional = equipmentRepository.findByCode(equipment.getCode());
-                    equipmentOptional.ifPresent(equipment1 -> equipment.setId(equipment1.getId()));
-                    equipmentList.add(equipment);
-                } catch (Exception e) {
-                    log.error("Invalid row!", e);
-                }
-            }
+            List<Equipment> equipmentsToSave = StreamSupport.stream(csvParser.spliterator(), false)
+                    .filter(record -> MabecCode.contains(record.get(2)))
+                    .map(record -> {
+                        Equipment equipment = new Equipment(null, record.get(0), record.get(1), MabecCode.valueOf(record.get(2)), record.get(3), record.get(4), record.get(5));
+                        equipmentRepository.findByCode(equipment.getCode())
+                                .ifPresent(equipment1 -> equipment.setId(equipment1.getId()));
+                        return equipment;
+                    }).collect(Collectors.toList());
+            equipmentRepository.saveAll(equipmentsToSave);
         } catch (IOException e) {
-            e.printStackTrace();
+           log.error(e.getMessage(), e);
+           throw new EquipmentUploadFileNotValid();
         }
-        equipmentRepository.saveAll(equipmentList);
-        return equipmentList;
     }
 }

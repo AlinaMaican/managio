@@ -19,9 +19,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EquipmentController {
 
+    private static final String BINDING_RESULT_ERROR_MESSAGE = "Equipment not valid";
+    private static final String JSON_EMPTY_BODY = "{}";
+
     @NonNull
     private final EquipmentService equipmentService;
-    private static final String BINDING_RESULT_ERROR_MESSAGE = "Equipment not valid";
 
 
     @GetMapping("/all")
@@ -30,8 +32,8 @@ public class EquipmentController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> addNewEquipment(@RequestBody @Valid EquipmentModel equipmentModel, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
+    public ResponseEntity<Object> addNewEquipment(@RequestBody @Valid EquipmentModel equipmentModel, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().body(Collections.singletonMap("error", BINDING_RESULT_ERROR_MESSAGE));
         }
         equipmentModel.setId(null);
@@ -40,7 +42,8 @@ public class EquipmentController {
 
 
     @PostMapping(value = "/file")
-    public ResponseEntity<Object> uploadEquipmentFromCSV(@RequestPart("file") final MultipartFile file){
-        return ResponseEntity.ok(equipmentService.uploadEquipmentFromCSV(file));
+    public ResponseEntity<Object> uploadEquipmentFromCSV(@RequestPart("file") final MultipartFile file) {
+        equipmentService.uploadEquipmentFromCSV(file);
+        return ResponseEntity.ok(JSON_EMPTY_BODY);
     }
 }
