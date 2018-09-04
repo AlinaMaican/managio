@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -28,4 +29,10 @@ public class EmployeeEquipment {
     @ManyToOne
     @NotNull
     private Equipment equipment;
+
+    @NotNull
+    private LocalDate startDate;
+
+    @NotNull
+    private LocalDate endDate;
 }
