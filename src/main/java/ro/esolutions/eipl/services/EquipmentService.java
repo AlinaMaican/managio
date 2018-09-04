@@ -2,6 +2,7 @@ package ro.esolutions.eipl.services;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -26,8 +27,9 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@Transactional
 @RequiredArgsConstructor
+@Transactional
+@Slf4j
 public class EquipmentService {
 
     @NonNull
@@ -50,21 +52,23 @@ public class EquipmentService {
             InputStream inputStream = file.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             CSVParser csvParser = new CSVParser(bufferedReader, CSVFormat.DEFAULT);
-            for(CSVRecord csvRecord : csvParser) {
-                Equipment equipment = new Equipment(null, csvRecord.get(0), csvRecord.get(1),
-                        MabecCode.valueOf(csvRecord.get(2)), csvRecord.get(3), csvRecord.get(4), csvRecord.get(5));
-                Optional<Equipment> equipmentOptional = equipmentRepository.findByCode(equipment.getCode());
-                if (equipmentOptional.isPresent()) {
-                    equipment.setId(equipmentOptional.get().getId());
-                    equipmentList.add(equipment);
-                } else {
-                    equipmentList.add(equipment);
+            for (CSVRecord csvRecord : csvParser) {
+                try {
+                    Equipment equipment = new Equipment(null, csvRecord.get(0), csvRecord.get(1),
+                            MabecCode.valueOf(csvRecord.get(2)), csvRecord.get(3), csvRecord.get(4), csvRecord.get(5));
+                    Optional<Equipment> equipmentOptional = equipmentRepository.findByCode(equipment.getCode());
+                    equipmentOptional.ifPresent(equipment1 -> equipment.setId(equipment1.getId()));
+                    equipmentList.add(equipmentOptional.orElse(equipment));
+                } catch (Exception e) {
+                    log.error("Invalid row!", e);
                 }
             }
+            equipmentRepository.saveAll(equipmentList);
         } catch (IOException e) {
             e.printStackTrace();
         }
         equipmentRepository.saveAll(equipmentList);
         return equipmentList;
     }
+
 }

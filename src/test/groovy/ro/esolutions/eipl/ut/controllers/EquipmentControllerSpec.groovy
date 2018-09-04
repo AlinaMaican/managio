@@ -4,8 +4,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.mock.web.MockMultipartFile
 import org.springframework.validation.BindingResult
 import ro.esolutions.eipl.controllers.EquipmentController
-import ro.esolutions.eipl.generator.EquipmentGenerator
-import ro.esolutions.eipl.generator.EquipmentModelGenerator
+import ro.esolutions.eipl.generators.EquipmentGenerator
 import ro.esolutions.eipl.services.EquipmentService
 import spock.lang.Specification
 

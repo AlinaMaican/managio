@@ -22,7 +22,7 @@ export class EquipmentService {
   saveFile(importedFile: File){
     const formData: FormData = new FormData();
     formData.append('file', importedFile, importedFile.name);
-    return this.httpclient.post(this.equipmentUrl + '/file', formData);
+    return this.httpClient.post(this.equipmentUrl + '/file', formData);
   }
 
 }
