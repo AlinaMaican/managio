@@ -20,7 +20,7 @@ import java.util.List;
 public class EquipmentController {
 
     private static final String BINDING_RESULT_ERROR_MESSAGE = "Equipment not valid";
-    private static final String JSON_EMPTY_BODY = "{}";
+    public static final String JSON_EMPTY_BODY = "{}";
 
     @NonNull
     private final EquipmentService equipmentService;

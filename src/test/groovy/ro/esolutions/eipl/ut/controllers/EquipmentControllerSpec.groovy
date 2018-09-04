@@ -8,6 +8,7 @@ import ro.esolutions.eipl.generators.EquipmentGenerator
 import ro.esolutions.eipl.services.EquipmentService
 import spock.lang.Specification
 
+import static org.springframework.http.ResponseEntity.ok
 import static ro.esolutions.eipl.generators.EquipmentModelGenerator.anEquipmentModel
 
 class EquipmentControllerSpec extends Specification{
@@ -34,7 +35,7 @@ class EquipmentControllerSpec extends Specification{
         where:
         hasErrors | no1 |expectedResult
         true      | 0   | ResponseEntity.badRequest().body(Collections.singletonMap("error",EquipmentController.BINDING_RESULT_ERROR_MESSAGE))
-        false     | 1   | ResponseEntity.ok(anEquipmentModel())
+        false     | 1   | ok(anEquipmentModel())
 
     }
 
@@ -46,7 +47,7 @@ class EquipmentControllerSpec extends Specification{
         def result = equipmentController.getAllEquipments()
 
         then:
-        result == ResponseEntity.ok(equipmentModelList)
+        result == ok(equipmentModelList)
 
         and:
         1 * equipmentService.getAllEquipments() >> equipmentModelList
@@ -63,10 +64,10 @@ class EquipmentControllerSpec extends Specification{
         def result = equipmentController.uploadEquipmentFromCSV(file)
 
         then:
-        result == ResponseEntity.ok(equipmentList)
+        result == ok(EquipmentController.JSON_EMPTY_BODY)
 
         and:
-        1 * equipmentService.uploadEquipmentFromCSV(file) >> equipmentList
+        1 * equipmentService.uploadEquipmentFromCSV(file)
         0 * _
     }
 }

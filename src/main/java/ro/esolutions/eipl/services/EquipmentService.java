@@ -51,14 +51,7 @@ public class EquipmentService {
             List<Equipment> equipmentsToSave = StreamSupport.stream(csvParser.spliterator(), false)
                     .filter(record -> MabecCode.contains(record.get(2)))
                     .map(record -> {
-                        String nameColumn = record.get(0);
-                        String codeColumn = record.get(1);
-                        String mabecCodeColumn = record.get(2);
-                        String protectionTypeColumn = record.get(3);
-                        String sizeColumn = record.get(4);
-                        String sexColumn = record.get(5);
-                        Equipment equipment = new Equipment(null, nameColumn, codeColumn,
-                                MabecCode.valueOf(mabecCodeColumn), protectionTypeColumn, sizeColumn, sexColumn);
+                       Equipment equipment = EquipmentMapper.fromRecordToEntity(record);
                         equipmentRepository.findByCode(equipment.getCode())
                                 .ifPresent(equipment1 -> equipment.setId(equipment1.getId()));
                         return equipment;
