@@ -23,7 +23,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
         this.employees = employee;
         this.groupedEmployees = [];
 
-        for (let i = 0; i < this.employees.length; i= i+ 4) {
+        for (let i = 0; i < this.employees.length; i = i + 4) {
           this.groupedEmployees.push(this.employees.slice(i, i + 4))
         }
       }
