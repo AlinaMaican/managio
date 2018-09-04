@@ -1,0 +1,10 @@
+INSERT INTO employees (id, first_name, last_name, working_station) VALUES (nextval('employee_seq'), 'Ion', 'Vasile', 'Dacia');
+INSERT INTO employees (id, first_name, last_name, working_station) VALUES (nextval('employee_seq'), 'Gheorghe', 'Gigel', 'Dacia');
+INSERT INTO employees (id, first_name, last_name, working_station) VALUES (nextval('employee_seq'), 'Gheorghe', 'Gigel', 'Dacia');
+INSERT INTO employees (id, first_name, last_name, working_station) VALUES (nextval('employee_seq'), 'Gheorghe', 'Gigel', 'Dacia');
+INSERT INTO employees (id, first_name, last_name, working_station) VALUES (nextval('employee_seq'), 'Gheorghe', 'Gigel', 'Dacia');
+INSERT INTO employees (id, first_name, last_name, working_station) VALUES (nextval('employee_seq'), 'Gheorghe', 'Gigel', 'Dacia');
+INSERT INTO employees (id, first_name, last_name, working_station) VALUES (nextval('employee_seq'), 'Mama', 'Gigel', 'Dacia');
+INSERT INTO employees (id, first_name, last_name, working_station) VALUES (nextval('employee_seq'), 'Gigi', 'Masinuta', 'Dacia');
+INSERT INTO employees (id, first_name, last_name, working_station) VALUES (nextval('employee_seq'), 'Denis', 'Amegica', 'Dacia');
+INSERT INTO employees (id, first_name, last_name, working_station) VALUES (nextval('employee_seq'), 'Robert', 'Ivan', 'Dacia');

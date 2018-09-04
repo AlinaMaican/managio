@@ -8,10 +8,20 @@ import {EquipmentModel} from "./model/equipment.model";
 export class EquipmentService {
   private equipmentUrl = environment.resourcesUrl + '/equipment';
 
-  constructor(private httpclient: HttpClient) {
+  constructor(private httpClient: HttpClient) {
   }
 
   getAllEquipments(): Observable<EquipmentModel[]> {
-    return this.httpclient.get<EquipmentModel[]> (this.equipmentUrl + '/all');
+    return this.httpClient.get<EquipmentModel[]>(this.equipmentUrl + '/all');
+  }
+
+  addEquipment(newEquipmentModel:EquipmentModel ):Observable<{}>{
+    return this.httpClient.post<EquipmentModel>(this.equipmentUrl,newEquipmentModel,{});
+  }
+
+  saveFile(importedFile: File){
+    const formData: FormData = new FormData();
+    formData.append('file', importedFile, importedFile.name);
+    return this.httpClient.post(this.equipmentUrl + '/file', formData);
   }
 }

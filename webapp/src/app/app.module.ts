@@ -17,6 +17,8 @@ import {EmployeeService} from "./employees/employee.service";
 import {EquipmentsComponent} from "./equipments/equipments.component";
 import {EquipmentService} from "./equipments/equipment.service";
 import {EmployeeComponent} from './employees/employee.component';
+import { PaginationComponent } from './pagination/pagination.component';
+import {EmployeeListComponent} from "./employees/employee-list/employee-list.component";
 
 @NgModule({
   declarations: [
@@ -28,6 +30,9 @@ import {EmployeeComponent} from './employees/employee.component';
     EditComponent,
     AddUserComponent,
     UserProfileComponent,
+    EquipmentsComponent,
+    PaginationComponent,
+    EmployeeListComponent
     EquipmentsComponent,
     EmployeeComponent
   ],

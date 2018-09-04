@@ -14,6 +14,7 @@ import java.util.Collection;
 @AllArgsConstructor
 @Builder
 public class UserDetailsImpl implements UserDetails {
+    private Long id;
     private String password;
     private String username;
     private boolean accountNonExpired;
