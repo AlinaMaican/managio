@@ -10,7 +10,6 @@ class UserModelGenerator {
                       username : "username",
                       firstName: "firstName",
                       lastName : "lastName",
-                      password : "password",
                       userRole : UserRole.USER,
                       isActive : true,
                       email : "email"]

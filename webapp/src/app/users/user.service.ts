@@ -3,6 +3,7 @@ import {Observable} from 'rxjs/internal/Observable';
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
+import {UserWithPassword} from "./model/user-with-password.model";
 import {Service} from "../service";
 
 @Injectable()
@@ -15,7 +16,7 @@ export class UserService extends Service<User> {
   }
 
   getAuthUser(): Observable<User> {
-    return this.httpClient.get<User>(this.basicUrl + '/me');
+    return this.httpClient.get<User>(this.basicUrl + '/me' );
   }
 
   resetPassword(password: string): Observable<User> {
@@ -30,9 +31,7 @@ export class UserService extends Service<User> {
     return this.httpClient.put<User>(this.basicUrl + '/' + index, user, {});
   }
 
-  addUser(newUser: User): Observable<{}> {
+  addUser(newUser: UserWithPassword): Observable<{}> {
     return this.httpClient.post<User>(this.basicUrl, newUser, {});
   }
-
-
 }

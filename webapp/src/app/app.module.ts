@@ -17,6 +17,7 @@ import {EmployeeService} from "./employees/employee.service";
 import {EquipmentsComponent} from "./equipments/equipments.component";
 import {EquipmentService} from "./equipments/equipment.service";
 import { PaginationComponent } from './pagination/pagination.component';
+import {EmployeeListComponent} from "./employees/employee-list/employee-list.component";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { PaginationComponent } from './pagination/pagination.component';
     AddUserComponent,
     UserProfileComponent,
     EquipmentsComponent,
-    PaginationComponent
+    PaginationComponent,
+    EmployeeListComponent
   ],
   imports: [
     BrowserModule,

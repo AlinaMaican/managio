@@ -48,6 +48,8 @@ export class EquipmentsComponent implements OnInit,OnDestroy {
 
   createEquipment() {
     let equipmentObject: EquipmentModel = this.addequipment.value;
+
+    this.equipments = this.equipments || [];
     this.equipments.unshift(equipmentObject);
     this.equipmentSubscription =
       this.equipmentService.addEquipment(equipmentObject).subscribe(

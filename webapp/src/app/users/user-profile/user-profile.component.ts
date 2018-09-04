@@ -1,10 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {UserService} from "../user.service";
 import {Subscription} from "rxjs";
 import {User} from "../model/user.model";
 import {UserProfileModel} from "../model/user-profile.model";
+import {UserProfileMapper} from "../mappers/user-profile.mapper";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-user-profile',
@@ -12,7 +14,7 @@ import {UserProfileModel} from "../model/user-profile.model";
   styleUrls: ['./user-profile.component.css']
 })
 
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent implements OnInit, OnDestroy {
   subscription: Subscription = null;
   userProfileForm: FormGroup;
   userProfileModel: UserProfileModel = {
@@ -22,9 +24,10 @@ export class UserProfileComponent implements OnInit {
     'lastName': '',
     'password': '',
     'resetPassword': '',
-    'email' : ''
+    'email': ''
   };
   minLength8Min1LetterMin1Number = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
+  hasPasswordErrors = false;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private userService: UserService) {
@@ -40,7 +43,10 @@ export class UserProfileComponent implements OnInit {
 
     this.subscription = this.userService.getAuthUser().subscribe(
       (user: User) => {
-        this.userProfileModel = user;
+        this.userProfileModel = UserProfileMapper.fromUserToUserProfile(user);
+      },
+      (response: HttpErrorResponse) => {
+        if (response.status == 400) this.hasPasswordErrors = true;
       }
     );
   }
@@ -56,7 +62,9 @@ export class UserProfileComponent implements OnInit {
 
   resetPassword() {
     this.userService.resetPassword(this.userProfileForm.value.password).subscribe(
-      () => {this.router.navigateByUrl('/')}
+      () => {
+        this.router.navigateByUrl('/')
+      }
     );
   }
 
@@ -65,7 +73,8 @@ export class UserProfileComponent implements OnInit {
   }
 
   checkForErrors(fieldName: string): boolean {
-    if(this.getField(fieldName).errors) {
+    if (fieldName == 'password' && this.hasPasswordErrors) return true;
+    if (this.getField(fieldName).errors) {
       return true;
     }
     return false;
@@ -87,11 +96,11 @@ export class UserProfileComponent implements OnInit {
   passwordMatchesConditions(userProfileForm: FormGroup): boolean {
     let password: string = userProfileForm.get('password').value;
     let confirmPassword: string = userProfileForm.get('confirmPassword').value;
-    if(password.match(this.minLength8Min1LetterMin1Number)
+    if (password.match(this.minLength8Min1LetterMin1Number)
       && confirmPassword.match(this.minLength8Min1LetterMin1Number)
-      && password === confirmPassword){
+      && password === confirmPassword) {
       return true;
-    } else{
+    } else {
       return false;
     }
   }
