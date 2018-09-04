@@ -10,36 +10,29 @@ import {Router} from "@angular/router";
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.css']
 })
-export class EmployeeListComponent implements OnInit, OnDestroy{
+export class EmployeeListComponent implements OnInit, OnDestroy {
   private employeeSubscription: Subscription;
-  employees:Employee[];
-  groupedEmployees:Employee[][];
+  employees: Employee[];
+  groupedEmployees: Employee[][];
 
-  constructor(private employeeService: EmployeeService, private router: Router){
+  constructor(private employeeService: EmployeeService, private router: Router) {
   }
 
-  ngOnInit(): void{
+  ngOnInit(): void {
     this.employeeSubscription = this.employeeService.getAllEmployees().subscribe(
       (employee: Employee[]) => {
-      this.employees = employee;
+        this.employees = employee;
+        this.groupedEmployees = [];
 
-
-      this.groupedEmployees = [];
-      let numberOfGroups = Math.floor(this.employees.length/4);
-      for(let i = 0; i < numberOfGroups; i++) {
-        this.groupedEmployees.push([this.employees[i*4], this.employees[i*4+1],this.employees[i*4+2],this.employees[i*4+3]])
+        this.employees.slice(0, 4)
+        for (let i = 0; i < this.employees.length; i++) {
+          if (i % 4 == 0) {
+            this.groupedEmployees.push(this.employees.slice(i, i + 4))
+          }
+        }
       }
-
-
-      let remainingEmployees = [];
-      let firstRemaingEmployeeIndex = this.employees.length - this.employees.length%4;
-      for(let i = firstRemaingEmployeeIndex; i < this.employees.length; i++) {
-        remainingEmployees.push(this.employees[i]);
-      }
-      this.groupedEmployees.push(remainingEmployees);
-    }
     );
-}
+  }
 
   ngOnDestroy(): void {
     this.employeeSubscription.unsubscribe()
