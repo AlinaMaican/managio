@@ -1,6 +1,7 @@
 package ro.esolutions.eipl.services;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,6 +24,7 @@ import static ro.esolutions.eipl.mappers.UserMapper.fromModelToEntity;
 @Service
 @Transactional
 @RequiredArgsConstructor
+@DependsOn({"passwordEncoder"})
 public class UserService {
 
     private final UserRepository userRepository;
