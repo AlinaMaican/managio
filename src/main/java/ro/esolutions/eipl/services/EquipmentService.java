@@ -43,7 +43,7 @@ public class EquipmentService {
         return EquipmentMapper.fromEntityToModel(equipmentRepository.save(EquipmentMapper.fromModelToEntity(equipmentModel)));
     }
 
-    public void uploadEquipmentFromCSV(final MultipartFile file){
+    public void uploadEquipmentFromCSV(final MultipartFile file) {
         try {
             InputStream inputStream = file.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -51,15 +51,22 @@ public class EquipmentService {
             List<Equipment> equipmentsToSave = StreamSupport.stream(csvParser.spliterator(), false)
                     .filter(record -> MabecCode.contains(record.get(2)))
                     .map(record -> {
-                        Equipment equipment = new Equipment(null, record.get(0), record.get(1), MabecCode.valueOf(record.get(2)), record.get(3), record.get(4), record.get(5));
+                        String nameColumn = record.get(0);
+                        String codeColumn = record.get(1);
+                        String mabecCodeColumn = record.get(2);
+                        String protectionTypeColumn = record.get(3);
+                        String sizeColumn = record.get(4);
+                        String sexColumn = record.get(5);
+                        Equipment equipment = new Equipment(null, nameColumn, codeColumn,
+                                MabecCode.valueOf(mabecCodeColumn), protectionTypeColumn, sizeColumn, sexColumn);
                         equipmentRepository.findByCode(equipment.getCode())
                                 .ifPresent(equipment1 -> equipment.setId(equipment1.getId()));
                         return equipment;
                     }).collect(Collectors.toList());
             equipmentRepository.saveAll(equipmentsToSave);
         } catch (IOException e) {
-           log.error(e.getMessage(), e);
-           throw new EquipmentUploadFileNotValid();
+            log.error(e.getMessage(), e);
+            throw new EquipmentUploadFileNotValid();
         }
     }
 }

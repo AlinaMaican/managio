@@ -15,11 +15,7 @@ import ro.esolutions.eipl.models.UserModel;
 import ro.esolutions.eipl.models.UserModelWithPassword;
 import ro.esolutions.eipl.repositories.UserRepository;
 
-import javax.transaction.Transactional;
-import javax.validation.Valid;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static ro.esolutions.eipl.mappers.UserMapper.fromEntityToModel;
@@ -34,18 +30,9 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public UserService(final UserRepository userRepository) {
-        this.userRepository = Objects.requireNonNull(userRepository, "UserRepository must not be null");
-    }
-
     public UserModel addUser(final UserModelWithPassword userModel) {
         userModel.setPassword(passwordEncoder.encode(userModel.getPassword()));
         return fromEntityToModel(userRepository.save(UserWithPasswordMapper.fromModelToEntity(userModel)));
-
-    public UserModel addNewUser(final UserModel userModel) {
-        checkUsername(userModel);
-        checkEmail(userModel);
-        return UserMapper.fromEntityToModel(userRepository.save(UserMapper.fromModelToEntity(userModel)));
     }
 
     public UserModel getUserById(final Long userId) {
@@ -91,8 +78,5 @@ public class UserService {
 
     private void setNewPassword(final User user, final String newPassword) {
         user.setPassword(passwordEncoder.encode(newPassword));
-        return userRepository.findById(userId).map(user -> { user.setPassword(newPassword);
-                               return UserMapper.fromEntityToModel(userRepository.save(user));})
-	            .orElseThrow( () -> new UserNotFoundException(userId));
     }
 }
