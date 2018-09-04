@@ -6,7 +6,7 @@ import {Employee} from "./employee.model";
 
 @Injectable()
 export class EmployeeService {
-  private employeesUrl = environment.resourcesUrl + '/employee';
+  private employeesUrl = environment.resourcesUrl + '/api/employee';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -20,5 +20,4 @@ export class EmployeeService {
     formData.append('file', importedFile, importedFile.name);
     return this.httpClient.post(this.employeesUrl + '/file', formData);
   }
-
 }

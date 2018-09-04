@@ -1,5 +1,6 @@
 package ro.esolutions.eipl.ut.services
 
+import org.springframework.mock.web.MockMultipartFile
 import ro.esolutions.eipl.repositories.EmployeeRepository
 import ro.esolutions.eipl.services.EmployeeService
 import spock.lang.Specification
@@ -25,4 +26,17 @@ class EmployeeServiceSpec extends Specification {
         0 * _
     }
 
+    def "uploadEmployeeFromCSV"() {
+        given:
+        def file = new MockMultipartFile("testUploadEmployeeFile.csv",
+                this.getClass().getResourceAsStream("/testUploadEmployeeFile.csv"))
+        def employeeList = [aEmployee(id: null)]
+
+        when:
+        employeeService.uploadEmployeeFromCSV(file)
+
+        then:
+        1 * employeeRepository.saveAll(employeeList)
+        0 * _
+    }
 }

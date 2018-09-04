@@ -16,7 +16,7 @@ import {UserProfileComponent} from "./users/user-profile/user-profile.component"
 import {EmployeeService} from "./employees/employee.service";
 import {EquipmentsComponent} from "./equipments/equipments.component";
 import {EquipmentService} from "./equipments/equipment.service";
-import { EmployeeComponent } from './employees/employee.component';
+import {EmployeeComponent} from './employees/employee.component';
 
 @NgModule({
   declarations: [

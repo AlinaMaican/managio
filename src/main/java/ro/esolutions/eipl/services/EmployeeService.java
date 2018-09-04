@@ -2,11 +2,14 @@ package ro.esolutions.eipl.services;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import ro.esolutions.eipl.entities.Employee;
-import ro.esolutions.eipl.entities.Equipment;
 import ro.esolutions.eipl.mappers.EmployeeMapper;
 import ro.esolutions.eipl.models.EmployeeModel;
 import ro.esolutions.eipl.repositories.EmployeeRepository;
@@ -17,12 +20,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
+@Slf4j
 public class EmployeeService {
 
     @NonNull
@@ -35,29 +38,29 @@ public class EmployeeService {
                 .collect(Collectors.toList());
     }
 
-    public List<Employee> uploadEmployeeFromCSV(final MultipartFile file){
+//    public EmployeeModel addNewEmployee(final EmployeeModel employeeModel) {
+//        return EmployeeMapper.fromEntityToModel(employeeRepository.save(EmployeeMapper.fromModelToEntity(employeeModel)));
+//    }
+
+    public List<Employee> uploadEmployeeFromCSV(final MultipartFile file) {
         List<Employee> employeeList = new ArrayList<>();
-        String line;
         try {
             InputStream inputStream = file.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            while((line = bufferedReader.readLine()) != null) {
-                String[] attributes = line.split(",");
-                Employee employee = createEmployeeEntity(attributes);
-                employeeList.add(employee);
+            CSVParser csvParser = new CSVParser(bufferedReader, CSVFormat.DEFAULT);
+            for(CSVRecord csvRecord : csvParser) {
+                try {
+                    Employee employee = new Employee(null, csvRecord.get(0), csvRecord.get(1), csvRecord.get(2));
+                    employeeList.add(employee);
+                } catch (Exception e) {
+                    log.error("Invalid row!", e);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
         employeeRepository.saveAll(employeeList);
         return employeeList;
-    }
-
-    public Employee createEmployeeEntity(final String[] attributes){
-        String fistName = attributes[0];
-        String lastName = attributes[1];
-        String workingStation = attributes[2];
-        return new Employee(null, fistName, lastName, workingStation);
     }
 
 }

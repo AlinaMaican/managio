@@ -1,9 +1,9 @@
 <div class="container-fluid">
-  <div class="row padding-top-30-bottom-10">
+  <div class="row" style="padding-top: 30px; padding-bottom: 10px">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb breadcrumb-white-14">
         <li class="breadcrumb-item"><a href="#">EIPL</a></li>
-        <li class="breadcrumb-item"><a href="#">Employees</a></li>
+        <li class="breadcrumb-item"><a href="#">Management forms</a></li>
         <li class="breadcrumb-item active" aria-current="page">EmployeeModel</li>
       </ol>
     </nav>
@@ -19,7 +19,6 @@
         <label for="file-upload" class="btn btn-outline-secondary float-left width-140-margin-right-15">
           Upload </label>
         <input id="file-upload" type="file" (change)="upload($event)" accept=".csv"/>
-        <button type="button" class="btn btn-outline-secondary float-left width-140">Add</button>
       </form>
       <table class="table table-hover">
         <thead>
@@ -39,4 +38,5 @@
       </table>
     </div>
   </div>
+
 </div>
