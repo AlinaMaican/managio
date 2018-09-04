@@ -24,7 +24,6 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
         this.employees = employee;
         this.groupedEmployees = [];
 
-        this.employees.slice(0, 4)
         for (let i = 0; i < this.employees.length; i++) {
           if (i % 4 == 0) {
             this.groupedEmployees.push(this.employees.slice(i, i + 4))
