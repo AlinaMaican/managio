@@ -22,8 +22,8 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
-import static ro.esolutions.eipl.controllers.LoginController.LOGIN_PATH_FULL
 import static ro.esolutions.eipl.configurations.WebConfig.ROOT_PATH
+import static ro.esolutions.eipl.controllers.LoginController.LOGIN_PATH_FULL
 import static ro.esolutions.eipl.generators.UserDetailsGenerator.aUserDetails
 
 @ActiveProfiles('integration')
