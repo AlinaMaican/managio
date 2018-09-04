@@ -18,4 +18,10 @@ export class EquipmentService {
   addEquipment(newEquipmentModel:EquipmentModel ):Observable<{}>{
     return this.httpClient.post<EquipmentModel>(this.equipmentUrl,newEquipmentModel,{});
   }
+
+  saveFile(importedFile: File){
+    const formData: FormData = new FormData();
+    formData.append('file', importedFile, importedFile.name);
+    return this.httpClient.post(this.equipmentUrl + '/file', formData);
+  }
 }

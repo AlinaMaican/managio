@@ -1,9 +1,6 @@
 package ro.esolutions.eipl.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import ro.esolutions.eipl.types.MabecCode;
 
 import javax.persistence.*;
@@ -19,6 +16,7 @@ import javax.persistence.*;
                 @UniqueConstraint(columnNames = "code")
         }
 )
+
 public class Equipment {
 
     @Id

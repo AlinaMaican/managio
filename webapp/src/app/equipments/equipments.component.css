@@ -3,15 +3,21 @@
   font-size: 14px;
 }
 
-.margin-br-15 {
-  margin-bottom: 15px;
-  margin-right: 15px;
+.padding-top-30-bottom-10 {
+  padding-top: 30px;
+  padding-bottom: 10px;
 }
 
-.mb-15-pl-pr-25 {
-  margin-bottom: 15px;
-  padding-left: 25px;
-  padding-right: 25px;
+input[type="file"] {
+  display: none;
+}
+
+.width-140-margin-right-15 {
+  width: 140px; margin-right: 15px;
+}
+
+.width-140 {
+  width: 140px;
 }
 .my-modal{
   margin-right: 160px;

@@ -1,22 +1,20 @@
 package ro.esolutions.eipl.types;
 
 public enum MabecCode {
-    MABEC_01("01"),
-    MABEC_02("02"),
-    MABEC_03("03"),
-    MABEC_04("04"),
-    MABEC_05("05"),
-    MABEC_06("06"),
-    MABEC_07("07");
+    MABEC_01,
+    MABEC_02,
+    MABEC_03,
+    MABEC_04,
+    MABEC_05,
+    MABEC_06,
+    MABEC_07;
 
-    private final String code;
-
-    MabecCode(String code) {
-        this.code = code;
-    }
-
-    @Override
-    public String toString() {
-        return code;
-    }
+   public static boolean contains(String code){
+        for(MabecCode mabecCode: MabecCode.values()) {
+            if (mabecCode.name().equals(code)) {
+                return true;
+            }
+        }
+           return false;
+   }
 }
