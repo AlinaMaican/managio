@@ -16,7 +16,6 @@ class EquipmentControllerSpec extends Specification{
     def equipmentController = new EquipmentController(equipmentService)
 
     def "addNewEquipment"(){
-
         given:
         def equipmentModel=anEquipmentModel()
         def bindingResult=Mock(BindingResult)
@@ -38,7 +37,6 @@ class EquipmentControllerSpec extends Specification{
         false     | 1   | ResponseEntity.ok(anEquipmentModel())
 
     }
-
 
     def getAllEquipments() {
         given:

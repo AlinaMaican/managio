@@ -63,6 +63,7 @@ export class EquipmentsComponent implements OnInit,OnDestroy {
 
     }
   }
+
   createForm() {
     this.equipmentForm = this.formBuilder.group({
       field_file: null

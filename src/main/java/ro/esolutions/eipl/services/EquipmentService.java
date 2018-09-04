@@ -11,9 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import ro.esolutions.eipl.entities.Equipment;
 import ro.esolutions.eipl.mappers.EquipmentMapper;
-import ro.esolutions.eipl.mappers.UserMapper;
 import ro.esolutions.eipl.models.EquipmentModel;
-import ro.esolutions.eipl.models.UserModel;
 import ro.esolutions.eipl.repositories.EquipmentRepository;
 import ro.esolutions.eipl.types.MabecCode;
 
@@ -58,17 +56,15 @@ public class EquipmentService {
                             MabecCode.valueOf(csvRecord.get(2)), csvRecord.get(3), csvRecord.get(4), csvRecord.get(5));
                     Optional<Equipment> equipmentOptional = equipmentRepository.findByCode(equipment.getCode());
                     equipmentOptional.ifPresent(equipment1 -> equipment.setId(equipment1.getId()));
-                    equipmentList.add(equipmentOptional.orElse(equipment));
+                    equipmentList.add(equipment);
                 } catch (Exception e) {
                     log.error("Invalid row!", e);
                 }
             }
-            equipmentRepository.saveAll(equipmentList);
         } catch (IOException e) {
             e.printStackTrace();
         }
         equipmentRepository.saveAll(equipmentList);
         return equipmentList;
     }
-
 }
