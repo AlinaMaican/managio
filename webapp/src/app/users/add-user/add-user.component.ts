@@ -2,10 +2,10 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {UserService} from "../user.service";
-import {User} from "../model/user.model";
 import {Subscription} from "rxjs";
 import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
 import {FieldError} from "../model/field-error.model";
+import {UserWithPassword} from "../model/user-with-password.model";
 
 @Component({
   selector: 'app-add-user',
@@ -15,9 +15,10 @@ import {FieldError} from "../model/field-error.model";
 export class AddUserComponent implements OnInit, OnDestroy {
   subscription: Subscription = null;
   adduser: FormGroup;
-  usernameError;
-  emailError;
-  errorMessage;
+  isUsernameError = false;
+  usernameFieldError: FieldError;
+  isEmailError = false;
+  emailFieldError: FieldError;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private userService: UserService) {
@@ -39,7 +40,7 @@ export class AddUserComponent implements OnInit, OnDestroy {
   }
 
   createUser() {
-    let userObject: User = this.adduser.value;
+    let userObject: UserWithPassword = this.adduser.value;
     userObject.isActive = true;
     this.subscription =
       this.userService.addUser(userObject).subscribe(
@@ -47,7 +48,7 @@ export class AddUserComponent implements OnInit, OnDestroy {
           this.router.navigate(['/']);
         },
         (response: HttpErrorResponse) => {
-          this.parseError(response.error)
+          this.handleErrors(new Map(Object.entries(response.error)))
         }
       );
   }
@@ -58,22 +59,33 @@ export class AddUserComponent implements OnInit, OnDestroy {
     }
   }
 
-  private parseError(fieldError: FieldError) {
+  private handleErrors(fieldErrorsMap: Map<String, FieldError>) {
     this.resetErrors()
-    switch (fieldError.fieldName){
-      case 'username': {
-        this.usernameError = true;
-      }
-      case 'email': {
-        this.emailError = true;
-      }
-    }
-    this.errorMessage = fieldError.message;
+    fieldErrorsMap.forEach(
+      (fieldError: FieldError, fieldName: String) => {
+        switch (fieldName) {
+          case 'username': {
+            this.isUsernameError = true;
+            this.usernameFieldError = fieldError;
+          }
+            break;
+          case 'email': {
+            this.isEmailError = true;
+            this.emailFieldError = fieldError;
+          }
+            break;
+          default:
+            throw new Error('Field error not managed');
+        }
+      });
+
   }
 
-  private resetErrors(){
-    this.errorMessage = null;
-    this.usernameError = null;
-    this.emailError = null;
+  private resetErrors() {
+    this.isEmailError = false;
+    this.emailFieldError = null;
+
+    this.isUsernameError = false;
+    this.usernameFieldError = null;
   }
 }
