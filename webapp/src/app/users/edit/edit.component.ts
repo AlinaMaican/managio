@@ -44,7 +44,6 @@ export class EditComponent implements OnInit {
       'lastName': new FormControl('', [
         Validators.required, Validators.pattern(this.REGEX_NAME)
       ]),
-      'password': new FormControl('', Validators.required),
       'userRole': new FormControl('', Validators.required),
       'isActive': new FormControl('', Validators.required),
       'email': new FormControl('', Validators.required)
@@ -58,7 +57,6 @@ export class EditComponent implements OnInit {
             username: user.username,
             firstName: user.firstName,
             lastName: user.lastName,
-            password: user.password,
             userRole: user.userRole,
             isActive: user.isActive + '',
             email: user.email,

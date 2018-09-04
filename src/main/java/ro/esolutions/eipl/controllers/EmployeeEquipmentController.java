@@ -12,7 +12,7 @@ import ro.esolutions.eipl.services.EmployeeEquipmentService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/employeeEquipment")
+@RequestMapping("/api/employeeEquipment")
 @RequiredArgsConstructor
 public class EmployeeEquipmentController {
 
