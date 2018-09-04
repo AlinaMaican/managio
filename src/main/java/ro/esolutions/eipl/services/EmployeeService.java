@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import ro.esolutions.eipl.entities.Employee;
+import ro.esolutions.eipl.exceptions.EmployeeUploadFileNotValid;
 import ro.esolutions.eipl.mappers.EmployeeMapper;
 import ro.esolutions.eipl.models.EmployeeModel;
 import ro.esolutions.eipl.repositories.EmployeeRepository;
@@ -21,6 +22,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 @Transactional
@@ -37,30 +39,43 @@ public class EmployeeService {
                 .map(EmployeeMapper::fromEntityToModel)
                 .collect(Collectors.toList());
     }
-
-//    public EmployeeModel addNewEmployee(final EmployeeModel employeeModel) {
-//        return EmployeeMapper.fromEntityToModel(employeeRepository.save(EmployeeMapper.fromModelToEntity(employeeModel)));
+//
+//    public List<Employee> uploadEmployeeFromCSV(final MultipartFile file) {
+//        List<Employee> employeeList = new ArrayList<>();
+//        try {
+//            InputStream inputStream = file.getInputStream();
+//            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+//            CSVParser csvParser = new CSVParser(bufferedReader, CSVFormat.DEFAULT);
+//            for(CSVRecord csvRecord : csvParser) {
+//                try {
+//                    Employee employee = new Employee(null, csvRecord.get(0), csvRecord.get(1), csvRecord.get(2));
+//                    employeeList.add(employee);
+//                } catch (Exception e) {
+//                    log.error("Invalid row!", e);
+//                }
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        employeeRepository.saveAll(employeeList);
+//        return employeeList;
 //    }
 
-    public List<Employee> uploadEmployeeFromCSV(final MultipartFile file) {
-        List<Employee> employeeList = new ArrayList<>();
+    public void uploadEmployeeFromCSV(final MultipartFile file) {
         try {
             InputStream inputStream = file.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             CSVParser csvParser = new CSVParser(bufferedReader, CSVFormat.DEFAULT);
-            for(CSVRecord csvRecord : csvParser) {
-                try {
-                    Employee employee = new Employee(null, csvRecord.get(0), csvRecord.get(1), csvRecord.get(2));
-                    employeeList.add(employee);
-                } catch (Exception e) {
-                    log.error("Invalid row!", e);
-                }
-            }
+            List<Employee> equipmentsToSave = StreamSupport.stream(csvParser.spliterator(), false)
+                    .map(record -> {
+                        Employee employee = EmployeeMapper.fromRecordToEntity(record);
+                        return employee;
+                    }).collect(Collectors.toList());
+            employeeRepository.saveAll(equipmentsToSave);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e.getMessage(), e);
+            throw new EmployeeUploadFileNotValid();
         }
-        employeeRepository.saveAll(employeeList);
-        return employeeList;
     }
 
 }
