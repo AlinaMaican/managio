@@ -14,5 +14,4 @@ export class EmployeeService {
   getAllEmployees(): Observable<Employee[]> {
     return this.httpClient.get<Employee[]>(this.employeeUrl + '/all');
   }
-
 }
