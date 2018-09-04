@@ -17,22 +17,18 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
 
   constructor(private employeeService: EmployeeService, private router: Router) {
   }
-
   ngOnInit(): void {
     this.employeeSubscription = this.employeeService.getAllEmployees().subscribe(
       (employee: Employee[]) => {
         this.employees = employee;
         this.groupedEmployees = [];
 
-        for (let i = 0; i < this.employees.length; i++) {
-          if (i % 4 == 0) {
-            this.groupedEmployees.push(this.employees.slice(i, i + 4))
-          }
+        for (let i = 0; i < this.employees.length; i= i+ 4) {
+          this.groupedEmployees.push(this.employees.slice(i, i + 4))
         }
       }
     );
   }
-
   ngOnDestroy(): void {
     this.employeeSubscription.unsubscribe()
   }
