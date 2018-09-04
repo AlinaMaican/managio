@@ -6,7 +6,7 @@ import {EquipmentModel} from "./model/equipment.model";
 
 @Injectable()
 export class EquipmentService {
-  private equipmentUrl = environment.resourcesUrl + '/api/equipment';
+  private equipmentUrl = environment.resourcesUrl + '/equipment';
 
   constructor(private httpClient: HttpClient) {
   }
