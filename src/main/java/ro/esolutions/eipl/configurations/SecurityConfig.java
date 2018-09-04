@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.DefaultRedirectStrategy;
 
+import static ro.esolutions.eipl.configurations.WebConfig.ROOT_PATH;
 import static ro.esolutions.eipl.controllers.LoginController.LOGIN_PATH_FULL;
 
 @Configuration
@@ -31,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage(LOGIN_PATH_FULL)
                 .successHandler((request, response, authentication) ->
-                        new DefaultRedirectStrategy().sendRedirect(request, response, "/welcome"))
+                        new DefaultRedirectStrategy().sendRedirect(request, response, ROOT_PATH))
                 .permitAll()
                 .and()
                 .logout()

@@ -23,8 +23,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 import static ro.esolutions.eipl.controllers.LoginController.LOGIN_PATH_FULL
-import static ro.esolutions.eipl.controllers.LoginController.WELCOME_PATH_FULL
-import static ro.esolutions.eipl.generators.UserDetailsGenerator.aUserDetails;
+import static ro.esolutions.eipl.configurations.WebConfig.ROOT_PATH
+import static ro.esolutions.eipl.generators.UserDetailsGenerator.aUserDetails
 
 @ActiveProfiles('integration')
 @ContextConfiguration(classes = [EiplApplication, EmbeddedPostgreSQLConfiguration, SecurityConfig])
@@ -73,11 +73,11 @@ class LoginControllerITSpec extends Specification {
             result.andExpect(expectedRedirectUrlMatcher)
         }
         where:
-        username         | password    | expectedResultStatus        | expectedRedirectUrlMatcher       | redirectUrl
-        'activeUser'     | 'asd'       | status().is3xxRedirection() | redirectedUrl(WELCOME_PATH_FULL) | WELCOME_PATH_FULL
-        'inactiveUser'   | 'asd'       | status().is3xxRedirection() | LOGIN_ERROR_REDIRECT_MATCHER     | LOGIN_ERROR_PATH
-        'inexistentUser' | 'asd'       | status().is3xxRedirection() | LOGIN_ERROR_REDIRECT_MATCHER     | LOGIN_ERROR_PATH
-        'activeUser'     | 'wrongPass' | status().is3xxRedirection() | LOGIN_ERROR_REDIRECT_MATCHER     | LOGIN_ERROR_PATH
+        username         | password    | expectedResultStatus        | expectedRedirectUrlMatcher   | redirectUrl
+        'activeUser'     | 'asd'       | status().is3xxRedirection() | redirectedUrl(ROOT_PATH)     | ROOT_PATH
+        'inactiveUser'   | 'asd'       | status().is3xxRedirection() | LOGIN_ERROR_REDIRECT_MATCHER | LOGIN_ERROR_PATH
+        'inexistentUser' | 'asd'       | status().is3xxRedirection() | LOGIN_ERROR_REDIRECT_MATCHER | LOGIN_ERROR_PATH
+        'activeUser'     | 'wrongPass' | status().is3xxRedirection() | LOGIN_ERROR_REDIRECT_MATCHER | LOGIN_ERROR_PATH
     }
 
 //  page lacks role-based security
@@ -86,7 +86,7 @@ class LoginControllerITSpec extends Specification {
         def userDetails = aUserDetails([authorities: [UserRole.USER]])
         def expectedResultStatus = status().isOk()
         when:
-        def result = mockMvc.perform(get(WELCOME_PATH_FULL).with(user(userDetails)))
+        def result = mockMvc.perform(get(ROOT_PATH).with(user(userDetails)))
         then:
         result.andExpect(expectedResultStatus)
     }
