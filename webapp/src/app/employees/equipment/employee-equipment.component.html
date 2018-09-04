@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Code</th>
+    <th scope="col">Mabec Code</th>
+    <th scope="col">Protection Type</th>
+    <th scope="col">Size</th>
+    <th scope="col">Sex</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let equipment of equipments">
+    <td>{{equipment.code}}</td>
+    <td>{{equipment.mabecCode}}</td>
+    <td>{{equipment.protectionType}}</td>
+    <td>{{equipment.size}}</td>
+    <td>{{equipment.sex}}</td>
+  </tr>
+  </tbody>
+</table>

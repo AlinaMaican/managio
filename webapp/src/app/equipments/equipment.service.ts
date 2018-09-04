@@ -15,7 +15,11 @@ export class EquipmentService {
     return this.httpClient.get<EquipmentModel[]>(this.equipmentUrl + '/all');
   }
 
-  addEquipment(newEquipmentModel:EquipmentModel ):Observable<{}>{
-    return this.httpClient.post<EquipmentModel>(this.equipmentUrl,newEquipmentModel,{});
+  addEquipment(newEquipmentModel: EquipmentModel): Observable<{}> {
+    return this.httpClient.post<EquipmentModel>(this.equipmentUrl, newEquipmentModel, {});
+  }
+
+  getAllEquipmentByEmployeeId(employeeId: number): Observable<EquipmentModel[]> {
+    return this.httpClient.get<EquipmentModel[]>(environment.resourcesUrl + `/employee/${employeeId}/equipment`);
   }
 }

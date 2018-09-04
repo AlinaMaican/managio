@@ -40,7 +40,8 @@
         <tr *ngFor="let employeeGroup of  this.groupedEmployees">
           <ng-container *ngFor="let employee of employeeGroup">
             <td>{{employee.firstName}} {{employee.lastName}}</td>
-            <td><i class="fas fa-user"></i> &nbsp;<i class="fas fa-tshirt"></i></td>
+            <td><i class="fas fa-user"></i> &nbsp;
+              <i class="fas fa-tshirt" [routerLink]="'/employee/'+employee.id+'/equipment'"></i></td>
           </ng-container>
         </tr>
         </tbody>
