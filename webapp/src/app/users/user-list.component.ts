@@ -2,32 +2,32 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {User} from './model/user.model';
 import {UserService} from './user.service';
 import {Subscription} from 'rxjs/internal/Subscription';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Paginable} from "../paginable";
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css']
 })
-export class UserListComponent implements OnInit, OnDestroy {
+export class UserListComponent extends Paginable<User> implements OnInit, OnDestroy {
 
-  private usersSubscription: Subscription;
-  users: User[];
+  public subscription: Subscription;
+  list: User[];
+  baseURL: string = 'management-users';
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(public service: UserService,
+              public router: Router,
+              public route: ActivatedRoute) {
+    super();
   }
 
   ngOnInit(): void {
-    this.usersSubscription = this.userService.getAllUsers().subscribe(
-      (users: User[]) => {
-        this.users = users;
-      }
-    );
+    this.init();
   }
 
   ngOnDestroy(): void {
-    this.usersSubscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
 
 }
-
