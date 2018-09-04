@@ -6,13 +6,13 @@ import {Employee} from "./employee.model";
 
 @Injectable()
 export class EmployeeService {
-  private employeesUrl = environment.resourcesUrl + '/employee';
+  private employeeUrl = environment.resourcesUrl + '/employee';
 
   constructor(private httpClient: HttpClient) {
   }
 
   getAllEmployees(): Observable<Employee[]> {
-    return this.httpClient.get<Employee[]>(this.employeesUrl + '/all');
+    return this.httpClient.get<Employee[]>(this.employeeUrl + '/all');
   }
 
 }
