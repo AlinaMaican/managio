@@ -15,8 +15,9 @@ import java.util.Optional;
 @Component
 @RequiredArgsConstructor
 public class UsernameEmailValidator implements Validator {
+    private static final String ERROR_FIELD_UNIQUE = "error.field.unique";
+
     private final UserRepository userRepository;
-    static final String ERROR_FIELD_UNIQUE = "error.field.unique";
 
     @Override
     public boolean supports(Class<?> clazz) {

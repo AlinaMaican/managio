@@ -29,7 +29,6 @@ class UserServiceSpec extends Specification {
         def result = userService.addUser(userModel)
         then: 'The password is first encoded'
         1 * passwordEncoder.encode(_) >> 'gigiEncoded'
-        0 * _
         then: 'The user is saved with its password encoded'
         1 * userRepository.save(encodedUser) >> encodedUser
         0 * _

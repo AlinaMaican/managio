@@ -18,6 +18,7 @@ import ro.esolutions.eipl.models.FieldErrorModel;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 
 @RestControllerAdvice
@@ -53,14 +54,18 @@ public class GlobalRestAdvices extends ResponseEntityExceptionHandler {
         String code = fieldError.getCode();
         Objects.requireNonNull(code);
 
+        Optional<String> message = getLocalisedMessage(code);
+        fieldErrorModel.getCodeMessageMap().put(code, message.orElse(code));
+        fieldErrorMap.putIfAbsent(fieldError.getField(), fieldErrorModel);
+    }
+
+    private Optional<String> getLocalisedMessage(String code) {
         String message = null;
         try {
             message = messageSource.getMessage(code, null, LocaleContextHolder.getLocale());
         } catch (NoSuchMessageException ex) {
             log.warn(ex.getMessage(), ex);
         }
-        message = message == null ? code : message;
-        fieldErrorModel.getCodeMessageMap().put(code, message);
-        fieldErrorMap.putIfAbsent(fieldError.getField(), fieldErrorModel);
+        return Optional.ofNullable(message);
     }
 }
