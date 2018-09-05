@@ -5,7 +5,7 @@ import ro.esolutions.eipl.types.MabecCode
 
 class EquipmentModelGenerator {
 
-    static aEquipmentModel(Map overrides = [:]) {
+    static anEquipmentModel(Map ovverrides = [:]) {
         Map values = [
                 id            : 1L,
                 name          : "casca",
@@ -14,7 +14,7 @@ class EquipmentModelGenerator {
                 protectionType: "cap",
                 size          : "S",
                 sex           : "F"]
-        values << overrides
+        values << ovverrides
         return EquipmentModel.newInstance(values)
     }
 }
