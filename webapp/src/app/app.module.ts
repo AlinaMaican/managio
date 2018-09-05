@@ -19,6 +19,8 @@ import {EquipmentService} from "./equipments/equipment.service";
 import { PaginationComponent } from './pagination/pagination.component';
 import {EmployeeListComponent} from "./employees/employee-list/employee-list.component";
 import { EmployeeEquipmentsListComponent } from './employee-equipments-list/employee-equipments-list.component';
+import {ExpiringEquipmentsComponent} from "./reports/expiring-equipments/expiring-equipment.component";
+
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { EmployeeEquipmentsListComponent } from './employee-equipments-list/empl
     EquipmentsComponent,
     PaginationComponent,
     EmployeeListComponent,
-    EmployeeEquipmentsListComponent
+    EmployeeEquipmentsListComponent,
+    ExpiringEquipmentsComponent
   ],
   imports: [
     BrowserModule,
