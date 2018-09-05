@@ -24,7 +24,7 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeService.getAllEmployees());
     }
 
-    @PostMapping(value = "/file")
+    @PostMapping(value = "/importByFile")
     public ResponseEntity<Object> uploadEmployeeFromCSV(@RequestPart("file") final MultipartFile file) {
         employeeService.uploadEmployeeFromCSV(file);
         return ResponseEntity.ok(JSON_EMPTY_BODY);
