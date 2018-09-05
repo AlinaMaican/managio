@@ -14,10 +14,10 @@ import java.util.List;
 @RequestMapping("/api/employee")
 @RequiredArgsConstructor
 public class EmployeeController {
+    public static final String JSON_EMPTY_BODY = "{}";
 
     @NonNull
     private final EmployeeService employeeService;
-    public static final String JSON_EMPTY_BODY = "{}";
 
     @GetMapping("/all")
     public ResponseEntity<List<EmployeeModel>> getAllEmployees() {

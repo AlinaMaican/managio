@@ -7,7 +7,7 @@ import ro.esolutions.eipl.entities.Equipment;
 import java.util.Optional;
 
 @Repository
-public interface EquipmentRepository extends JpaRepository<Equipment,Long> {
+public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
 
-     Optional<Equipment> findByCode(String code);
+    Optional<Equipment> findByCode(String code);
 }
