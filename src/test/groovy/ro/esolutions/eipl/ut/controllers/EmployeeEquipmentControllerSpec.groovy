@@ -38,4 +38,17 @@ class EmployeeEquipmentControllerSpec extends Specification {
         1 * employeeEquipmentService.getAllEmployeeEquipmentsForEmployee(1) >> employeeEquipmentModels
         0 * _
     }
+
+    def 'updateEmployeeEquipment'() {
+        given:
+        def employeeEquipment = aEmployeeEquipmentModel([id: 1L])
+        when:
+        def result = employeeEquipmentController.updateEmployeeEquipment(1L, employeeEquipment)
+        then:
+        result == ok(employeeEquipment)
+
+        and:
+        1 * employeeEquipmentService.updateEmployeeEquipment(employeeEquipment) >> employeeEquipment
+        0 * _
+    }
 }

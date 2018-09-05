@@ -8,7 +8,6 @@ import ro.esolutions.eipl.models.EmployeeEquipmentModel;
 import ro.esolutions.eipl.services.EmployeeEquipmentService;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
