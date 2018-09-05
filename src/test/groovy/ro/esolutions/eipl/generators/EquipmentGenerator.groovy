@@ -5,7 +5,7 @@ import ro.esolutions.eipl.types.MabecCode
 
 class EquipmentGenerator {
 
-    static anEquipment(Map overrides = [:]) {
+    static aEquipment(Map overrides = [:]) {
         Map values = [
                 id            : 1L,
                 name          : "casca",

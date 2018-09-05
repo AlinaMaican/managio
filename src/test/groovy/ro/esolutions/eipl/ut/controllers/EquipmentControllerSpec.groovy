@@ -9,7 +9,7 @@ import ro.esolutions.eipl.services.EquipmentService
 import spock.lang.Specification
 
 import static org.springframework.http.ResponseEntity.ok
-import static ro.esolutions.eipl.generators.EquipmentModelGenerator.anEquipmentModel
+import static ro.esolutions.eipl.generators.EquipmentModelGenerator.aEquipmentModel
 
 class EquipmentControllerSpec extends Specification{
 
@@ -18,7 +18,7 @@ class EquipmentControllerSpec extends Specification{
 
     def "addNewEquipment"(){
         given:
-        def equipmentModel=anEquipmentModel()
+        def equipmentModel=aEquipmentModel()
         def bindingResult=Mock(BindingResult)
 
         when:
@@ -30,18 +30,18 @@ class EquipmentControllerSpec extends Specification{
 
         and:
         1 * bindingResult.hasErrors() >> hasErrors
-        no1* equipmentService.addNewEquipment(equipmentModel) >>anEquipmentModel()
+        no1* equipmentService.addNewEquipment(equipmentModel) >>aEquipmentModel()
 
         where:
         hasErrors | no1 |expectedResult
         true      | 0   | ResponseEntity.badRequest().body(Collections.singletonMap("error",EquipmentController.BINDING_RESULT_ERROR_MESSAGE))
-        false     | 1   | ok(anEquipmentModel())
+        false     | 1   | ok(aEquipmentModel())
 
     }
 
     def getAllEquipments() {
         given:
-        def equipmentModelList = [anEquipmentModel()]
+        def equipmentModelList = [aEquipmentModel()]
 
         when:
         def result = equipmentController.getAllEquipments()
@@ -58,7 +58,7 @@ class EquipmentControllerSpec extends Specification{
         given:
         def file = new MockMultipartFile("testUploadEquipmentFIle.csv",
                 this.getClass().getResourceAsStream("/testUploadEquipmentFIle.csv"))
-        def equipmentList = [EquipmentGenerator.anEquipment()]
+        def equipmentList = [EquipmentGenerator.aEquipment()]
 
         when:
         def result = equipmentController.uploadEquipmentFromCSV(file)
