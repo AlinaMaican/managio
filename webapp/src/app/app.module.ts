@@ -16,9 +16,9 @@ import {UserProfileComponent} from "./users/user-profile/user-profile.component"
 import {EmployeeService} from "./employees/employee.service";
 import {EquipmentsComponent} from "./equipments/equipments.component";
 import {EquipmentService} from "./equipments/equipment.service";
-import { PaginationComponent } from './pagination/pagination.component';
-import {EmployeeListComponent} from "./employees/employee-list/employee-list.component";
-import { EmployeeEquipmentComponent } from './employees/equipment/employee-equipment.component';
+import {EmployeeComponent} from './employees/employee.component';
+import {PaginationComponent} from './pagination/pagination.component';
+import {EmployeeEquipmentComponent} from './employees/equipment/employee-equipment.component';
 import {EmployeeEquipmentService} from "./employee-equipment/employee-equipment.service";
 
 @NgModule({
@@ -33,7 +33,7 @@ import {EmployeeEquipmentService} from "./employee-equipment/employee-equipment.
     UserProfileComponent,
     EquipmentsComponent,
     PaginationComponent,
-    EmployeeListComponent,
+    EmployeeComponent,
     EmployeeEquipmentComponent
   ],
   imports: [
