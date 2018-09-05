@@ -24,6 +24,5 @@ class EmployeeControllerSpec extends Specification {
         and:
         1 * employeeService.getAllEmployees() >> [aEmployeeModel()]
         0 * _
-
     }
 }
