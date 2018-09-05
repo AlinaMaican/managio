@@ -7,6 +7,8 @@ export class EquipmentModel {
               public mabecCode: MabecCode,
               public protectionType: string,
               public size: string,
-              public sex: string
+              public sex: string,
+              public startDate: string,
+              public endDate: string
   ) {}
 }
