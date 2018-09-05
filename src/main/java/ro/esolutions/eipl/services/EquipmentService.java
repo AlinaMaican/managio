@@ -31,8 +31,6 @@ public class EquipmentService {
 
     @NonNull
     private final EquipmentRepository equipmentRepository;
-    @NonNull
-    private final UserService userService;
 
     public List<EquipmentModel> getAllEquipments() {
         return equipmentRepository.findAll()
@@ -63,12 +61,5 @@ public class EquipmentService {
             log.error(e.getMessage(), e);
             throw new EquipmentUploadFileNotValid();
         }
-    }
-
-    public List<EquipmentModel> getAllEquipmentForEmployee(Long userId) {
-        userService.findByIdOrThrow(userId);
-        return equipmentRepository.getAllEquipmentByEmployeeId(userId).stream()
-                .map(EquipmentMapper::fromEntityToModel)
-                .collect(Collectors.toList());
     }
 }

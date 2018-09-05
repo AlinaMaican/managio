@@ -72,7 +72,7 @@ public class UserService {
     /**
      * @throws ResourceNotFound RuntimeException when there is no user with given id
      */
-    User findByIdOrThrow(final Long id) {
+    private User findByIdOrThrow(final Long id) {
         return userRepository.findById(id).orElseThrow(() -> new ResourceNotFound(id, User.class.getName()));
     }
 

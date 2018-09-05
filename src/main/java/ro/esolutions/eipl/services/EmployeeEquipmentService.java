@@ -27,4 +27,9 @@ public class EmployeeEquipmentService {
                 .collect(Collectors.toList());
     }
 
+    public List<EmployeeEquipmentModel> getAllEquipmentForEmployee(Long employeeId) {
+        return employeeEquipmentRepository.getEmployeeEquipmentByEmployee_Id(employeeId).stream()
+                .map(EmployeeEquipmentMapper::fromEntityToModel)
+                .collect(Collectors.toList());
+    }
 }

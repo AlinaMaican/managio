@@ -1,20 +1,23 @@
 <table class="table">
   <thead>
   <tr>
-    <th scope="col">Code</th>
-    <th scope="col">Mabec Code</th>
-    <th scope="col">Protection Type</th>
+    <th scope="col">Equipment name</th>
     <th scope="col">Size</th>
+    <th scope="col">Start Date</th>
+    <th scope="col">End Date</th>
     <th scope="col">Sex</th>
+    <th scope="col">Actions</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let equipment of equipments">
-    <td>{{equipment.code}}</td>
-    <td>{{equipment.mabecCode}}</td>
-    <td>{{equipment.protectionType}}</td>
-    <td>{{equipment.size}}</td>
-    <td>{{equipment.sex}}</td>
+  <tr *ngFor="let employeeEquipment of employeeEquipmentList">
+    <td>{{employeeEquipment.equipment.name}}</td>
+    <td>{{employeeEquipment.equipment.size}}</td>
+    <td>{{employeeEquipment.startDate}}</td>
+    <td>{{employeeEquipment.endDate}}</td>
+    <td>{{employeeEquipment.equipment.sex}}</td>
+    <td><i class="fas fa-pencil-alt"></i>&nbsp;
+      <i class="fas fa-trash-alt"></i></td>
   </tr>
   </tbody>
 </table>

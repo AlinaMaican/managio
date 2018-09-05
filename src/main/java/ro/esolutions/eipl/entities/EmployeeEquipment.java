@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -22,10 +22,12 @@ public class EmployeeEquipment {
     private Long id;
 
     @ManyToOne
-    @NotNull
     private Employee employee;
 
     @ManyToOne
-    @NotNull
     private Equipment equipment;
+
+    private LocalDate startDate;
+
+    private LocalDate endDate;
 }
