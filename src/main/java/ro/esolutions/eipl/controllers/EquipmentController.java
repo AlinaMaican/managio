@@ -40,10 +40,15 @@ public class EquipmentController {
         return ResponseEntity.ok(equipmentService.addNewEquipment(equipmentModel));
     }
 
-
     @PostMapping(value = "/file")
     public ResponseEntity<Object> uploadEquipmentFromCSV(@RequestPart("file") final MultipartFile file) {
         equipmentService.uploadEquipmentFromCSV(file);
         return ResponseEntity.ok(JSON_EMPTY_BODY);
     }
+
+    @GetMapping("/available")
+    public ResponseEntity<List<EquipmentModel>> getAllAvailableEquipments() {
+        return ResponseEntity.ok(equipmentService.getAllAvailableEquipments());
+    }
+
 }

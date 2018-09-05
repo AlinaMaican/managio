@@ -37,5 +37,5 @@ public class Equipment {
 
     private String sex;
 
-    private Boolean isAllocated;
+    private Boolean isAvailable;
 }

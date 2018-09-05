@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {EquipmentModel} from "../equipments/model/equipment.model";
+import {Subscription} from "rxjs";
+import {ActivatedRoute, Router} from "@angular/router";
+import {EquipmentService} from "../equipments/equipment.service";
 
 @Component({
   selector: 'app-available-equipment-list',
@@ -7,9 +11,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AvailableEquipmentListComponent implements OnInit {
 
-  constructor() { }
+  availableEquipments: EquipmentModel[];
+  private equipmentSubscription: Subscription;
+  enableDates : boolean = true;
 
-  ngOnInit() {
+  constructor(private route: ActivatedRoute, private equipmentService: EquipmentService, private router: Router) {
   }
 
+  ngOnInit() {
+    this.equipmentSubscription = this.equipmentService.getAllAvailableEquipments().subscribe(
+      (equipments: EquipmentModel[]) => {
+        this.availableEquipments = equipments;
+      }
+    );
+  }
+
+  activateDates() {
+    var checkbox = document.getElementById("myCheckbox");
+    this.enableDates = checkbox.valueOf() != true;
+  }
 }

@@ -24,4 +24,8 @@ export class EquipmentService {
     formData.append('file', importedFile, importedFile.name);
     return this.httpClient.post(this.equipmentUrl + '/file', formData);
   }
+
+  getAllAvailableEquipments() {
+    return this.httpClient.get<EquipmentModel[]>(this.equipmentUrl + '/available');
+  }
 }

@@ -62,4 +62,11 @@ public class EquipmentService {
             throw new EquipmentUploadFileNotValid();
         }
     }
+
+    public List<EquipmentModel> getAllAvailableEquipments() {
+        return equipmentRepository.findAllByIsAvailable(true)
+                .stream()
+                .map(EquipmentMapper::fromEntityToModel)
+                .collect(Collectors.toList());
+    }
 }
