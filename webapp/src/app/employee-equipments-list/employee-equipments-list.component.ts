@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {EmployeeEquipmentModel} from "./employee-equipment.model";
+import {ActivatedRoute, Router} from "@angular/router";
+import {EmployeeEquipmentService} from "./employeeEquipment.service";
 
 @Component({
   selector: 'app-employee-equipments-list',
@@ -7,9 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeEquipmentsListComponent implements OnInit {
 
-  constructor() { }
+  employeeEquipments: EmployeeEquipmentModel[];
 
-  ngOnInit() {
-  }
+  constructor(private route: ActivatedRoute, private router: Router, private employeeEquipmentService: EmployeeEquipmentService) { }
 
+  ngOnInit(): void {}
 }

@@ -1,0 +1,1 @@
+ALTER TABLE employees_equipments ADD COLUMN start_date DATE NOT NULL, ADD COLUMN end_date DATE NOT NULL;
