@@ -16,6 +16,7 @@ export class EmployeeComponent implements OnInit,OnDestroy {
   employees: Employee[];
   employeeForm: FormGroup;
   file: File;
+  groupedEmployees: Employee[][];
 
   constructor(private route: ActivatedRoute, private employeeService: EmployeeService, private router: Router,
               private formBuilder: FormBuilder) {
@@ -26,6 +27,11 @@ export class EmployeeComponent implements OnInit,OnDestroy {
     this.employeeSubscription = this.employeeService.getAllEmployees().subscribe(
       (employee: Employee[]) => {
         this.employees = employee;
+        this.groupedEmployees = [];
+
+        for (let i = 0; i < this.employees.length; i = i + 4) {
+          this.groupedEmployees.push(this.employees.slice(i, i + 4))
+        }
       }
     );
   }
