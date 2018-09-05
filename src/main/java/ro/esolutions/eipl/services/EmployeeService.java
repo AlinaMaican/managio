@@ -39,27 +39,6 @@ public class EmployeeService {
                 .map(EmployeeMapper::fromEntityToModel)
                 .collect(Collectors.toList());
     }
-//
-//    public List<Employee> uploadEmployeeFromCSV(final MultipartFile file) {
-//        List<Employee> employeeList = new ArrayList<>();
-//        try {
-//            InputStream inputStream = file.getInputStream();
-//            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-//            CSVParser csvParser = new CSVParser(bufferedReader, CSVFormat.DEFAULT);
-//            for(CSVRecord csvRecord : csvParser) {
-//                try {
-//                    Employee employee = new Employee(null, csvRecord.get(0), csvRecord.get(1), csvRecord.get(2));
-//                    employeeList.add(employee);
-//                } catch (Exception e) {
-//                    log.error("Invalid row!", e);
-//                }
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        employeeRepository.saveAll(employeeList);
-//        return employeeList;
-//    }
 
     public void uploadEmployeeFromCSV(final MultipartFile file) {
         try {

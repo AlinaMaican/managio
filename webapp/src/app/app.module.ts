@@ -32,7 +32,7 @@ import {EmployeeListComponent} from "./employees/employee-list/employee-list.com
     UserProfileComponent,
     EquipmentsComponent,
     PaginationComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
     EquipmentsComponent,
     EmployeeComponent
   ],
