@@ -13,7 +13,6 @@ class EmployeeEquipmentControllerSpec extends Specification {
     def employeeEquipmentService = Mock(EmployeeEquipmentService)
     def employeeEquipmentController = new EmployeeEquipmentController(employeeEquipmentService)
 
-    @Unroll
     def "getAllEmployeesEquipments"() {
         when:
         def result = employeeEquipmentController.getAllEmployeesEquipments()
@@ -27,4 +26,17 @@ class EmployeeEquipmentControllerSpec extends Specification {
         0 * _
     }
 
+    def 'getAllEquipmentForEmployee'() {
+        given:
+        def employeeEquipmentModels = [aEmployeeEquipmentModel()]
+        when:
+        def result = employeeEquipmentController.getAllEquipmentForEmployee(1)
+
+        then:
+        result == ok(employeeEquipmentModels)
+
+        and:
+        1 * employeeEquipmentService.getAllEquipmentForEmployee(1) >> employeeEquipmentModels
+        0 * _
+    }
 }
