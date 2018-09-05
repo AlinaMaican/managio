@@ -23,7 +23,7 @@ public class EmployeeEquipmentController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<EmployeeEquipmentModel>> getAllEquipmentForEmployee(@RequestParam("employeeId") Long employeeId) {
-        return ResponseEntity.ok(employeeEquipmentService.getAllEquipmentForEmployee(employeeId));
+    public ResponseEntity<List<EmployeeEquipmentModel>> getAllEmployeeEquipmentsForEmployee(@RequestParam("employeeId") Long employeeId) {
+        return ResponseEntity.ok(employeeEquipmentService.getAllEmployeeEquipmentsForEmployee(employeeId));
     }
 }
