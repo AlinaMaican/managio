@@ -28,13 +28,13 @@ public class EmployeeService {
     }
 
 
-    public Set<EmployeeModel> getEmployeesByQuery(String s1){
-        List<EmployeeModel> list1=employeeRepository.findByLastNameContainingIgnoreCase(s1)
+    public Set<EmployeeModel> getFilteredEmployees(String searchValue){
+        List<EmployeeModel> list1=employeeRepository.findByLastNameContainingIgnoreCase(searchValue)
                 .stream()
                 .map(EmployeeMapper::fromEntityToModel)
                 .collect(Collectors.toList());
 
-        List<EmployeeModel> list2=employeeRepository.findByFirstNameContainingIgnoreCase(s1)
+        List<EmployeeModel> list2=employeeRepository.findByFirstNameContainingIgnoreCase(searchValue)
                 .stream()
                 .map(EmployeeMapper::fromEntityToModel)
                 .collect(Collectors.toList());

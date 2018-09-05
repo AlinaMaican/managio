@@ -27,18 +27,18 @@ class EmployeeControllerSpec extends Specification {
 
     }
     @Unroll
-    def "getEmployeesByQuery"()
+    def "getFilteredEmployees"()
     {
         given:
-        def s1 = 'Nam'
+        def searchValue = 'Nam'
         when:
-        def result=employeeController.getEmployeesByQuery(s1)
+        def result=employeeController.getFilteredEmployees(searchValue)
 
         then:
-        result == ResponseEntity.ok([aEmployeeModel()])
+        result == ResponseEntity.ok([aEmployeeModel()] as Set)
 
         and:
-        1* employeeService.getEmployeesByQuery(s1) >> [aEmployeeModel()]
+        1* employeeService.getFilteredEmployees(searchValue) >> [aEmployeeModel()]
         0*_
     }
 }

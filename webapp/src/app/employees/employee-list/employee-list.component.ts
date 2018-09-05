@@ -41,8 +41,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   }
 
   fill():void{
-    //alert(this.stringForm.get("stringValue").value);
-    this.employeeSubscription2 = this.employeeService.getEmployeesByQuery(this.stringForm.get("stringValue").value).subscribe(
+    this.employeeSubscription2 = this.employeeService.getFilteredEmployees(this.stringForm.get("stringValue").value).subscribe(
       (employee: Employee[]) => {
         this.employees = employee;
         this.groupedEmployees = [];
@@ -52,7 +51,6 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
         }
       }
     );
-   // alert("BAU");
   }
 
   ngOnDestroy(): void {

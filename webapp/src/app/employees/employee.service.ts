@@ -16,10 +16,9 @@ export class EmployeeService {
   getAllEmployees(): Observable<Employee[]> {
     return this.httpClient.get<Employee[]>(this.employeeUrl + '/all');
   }
-  getEmployeesByQuery(searchValue:string ):Observable<Employee[]>{
+  getFilteredEmployees(searchValue:string ):Observable<Employee[]>{
     let Param = new HttpParams();
     Param = Param.append('Parameter',searchValue);
-    //console.log("AM intrat");
     return this.httpClient.get<Employee[]>(this.employeeUrl,{params:Param});
 
   }

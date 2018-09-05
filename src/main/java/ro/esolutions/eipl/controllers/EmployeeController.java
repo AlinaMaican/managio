@@ -22,10 +22,8 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeService.getAllEmployees());
     }
    @GetMapping
-    public ResponseEntity<Set<EmployeeModel>> getEmployeesByQuery(@RequestParam("Parameter") String s1)
-   {
-       //model.addAttribute("Parameter",s1);
-       return ResponseEntity.ok(employeeService.getEmployeesByQuery(s1));
+    public ResponseEntity<Set<EmployeeModel>> getFilteredEmployees(@RequestParam("Parameter") String searchValue) {
+       return ResponseEntity.ok(employeeService.getFilteredEmployees(searchValue));
    }
 
 }
