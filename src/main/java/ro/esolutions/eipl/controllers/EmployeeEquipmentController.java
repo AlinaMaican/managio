@@ -8,6 +8,7 @@ import ro.esolutions.eipl.models.EmployeeEquipmentModel;
 import ro.esolutions.eipl.services.EmployeeEquipmentService;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -30,8 +31,9 @@ public class EmployeeEquipmentController {
 
     @PutMapping("/{id}")
     public ResponseEntity<EmployeeEquipmentModel> updateEmployeeEquipment(
-            @PathVariable("id") final Long id,
+            @PathVariable("id") final long id,
             @RequestBody @Valid final EmployeeEquipmentModel employeeEquipment) {
-        return ResponseEntity.ok(employeeEquipmentService.saveEmployeeEquipment(employeeEquipment));
+        employeeEquipment.setId(id);
+        return ResponseEntity.ok(employeeEquipmentService.updateEmployeeEquipment(employeeEquipment));
     }
 }
