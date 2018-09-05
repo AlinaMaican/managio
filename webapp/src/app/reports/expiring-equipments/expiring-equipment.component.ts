@@ -1,4 +1,7 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {Subscription} from "rxjs";
+import {ExpiringEquipmentModel} from "./expiring-equipment.model";
+import {ExpiringEquipmentService} from "./expiring-equipment.service";
 
 
 @Component({
@@ -7,6 +10,8 @@ import {Component, OnInit} from "@angular/core";
   styleUrls: ['./expiring-equipment.component.css']
 })
 export class ExpiringEquipmentsComponent implements OnInit{
+
+
   ngOnInit(): void {
   }
 

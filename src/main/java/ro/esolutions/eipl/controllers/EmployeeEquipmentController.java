@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ro.esolutions.eipl.models.EmployeeEquipmentModel;
+import ro.esolutions.eipl.models.EmployeeEquipmentReportModel;
 import ro.esolutions.eipl.services.EmployeeEquipmentService;
 
 import java.util.List;
@@ -22,5 +23,10 @@ public class EmployeeEquipmentController {
     @GetMapping("/all")
     public ResponseEntity<List<EmployeeEquipmentModel>> getAllEmployeesEquipments(){
         return ResponseEntity.ok(employeeEquipmentService.getAllEmployeesEquipments());
+    }
+
+    @GetMapping("/reports/expiringReports")
+    public ResponseEntity<List<EmployeeEquipmentReportModel>> getAllEmployeesEquipmentsReport() {
+        return ResponseEntity.ok(employeeEquipmentService.getAllEmployeesEquipmentsReport());
     }
 }

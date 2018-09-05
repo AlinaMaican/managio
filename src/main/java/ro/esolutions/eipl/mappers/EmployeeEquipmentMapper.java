@@ -22,4 +22,5 @@ public final class EmployeeEquipmentMapper {
                 .employee(EmployeeMapper.fromModelToEntity(employeeEquipmentModel.getEmployee()))
                 .equipment(EquipmentMapper.fromModelToEntity(employeeEquipmentModel.getEquipment()))
                 .build();
-    }}
+    }
+}

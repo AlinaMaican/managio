@@ -5,9 +5,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ro.esolutions.eipl.mappers.EmployeeEquipmentMapper;
+import ro.esolutions.eipl.mappers.EmployeeEquipmentReportMapper;
 import ro.esolutions.eipl.models.EmployeeEquipmentModel;
+import ro.esolutions.eipl.models.EmployeeEquipmentReportModel;
 import ro.esolutions.eipl.repositories.EmployeeEquipmentRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,6 +21,7 @@ public class EmployeeEquipmentService {
 
     @NonNull
     private final EmployeeEquipmentRepository employeeEquipmentRepository;
+    private static Integer days = 7;
 
     public List<EmployeeEquipmentModel> getAllEmployeesEquipments() {
 
@@ -25,6 +29,14 @@ public class EmployeeEquipmentService {
                 .stream()
                 .map(EmployeeEquipmentMapper::fromEntityToModel)
                 .collect(Collectors.toList());
+    }
+
+    public List<EmployeeEquipmentReportModel> getAllEmployeesEquipmentsReport() {
+        return employeeEquipmentRepository.findByEndDateLessThan(LocalDate.now().plusDays(days))
+                .stream()
+                .map(EmployeeEquipmentReportMapper::fromEntityToModel)
+                .collect(Collectors.toList());
+
     }
 
 }
