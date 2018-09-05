@@ -8,6 +8,7 @@ import ro.esolutions.eipl.services.EmployeeService
 import spock.lang.Specification
 import spock.lang.Unroll
 
+import static org.springframework.http.ResponseEntity.ok
 import static ro.esolutions.eipl.generators.EmployeeModelGenerator.aEmployeeModel
 
 class EmployeeControllerSpec extends Specification {
@@ -33,16 +34,15 @@ class EmployeeControllerSpec extends Specification {
         given:
         def file = new MockMultipartFile("testUploadEmployeeFile.csv",
                 this.getClass().getResourceAsStream("/testUploadEmployeeFile.csv"))
-        def employeeList = [EmployeeGenerator.aEmployee()]
 
         when:
         def result = employeeController.uploadEmployeeFromCSV(file)
 
         then:
-        result == ResponseEntity.ok(employeeList)
+        result == ok(EmployeeController.JSON_EMPTY_BODY)
 
         and:
-        1 * employeeService.uploadEmployeeFromCSV(file) >> employeeList
+        1 * employeeService.uploadEmployeeFromCSV(file)
         0 * _
     }
 }
