@@ -18,7 +18,9 @@ import {EquipmentsComponent} from "./equipments/equipments.component";
 import {EquipmentService} from "./equipments/equipment.service";
 import { PaginationComponent } from './pagination/pagination.component';
 import {EmployeeListComponent} from "./employees/employee-list/employee-list.component";
-import { EmployeeEquipmentsListComponent } from './employee-equipments-list/employee-equipments-list.component';
+import { EmployeeEquipmentsListComponent } from './employee-equipment-list/employee-equipments-list.component';
+import {EmployeeEquipmentService} from "./employee-equipment-list/employeeEquipment.service";
+import { AvailableEquipmentListComponent } from './available-equipment-list/available-equipment-list.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { EmployeeEquipmentsListComponent } from './employee-equipments-list/empl
     EquipmentsComponent,
     PaginationComponent,
     EmployeeListComponent,
-    EmployeeEquipmentsListComponent
+    EmployeeEquipmentsListComponent,
+    AvailableEquipmentListComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,7 @@ import { EmployeeEquipmentsListComponent } from './employee-equipments-list/empl
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [UserService, EquipmentService, EmployeeService],
+  providers: [UserService, EquipmentService, EmployeeService, EmployeeEquipmentService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

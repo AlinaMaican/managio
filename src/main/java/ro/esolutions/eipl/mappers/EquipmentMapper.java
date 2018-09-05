@@ -31,6 +31,7 @@ public final class EquipmentMapper {
                 .protectionType(equipmentModel.getProtectionType())
                 .size(equipmentModel.getSize())
                 .sex(equipmentModel.getSex())
+                .isAllocated(false)
                 .build();
     }
 
@@ -43,6 +44,7 @@ public final class EquipmentMapper {
                 .protectionType(csvRecord.get(3))
                 .size(csvRecord.get(4))
                 .sex(csvRecord.get(5))
+                .isAllocated(false)
                 .build();
     }
 }

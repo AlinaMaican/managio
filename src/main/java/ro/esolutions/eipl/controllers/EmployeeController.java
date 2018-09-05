@@ -21,5 +21,4 @@ public class EmployeeController {
     public ResponseEntity<List<EmployeeModel>> getAllEmployees() {
         return ResponseEntity.ok(employeeService.getAllEmployees());
     }
-
 }

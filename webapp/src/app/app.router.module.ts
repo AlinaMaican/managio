@@ -6,7 +6,8 @@ import {EditComponent} from "./users/edit/edit.component";
 import {AddUserComponent} from "./users/add-user/add-user.component";
 import {EquipmentsComponent} from "./equipments/equipments.component";
 import {EmployeeListComponent} from "./employees/employee-list/employee-list.component";
-import {EmployeeEquipmentsListComponent} from "./employee-equipments-list/employee-equipments-list.component";
+import {EmployeeEquipmentsListComponent} from "./employee-equipment-list/employee-equipments-list.component";
+import {AvailableEquipmentListComponent} from "./available-equipment-list/available-equipment-list.component";
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: 'equipment', component:EquipmentsComponent},
   {path: 'resetPassword', component: UserProfileComponent},
   {path: 'employee', component: EmployeeListComponent},
-  {path: 'employeeEquipmentsList', component: EmployeeEquipmentsListComponent}
+  {path: 'employeeEquipmentsList', component: EmployeeEquipmentsListComponent},
+  {path: 'availableEquipments', component: AvailableEquipmentListComponent}
   ];
 
 @NgModule({

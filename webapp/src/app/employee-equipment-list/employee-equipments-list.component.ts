@@ -12,7 +12,9 @@ export class EmployeeEquipmentsListComponent implements OnInit {
 
   employeeEquipments: EmployeeEquipmentModel[];
 
-  constructor(private route: ActivatedRoute, private router: Router, private employeeEquipmentService: EmployeeEquipmentService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private employeeEquipmentService: EmployeeEquipmentService) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 }

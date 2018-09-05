@@ -1,0 +1,1 @@
+ALTER TABLE equipments ADD COLUMN is_allocated BOOLEAN NOT NULL;
