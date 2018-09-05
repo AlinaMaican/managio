@@ -1,7 +1,9 @@
 package ro.esolutions.eipl.mappers;
 
+import org.apache.commons.csv.CSVRecord;
 import ro.esolutions.eipl.entities.Equipment;
 import ro.esolutions.eipl.models.EquipmentModel;
+import ro.esolutions.eipl.types.MabecCode;
 
 
 public final class EquipmentMapper {
@@ -29,6 +31,18 @@ public final class EquipmentMapper {
                 .protectionType(equipmentModel.getProtectionType())
                 .size(equipmentModel.getSize())
                 .sex(equipmentModel.getSex())
+                .build();
+    }
+
+    public static Equipment fromRecordToEntity(final CSVRecord csvRecord){
+        return Equipment.builder()
+                .id(null)
+                .name(csvRecord.get(0))
+                .code(csvRecord.get(1))
+                .mabecCode(MabecCode.valueOf(csvRecord.get(2)))
+                .protectionType(csvRecord.get(3))
+                .size(csvRecord.get(4))
+                .sex(csvRecord.get(5))
                 .build();
     }
 }
