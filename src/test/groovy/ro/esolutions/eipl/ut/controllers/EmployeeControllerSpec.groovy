@@ -35,7 +35,7 @@ class EmployeeControllerSpec extends Specification {
         def result=employeeController.getEmployeesByQuery(s1)
 
         then:
-        result == ResponseEntity.ok([aEmployeeModel()])
+        result == ResponseEntity.ok([aEmployeeModel()] as Set)
 
         and:
         1* employeeService.getEmployeesByQuery(s1) >> [aEmployeeModel()]
