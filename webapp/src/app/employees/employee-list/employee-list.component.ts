@@ -12,8 +12,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./employee-list.component.css']
 })
 export class EmployeeListComponent implements OnInit, OnDestroy {
-  private employeeSubscription1: Subscription;
-  employeeSubscription2: Subscription;
+  employeeSubscription: Subscription;
   employees: Employee[];
   groupedEmployees: Employee[][];
   stringForm: FormGroup;
@@ -22,38 +21,34 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   }
   ngOnInit(): void {
 
-      this.employeeSubscription1 = this.employeeService.getAllEmployees().subscribe(
-        (employee: Employee[]) => {
-          this.employees = employee;
-          this.groupedEmployees = [];
-
-          for (let i = 0; i < this.employees.length; i = i + 4) {
-            this.groupedEmployees.push(this.employees.slice(i, i + 4))
-          }
-        }
-      );
+      this.employeeSubscription = this.employeeService.getAllEmployees().subscribe(
+        (employee: Employee[]) => this.employeesGrid(employee));
       this.initForm();
   }
   initForm() {
     this.stringForm = new FormGroup({
-      'stringValue': new FormControl('')
+      'searchValue': new FormControl('')
     });
   }
 
   fill():void{
-    this.employeeSubscription2 = this.employeeService.getFilteredEmployees(this.stringForm.get("stringValue").value).subscribe(
-      (employee: Employee[]) => {
-        this.employees = employee;
-        this.groupedEmployees = [];
+    this.employeeSubscription.unsubscribe();
+    this.employeeSubscription = this.employeeService.getFilteredEmployees(this.stringForm.get("searchValue").value).subscribe(
+      (employee: Employee[]) => this.employeesGrid(employee));
+  }
 
-        for (let i = 0; i < this.employees.length; i = i + 4) {
-          this.groupedEmployees.push(this.employees.slice(i, i + 4))
-        }
-      }
-    );
+  employeesGrid(employee: Employee[]): void{
+
+    this.employees = employee;
+    this.groupedEmployees = [];
+
+    for (let i = 0; i < this.employees.length; i = i + 4) {
+      this.groupedEmployees.push(this.employees.slice(i, i + 4))
+    }
+
   }
 
   ngOnDestroy(): void {
-    this.employeeSubscription1.unsubscribe()
+    this.employeeSubscription.unsubscribe()
   }
 }

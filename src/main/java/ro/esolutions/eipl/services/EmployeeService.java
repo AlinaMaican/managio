@@ -29,21 +29,21 @@ public class EmployeeService {
 
 
     public Set<EmployeeModel> getFilteredEmployees(String searchValue){
-        List<EmployeeModel> list1=employeeRepository.findByLastNameContainingIgnoreCase(searchValue)
+        List<EmployeeModel> lastNameEmployees=employeeRepository.findByLastNameContainingIgnoreCase(searchValue)
                 .stream()
                 .map(EmployeeMapper::fromEntityToModel)
                 .collect(Collectors.toList());
 
-        List<EmployeeModel> list2=employeeRepository.findByFirstNameContainingIgnoreCase(searchValue)
+        List<EmployeeModel> firstNameEmployees=employeeRepository.findByFirstNameContainingIgnoreCase(searchValue)
                 .stream()
                 .map(EmployeeMapper::fromEntityToModel)
                 .collect(Collectors.toList());
 
-        Set<EmployeeModel> list3=new HashSet<EmployeeModel>();
-        list3.addAll(list1);
-        list3.addAll(list2);
+        Set<EmployeeModel> resultEmployees=new HashSet<>();
+        resultEmployees.addAll(lastNameEmployees);
+        resultEmployees.addAll(firstNameEmployees);
 
-        return list3;
+        return resultEmployees;
     }
 
 }
