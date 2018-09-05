@@ -19,7 +19,7 @@ export class ExpiringEquipmentService {
   // }
 
   getAllExpiringEquipment(): Observable<ExpiringEquipmentModel[]> {
-    return this.httpClient.get<ExpiringEquipmentModel[]>(this.expiringEquipmentUrl);
+    return this.httpClient.get<ExpiringEquipmentModel[]>(this.expiringEquipmentUrl + '/all');
   }
 
 

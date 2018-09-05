@@ -20,6 +20,7 @@ import {EmployeeComponent} from './employees/employee.component';
 import {PaginationComponent } from './pagination/pagination.component';
 import {EmployeeEquipmentsListComponent } from './employee-equipments-list/employee-equipments-list.component';
 import {ExpiringEquipmentsComponent} from "./reports/expiring-equipments/expiring-equipment.component";
+import {ExpiringEquipmentService} from "./reports/expiring-equipments/expiring-equipment.service";
 
 
 @NgModule({
@@ -46,7 +47,7 @@ import {ExpiringEquipmentsComponent} from "./reports/expiring-equipments/expirin
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [UserService, EquipmentService, EmployeeService],
+  providers: [UserService, EquipmentService, EmployeeService, ExpiringEquipmentService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
