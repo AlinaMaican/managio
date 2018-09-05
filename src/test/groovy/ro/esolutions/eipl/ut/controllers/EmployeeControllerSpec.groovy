@@ -26,4 +26,19 @@ class EmployeeControllerSpec extends Specification {
         0 * _
 
     }
+    @Unroll
+    def "getEmployeesByQuery"()
+    {
+        given:
+        def s1 = 'Nam'
+        when:
+        def result=employeeController.getEmployeesByQuery(s1)
+
+        then:
+        result == ResponseEntity.ok([aEmployeeModel()])
+
+        and:
+        1* employeeService.getEmployeesByQuery(s1) >> [aEmployeeModel()]
+        0*_
+    }
 }

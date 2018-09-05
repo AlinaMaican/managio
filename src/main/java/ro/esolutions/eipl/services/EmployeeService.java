@@ -7,7 +7,10 @@ import ro.esolutions.eipl.mappers.EmployeeMapper;
 import ro.esolutions.eipl.models.EmployeeModel;
 import ro.esolutions.eipl.repositories.EmployeeRepository;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,6 +25,25 @@ public class EmployeeService {
                 .stream()
                 .map(EmployeeMapper::fromEntityToModel)
                 .collect(Collectors.toList());
+    }
+
+
+    public Set<EmployeeModel> getEmployeesByQuery(String s1){
+        List<EmployeeModel> list1=employeeRepository.findByLastNameContainingIgnoreCase(s1)
+                .stream()
+                .map(EmployeeMapper::fromEntityToModel)
+                .collect(Collectors.toList());
+
+        List<EmployeeModel> list2=employeeRepository.findByFirstNameContainingIgnoreCase(s1)
+                .stream()
+                .map(EmployeeMapper::fromEntityToModel)
+                .collect(Collectors.toList());
+
+        Set<EmployeeModel> list3=new HashSet<EmployeeModel>();
+        list3.addAll(list1);
+        list3.addAll(list2);
+
+        return list3;
     }
 
 }
