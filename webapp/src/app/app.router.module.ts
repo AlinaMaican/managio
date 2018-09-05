@@ -1,12 +1,11 @@
 import {NgModule} from '@angular/core';
-import {ExtraOptions, RouterModule, Routes} from "@angular/router";
+import {RouterModule, Routes} from "@angular/router";
 import {UserListComponent} from "./users/user-list.component";
 import {UserProfileComponent} from "./users/user-profile/user-profile.component";
 import {EditComponent} from "./users/edit/edit.component";
 import {AddUserComponent} from "./users/add-user/add-user.component";
 import {EquipmentsComponent} from "./equipments/equipments.component";
-import {EmployeeListComponent} from "./employees/employee-list/employee-list.component";
-import {EmployeeEquipmentsListComponent} from "./employee-equipments-list/employee-equipments-list.component";
+import {EmployeeComponent} from "./employees/employee.component";
 import {ExpiringEquipmentsComponent} from "./reports/expiring-equipments/expiring-equipment.component";
 
 
@@ -19,8 +18,7 @@ const routes: Routes = [
   {path: 'edit/:id', component: EditComponent},
   {path: 'equipment', component:EquipmentsComponent},
   {path: 'resetPassword', component: UserProfileComponent},
-  {path: 'employee', component: EmployeeListComponent},
-  {path: 'employeeEquipmentsList', component: EmployeeEquipmentsListComponent},
+  {path: 'employee', component: EmployeeComponent},
   {path: 'reports/expiring-equipments', component: ExpiringEquipmentsComponent}
   ];
 

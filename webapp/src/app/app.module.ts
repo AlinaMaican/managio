@@ -16,9 +16,9 @@ import {UserProfileComponent} from "./users/user-profile/user-profile.component"
 import {EmployeeService} from "./employees/employee.service";
 import {EquipmentsComponent} from "./equipments/equipments.component";
 import {EquipmentService} from "./equipments/equipment.service";
-import { PaginationComponent } from './pagination/pagination.component';
-import {EmployeeListComponent} from "./employees/employee-list/employee-list.component";
-import { EmployeeEquipmentsListComponent } from './employee-equipments-list/employee-equipments-list.component';
+import {EmployeeComponent} from './employees/employee.component';
+import {PaginationComponent } from './pagination/pagination.component';
+import {EmployeeEquipmentsListComponent } from './employee-equipments-list/employee-equipments-list.component';
 import {ExpiringEquipmentsComponent} from "./reports/expiring-equipments/expiring-equipment.component";
 
 
@@ -34,9 +34,10 @@ import {ExpiringEquipmentsComponent} from "./reports/expiring-equipments/expirin
     UserProfileComponent,
     EquipmentsComponent,
     PaginationComponent,
-    EmployeeListComponent,
     EmployeeEquipmentsListComponent,
-    ExpiringEquipmentsComponent
+    ExpiringEquipmentsComponent,
+    EquipmentsComponent,
+    EmployeeComponent
   ],
   imports: [
     BrowserModule,
