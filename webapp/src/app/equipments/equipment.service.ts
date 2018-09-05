@@ -22,4 +22,10 @@ export class EquipmentService {
   getAllEquipmentByEmployeeId(employeeId: number): Observable<EquipmentModel[]> {
     return this.httpClient.get<EquipmentModel[]>(environment.resourcesUrl + `/employee/${employeeId}/equipment`);
   }
+
+  saveFile(importedFile: File){
+    const formData: FormData = new FormData();
+    formData.append('file', importedFile, importedFile.name);
+    return this.httpClient.post(this.equipmentUrl + '/file', formData);
+  }
 }
