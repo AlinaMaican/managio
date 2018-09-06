@@ -12,25 +12,21 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class EquipmentsComponent implements OnInit,OnDestroy {
 
-  private equipmentSubscription: Subscription;
+  public equipmentSubscription: Subscription;
   addequipment: FormGroup;
   equipments: EquipmentModel[];
   REGEX_NAME: string = '^[A-Z0-9]+';
   optionArray: string[] = ["MABEC_01", "MABEC_02", "MABEC_03", "MABEC_04", "MABEC_05", "MABEC_06", "MABEC_07"];
   equipmentForm: FormGroup;
   file: File;
+  public baseURL: string = 'equipment';
 
-  constructor(private route: ActivatedRoute, private equipmentService: EquipmentService, private router: Router,
+  constructor(private route: ActivatedRoute, public equipmentService: EquipmentService, private router: Router,
               private formBuilder: FormBuilder) {
     this.createForm();
   }
 
   ngOnInit(): void {
-    this.equipmentSubscription = this.equipmentService.getAllEquipments().subscribe(
-      (equipment: EquipmentModel[]) => {
-        this.equipments = equipment;
-      }
-    );
     this.initForm();
   }
 
@@ -60,10 +56,7 @@ export class EquipmentsComponent implements OnInit,OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.equipmentSubscription !== null) {
-      this.equipmentSubscription.unsubscribe();
 
-    }
   }
 
   createForm() {
@@ -83,5 +76,9 @@ export class EquipmentsComponent implements OnInit,OnDestroy {
         location.reload();
       });
     }
+  }
+
+  getPaginatedList(paginatedList: EquipmentModel[]) {
+    this.equipments = paginatedList;
   }
 }

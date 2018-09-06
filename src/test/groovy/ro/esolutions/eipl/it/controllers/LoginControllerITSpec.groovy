@@ -31,7 +31,7 @@ import static ro.esolutions.eipl.generators.UserDetailsGenerator.aUserDetails
 @SpringBootTest
 @AutoConfigureMockMvc
 @SqlGroup([
-        @Sql(value = ['/sql/addUsers.sql'], executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD),
+        @Sql(value = ['/sql/addUsers.sql'], executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 ])
 @Transactional
 class LoginControllerITSpec extends Specification {
