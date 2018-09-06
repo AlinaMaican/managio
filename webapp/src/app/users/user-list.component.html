@@ -17,7 +17,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let user of list;">
+    <tr *ngFor="let user of users;">
       <td>{{user.username}}</td>
       <td>{{user.firstName}}</td>
       <td>{{user.lastName}}</td>
@@ -32,11 +32,11 @@
 </div>
 
 <app-pagination
-  [(pageSize)]="pageSize"
-  [pageNumber]="pageNumber"
-  [totalPages]="totalPages"
-  (goPrev)="onPrev()"
-  (goNext)="onNext()"
-  (goFirst)="onFirst($event)"
-  (goLast)="onLast()">
+  [service]="userService"
+  [subscription]="userSubscription"
+  [router]="router"
+  [baseURL]="baseURL"
+  [route]="route"
+  (retrieveContent)="getPaginatedList($event)"
+>
 </app-pagination>

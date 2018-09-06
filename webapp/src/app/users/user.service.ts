@@ -5,14 +5,18 @@ import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {UserWithPassword} from "./model/user-with-password.model";
 import {Service} from "../service";
+import {Page} from "./model/page.model";
 
 @Injectable()
-export class UserService extends Service<User> {
+export class UserService {
 
-  public basicUrl = environment.resourcesUrl + '/user';
+  private basicUrl = environment.resourcesUrl + '/user';
 
-  constructor(public httpClient: HttpClient) {
-    super();
+  constructor(private httpClient: HttpClient) {
+  }
+
+  getAll(page: number, size: number): Observable<Page<User>> {
+    return this.httpClient.get<Page<User>>(this.basicUrl + '/all?page=' + page + '&size=' + size);
   }
 
   getAuthUser(): Observable<User> {
