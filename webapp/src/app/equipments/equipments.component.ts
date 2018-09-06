@@ -21,7 +21,7 @@ export class EquipmentsComponent implements OnInit,OnDestroy {
   file: File;
   public baseURL: string = 'equipment';
 
-  constructor(public route: ActivatedRoute, public equipmentService: EquipmentService, public router: Router,
+  constructor(private route: ActivatedRoute, public equipmentService: EquipmentService, private router: Router,
               private formBuilder: FormBuilder) {
     this.createForm();
   }

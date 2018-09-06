@@ -23,11 +23,14 @@ export class PaginationComponent<T> implements OnInit, OnDestroy {
 
   @Input() service: Service<T>;
   @Input() subscription: Subscription;
-  @Input() router: Router;
   @Input() baseURL: string;
-  @Input() route: ActivatedRoute;
 
   @Output() retrieveContent = new EventEmitter<T[]>();
+
+  constructor(private router: Router,
+              private route: ActivatedRoute) {
+
+  }
 
   ngOnInit() {
     this.paramsSubscription = this.route.queryParams.subscribe((params) => {

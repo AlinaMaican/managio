@@ -16,9 +16,7 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   baseURL: string = 'management-users';
 
-  constructor(public userService: UserService,
-              public router: Router,
-              public route: ActivatedRoute) {
+  constructor(public userService: UserService) {
 
   }
 

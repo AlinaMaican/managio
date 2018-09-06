@@ -34,8 +34,6 @@
 <app-pagination
   [service]="userService"
   [subscription]="userSubscription"
-  [router]="router"
   [baseURL]="baseURL"
-  [route]="route"
   (retrieveContent)="getPaginatedList($event)">
 </app-pagination>
