@@ -2,6 +2,7 @@ package ro.esolutions.eipl.controllers;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.esolutions.eipl.models.EmployeeEquipmentModel;
@@ -34,5 +35,11 @@ public class EmployeeEquipmentController {
             @RequestBody @Valid final EmployeeEquipmentModel employeeEquipment) {
         employeeEquipment.setId(id);
         return ResponseEntity.ok(employeeEquipmentService.updateEmployeeEquipment(employeeEquipment));
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public void deleteEmployeeEquipment(@PathVariable("id") final long id){
+        employeeEquipmentService.deleteEmployeeEquipmentById(id);
     }
 }

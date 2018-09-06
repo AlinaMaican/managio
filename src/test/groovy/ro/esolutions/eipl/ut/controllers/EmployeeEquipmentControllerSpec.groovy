@@ -51,4 +51,12 @@ class EmployeeEquipmentControllerSpec extends Specification {
         1 * employeeEquipmentService.updateEmployeeEquipment(employeeEquipment) >> employeeEquipment
         0 * _
     }
+
+    def 'deleteEmployeeEquipment'() {
+        when:
+        employeeEquipmentController.deleteEmployeeEquipment(1L)
+        then:
+        1 * employeeEquipmentService.deleteEmployeeEquipmentById(1L)
+        0 * _
+    }
 }
