@@ -23,11 +23,9 @@ public class EmployeeEquipment {
     private Long id;
 
     @ManyToOne
-    @NotNull
     private Employee employee;
 
     @ManyToOne
-    @NotNull
     private Equipment equipment;
 
     @NotNull
@@ -35,4 +33,6 @@ public class EmployeeEquipment {
 
     @NotNull
     private LocalDate endDate;
+
+
 }

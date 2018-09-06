@@ -16,6 +16,7 @@
       </span>
       </div>
   </form>
+      <button type="button" class="btn btn-outline-secondary float-left margin-bottom-10" data-toggle="modal"  data-target="#allocateEmployeeEquipment">Allocate equipments</button>
     <table class="table table-hover">
       <thead>
       <tr>
@@ -39,8 +40,8 @@
         <td>{{equipment.size}}</td>
         <td>{{equipment.sex}}</td>
         <td><input type="checkbox" [(ngModel)]="equipment.isChecked" (click)="setEquipments(equipment)"></td>
-        <td><input type="date" (ngModel)="equipment.startDate" [disabled]="!equipment.isChecked"></td>
-        <td><input type="date" (ngModel)="equipment.endDate" [disabled]="!equipment.isChecked"></td>
+        <td><input type="date" [(ngModel)]="equipment.startDate" [disabled]="!equipment.isChecked" required></td>
+        <td><input type="date" [(ngModel)]="equipment.endDate" [disabled]="!equipment.isChecked" required></td>
       </tr>
       </tbody>
     </table>
@@ -59,11 +60,13 @@
       <div class="modal-body">
         <p>Are you sure you want to allocate the following equipments?</p>
         <ul>
-          <li *ngFor="let equipment of selectedEquipments;">{{equipment.name}}</li>
+          <li *ngFor="let equipment of selectedEquipments;">{{equipment.name}}  {{equipment.startDate}}
+            {{equipment.endDate}}
+          </li>
         </ul>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-primary" (click)="allocateEquipmentsToEmployee()">Save</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
       </div>
     </div>

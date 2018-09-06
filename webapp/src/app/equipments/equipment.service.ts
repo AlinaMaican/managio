@@ -15,18 +15,24 @@ export class EquipmentService {
     return this.httpClient.get<EquipmentModel[]>(this.equipmentUrl + '/all');
   }
 
-  addEquipment(newEquipmentModel:EquipmentModel ):Observable<{}>{
-    return this.httpClient.post<EquipmentModel>(this.equipmentUrl,newEquipmentModel,{});
+  addEquipment(newEquipmentModel: EquipmentModel): Observable<{}> {
+    return this.httpClient.post<EquipmentModel>(this.equipmentUrl, newEquipmentModel, {});
   }
 
   saveFile(importedFile: File){
     const formData: FormData = new FormData();
     formData.append('file', importedFile, importedFile.name);
-    return this.httpClient.post(this.equipmentUrl + '/file', formData);
+    return this.httpClient.post(this.equipmentUrl + '/importByFile', formData);
   }
 
   getAllAvailableEquipments() {
     return this.httpClient.get<EquipmentModel[]>(this.equipmentUrl + '/available');
+  }
+
+  saveAllocatedEquipments(selectedEquipments: EquipmentModel[]) {
+
+    debugger;
+    return this.httpClient.post<EquipmentModel[]>(this.equipmentUrl + '/saveAllocatedEquipments', selectedEquipments, {});
   }
 
   getFilteredEquipments(searchValue: string): Observable<EquipmentModel[]> {

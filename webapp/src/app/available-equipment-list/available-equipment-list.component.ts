@@ -39,6 +39,14 @@ export class AvailableEquipmentListComponent implements OnInit {
       this.selectedEquipments.push(equipment);
   }
 
+  allocateEquipmentsToEmployee() {
+    debugger;
+    this.equipmentService.saveAllocatedEquipments(this.selectedEquipments).subscribe(() => {
+        this.router.navigate(['/#/equipments']);
+      }
+    );
+  }
+
   fill(): void {
     this.equipmentSubscription.unsubscribe();
     this.equipmentSubscription = this.equipmentService.getFilteredEquipments(this.stringForm.get("searchValue").value).subscribe(
