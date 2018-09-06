@@ -16,4 +16,8 @@ export class EmployeeEquipmentService {
       this.employeeEquipmentUrl,
       {params: new HttpParams().set('employeeId', employeeId.toString())});
   }
+
+  updateEmployeeEquipment(employeeEquipment: EmployeeEquipmentModel): Observable<EmployeeEquipmentModel> {
+    return this.httpClient.put<EmployeeEquipmentModel>(`${this.employeeEquipmentUrl}/${employeeEquipment.id}`, employeeEquipment);
+  }
 }

@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {ExtraOptions, RouterModule, Routes} from "@angular/router";
+import {RouterModule, Routes} from "@angular/router";
 import {UserListComponent} from "./users/user-list.component";
 import {UserProfileComponent} from "./users/user-profile/user-profile.component";
 import {EditComponent} from "./users/edit/edit.component";

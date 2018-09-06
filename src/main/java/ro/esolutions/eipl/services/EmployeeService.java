@@ -14,11 +14,14 @@ import ro.esolutions.eipl.mappers.EmployeeMapper;
 import ro.esolutions.eipl.models.EmployeeModel;
 import ro.esolutions.eipl.repositories.EmployeeRepository;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -36,6 +39,15 @@ public class EmployeeService {
                 .stream()
                 .map(EmployeeMapper::fromEntityToModel)
                 .collect(Collectors.toList());
+    }
+
+
+    public List<EmployeeModel> getFilteredEmployees(String searchValue){
+        List<EmployeeModel> resultEmployees = employeeRepository.findDistinctByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(searchValue,searchValue)
+                .stream()
+                .map(EmployeeMapper::fromEntityToModel)
+                .collect(Collectors.toList());
+        return resultEmployees;
     }
 
     public void uploadEmployeeFromCSV(final MultipartFile file) {

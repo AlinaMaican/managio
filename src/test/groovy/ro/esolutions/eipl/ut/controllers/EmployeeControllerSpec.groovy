@@ -44,4 +44,19 @@ class EmployeeControllerSpec extends Specification {
         1 * employeeService.uploadEmployeeFromCSV(file)
         0 * _
     }
+    @Unroll
+    def "getFilteredEmployees"()
+    {
+        given:
+        def searchValue = 'Nam'
+        when:
+        def result=employeeController.getFilteredEmployees(searchValue)
+
+        then:
+        result == ResponseEntity.ok([aEmployeeModel()])
+
+        and:
+        1* employeeService.getFilteredEmployees(searchValue) >> [aEmployeeModel()]
+        0*_
+    }
 }

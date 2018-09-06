@@ -1,5 +1,7 @@
 package ro.esolutions.eipl.ut.services
 
+import ro.esolutions.eipl.entities.EmployeeEquipment
+import ro.esolutions.eipl.exceptions.ResourceNotFoundException
 import ro.esolutions.eipl.repositories.EmployeeEquipmentRepository
 import ro.esolutions.eipl.services.EmployeeEquipmentService
 import spock.lang.Specification
@@ -37,5 +39,34 @@ class EmployeeEquipmentServiceSpec extends Specification {
         and:
         1 * employeeEquipmentRepository.getEmployeeEquipmentByEmployee_Id(1) >> [aEmployeeEquipment()]
         0 * _
+    }
+
+    def 'updateEmployeeEquipment'() {
+        given:
+        def employeeEquipment = aEmployeeEquipmentModel([id: 1L])
+        def employeeEquipmentEntity = aEmployeeEquipment([id: 1L])
+        when:
+        def result = employeeEquipmentService.updateEmployeeEquipment(employeeEquipment)
+        then:
+        result == employeeEquipment
+
+        and:
+        1 * employeeEquipmentRepository.findById(1L) >> Optional.of(employeeEquipmentEntity)
+        1 * employeeEquipmentRepository.save(employeeEquipmentEntity) >> employeeEquipmentEntity
+        0 * _
+    }
+
+    def 'updateEmployeeEquipmentThrows'() {
+        given:
+        def employeeEquipment = aEmployeeEquipmentModel([id: 1L])
+        when:
+        employeeEquipmentService.updateEmployeeEquipment(employeeEquipment)
+        then:
+        def exception = thrown(ResourceNotFoundException)
+        exception.getMessage() == new ResourceNotFoundException(1L, EmployeeEquipment.class.getName()).getMessage()
+        and:
+        1 * employeeEquipmentRepository.findById(1L) >> Optional.ofNullable(null)
+        0 * _
+
     }
 }

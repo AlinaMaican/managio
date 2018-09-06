@@ -5,14 +5,18 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import ro.esolutions.eipl.exceptions.BindingValidationException;
-import ro.esolutions.eipl.exceptions.ResourceNotFound;
+import ro.esolutions.eipl.exceptions.ResourceNotFoundException;
 import ro.esolutions.eipl.models.FieldErrorModel;
 
 import java.util.HashMap;
@@ -27,8 +31,8 @@ import java.util.Optional;
 public class GlobalRestAdvices extends ResponseEntityExceptionHandler {
     private final MessageSource messageSource;
 
-    @ExceptionHandler({ResourceNotFound.class})
-    protected ResponseEntity<Object> handleResourceNotFound(ResourceNotFound ex) {
+    @ExceptionHandler({ResourceNotFoundException.class})
+    protected ResponseEntity<Object> handleResourceNotFound(ResourceNotFoundException ex) {
         log.debug(ex.getMessage(), ex);
         return ResponseEntity.notFound().build();
     }
@@ -37,6 +41,15 @@ public class GlobalRestAdvices extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleBindingValidationException(BindingValidationException ex) {
         log.debug(ex.getMessage(), ex);
         return ResponseEntity.badRequest().body(fromBindingResultToMap(ex.getBindingResult()));
+    }
+
+    /**
+     * doesn't get handled before {@link BindingValidationException}
+     */
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        log.debug(ex.getMessage(),ex);
+        return ResponseEntity.status(status).headers(headers).body(fromBindingResultToMap(ex.getBindingResult()));
     }
 
     private Map<String, FieldErrorModel> fromBindingResultToMap(BindingResult bindingResult) {
