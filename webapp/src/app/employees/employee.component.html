@@ -16,15 +16,24 @@
   <div class="row">
     <div class="col-sm-8">
       <form [formGroup]="stringForm" class="form">
-      <div class="input-group col-md-6 offset-6" style="padding-bottom: 20px">
-        <input class="form-control py-2" type="search" id="example-search-input" formControlName="searchValue">
-        <span class="input-group-append">
+        <div class="input-group col-md-6 offset-6" style="padding-bottom: 20px">
+          <input class="form-control py-2" type="search" id="example-search-input" formControlName="searchValue">
+          <span class="input-group-append">
         <button class="btn btn-outline-secondary" type="button" (click)="fill()">
             <i class="fa fa-search"></i>
         </button>
       </span>
-      </div>
+        </div>
       </form>
+
+        <form name="employeeForm">
+          <label for="file-upload" class="btn btn-outline-secondary float-left width-140-margin-right-15">
+            Upload </label>
+          <input id="file-upload" type="file" (change)="upload($event)" accept=".csv"/>
+        </form>
+
+        <input class="form-control py-2" type="search" value="search" id="example-search-input">
+
       <table class="table table-hover">
         <thead>
         <tr>
@@ -42,7 +51,10 @@
         <tr *ngFor="let employeeGroup of  this.groupedEmployees">
           <ng-container *ngFor="let employee of employeeGroup">
             <td>{{employee.firstName}} {{employee.lastName}}</td>
-            <td><i class="fas fa-user"></i> &nbsp;<i class="fas fa-tshirt"></i></td>
+            <td>
+              <i class="fas fa-user"></i> &nbsp;<i class="fas fa-tshirt"></i>
+              <i class="fas fa-tshirt" [routerLink]="'/employee/'+employee.id+'/equipment'"></i>
+            </td>
           </ng-container>
         </tr>
         </tbody>

@@ -23,4 +23,9 @@ export class EmployeeService {
 
   }
 
+  saveFile(importedFile: File){
+    const formData: FormData = new FormData();
+    formData.append('file', importedFile, importedFile.name);
+    return this.httpClient.post(this.employeeUrl + '/importByFile', formData);
+  }
 }
