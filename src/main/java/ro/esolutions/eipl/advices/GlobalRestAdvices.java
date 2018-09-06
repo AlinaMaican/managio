@@ -43,7 +43,9 @@ public class GlobalRestAdvices extends ResponseEntityExceptionHandler {
         return ResponseEntity.badRequest().body(fromBindingResultToMap(ex.getBindingResult()));
     }
 
-    //  TODO stefan.popescu - 2018-09-05T05:08:21 check if this doesn't override BindingValidationException
+    /**
+     * doesn't get handled before {@link BindingValidationException}
+     */
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         log.debug(ex.getMessage(),ex);
