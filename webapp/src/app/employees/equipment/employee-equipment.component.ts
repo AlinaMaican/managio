@@ -69,18 +69,12 @@ export class EmployeeEquipmentComponent implements OnInit, OnDestroy {
     editedObj.startDate = this.editEquipmentForm.value.startDate;
     editedObj.endDate = this.editEquipmentForm.value.endDate;
     this.employeeEquipmentService.updateEmployeeEquipment(editedObj).subscribe(
-      () => {
-        this.loadEquipment();
-      }
-    );
+      null, null, () => this.loadEquipment());
   }
 
   deleteEmployeeEquipment() {
     let deleteObject = Object.assign({}, this.targetEmployeeEquipment);
     this.employeeEquipmentService.deleteEmployeeEquipment(deleteObject).subscribe(
-      () => {
-        this.loadEquipment();
-      }
-    );
+      null, null, () => this.loadEquipment());
   }
 }
