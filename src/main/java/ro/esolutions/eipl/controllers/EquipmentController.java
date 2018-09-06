@@ -51,4 +51,9 @@ public class EquipmentController {
         return ResponseEntity.ok(equipmentService.getAllAvailableEquipments());
     }
 
+    @GetMapping
+    public ResponseEntity<List<EquipmentModel>> getFilteredEquipments(@RequestParam("name_contains") String searchValue) {
+        return ResponseEntity.ok(equipmentService.getFilteredEquipments(searchValue));
+    }
+
 }

@@ -69,4 +69,13 @@ public class EquipmentService {
                 .map(EquipmentMapper::fromEntityToModel)
                 .collect(Collectors.toList());
     }
+
+    public List<EquipmentModel> getFilteredEquipments(String searchValue) {
+        List<EquipmentModel> resultEquipments = equipmentRepository.findDistinctByNameContainingIgnoreCase(searchValue)
+                .stream()
+                .map(EquipmentMapper::fromEntityToModel)
+                .collect(Collectors.toList());
+        return resultEquipments;
+    }
+
 }
