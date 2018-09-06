@@ -19,4 +19,14 @@ public class EmployeeEquipmentReportMapper {
                 .endDate(employeeEquipment.getEndDate())
                 .build();
     }
+
+    public static String fromEntityToString(final EmployeeEquipment employeeEquipment) {
+        return employeeEquipment.getEmployee().getFirstName()+ ',' +
+                employeeEquipment.getEmployee().getLastName()+ ',' +
+                employeeEquipment.getEquipment().getName()+ ',' +
+                employeeEquipment.getEquipment().getCode()+ ',' +
+                employeeEquipment.getEquipment().getProtectionType()+ ',' +
+                employeeEquipment.getEquipment().getSize()+ ',' +
+                employeeEquipment.getEndDate()+ '\n';
+    }
 }

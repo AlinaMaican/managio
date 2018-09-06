@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import ro.esolutions.eipl.entities.Employee;
+import ro.esolutions.eipl.entities.EmployeeEquipment;
 import ro.esolutions.eipl.exceptions.EmployeeUploadFileNotValid;
 import ro.esolutions.eipl.mappers.EmployeeMapper;
 import ro.esolutions.eipl.models.EmployeeModel;

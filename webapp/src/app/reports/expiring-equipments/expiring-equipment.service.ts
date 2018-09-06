@@ -17,4 +17,5 @@ export class ExpiringEquipmentService {
   getAllExpiringEquipment(): Observable<ExpiringEquipmentModel[]> {
     return this.httpClient.get<ExpiringEquipmentModel[]>(this.expiringEquipmentUrl);
   }
+
 }

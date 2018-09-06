@@ -3,6 +3,7 @@ import {Subscription} from "rxjs";
 import {ExpiringEquipmentModel} from "./expiring-equipment.model";
 import {ExpiringEquipmentService} from "./expiring-equipment.service";
 import {ActivatedRoute} from "@angular/router";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-expiring-equipment',
@@ -14,8 +15,10 @@ export class ExpiringEquipmentsComponent implements OnInit, OnDestroy{
   private employeeEquipmentSubscription: Subscription;
   expiringEquipments: ExpiringEquipmentModel[];
 
-  constructor(private route: ActivatedRoute, private expiringEquipmentService: ExpiringEquipmentService) {
+  constructor(private route: ActivatedRoute,
+              private expiringEquipmentService: ExpiringEquipmentService) {
   }
+
   ngOnInit(): void {
     this.employeeEquipmentSubscription = this.expiringEquipmentService.getAllExpiringEquipment().subscribe(
       (employeeEquipment: ExpiringEquipmentModel[]) => {
@@ -29,4 +32,5 @@ export class ExpiringEquipmentsComponent implements OnInit, OnDestroy{
       this.employeeEquipmentSubscription.unsubscribe();
     }
   }
+
 }

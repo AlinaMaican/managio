@@ -45,4 +45,11 @@ public class EmployeeEquipmentService {
                 .collect(Collectors.toList());
     }
 
+    public String exportCSV() {
+        return employeeEquipmentRepository.findByEndDateLessThan(LocalDate.now().plusDays(days))
+                .stream()
+                .map(EmployeeEquipmentReportMapper::fromEntityToString)
+                .collect(Collectors.joining());
+    }
+
 }
