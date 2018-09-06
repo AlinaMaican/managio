@@ -10,20 +10,20 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import ro.esolutions.eipl.entities.Employee;
 import ro.esolutions.eipl.exceptions.EmployeeUploadFileNotValid;
+import ro.esolutions.eipl.exceptions.ResourceNotFoundException;
 import ro.esolutions.eipl.mappers.EmployeeMapper;
 import ro.esolutions.eipl.models.EmployeeModel;
 import ro.esolutions.eipl.repositories.EmployeeRepository;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
+
+import static ro.esolutions.eipl.mappers.EmployeeMapper.fromEntityToModel;
 
 @Service
 @Transactional
@@ -49,7 +49,6 @@ public class EmployeeService {
                 .collect(Collectors.toList());
         return resultEmployees;
     }
-
     public void uploadEmployeeFromCSV(final MultipartFile file) {
         try {
             InputStream inputStream = file.getInputStream();
@@ -68,5 +67,4 @@ public class EmployeeService {
             throw new EmployeeUploadFileNotValid();
         }
     }
-
 }
