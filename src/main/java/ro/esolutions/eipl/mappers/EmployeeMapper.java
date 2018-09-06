@@ -1,5 +1,6 @@
 package ro.esolutions.eipl.mappers;
 
+import org.apache.commons.csv.CSVRecord;
 import ro.esolutions.eipl.entities.Employee;
 import ro.esolutions.eipl.models.EmployeeModel;
 
@@ -22,6 +23,15 @@ public final class EmployeeMapper {
                 .firstName(employeeModel.getFirstName())
                 .lastName(employeeModel.getLastName())
                 .workingStation(employeeModel.getWorkingStation())
+                .build();
+    }
+
+    public static Employee fromRecordToEntity(final CSVRecord csvRecord){
+        return Employee.builder()
+                .id(null)
+                .firstName(csvRecord.get(0))
+                .lastName(csvRecord.get(1))
+                .workingStation(csvRecord.get(2))
                 .build();
     }
 }

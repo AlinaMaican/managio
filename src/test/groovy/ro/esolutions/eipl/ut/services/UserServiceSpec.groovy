@@ -1,7 +1,7 @@
 package ro.esolutions.eipl.ut.services
 
 import org.springframework.security.crypto.password.PasswordEncoder
-import ro.esolutions.eipl.exceptions.ResourceNotFound
+import ro.esolutions.eipl.exceptions.ResourceNotFoundException
 import ro.esolutions.eipl.mappers.UserMapper
 import ro.esolutions.eipl.mappers.UserWithPasswordMapper
 import ro.esolutions.eipl.repositories.UserRepository
@@ -66,7 +66,7 @@ class UserServiceSpec extends Specification {
         then:
         result == null
         0 * _
-        thrown(ResourceNotFound)
+        thrown(ResourceNotFoundException)
 
         and:
         1 * userRepository.findById(userId) >> Optional.empty()
@@ -103,7 +103,7 @@ class UserServiceSpec extends Specification {
         then:
         result == null
         0 * _
-        thrown(ResourceNotFound)
+        thrown(ResourceNotFoundException)
 
         and:
         1 * userRepository.findById(id) >> Optional.empty()

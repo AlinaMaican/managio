@@ -5,6 +5,8 @@ import {UserProfileComponent} from "./users/user-profile/user-profile.component"
 import {EditComponent} from "./users/edit/edit.component";
 import {AddUserComponent} from "./users/add-user/add-user.component";
 import {EquipmentsComponent} from "./equipments/equipments.component";
+import {EmployeeComponent} from "./employees/employee.component";
+import {EmployeeEquipmentComponent} from "./employees/equipment/employee-equipment.component";
 import {EmployeeListComponent} from "./employees/employee-list/employee-list.component";
 import {EmployeeEquipmentsListComponent} from "./employee-equipment-list/employee-equipments-list.component";
 import {AvailableEquipmentListComponent} from "./available-equipment-list/available-equipment-list.component";
@@ -16,12 +18,13 @@ const routes: Routes = [
   {path: 'management-users/edit/:id', component: EditComponent},
   {path: 'management-users/add', component: AddUserComponent},
   {path: 'edit/:id', component: EditComponent},
-  {path: 'equipment', component:EquipmentsComponent},
+  {path: 'equipment', component: EquipmentsComponent},
   {path: 'resetPassword', component: UserProfileComponent},
-  {path: 'employee', component: EmployeeListComponent},
+  {path: 'employee', component: EmployeeComponent},
+  {path: 'employee/:id/equipment', component: EmployeeEquipmentComponent},
   {path: 'employeeEquipmentsList', component: EmployeeEquipmentsListComponent},
   {path: 'equipments', component: AvailableEquipmentListComponent}
-  ];
+];
 
 @NgModule({
   imports: [
@@ -30,4 +33,5 @@ const routes: Routes = [
   exports: [RouterModule],
   declarations: []
 })
-export class AppRouterModule { }
+export class AppRouterModule {
+}

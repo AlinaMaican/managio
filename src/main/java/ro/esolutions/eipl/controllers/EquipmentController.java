@@ -41,6 +41,8 @@ public class EquipmentController {
     }
 
     @PostMapping(value = "/file")
+
+    @PostMapping(value = "/importByFile")
     public ResponseEntity<Object> uploadEquipmentFromCSV(@RequestPart("file") final MultipartFile file) {
         equipmentService.uploadEquipmentFromCSV(file);
         return ResponseEntity.ok(JSON_EMPTY_BODY);

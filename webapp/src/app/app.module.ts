@@ -16,11 +16,13 @@ import {UserProfileComponent} from "./users/user-profile/user-profile.component"
 import {EmployeeService} from "./employees/employee.service";
 import {EquipmentsComponent} from "./equipments/equipments.component";
 import {EquipmentService} from "./equipments/equipment.service";
-import { PaginationComponent } from './pagination/pagination.component';
+import {PaginationComponent } from './pagination/pagination.component';
 import {EmployeeListComponent} from "./employees/employee-list/employee-list.component";
-import { EmployeeEquipmentsListComponent } from './employee-equipment-list/employee-equipments-list.component';
+import {EmployeeEquipmentsListComponent } from './employee-equipment-list/employee-equipments-list.component';
 import {EmployeeEquipmentService} from "./employee-equipment-list/employeeEquipment.service";
-import { AvailableEquipmentListComponent } from './available-equipment-list/available-equipment-list.component';
+import {AvailableEquipmentListComponent } from './available-equipment-list/available-equipment-list.component';
+import {EmployeeComponent} from './employees/employee.component';
+import {EmployeeEquipmentComponent} from './employees/equipment/employee-equipment.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { AvailableEquipmentListComponent } from './available-equipment-list/avai
     PaginationComponent,
     EmployeeListComponent,
     EmployeeEquipmentsListComponent,
-    AvailableEquipmentListComponent
+    EmployeeComponent,
+    EmployeeEquipmentComponent
   ],
   imports: [
     BrowserModule,
