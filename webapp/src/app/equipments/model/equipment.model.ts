@@ -9,6 +9,7 @@ export class EquipmentModel {
               public size: string,
               public sex: string,
               public startDate: string,
-              public endDate: string
+              public endDate: string,
+              public isChecked: boolean = false
   ) {}
 }

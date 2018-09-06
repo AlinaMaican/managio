@@ -21,16 +21,16 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let availableEquipment of availableEquipments;">
-        <td>{{availableEquipment.name}}</td>
-        <td>{{availableEquipment.code}}</td>
-        <td>{{availableEquipment.mabecCode}}</td>
-        <td>{{availableEquipment.protectionType}}</td>
-        <td>{{availableEquipment.size}}</td>
-        <td>{{availableEquipment.sex}}</td>
-        <td><input type="checkbox"  (change)="activateDates($event)"></td>
-        <td><input type="date" [(ngModel)]="availableEquipment.startDate" [disabled]="datesEditable"></td>
-        <td><input type="date" [(ngModel)]="availableEquipment.endDate" [disabled]="datesEditable"></td>
+      <tr *ngFor="let equipment of equipments;">
+        <td>{{equipment.name}}</td>
+        <td>{{equipment.code}}</td>
+        <td>{{equipment.mabecCode}}</td>
+        <td>{{equipment.protectionType}}</td>
+        <td>{{equipment.size}}</td>
+        <td>{{equipment.sex}}</td>
+        <td><input type="checkbox" [(ngModel)]="equipment.isChecked"></td>
+        <td><input type="date" [disabled]="!equipment.isChecked"></td>
+        <td><input type="date" [disabled]="!equipment.isChecked"></td>
       </tr>
       </tbody>
     </table>

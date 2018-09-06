@@ -1,9 +1,8 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {EquipmentModel} from "../equipments/model/equipment.model";
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {EquipmentService} from "../equipments/equipment.service";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-available-equipment-list',
@@ -12,9 +11,10 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class AvailableEquipmentListComponent implements OnInit {
 
-  availableEquipments: EquipmentModel[];
+  equipments: EquipmentModel[];
+  private availableEquipmentId: number;
   private equipmentSubscription: Subscription;
-  datesEditable = true;
+  equipment: EquipmentModel;
 
   constructor(private route: ActivatedRoute, private equipmentService: EquipmentService, private router: Router) {
   }
@@ -22,21 +22,24 @@ export class AvailableEquipmentListComponent implements OnInit {
   ngOnInit() {
     this.equipmentSubscription = this.equipmentService.getAllAvailableEquipments().subscribe(
       (equipments: EquipmentModel[]) => {
-        this.availableEquipments = equipments;
+        this.equipments = equipments;
       }
     );
   }
 
-  activateDates(event) {
-    if (event.target.checked) {
-      this.datesEditable = false;
-    } else {
-      this.datesEditable = true;
+  enableDates(event) {
+    if(event.target.checked) {
+      this.equipment.isChecked = true;
     }
   }
+  // activateDates(event, availableEquipmentId) {
+  //   if (event.target.checked) {
+  //     query(isNumber(":startDate"),)
+  //     // var target = event.target;
+  //     // var idAttribute = target.attributes.id
+  //
+  //
+  // }
+  // }
 
-
-  updateEquipment() {
-
-  }
 }

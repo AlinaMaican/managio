@@ -20,7 +20,7 @@ const routes: Routes = [
   {path: 'resetPassword', component: UserProfileComponent},
   {path: 'employee', component: EmployeeListComponent},
   {path: 'employeeEquipmentsList', component: EmployeeEquipmentsListComponent},
-  {path: 'availableEquipments', component: AvailableEquipmentListComponent}
+  {path: 'equipments', component: AvailableEquipmentListComponent}
   ];
 
 @NgModule({
