@@ -8,7 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ro.esolutions.eipl.entities.User;
-import ro.esolutions.eipl.exceptions.ResourceNotFound;
+import ro.esolutions.eipl.exceptions.ResourceNotFoundException;
 import ro.esolutions.eipl.mappers.UserMapper;
 import ro.esolutions.eipl.mappers.UserWithPasswordMapper;
 import ro.esolutions.eipl.models.UserModel;
@@ -70,10 +70,10 @@ public class UserService {
     }
 
     /**
-     * @throws ResourceNotFound RuntimeException when there is no user with given id
+     * @throws ResourceNotFoundException RuntimeException when there is no user with given id
      */
     private User findByIdOrThrow(final Long id) {
-        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFound(id, User.class.getName()));
+        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id, User.class.getName()));
     }
 
     private void setNewPassword(final User user, final String newPassword) {

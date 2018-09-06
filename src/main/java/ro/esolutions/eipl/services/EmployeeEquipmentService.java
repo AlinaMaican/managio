@@ -4,6 +4,8 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ro.esolutions.eipl.entities.EmployeeEquipment;
+import ro.esolutions.eipl.exceptions.ResourceNotFoundException;
 import ro.esolutions.eipl.mappers.EmployeeEquipmentMapper;
 import ro.esolutions.eipl.mappers.EmployeeEquipmentReportMapper;
 import ro.esolutions.eipl.models.EmployeeEquipmentModel;
@@ -13,6 +15,9 @@ import ro.esolutions.eipl.repositories.EmployeeEquipmentRepository;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static ro.esolutions.eipl.mappers.EmployeeEquipmentMapper.fromEntityToModel;
+import static ro.esolutions.eipl.mappers.EmployeeEquipmentMapper.fromModelToEntity;
 
 @Service
 @Transactional
@@ -52,4 +57,14 @@ public class EmployeeEquipmentService {
                 .collect(Collectors.joining());
     }
 
+
+    public EmployeeEquipmentModel updateEmployeeEquipment(EmployeeEquipmentModel employeeEquipment) {
+        getByIdOrThrow(employeeEquipment.getId());
+        return fromEntityToModel(employeeEquipmentRepository.save(fromModelToEntity(employeeEquipment)));
+    }
+
+    private EmployeeEquipment getByIdOrThrow(final long id) {
+        return employeeEquipmentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(id, EmployeeEquipment.class.getName()));
+    }
 }

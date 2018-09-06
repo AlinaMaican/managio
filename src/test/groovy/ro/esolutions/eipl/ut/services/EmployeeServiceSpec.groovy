@@ -1,5 +1,6 @@
 package ro.esolutions.eipl.ut.services
 
+import ro.esolutions.eipl.generators.EmployeeModelGenerator
 import org.springframework.mock.web.MockMultipartFile
 import ro.esolutions.eipl.repositories.EmployeeRepository
 import ro.esolutions.eipl.services.EmployeeService
@@ -7,6 +8,7 @@ import spock.lang.Specification
 import spock.lang.Unroll
 
 import static ro.esolutions.eipl.generators.EmployeeGenerator.aEmployee
+import static ro.esolutions.eipl.generators.EmployeeModelGenerator.aEmployeeModel
 import static ro.esolutions.eipl.generators.EmployeeModelGenerator.aEmployeeModel
 
 
@@ -25,6 +27,21 @@ class EmployeeServiceSpec extends Specification {
         and:
         1 * employeeRepository.findAll() >> [aEmployee()]
         0 * _
+    }
+    def "getFilteredEmployees"(){
+        given:
+        def  searchValue='Nam'
+
+        when:
+        def result = employeeService.getFilteredEmployees(searchValue)
+
+        then:
+        result == [aEmployeeModel()]
+
+        and:
+        1* employeeRepository.findDistinctByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(searchValue,searchValue) >> [aEmployee()]
+        0* _
+
     }
 
     @Unroll
