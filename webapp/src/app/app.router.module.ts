@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {ExtraOptions, RouterModule, Routes} from "@angular/router";
+import {RouterModule, Routes} from "@angular/router";
 import {UserListComponent} from "./users/user-list.component";
 import {UserProfileComponent} from "./users/user-profile/user-profile.component";
 import {EditComponent} from "./users/edit/edit.component";
@@ -7,7 +7,6 @@ import {AddUserComponent} from "./users/add-user/add-user.component";
 import {EquipmentsComponent} from "./equipments/equipments.component";
 import {EmployeeComponent} from "./employees/employee.component";
 import {EmployeeEquipmentComponent} from "./employees/equipment/employee-equipment.component";
-import {EmployeeListComponent} from "./employees/employee-list/employee-list.component";
 import {EmployeeEquipmentsListComponent} from "./employee-equipment-list/employee-equipments-list.component";
 import {AvailableEquipmentListComponent} from "./available-equipment-list/available-equipment-list.component";
 

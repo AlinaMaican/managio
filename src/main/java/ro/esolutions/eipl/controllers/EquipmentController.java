@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.validation.BindingResult;
+import ro.esolutions.eipl.mappers.EquipmentMapper;
+import ro.esolutions.eipl.models.EmployeeEquipmentModel;
 import ro.esolutions.eipl.models.EquipmentModel;
 import ro.esolutions.eipl.models.UserModel;
 import ro.esolutions.eipl.services.EquipmentService;
@@ -40,8 +42,6 @@ public class EquipmentController {
         return ResponseEntity.ok(equipmentService.addNewEquipment(equipmentModel));
     }
 
-    @PostMapping(value = "/file")
-
     @PostMapping(value = "/importByFile")
     public ResponseEntity<Object> uploadEquipmentFromCSV(@RequestPart("file") final MultipartFile file) {
         equipmentService.uploadEquipmentFromCSV(file);
@@ -53,4 +53,9 @@ public class EquipmentController {
         return ResponseEntity.ok(equipmentService.getAllAvailableEquipments());
     }
 
+    @PostMapping("/saveAllocatedEquipments")
+    public ResponseEntity<Object> saveAllocatedEquipments(@RequestBody List<EmployeeEquipmentModel> allocatedEquipments) {
+        equipmentService.saveAllocatedEquipments(allocatedEquipments);
+        return ResponseEntity.ok(JSON_EMPTY_BODY);
+    }
 }

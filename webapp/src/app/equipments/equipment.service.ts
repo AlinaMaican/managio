@@ -28,4 +28,10 @@ export class EquipmentService {
   getAllAvailableEquipments() {
     return this.httpClient.get<EquipmentModel[]>(this.equipmentUrl + '/available');
   }
+
+  saveAllocatedEquipments(selectedEquipments: EquipmentModel[]) {
+    
+    debugger;
+    return this.httpClient.post<EquipmentModel[]>(this.equipmentUrl + '/saveAllocatedEquipments', selectedEquipments, {});
+  }
 }

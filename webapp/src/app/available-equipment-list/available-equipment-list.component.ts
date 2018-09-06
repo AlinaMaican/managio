@@ -29,4 +29,12 @@ export class AvailableEquipmentListComponent implements OnInit {
   setEquipments(equipment: EquipmentModel){
       this.selectedEquipments.push(equipment);
   }
+
+  allocateEquipmentsToEmployee() {
+    debugger;
+    this.equipmentService.saveAllocatedEquipments(this.selectedEquipments).subscribe(() => {
+        this.router.navigate(['/#/equipments']);
+      }
+    );
+  }
 }

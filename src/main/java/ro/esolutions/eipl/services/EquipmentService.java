@@ -12,6 +12,8 @@ import ro.esolutions.eipl.entities.Equipment;
 import ro.esolutions.eipl.exceptions.EquipmentUploadFileNotValid;
 import ro.esolutions.eipl.mappers.EquipmentMapper;
 import ro.esolutions.eipl.models.EquipmentModel;
+import ro.esolutions.eipl.repositories.EmployeeEquipmentRepository;
+import ro.esolutions.eipl.repositories.EmployeeRepository;
 import ro.esolutions.eipl.repositories.EquipmentRepository;
 import ro.esolutions.eipl.types.MabecCode;
 
@@ -31,6 +33,10 @@ public class EquipmentService {
 
     @NonNull
     private final EquipmentRepository equipmentRepository;
+    @NonNull
+    private final EmployeeEquipmentRepository employeeEquipmentRepository;
+    @NonNull
+    private final EmployeeRepository employeeRepository;
 
     public List<EquipmentModel> getAllEquipments() {
         return equipmentRepository.findAll()
@@ -69,4 +75,18 @@ public class EquipmentService {
                 .map(EquipmentMapper::fromEntityToModel)
                 .collect(Collectors.toList());
     }
+
+//    public void saveAllocatedEquipments(List<EmployeeEquipmentModel> allocatedEquipments) {
+//        allocatedEquipments.stream().forEach(employeeEquipmentModel -> {
+//            EquipmentModel eq = EquipmentMapper.fromEntityToModel(equipmentRepository.findById(employeeEquipmentModel.getId()).get());
+//            employeeEquipmentModel.setEquipment(eq);
+//        });
+//        List<EmployeeEquipment> listToSave = allocatedEquipments.stream().map(equipmentModel -> {
+//            EmployeeEquipment employeeEquipment = EmployeeEquipmentMapper.fromModelToEntity(equipmentModel);
+//            employeeEquipment.setEmployee(allocatedEquipments);
+//            employeeEquipment.getEquipment().setIsAvailable(false);
+//            return employeeEquipment;
+//        }).collect(Collectors.toList());
+//        employeeEquipmentRepository.saveAll(listToSave);
+//    }
 }
