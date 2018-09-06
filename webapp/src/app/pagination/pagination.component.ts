@@ -19,6 +19,8 @@ export class PaginationComponent<T> implements OnInit, OnDestroy {
   pageSize: number = this.DEFAULT_PAGE_SIZE;
   totalPages: number;
 
+  paramsSubscription: Subscription;
+
   @Input() service: Service<T>;
   @Input() subscription: Subscription;
   @Input() router: Router;
@@ -27,11 +29,8 @@ export class PaginationComponent<T> implements OnInit, OnDestroy {
 
   @Output() retrieveContent = new EventEmitter<T[]>();
 
-  constructor() {
-  }
-
   ngOnInit() {
-    this.route.queryParams.subscribe((params) => {
+    this.paramsSubscription = this.route.queryParams.subscribe((params) => {
       this.pageNumber = +params['page'];
       this.pageSize = +params['size'];
       if (isNaN(this.pageNumber) || isNaN(this.pageSize) ||
@@ -81,6 +80,7 @@ export class PaginationComponent<T> implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    this.paramsSubscription.unsubscribe();
   }
 
 }

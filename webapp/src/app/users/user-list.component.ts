@@ -30,7 +30,7 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   }
 
-  getPaginatedList(paginatedList: any[]) {
+  getPaginatedList(paginatedList: User[]) {
     this.users = paginatedList;
   }
 }

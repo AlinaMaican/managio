@@ -5,7 +5,7 @@ import {HttpClient} from "../../node_modules/@angular/common/http";
 export class Service<T> {
 
   httpClient: HttpClient;
-  basicUrl: String;
+  basicUrl: string;
 
   getAll(page: number, size: number): Observable<Page<T>> {
     return this.httpClient.get<Page<T>>(this.basicUrl + '/all?page=' + page + '&size=' + size);

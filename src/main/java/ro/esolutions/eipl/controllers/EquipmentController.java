@@ -2,6 +2,8 @@ package ro.esolutions.eipl.controllers;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,10 +27,11 @@ public class EquipmentController {
     @NonNull
     private final EquipmentService equipmentService;
 
-
     @GetMapping("/all")
-    public ResponseEntity<List<EquipmentModel>> getAllEquipments() {
-        return ResponseEntity.ok(equipmentService.getAllEquipments());
+    public ResponseEntity<Page<EquipmentModel>> getAllEquipments(@RequestParam(defaultValue = "0", name = "page") int page,
+                                                       @RequestParam(defaultValue = "5", name = "size") int size) {
+
+        return ResponseEntity.ok(equipmentService.getAllEquipments(PageRequest.of(page, size)));
     }
 
     @PostMapping
