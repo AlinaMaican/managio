@@ -13,6 +13,8 @@ public final class EmployeeEquipmentMapper {
                 .id(employeeEquipment.getId())
                 .employee(EmployeeMapper.fromEntityToModel(employeeEquipment.getEmployee()))
                 .equipment(EquipmentMapper.fromEntityToModel(employeeEquipment.getEquipment()))
+                .startDate(employeeEquipment.getStartDate())
+                .endDate(employeeEquipment.getEndDate())
                 .build();
     }
 
@@ -21,6 +23,8 @@ public final class EmployeeEquipmentMapper {
                 .id(employeeEquipmentModel.getId())
                 .employee(EmployeeMapper.fromModelToEntity(employeeEquipmentModel.getEmployee()))
                 .equipment(EquipmentMapper.fromModelToEntity(employeeEquipmentModel.getEquipment()))
+                .startDate(employeeEquipmentModel.getStartDate())
+                .endDate(employeeEquipmentModel.getEndDate())
                 .build();
     }
 }

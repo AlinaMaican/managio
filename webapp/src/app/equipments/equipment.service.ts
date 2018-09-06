@@ -15,8 +15,8 @@ export class EquipmentService {
     return this.httpClient.get<EquipmentModel[]>(this.equipmentUrl + '/all');
   }
 
-  addEquipment(newEquipmentModel:EquipmentModel ):Observable<{}>{
-    return this.httpClient.post<EquipmentModel>(this.equipmentUrl,newEquipmentModel,{});
+  addEquipment(newEquipmentModel: EquipmentModel): Observable<{}> {
+    return this.httpClient.post<EquipmentModel>(this.equipmentUrl, newEquipmentModel, {});
   }
 
   saveFile(importedFile: File){

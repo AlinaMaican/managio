@@ -21,7 +21,7 @@ import {PaginationComponent } from './pagination/pagination.component';
 import {EmployeeEquipmentsListComponent } from './employee-equipments-list/employee-equipments-list.component';
 import {ExpiringEquipmentsComponent} from "./reports/expiring-equipments/expiring-equipment.component";
 import {ExpiringEquipmentService} from "./reports/expiring-equipments/expiring-equipment.service";
-
+import {EmployeeEquipmentComponent} from './employees/equipment/employee-equipment.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,8 @@ import {ExpiringEquipmentService} from "./reports/expiring-equipments/expiring-e
     EmployeeEquipmentsListComponent,
     ExpiringEquipmentsComponent,
     EquipmentsComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    EmployeeEquipmentComponent
   ],
   imports: [
     BrowserModule,
