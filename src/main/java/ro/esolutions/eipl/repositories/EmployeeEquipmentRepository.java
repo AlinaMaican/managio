@@ -10,4 +10,6 @@ public interface EmployeeEquipmentRepository extends JpaRepository<EmployeeEquip
 
     List<EmployeeEquipment> findByEndDateLessThan(LocalDate endDate);
 
+    List<EmployeeEquipment> getEmployeeEquipmentByEmployee_Id(Long employeeId);
+
 }
