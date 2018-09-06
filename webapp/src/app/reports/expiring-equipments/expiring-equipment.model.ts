@@ -1,4 +1,3 @@
-
 export class ExpiringEquipmentModel {
   constructor(public lastName: string,
               public firstName: string,
@@ -7,7 +6,6 @@ export class ExpiringEquipmentModel {
               public protectionType: string,
               public size: string,
               public endDate: string
-
   ){}
 
 }

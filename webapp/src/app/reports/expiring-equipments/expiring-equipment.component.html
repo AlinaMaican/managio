@@ -1,5 +1,6 @@
+<div class="container-fluid">
 <h1 align="center" >Expiring Equipments</h1>
-<div class="row employee-list" >
+<div class="row reports-list" >
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb breadcrumb-white-14">
       <li class="breadcrumb-item"><a href="#">EIPL</a></li>
@@ -7,6 +8,7 @@
       <li class="breadcrumb-item active" aria-current="page">Expiring Equipments</li>
     </ol>
   </nav>
+</div>
 <div class="row">
   <table class="table">
     <thead>
@@ -22,13 +24,14 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="">
-      <td>{{}}</td>
-      <td>{{}}</td>
-      <td>{{}}</td>
-      <td>{{}}</td>
-      <td>{{}}</td>
-      <td>{{}}</td>
+    <tr *ngFor="let expiringEquipment of this.expiringEquipments">
+      <td>{{expiringEquipment.lastName}}</td>
+      <td>{{expiringEquipment.firstName}}</td>
+      <td>{{expiringEquipment.equipmentName}}</td>
+      <td>{{expiringEquipment.equipmentCode}}</td>
+      <td>{{expiringEquipment.protectionType}}</td>
+      <td>{{expiringEquipment.size}}</td>
+      <td>{{expiringEquipment.endDate}}</td>
       <td></td>
     </tr>
     </tbody>

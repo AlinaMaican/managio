@@ -13,8 +13,8 @@ import java.time.LocalDate;
 @Builder
 public class EmployeeEquipmentReportModel {
 
-    private String firstName;
     private String lastName;
+    private String firstName;
     private String equipmentName;
     private String equipmentCode;
     private String protectionType;

@@ -40,7 +40,6 @@ public class EquipmentController {
         return ResponseEntity.ok(equipmentService.addNewEquipment(equipmentModel));
     }
 
-
     @PostMapping(value = "/importByFile")
     public ResponseEntity<Object> uploadEquipmentFromCSV(@RequestPart("file") final MultipartFile file) {
         equipmentService.uploadEquipmentFromCSV(file);

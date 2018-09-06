@@ -2,12 +2,7 @@ import {Component, OnDestroy, OnInit} from "@angular/core";
 import {Subscription} from "rxjs";
 import {ExpiringEquipmentModel} from "./expiring-equipment.model";
 import {ExpiringEquipmentService} from "./expiring-equipment.service";
-import {EmployeeEquipmentModel} from "../../employee-equipments-list/employee-equipment.model";
-import {ActivatedRoute, Router} from "@angular/router";
-import {EmployeeService} from "../../employees/employee.service";
-import {FormBuilder} from "@angular/forms";
-import {EmployeeEquipmentService} from "../../employee-equipments-list/employeeEquipment.service";
-
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-expiring-equipment',
@@ -17,17 +12,14 @@ import {EmployeeEquipmentService} from "../../employee-equipments-list/employeeE
 export class ExpiringEquipmentsComponent implements OnInit, OnDestroy{
 
   private employeeEquipmentSubscription: Subscription;
-  employeesEquipments: ExpiringEquipmentModel[];
+  expiringEquipments: ExpiringEquipmentModel[];
 
-  constructor(private route: ActivatedRoute,
-              private expiringEquipmentService: ExpiringEquipmentService,
-              private router: Router,
-              private formBuilder: FormBuilder) {
+  constructor(private route: ActivatedRoute, private expiringEquipmentService: ExpiringEquipmentService) {
   }
   ngOnInit(): void {
     this.employeeEquipmentSubscription = this.expiringEquipmentService.getAllExpiringEquipment().subscribe(
       (employeeEquipment: ExpiringEquipmentModel[]) => {
-        this.employeesEquipments = employeeEquipment;
+        this.expiringEquipments = employeeEquipment;
       }
     )
   }
