@@ -27,7 +27,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.userSubscription.unsubscribe();
+
   }
 
   getPaginatedList(paginatedList: any[]) {

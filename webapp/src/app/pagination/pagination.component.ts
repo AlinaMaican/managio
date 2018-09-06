@@ -1,8 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {Page} from "../users/model/page.model";
-import {isUndefined} from "util";
 import {Service} from "../service";
 
 @Component({
@@ -10,7 +9,7 @@ import {Service} from "../service";
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.css']
 })
-export class PaginationComponent<T> implements OnInit {
+export class PaginationComponent<T> implements OnInit, OnDestroy {
 
   DEFAULT_PAGE_NUMBER: number = 1;
   DEFAULT_PAGE_SIZE: number = 5;
@@ -26,7 +25,7 @@ export class PaginationComponent<T> implements OnInit {
   @Input() baseURL: string;
   @Input() route: ActivatedRoute;
 
-  @Output() retrieveContent = new EventEmitter<any[]>();
+  @Output() retrieveContent = new EventEmitter<T[]>();
 
   constructor() {
   }
@@ -68,7 +67,6 @@ export class PaginationComponent<T> implements OnInit {
 
   getAll() {
     this.router.navigate([this.baseURL], { queryParams: { page: this.pageNumber, size: this.pageSize } });
-    if(!isUndefined(this.subscription)) this.subscription.unsubscribe();
     this.subscription = this.service.getAll(this.pageNumber - 1, this.pageSize).subscribe(
       (page: Page<T>) => {
         this.totalPages = page.totalPages;
@@ -79,6 +77,10 @@ export class PaginationComponent<T> implements OnInit {
         }
       }
     );
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }
