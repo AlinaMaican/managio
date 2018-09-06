@@ -21,6 +21,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EmployeeEquipmentController {
 
+    public static final String contentType = "application/octet-stream";
+
     @NonNull
     private final EmployeeEquipmentService employeeEquipmentService;
 
@@ -41,8 +43,6 @@ public class EmployeeEquipmentController {
 
     @GetMapping("/reports/expiringReports/download")
     public ResponseEntity<Object> downloadFile() {
-        String contentType = "application/octet-stream";
-
         String CSVString = employeeEquipmentService.exportCSV();
 
         return ResponseEntity.ok()

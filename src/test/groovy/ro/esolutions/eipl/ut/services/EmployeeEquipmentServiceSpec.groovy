@@ -2,13 +2,18 @@ package ro.esolutions.eipl.ut.services
 
 import ro.esolutions.eipl.entities.EmployeeEquipment
 import ro.esolutions.eipl.exceptions.ResourceNotFoundException
+import ro.esolutions.eipl.mappers.EquipmentMapper
 import ro.esolutions.eipl.repositories.EmployeeEquipmentRepository
 import ro.esolutions.eipl.services.EmployeeEquipmentService
 import spock.lang.Specification
 import spock.lang.Subject
 
+import java.time.LocalDate
+
 import static ro.esolutions.eipl.generators.EmployeeEquipmentGenerator.aEmployeeEquipment
 import static ro.esolutions.eipl.generators.EmployeeEquipmentModelGenerator.aEmployeeEquipmentModel
+
+import static ro.esolutions.eipl.generators.EmployeeEquipmentReportModelGenerator.aEmployeeEquipmentReportModel
 
 class EmployeeEquipmentServiceSpec extends Specification {
 
@@ -69,4 +74,31 @@ class EmployeeEquipmentServiceSpec extends Specification {
         0 * _
 
     }
+
+    def 'getAllEmployeesEquipmentsReport'() {
+        when:
+        def result = employeeEquipmentService.getAllEmployeesEquipmentsReport()
+
+        then:
+        result == [aEmployeeEquipmentReportModel()]
+
+        and:
+        1 * employeeEquipmentRepository.findByEndDateLessThan(LocalDate.now().plusDays(7)) >> [aEmployeeEquipment()]
+        0 * _
+    }
+
+
+    def 'exportCSV'() {
+        when:
+        def result = employeeEquipmentService.exportCSV()
+
+        then:
+        result == 'firstName,lastName,casca,code123,cap,S,2018-09-04'
+
+        and:
+        1 * employeeEquipmentRepository.findByEndDateLessThan(LocalDate.now().plusDays(7)) >> [aEmployeeEquipment()]
+        0 * _
+    }
+
+
 }

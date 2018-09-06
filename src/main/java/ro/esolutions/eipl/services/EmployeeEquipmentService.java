@@ -54,7 +54,7 @@ public class EmployeeEquipmentService {
         return employeeEquipmentRepository.findByEndDateLessThan(LocalDate.now().plusDays(days))
                 .stream()
                 .map(EmployeeEquipmentReportMapper::fromEntityToString)
-                .collect(Collectors.joining());
+                .collect(Collectors.joining("\n"));
     }
 
 
