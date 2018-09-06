@@ -3,7 +3,7 @@ import { Subscription} from "rxjs";
 import { Employee} from "./employee.model";
 import { EmployeeService} from "./employee.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-employee',
@@ -17,6 +17,7 @@ export class EmployeeComponent implements OnInit,OnDestroy {
   employeeForm: FormGroup;
   file: File;
   groupedEmployees: Employee[][];
+  stringForm: FormGroup;
 
   constructor(private route: ActivatedRoute, private employeeService: EmployeeService, private router: Router,
               private formBuilder: FormBuilder) {
@@ -25,15 +26,31 @@ export class EmployeeComponent implements OnInit,OnDestroy {
 
   ngOnInit(): void {
     this.employeeSubscription = this.employeeService.getAllEmployees().subscribe(
-      (employee: Employee[]) => {
-        this.employees = employee;
-        this.groupedEmployees = [];
+      (employee: Employee[]) => this.employeesGrid(employee));
+    this.initForm();
+  }
 
-        for (let i = 0; i < this.employees.length; i = i + 4) {
-          this.groupedEmployees.push(this.employees.slice(i, i + 4))
-        }
-      }
-    );
+  initForm() {
+    this.stringForm = new FormGroup({
+      'searchValue': new FormControl('')
+    });
+  }
+
+  fill():void{
+    this.employeeSubscription.unsubscribe();
+    this.employeeSubscription = this.employeeService.getFilteredEmployees(this.stringForm.get("searchValue").value).subscribe(
+      (employee: Employee[]) => this.employeesGrid(employee));
+  }
+
+  employeesGrid(employee: Employee[]): void{
+
+    this.employees = employee;
+    this.groupedEmployees = [];
+
+    for (let i = 0; i < this.employees.length; i = i + 4) {
+      this.groupedEmployees.push(this.employees.slice(i, i + 4))
+    }
+
   }
 
   ngOnDestroy(): void {
