@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ro.esolutions.eipl.entities.EmployeeEquipment;
-import ro.esolutions.eipl.exceptions.ResourceNotFound;
+import ro.esolutions.eipl.exceptions.ResourceNotFoundException;
 import ro.esolutions.eipl.mappers.EmployeeEquipmentMapper;
 import ro.esolutions.eipl.models.EmployeeEquipmentModel;
 import ro.esolutions.eipl.repositories.EmployeeEquipmentRepository;
@@ -45,6 +45,6 @@ public class EmployeeEquipmentService {
 
     private EmployeeEquipment getByIdOrThrow(final long id) {
         return employeeEquipmentRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFound(id, EmployeeEquipment.class.getName()));
+                .orElseThrow(() -> new ResourceNotFoundException(id, EmployeeEquipment.class.getName()));
     }
 }

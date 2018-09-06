@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import ro.esolutions.eipl.exceptions.BindingValidationException;
-import ro.esolutions.eipl.exceptions.ResourceNotFound;
+import ro.esolutions.eipl.exceptions.ResourceNotFoundException;
 import ro.esolutions.eipl.models.FieldErrorModel;
 
 import java.util.HashMap;
@@ -31,8 +31,8 @@ import java.util.Optional;
 public class GlobalRestAdvices extends ResponseEntityExceptionHandler {
     private final MessageSource messageSource;
 
-    @ExceptionHandler({ResourceNotFound.class})
-    protected ResponseEntity<Object> handleResourceNotFound(ResourceNotFound ex) {
+    @ExceptionHandler({ResourceNotFoundException.class})
+    protected ResponseEntity<Object> handleResourceNotFound(ResourceNotFoundException ex) {
         log.debug(ex.getMessage(), ex);
         return ResponseEntity.notFound().build();
     }
