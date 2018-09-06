@@ -47,4 +47,8 @@ public class EmployeeEquipmentService {
         return employeeEquipmentRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFound(id, EmployeeEquipment.class.getName()));
     }
+
+    public void deleteEmployeeEquipmentById(long id) {
+        employeeEquipmentRepository.deleteById(id);
+    }
 }
