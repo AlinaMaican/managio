@@ -1,10 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {EquipmentService} from "../../equipments/equipment.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Subscription} from "rxjs/internal/Subscription";
-import {EquipmentModel} from "../../equipments/model/equipment.model";
 import {EmployeeEquipmentService} from "../../employee-equipment/employee-equipment.service";
 import {EmployeeEquipmentModel} from "../../employee-equipment/employee-equipment.model";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-equipment',
@@ -16,6 +15,9 @@ export class EmployeeEquipmentComponent implements OnInit, OnDestroy {
   private employeeEquipmentSubscription: Subscription;
   private employeeEquipmentList: EmployeeEquipmentModel[];
 
+  private editEquipmentForm: FormGroup;
+  private editTargetObject: EmployeeEquipmentModel;
+
   constructor(private employeeEquipmentService: EmployeeEquipmentService,
               private route: ActivatedRoute,
               private router: Router) {
@@ -25,9 +27,11 @@ export class EmployeeEquipmentComponent implements OnInit, OnDestroy {
     this.route.params.subscribe((params: Params) => {
       this.employeeId = +params['id'];
     });
-    this.employeeEquipmentSubscription = this.employeeEquipmentService.getEquipmentByEmployeeId(this.employeeId).subscribe(
-      (employeeEquipments) => {
-        this.employeeEquipmentList = employeeEquipments;
+    this.loadEquipment();
+    this.editEquipmentForm = new FormGroup(
+      {
+        'startDate': new FormControl('', Validators.required),
+        'endDate': new FormControl('', Validators.required),
       }
     );
   }
@@ -36,4 +40,34 @@ export class EmployeeEquipmentComponent implements OnInit, OnDestroy {
     this.employeeEquipmentSubscription.unsubscribe();
   }
 
+  updateModal(employeeEquipment: EmployeeEquipmentModel) {
+    this.editEquipmentForm.patchValue({
+      'startDate': employeeEquipment.startDate,
+      'endDate': employeeEquipment.endDate
+    });
+    this.editTargetObject = employeeEquipment;
+  }
+
+  private loadEquipment() {
+    if (this.employeeEquipmentSubscription) {
+      this.employeeEquipmentSubscription.unsubscribe();
+    }
+    this.employeeEquipmentSubscription = this.employeeEquipmentService.getEquipmentByEmployeeId(this.employeeId).subscribe(
+      (employeeEquipments) => {
+        this.employeeEquipmentList = employeeEquipments;
+      }
+    );
+  }
+
+  updateEmployeeEquipment() {
+    if (!this.editEquipmentForm || this.editEquipmentForm.invalid) return;
+    let editedObj = Object.assign({}, this.editTargetObject);
+    editedObj.startDate = this.editEquipmentForm.value.startDate;
+    editedObj.endDate = this.editEquipmentForm.value.endDate;
+    this.employeeEquipmentService.updateEmployeeEquipment(editedObj).subscribe(
+      () => {
+        this.loadEquipment();
+      }
+    );
+  }
 }

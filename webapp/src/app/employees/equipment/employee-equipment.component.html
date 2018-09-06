@@ -24,8 +24,38 @@
     <td>{{employeeEquipment.startDate}}</td>
     <td>{{employeeEquipment.endDate}}</td>
     <td>{{employeeEquipment.equipment.sex}}</td>
-    <td><i class="fas fa-pencil-alt"></i>&nbsp;
+    <td><i class="fas fa-pencil-alt" (click)="updateModal(employeeEquipment)" data-toggle="modal"
+           data-target="#editEmployeeEquipment"></i>&nbsp;
       <i class="fas fa-trash-alt"></i></td>
   </tr>
   </tbody>
 </table>
+
+<!-- Modal -->
+<div class="modal" id="editEmployeeEquipment" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit equipment</h5>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editEquipmentForm">
+          <label>
+            Start date
+            <input type="date" name="start-date" class="form-control" formControlName="startDate">
+          </label>
+
+          <label>
+            End date
+            <input type="date" name="end-date" class="form-control" formControlName="endDate">
+          </label>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateEmployeeEquipment()">Submit
+        </button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
