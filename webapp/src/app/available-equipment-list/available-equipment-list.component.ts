@@ -12,9 +12,8 @@ import {EquipmentService} from "../equipments/equipment.service";
 export class AvailableEquipmentListComponent implements OnInit {
 
   equipments: EquipmentModel[];
-  private availableEquipmentId: number;
   private equipmentSubscription: Subscription;
-  equipment: EquipmentModel;
+  selectedEquipments: EquipmentModel[] = [];
 
   constructor(private route: ActivatedRoute, private equipmentService: EquipmentService, private router: Router) {
   }
@@ -27,19 +26,7 @@ export class AvailableEquipmentListComponent implements OnInit {
     );
   }
 
-  enableDates(event) {
-    if(event.target.checked) {
-      this.equipment.isChecked = true;
-    }
+  setEquipments(equipment: EquipmentModel){
+      this.selectedEquipments.push(equipment);
   }
-  // activateDates(event, availableEquipmentId) {
-  //   if (event.target.checked) {
-  //     query(isNumber(":startDate"),)
-  //     // var target = event.target;
-  //     // var idAttribute = target.attributes.id
-  //
-  //
-  // }
-  // }
-
 }

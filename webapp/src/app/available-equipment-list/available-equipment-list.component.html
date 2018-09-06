@@ -5,7 +5,7 @@
 </div>
 <div class="row">
   <div class="col-sm-10 offset-sm-1">
-      <button type="button" class="btn btn-outline-secondary float-left margin-bottom-10" (click)="updateEquipment()">Allocate equipments</button>
+      <button type="button" class="btn btn-outline-secondary float-left margin-bottom-10" data-toggle="modal"  data-target="#allocateEmployeeEquipment" >Allocate equipments</button>
     <table class="table table-hover">
       <thead>
       <tr>
@@ -28,62 +28,34 @@
         <td>{{equipment.protectionType}}</td>
         <td>{{equipment.size}}</td>
         <td>{{equipment.sex}}</td>
-        <td><input type="checkbox" [(ngModel)]="equipment.isChecked"></td>
-        <td><input type="date" [disabled]="!equipment.isChecked"></td>
-        <td><input type="date" [disabled]="!equipment.isChecked"></td>
+        <td><input type="checkbox" [(ngModel)]="equipment.isChecked" (click)="setEquipments(equipment)"></td>
+        <td><input type="date" (ngModel)="equipment.startDate" [disabled]="!equipment.isChecked"></td>
+        <td><input type="date" (ngModel)="equipment.endDate" [disabled]="!equipment.isChecked"></td>
       </tr>
       </tbody>
     </table>
   </div>
 </div>
 <!--Modal-->
-<!--<div class="modal" id="allocateEquipmentModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalTitle"-->
-     <!--aria-hidden="true">-->
-  <!--<div class="modal-dialog modal-dialog-centered modal-lg" role="document">-->
-    <!--<div class="modal-content">-->
-      <!--<div class="modal-header">-->
-        <!--<h2>Allocate equipments</h2>-->
-      <!--</div>-->
-      <!--<div class="modal-body ">-->
-        <!--<div class="col-10 offset-1">-->
-          <!--<form [formGroup]="allocateEquipments">-->
-            <!--<table class="table">-->
-              <!--<thead>-->
-              <!--<tr>-->
-                <!--<th scope="col">Name</th>-->
-                <!--<th scope="col">Size</th>-->
-                <!--<th scope="col">Sex</th>-->
-                <!--<th scope="col">Start Date</th>-->
-                <!--<th scope="col">End Date</th>-->
-              <!--</tr>-->
-              <!--</thead>-->
-              <!--<tbody>-->
-              <!--<tr *ngFor="let equipment of selectedEquipments">-->
-                <!--<td>{{equipment.name}}</td>-->
-                <!--<td>{{equipment.size}}</td>-->
-                <!--<td>{{equipment.sex}}</td>-->
-                <!--<td>-->
-                  <!--<input name="startDate" type="date"/>-->
-                <!--</td>-->
-                <!--<td>-->
-                  <!--<input name="endDate" type="date"/>-->
-                <!--</td>-->
-              <!--</tr>-->
-              <!--</tbody>-->
-            <!--</table>-->
-          <!--</form>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="modal-footer my-modal">-->
-          <!--<button class="btn btn-secondary width-140 mr-auto" data-dismiss="modal">-->
-            <!--<span>Cancel</span>-->
-          <!--</button>-->
-          <!--<button type="submit"-->
-                  <!--class="btn btn-primary width-140" [disabled]="!addequipment.valid" data-dismiss="modal"-->
-                  <!--(click)="allocateEquipment()">-->
-            <!--<span>Save</span>-->
-          <!--</button>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
+<div class="modal" id="allocateEmployeeEquipment" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Allocate equipments</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to allocate the following equipments?</p>
+        <ul>
+          <li *ngFor="let equipment of selectedEquipments;">{{equipment.name}}</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
