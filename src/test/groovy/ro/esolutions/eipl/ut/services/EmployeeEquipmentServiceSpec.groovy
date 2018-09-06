@@ -1,7 +1,7 @@
 package ro.esolutions.eipl.ut.services
 
 import ro.esolutions.eipl.entities.EmployeeEquipment
-import ro.esolutions.eipl.exceptions.ResourceNotFound
+import ro.esolutions.eipl.exceptions.ResourceNotFoundException
 import ro.esolutions.eipl.repositories.EmployeeEquipmentRepository
 import ro.esolutions.eipl.services.EmployeeEquipmentService
 import spock.lang.Specification
@@ -62,8 +62,8 @@ class EmployeeEquipmentServiceSpec extends Specification {
         when:
         employeeEquipmentService.updateEmployeeEquipment(employeeEquipment)
         then:
-        def exception = thrown(ResourceNotFound)
-        exception == new ResourceNotFound(1L, EmployeeEquipment.class.getName())
+        def exception = thrown(ResourceNotFoundException)
+        exception.getMessage() == new ResourceNotFoundException(1L, EmployeeEquipment.class.getName()).getMessage()
         and:
         1 * employeeEquipmentRepository.findById(1L) >> Optional.ofNullable(null)
         0 * _
