@@ -27,4 +27,9 @@ public class EmployeeEquipmentController {
     public ResponseEntity<List<EmployeeEquipmentReportModel>> getAllEmployeesEquipmentsReport() {
         return ResponseEntity.ok(employeeEquipmentService.getAllEmployeesEquipmentsReport());
     }
+
+    @GetMapping()
+    public ResponseEntity<List<EmployeeEquipmentModel>> getAllEmployeeEquipmentsForEmployee(@RequestParam("employeeId") Long employeeId) {
+        return ResponseEntity.ok(employeeEquipmentService.getAllEmployeeEquipmentsForEmployee(employeeId));
+    }
 }
