@@ -53,7 +53,7 @@ class EmployeeControllerSpec extends Specification {
         def result=employeeController.getFilteredEmployees(searchValue)
 
         then:
-        result == ResponseEntity.ok([aEmployeeModel()] as Set)
+        result == ResponseEntity.ok([aEmployeeModel()])
 
         and:
         1* employeeService.getFilteredEmployees(searchValue) >> [aEmployeeModel()]

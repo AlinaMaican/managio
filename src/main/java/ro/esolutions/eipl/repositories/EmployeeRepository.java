@@ -10,8 +10,9 @@ import java.util.Optional;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
-    List<Employee> findByLastNameContainingIgnoreCase(String s1);
-    List<Employee> findByFirstNameContainingIgnoreCase(String s1);
+
+    List<Employee> findDistinctByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(String firstName, String lastName);
+
     Optional<Employee> findByFirstNameAndLastName(String firstName, String lastName);
 
 }

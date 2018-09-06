@@ -1,8 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {EquipmentService} from "../../equipments/equipment.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Subscription} from "rxjs/internal/Subscription";
-import {EquipmentModel} from "../../equipments/model/equipment.model";
 import {EmployeeEquipmentService} from "../../employee-equipment/employee-equipment.service";
 import {EmployeeEquipmentModel} from "../../employee-equipment/employee-equipment.model";
 

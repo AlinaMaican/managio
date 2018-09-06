@@ -36,11 +36,10 @@ class EmployeeServiceSpec extends Specification {
         def result = employeeService.getFilteredEmployees(searchValue)
 
         then:
-        result == [aEmployeeModel()] as Set
+        result == [aEmployeeModel()]
 
         and:
-        1* employeeRepository.findByFirstNameContainingIgnoreCase(searchValue) >> [aEmployee()]
-        1* employeeRepository.findByLastNameContainingIgnoreCase(searchValue) >> [aEmployee()]
+        1* employeeRepository.findDistinctByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(searchValue,searchValue) >> [aEmployee()]
         0* _
 
     }

@@ -42,21 +42,11 @@ public class EmployeeService {
     }
 
 
-    public Set<EmployeeModel> getFilteredEmployees(String searchValue){
-        List<EmployeeModel> lastNameEmployees=employeeRepository.findByLastNameContainingIgnoreCase(searchValue)
+    public List<EmployeeModel> getFilteredEmployees(String searchValue){
+        List<EmployeeModel> resultEmployees = employeeRepository.findDistinctByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(searchValue,searchValue)
                 .stream()
                 .map(EmployeeMapper::fromEntityToModel)
                 .collect(Collectors.toList());
-
-        List<EmployeeModel> firstNameEmployees=employeeRepository.findByFirstNameContainingIgnoreCase(searchValue)
-                .stream()
-                .map(EmployeeMapper::fromEntityToModel)
-                .collect(Collectors.toList());
-
-        Set<EmployeeModel> resultEmployees=new HashSet<>();
-        resultEmployees.addAll(lastNameEmployees);
-        resultEmployees.addAll(firstNameEmployees);
-
         return resultEmployees;
     }
 

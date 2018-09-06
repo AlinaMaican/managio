@@ -3,7 +3,6 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs/internal/Observable";
 import {Injectable} from "@angular/core";
 import {Employee} from "./employee.model";
-import {EquipmentModel} from "../equipments/model/equipment.model";
 
 @Injectable()
 export class EmployeeService {
@@ -18,7 +17,7 @@ export class EmployeeService {
   }
   getFilteredEmployees(searchValue:string ):Observable<Employee[]>{
     let Param = new HttpParams();
-    Param = Param.append('Parameter',searchValue);
+    Param = Param.append('name_contains',searchValue);
     return this.httpClient.get<Employee[]>(this.employeeUrl,{params:Param});
 
   }

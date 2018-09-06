@@ -11,7 +11,6 @@ import ro.esolutions.eipl.models.EmployeeModel;
 import ro.esolutions.eipl.services.EmployeeService;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/api/employee")
@@ -27,7 +26,7 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeService.getAllEmployees());
     }
    @GetMapping
-    public ResponseEntity<Set<EmployeeModel>> getFilteredEmployees(@RequestParam("Parameter") String searchValue) {
+    public ResponseEntity<List<EmployeeModel>> getFilteredEmployees(@RequestParam("name_contains") String searchValue) {
        return ResponseEntity.ok(employeeService.getFilteredEmployees(searchValue));
    }
 
