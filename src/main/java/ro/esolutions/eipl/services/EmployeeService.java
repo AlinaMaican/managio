@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import static ro.esolutions.eipl.mappers.EmployeeMapper.fromEntityToModel;
+import static ro.esolutions.eipl.mappers.EmployeeMapper.fromModelToEntity;
 
 @Service
 @Transactional
@@ -66,5 +67,15 @@ public class EmployeeService {
             log.error(e.getMessage(), e);
             throw new EmployeeUploadFileNotValid();
         }
+    }
+
+    public EmployeeModel getEmployeeById(final Long employeeId) {
+        return fromEntityToModel(employeeRepository.findById(employeeId).get());
+    }
+
+    public EmployeeModel editEmployeeById(final Long employeeId, final EmployeeModel employeeModel) {
+        final Employee employee = fromModelToEntity(employeeModel);
+        employee.setId(employeeId);
+        return EmployeeMapper.fromEntityToModel(employeeRepository.save(employee));
     }
 }
