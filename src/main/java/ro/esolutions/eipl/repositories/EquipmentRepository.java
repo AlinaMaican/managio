@@ -9,9 +9,11 @@ import java.util.Optional;
 import java.util.stream.StreamSupport;
 
 @Repository
-public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
+public interface EquipmentRepository extends JpaRepository<Equipment,Long> {
 
-    Optional<Equipment> findByCode(String code);
+     Optional<Equipment> findByCode(String code);
 
-    List<Equipment> findAllByIsAvailable(boolean b);
+     List<Equipment> findAllByIsAvailable(boolean b);
+
+    List<Equipment> findDistinctByNameContainingIgnoreCase(String searchValue);
 }

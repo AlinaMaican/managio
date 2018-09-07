@@ -3,6 +3,7 @@ import {EquipmentModel} from "../equipments/model/equipment.model";
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {EquipmentService} from "../equipments/equipment.service";
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-available-equipment-list',
@@ -14,6 +15,7 @@ export class AvailableEquipmentListComponent implements OnInit {
   equipments: EquipmentModel[];
   private equipmentSubscription: Subscription;
   selectedEquipments: EquipmentModel[] = [];
+  stringForm: FormGroup;
 
   constructor(private route: ActivatedRoute, private equipmentService: EquipmentService, private router: Router) {
   }
@@ -24,6 +26,13 @@ export class AvailableEquipmentListComponent implements OnInit {
         this.equipments = equipments;
       }
     );
+    this.initForm();
+  }
+
+  initForm() {
+    this.stringForm = new FormGroup({
+      'searchValue': new FormControl('')
+    });
   }
 
   setEquipments(equipment: EquipmentModel){
@@ -39,5 +48,13 @@ export class AvailableEquipmentListComponent implements OnInit {
         this.router.navigate(['/#/equipments']);
       }
     );
+  }
+
+  fill(): void {
+    this.equipmentSubscription.unsubscribe();
+    this.equipmentSubscription = this.equipmentService.getFilteredEquipments(this.stringForm.get("searchValue").value).subscribe(
+      (equipmentModels: EquipmentModel[]) => {
+        this.equipments = equipmentModels;
+      });
   }
 }

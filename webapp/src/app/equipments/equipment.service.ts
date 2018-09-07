@@ -1,5 +1,5 @@
 import {environment} from "../../environments/environment";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {EquipmentModel} from "./model/equipment.model";
@@ -30,8 +30,14 @@ export class EquipmentService {
   }
 
   saveAllocatedEquipments(selectedEquipments: EquipmentModel[]) {
-    
+
     debugger;
     return this.httpClient.post<EquipmentModel[]>(this.equipmentUrl + '/saveAllocatedEquipments', selectedEquipments, {});
+  }
+
+  getFilteredEquipments(searchValue: string): Observable<EquipmentModel[]> {
+    let Param = new HttpParams();
+    Param = Param.append('name_contains',searchValue);
+    return this.httpClient.get<EquipmentModel[]>(this.equipmentUrl,{params:Param});
   }
 }

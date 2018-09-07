@@ -58,4 +58,9 @@ public class EquipmentController {
 //        equipmentService.saveAllocatedEquipments(allocatedEquipments);
         return ResponseEntity.ok(JSON_EMPTY_BODY);
     }
+    @GetMapping
+    public ResponseEntity<List<EquipmentModel>> getFilteredEquipments(@RequestParam("name_contains") String searchValue) {
+        return ResponseEntity.ok(equipmentService.getFilteredEquipments(searchValue));
+    }
+
 }

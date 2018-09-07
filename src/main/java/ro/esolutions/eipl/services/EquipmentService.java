@@ -26,8 +26,8 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
-@Transactional
 @RequiredArgsConstructor
+@Transactional
 @Slf4j
 public class EquipmentService {
 
@@ -75,6 +75,16 @@ public class EquipmentService {
                 .map(EquipmentMapper::fromEntityToModel)
                 .collect(Collectors.toList());
     }
+
+    public List<EquipmentModel> getFilteredEquipments(String searchValue) {
+        List<EquipmentModel> resultEquipments = equipmentRepository.findDistinctByNameContainingIgnoreCase(searchValue)
+                .stream()
+                .map(EquipmentMapper::fromEntityToModel)
+                .collect(Collectors.toList());
+        return resultEquipments;
+    }
+
+}
 
 //    public void saveAllocatedEquipments(List<EmployeeEquipmentModel> allocatedEquipments) {
 //        allocatedEquipments.stream().forEach(employeeEquipmentModel -> {
