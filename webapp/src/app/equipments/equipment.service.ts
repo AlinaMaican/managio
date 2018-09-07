@@ -28,10 +28,6 @@ export class EquipmentService extends Service<EquipmentModel>{
     return this.httpClient.get<EquipmentModel[]>(this.basicUrl + '/available');
   }
 
-  saveAllocatedEquipments(selectedEquipments: EquipmentModel[], employeeId: number) {
-    return this.httpClient.post<EquipmentModel[]>(this.basicUrl + '/saveAllocatedEquipments/' + employeeId, selectedEquipments, {});
-  }
-
   getFilteredEquipments(searchValue: string): Observable<EquipmentModel[]> {
     let Param = new HttpParams();
     Param = Param.append('name_contains',searchValue);

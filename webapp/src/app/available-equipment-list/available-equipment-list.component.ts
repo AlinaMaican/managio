@@ -4,6 +4,7 @@ import {Subscription} from "rxjs";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {EquipmentService} from "../equipments/equipment.service";
 import {FormControl, FormGroup} from "@angular/forms";
+import {EmployeeEquipmentService} from "../employee-equipment/employee-equipment.service";
 
 @Component({
   selector: 'app-available-equipment-list',
@@ -18,7 +19,7 @@ export class AvailableEquipmentListComponent implements OnInit {
   selectedEquipments: EquipmentModel[] = [];
   stringForm: FormGroup;
 
-  constructor(private route: ActivatedRoute, private equipmentService: EquipmentService, private router: Router) {
+  constructor(private route: ActivatedRoute, private equipmentService: EquipmentService, private router: Router, private employeeEquipmentService: EmployeeEquipmentService) {
   }
 
   ngOnInit() {
@@ -54,9 +55,9 @@ export class AvailableEquipmentListComponent implements OnInit {
   }
 
   allocateEquipmentsToEmployee() {
-    this.equipmentService.saveAllocatedEquipments(this.selectedEquipments, this.employeeId).subscribe(
+    this.employeeEquipmentService.saveAllocatedEquipments(this.selectedEquipments, this.employeeId).subscribe(
       () => {
-        this.router.navigateByUrl('/equipments');
+        this.router.navigateByUrl('/equipments/'+this.employeeId);
       }
     );
   }

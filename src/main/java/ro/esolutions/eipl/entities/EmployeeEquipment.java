@@ -33,4 +33,12 @@ public class EmployeeEquipment {
 
     @NotNull
     private LocalDate endDate;
+
+    @PrePersist
+    public void initStartDate() {
+        if (this.startDate == null) {
+            this.startDate = LocalDate.now();
+        }
+    }
+
 }
