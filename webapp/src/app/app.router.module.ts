@@ -8,7 +8,6 @@ import {EquipmentsComponent} from "./equipments/equipments.component";
 import {EmployeeComponent} from "./employees/employee.component";
 import {ExpiringEquipmentsComponent} from "./reports/expiring-equipments/expiring-equipment.component";
 import {EmployeeEquipmentComponent} from "./employees/equipment/employee-equipment.component";
-import {EmployeeEquipmentsListComponent} from "./employee-equipment-list/employee-equipments-list.component";
 import {AvailableEquipmentListComponent} from "./available-equipment-list/available-equipment-list.component";
 
 
