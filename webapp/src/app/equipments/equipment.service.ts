@@ -31,7 +31,7 @@ export class EquipmentService {
   }
 
   saveAllocatedEquipments(selectedEquipments: EquipmentModel[], employeeId: number) {
-    return this.httpClient.post<EquipmentModel[]>(this.equipmentUrl + '/saveAllocatedEquipments' + employeeId, selectedEquipments, {});
+    return this.httpClient.post<EquipmentModel[]>(this.equipmentUrl + '/saveAllocatedEquipments/' + employeeId, selectedEquipments, {});
   }
 
   getFilteredEquipments(searchValue: string): Observable<EquipmentModel[]> {

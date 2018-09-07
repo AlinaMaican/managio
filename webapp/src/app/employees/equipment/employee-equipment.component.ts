@@ -11,12 +11,12 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./employee-equipment.component.css']
 })
 export class EmployeeEquipmentComponent implements OnInit, OnDestroy {
-  private employeeId: number;
+  public employeeId: number;
   private employeeEquipmentSubscription: Subscription;
-  private employeeEquipmentList: EmployeeEquipmentModel[];
+  public employeeEquipmentList: EmployeeEquipmentModel[];
 
-  private editEquipmentForm: FormGroup;
-  private editTargetObject: EmployeeEquipmentModel;
+  public editEquipmentForm: FormGroup;
+  public editTargetObject: EmployeeEquipmentModel;
 
   constructor(private employeeEquipmentService: EmployeeEquipmentService,
               private route: ActivatedRoute,

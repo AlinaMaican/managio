@@ -23,7 +23,7 @@ export class AvailableEquipmentListComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.employeeId = +params['id'];
+      this.employeeId = params['employeeId'];
     });
     this.equipmentSubscription = this.equipmentService.getAllAvailableEquipments().subscribe(
       (equipments: EquipmentModel[]) => {
