@@ -29,7 +29,6 @@ public class EmployeeEquipmentService {
     private static Integer days = 7;
 
     public List<EmployeeEquipmentModel> getAllEmployeesEquipments() {
-
         return employeeEquipmentRepository.findAll()
                 .stream()
                 .map(EmployeeEquipmentMapper::fromEntityToModel)
@@ -56,7 +55,6 @@ public class EmployeeEquipmentService {
                 .map(EmployeeEquipmentReportMapper::fromEntityToString)
                 .collect(Collectors.joining("\n"));
     }
-
 
     public EmployeeEquipmentModel updateEmployeeEquipment(final EmployeeEquipmentModel employeeEquipment) {
         getByIdOrThrow(employeeEquipment.getId());

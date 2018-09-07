@@ -7,13 +7,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ro.esolutions.eipl.entities.EmployeeEquipment;
 import ro.esolutions.eipl.models.EmployeeEquipmentModel;
 import ro.esolutions.eipl.models.EmployeeEquipmentReportModel;
 import ro.esolutions.eipl.services.EmployeeEquipmentService;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -22,7 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EmployeeEquipmentController {
 
-    public static final String contentType = "application/octet-stream";
+    public static final String OCTET_CONTENT_TYPE = "application/octet-stream";
 
     @NonNull
     private final EmployeeEquipmentService employeeEquipmentService;
@@ -47,7 +44,7 @@ public class EmployeeEquipmentController {
         String CSVString = employeeEquipmentService.exportCSV();
 
         return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(contentType))
+                .contentType(MediaType.parseMediaType(OCTET_CONTENT_TYPE))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + "export.csv" + "\"")
                 .body(CSVString);
     }
