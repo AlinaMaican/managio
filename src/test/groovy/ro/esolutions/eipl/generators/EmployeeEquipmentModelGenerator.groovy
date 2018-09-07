@@ -5,7 +5,7 @@ import ro.esolutions.eipl.models.EmployeeEquipmentModel
 import java.time.LocalDate
 
 import static ro.esolutions.eipl.generators.EmployeeModelGenerator.aEmployeeModel
-import static ro.esolutions.eipl.generators.EquipmentModelGenerator.anEquipmentModel
+import static ro.esolutions.eipl.generators.EquipmentModelGenerator.aEquipmentModel
 
 class EmployeeEquipmentModelGenerator {
 
@@ -13,7 +13,7 @@ class EmployeeEquipmentModelGenerator {
         Map values = [
                 id       : 0L,
                 employee : aEmployeeModel(),
-                equipment: anEquipmentModel(),
+                equipment: aEquipmentModel(),
                 startDate: LocalDate.of(2018,8,4),
                 endDate: LocalDate.of(2018,9,4)
         ]
