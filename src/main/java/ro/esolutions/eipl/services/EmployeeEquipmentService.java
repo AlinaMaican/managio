@@ -26,7 +26,7 @@ public class EmployeeEquipmentService {
 
     @NonNull
     private final EmployeeEquipmentRepository employeeEquipmentRepository;
-    private static Integer DAYS = 8;
+    private static Integer DAYS_UNTIL_EXPIRES = 8;
 
     public List<EmployeeEquipmentModel> getAllEmployeesEquipments() {
         return employeeEquipmentRepository.findAll()
@@ -36,7 +36,7 @@ public class EmployeeEquipmentService {
     }
 
     public List<EmployeeEquipmentReportModel> getExpiringEmployeeEquipmentsReport() {
-        return employeeEquipmentRepository.findByEndDateLessThan(LocalDate.now().plusDays(DAYS))
+        return employeeEquipmentRepository.findByEndDateLessThan(LocalDate.now().plusDays(DAYS_UNTIL_EXPIRES))
                 .stream()
                 .map(EmployeeEquipmentReportMapper::fromEntityToModel)
                 .collect(Collectors.toList());
@@ -49,7 +49,7 @@ public class EmployeeEquipmentService {
     }
 
     public String exportCSV() {
-        return employeeEquipmentRepository.findByEndDateLessThan(LocalDate.now().plusDays(DAYS))
+        return employeeEquipmentRepository.findByEndDateLessThan(LocalDate.now().plusDays(DAYS_UNTIL_EXPIRES))
                 .stream()
                 .map(EmployeeEquipmentReportMapper::fromEntityToString)
                 .collect(Collectors.joining("\n"));
