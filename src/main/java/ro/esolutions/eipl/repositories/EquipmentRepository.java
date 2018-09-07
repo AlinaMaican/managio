@@ -13,11 +13,13 @@ import java.util.stream.StreamSupport;
 @Repository
 public interface EquipmentRepository extends JpaRepository<Equipment,Long> {
 
-     Optional<Equipment> findByCode(String code);
 
-     List<Equipment> findAllByIsAvailable(boolean b);
+    Optional<Equipment> findByCode(String code);
+
+    Page<Equipment> findAllByOrderByIdAsc(Pageable pageable);
+
+    List<Equipment> findAllByIsAvailable(boolean b);
 
     List<Equipment> findDistinctByNameContainingIgnoreCase(String searchValue);
-    Optional<Equipment> findByCode(String code);
-    Page<Equipment> findAllByOrderByIdAsc(Pageable pageable);
+
 }

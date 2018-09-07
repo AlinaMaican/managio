@@ -16,6 +16,7 @@ import ro.esolutions.eipl.services.EquipmentService;
 
 import javax.validation.Valid;
 import java.util.Collections;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/equipment")
