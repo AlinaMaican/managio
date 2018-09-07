@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {EmployeeService} from "../employee.service";
 import {Employee} from "../employee.model";
@@ -15,6 +15,7 @@ export class InfosComponent implements OnInit {
   employee:Employee;
   firstName : String;
   lastName : String;
+  REGEX_NAME: string = '^[A-Z0-9]+';
   private id: number;
 
   constructor(private employeeService: EmployeeService,
@@ -30,9 +31,9 @@ export class InfosComponent implements OnInit {
   initForm() {
     this.editsizes = new FormGroup({
       'workingStation': new FormControl(''),
-      'helmetSize': new FormControl(''),
-      'clothingSize': new FormControl(''),
-      'footwearSize': new FormControl('')
+      'helmetSize': new FormControl('', Validators.pattern(this.REGEX_NAME)),
+      'clothingSize': new FormControl('', Validators.pattern(this.REGEX_NAME)),
+      'footwearSize': new FormControl('', Validators.pattern(this.REGEX_NAME))
     });
     this.employeeService.getEmployeeById(this.id)
       .subscribe(
