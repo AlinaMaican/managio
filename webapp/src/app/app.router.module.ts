@@ -7,6 +7,7 @@ import {AddUserComponent} from "./users/add-user/add-user.component";
 import {EquipmentsComponent} from "./equipments/equipments.component";
 import {EmployeeComponent} from "./employees/employee.component";
 import {EmployeeEquipmentComponent} from "./employees/equipment/employee-equipment.component";
+import {InfosComponent} from "./employees/infos/employee-infos.component";
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: 'equipment', component: EquipmentsComponent},
   {path: 'resetPassword', component: UserProfileComponent},
   {path: 'employee', component: EmployeeComponent},
-  {path: 'employee/:id/equipment', component: EmployeeEquipmentComponent}
+  {path: 'employee/:id/equipment', component: EmployeeEquipmentComponent},
+  {path: 'employee/:id', component:InfosComponent}
 ];
 
 @NgModule({

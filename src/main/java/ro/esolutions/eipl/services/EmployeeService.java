@@ -74,8 +74,13 @@ public class EmployeeService {
     }
 
     public EmployeeModel editEmployeeById(final Long employeeId, final EmployeeModel employeeModel) {
-        final Employee employee = fromModelToEntity(employeeModel);
+        Employee employee = fromModelToEntity(employeeModel);
+        EmployeeModel employee2 = getEmployeeById(employeeId);
+        employee.setFirstName(employee2.getFirstName());
+        employee.setLastName(employee2.getLastName());
         employee.setId(employeeId);
         return EmployeeMapper.fromEntityToModel(employeeRepository.save(employee));
     }
+
+
 }

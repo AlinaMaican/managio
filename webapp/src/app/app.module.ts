@@ -20,6 +20,7 @@ import {EmployeeComponent} from './employees/employee.component';
 import {PaginationComponent} from './pagination/pagination.component';
 import {EmployeeEquipmentComponent} from './employees/equipment/employee-equipment.component';
 import {EmployeeEquipmentService} from "./employee-equipment/employee-equipment.service";
+import {InfosComponent} from "./employees/infos/employee-infos.component";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {EmployeeEquipmentService} from "./employee-equipment/employee-equipment.
     EquipmentsComponent,
     PaginationComponent,
     EmployeeComponent,
-    EmployeeEquipmentComponent
+    EmployeeEquipmentComponent,
+    InfosComponent
   ],
   imports: [
     BrowserModule,

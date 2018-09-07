@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <div class="row employee-list" >
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb breadcrumb-white-14">
+        <li class="breadcrumb-item"><a href="#">EIPL</a></li>
+        <li class="breadcrumb-item"><a href="#">Employee</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Employee Info</li>
+      </ol>
+    </nav>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <form  class="form" [formGroup]="editsizes" >
+        <div class="row">
+          <div class="col-sm-8 offset-sm-2 col-md-4 offset-md-4">
+            <h2 class="text-center">{{firstName}} {{lastName}}'Infos</h2>
+          </div>
+        </div>
+      <div class="form-group">
+        <label>Working station</label>
+        <input type="text" class="form-control" placeholder="working station" formControlName="workingStation" readonly>
+      </div>
+      <div class="form-group">
+        <label>Helmet Size</label>
+        <input type="text" class="form-control" placeholder="helmet size" formControlName="helmetSize">
+      </div>
+      <div class="form-group">
+        <label>Clothing Size</label>
+        <input type="text" class="form-control" placeholder="clothing size" formControlName="clothingSize">
+      </div>
+      <div class="form-group">
+        <label>Footwear Size</label>
+        <input type="text" class="form-control" placeholder="footwear size" formControlName="footwearSize">
+      </div>
+      <div class="row btn-add-user">
+        <div class="col-sm-6">
+          <button class="btn btn-default" routerLink="/employee">Cancel</button>
+        </div>
+        <div class="col-sm-6">
+          <button type="submit" class="btn btn-primary" (click)="onSubmit()">Save</button>
+        </div>
+      </div>
+      </form>
+
+
+    </div>
+  </div>
+</div>

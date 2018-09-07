@@ -22,22 +22,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(final HttpSecurity http) throws Exception {
-//        http.csrf().disable()
-//                .authorizeRequests()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .loginPage(LOGIN_PATH_FULL)
-//                .successHandler((request, response, authentication) ->
-//                        new DefaultRedirectStrategy().sendRedirect(request, response, ROOT_PATH))
-//                .permitAll()
-//                .and()
-//                .logout()
-//                .logoutUrl(LOGOUT_PATH_FULL)
-//                .logoutSuccessHandler((request, response, authentication) ->
-//                        new DefaultRedirectStrategy().sendRedirect(request, response, LOGIN_PATH_FULL))
-//                .permitAll();
-        http.csrf().disable().authorizeRequests().anyRequest().permitAll();
+        http.csrf().disable()
+                .authorizeRequests()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage(LOGIN_PATH_FULL)
+                .successHandler((request, response, authentication) ->
+                        new DefaultRedirectStrategy().sendRedirect(request, response, ROOT_PATH))
+                .permitAll()
+                .and()
+                .logout()
+                .logoutUrl(LOGOUT_PATH_FULL)
+                .logoutSuccessHandler((request, response, authentication) ->
+                        new DefaultRedirectStrategy().sendRedirect(request, response, LOGIN_PATH_FULL))
+                .permitAll();
+       // http.csrf().disable().authorizeRequests().anyRequest().permitAll();
     }
 
     @Autowired

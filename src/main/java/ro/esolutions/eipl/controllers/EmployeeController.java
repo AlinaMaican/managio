@@ -3,10 +3,8 @@ package ro.esolutions.eipl.controllers;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import ro.esolutions.eipl.entities.Employee;
 import ro.esolutions.eipl.models.EmployeeModel;
 import ro.esolutions.eipl.services.EmployeeService;
 
@@ -44,7 +42,6 @@ public class EmployeeController {
 
     @PutMapping("/{employee_id}")
     public ResponseEntity<Object> editEmployeeById(@RequestBody @Valid final EmployeeModel employeeModel,
-                                               final BindingResult bindingResult,
                                                @PathVariable("employee_id") final Long employeeId) {
         employeeModel.setId(employeeId);
         return ResponseEntity.ok(employeeService.editEmployeeById(employeeId, employeeModel));
