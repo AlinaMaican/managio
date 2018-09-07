@@ -7,7 +7,6 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import ro.esolutions.eipl.entities.User;
 import ro.esolutions.eipl.models.HasUsernameAndEmail;
-
 import ro.esolutions.eipl.repositories.UserRepository;
 
 import java.util.Optional;

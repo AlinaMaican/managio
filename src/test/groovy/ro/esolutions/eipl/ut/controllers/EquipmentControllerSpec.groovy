@@ -1,5 +1,7 @@
 package ro.esolutions.eipl.ut.controllers
 
+import org.springframework.data.domain.PageImpl
+import org.springframework.data.domain.PageRequest
 import org.springframework.http.ResponseEntity
 import org.springframework.mock.web.MockMultipartFile
 import org.springframework.validation.BindingResult
@@ -41,16 +43,16 @@ class EquipmentControllerSpec extends Specification{
 
     def getAllEquipments() {
         given:
-        def equipmentModelList = [anEquipmentModel()]
+        def equipmentModelList = new PageImpl([anEquipmentModel()])
 
         when:
-        def result = equipmentController.getAllEquipments()
+        def result = equipmentController.getAllEquipments(0, 1)
 
         then:
         result == ok(equipmentModelList)
 
         and:
-        1 * equipmentService.getAllEquipments() >> equipmentModelList
+        1 * equipmentService.getAllEquipments(PageRequest.of(0, 1)) >> equipmentModelList
         0 * _
     }
 

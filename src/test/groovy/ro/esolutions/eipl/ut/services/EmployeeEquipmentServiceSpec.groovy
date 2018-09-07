@@ -7,8 +7,12 @@ import ro.esolutions.eipl.services.EmployeeEquipmentService
 import spock.lang.Specification
 import spock.lang.Subject
 
+import java.time.LocalDate
+
 import static ro.esolutions.eipl.generators.EmployeeEquipmentGenerator.aEmployeeEquipment
 import static ro.esolutions.eipl.generators.EmployeeEquipmentModelGenerator.aEmployeeEquipmentModel
+
+import static ro.esolutions.eipl.generators.EmployeeEquipmentReportModelGenerator.aEmployeeEquipmentReportModel
 
 class EmployeeEquipmentServiceSpec extends Specification {
 
@@ -67,6 +71,38 @@ class EmployeeEquipmentServiceSpec extends Specification {
         and:
         1 * employeeEquipmentRepository.findById(1L) >> Optional.ofNullable(null)
         0 * _
-
     }
+
+    def 'deleteEmployeeEquipment'() {
+        when:
+        employeeEquipmentService.deleteEmployeeEquipmentById(1L)
+        then:
+        1 * employeeEquipmentRepository.deleteById(1L)
+        0 * _
+    }
+
+    def 'getExpiringEmployeeEquipmentsReport'() {
+        when:
+        def result = employeeEquipmentService.getExpiringEmployeeEquipmentsReport()
+
+        then:
+        result == [aEmployeeEquipmentReportModel()]
+
+        and:
+        1 * employeeEquipmentRepository.findByEndDateLessThan(LocalDate.now().plusDays(8)) >> [aEmployeeEquipment()]
+        0 * _
+    }
+
+    def 'exportCSV'() {
+        when:
+        def result = employeeEquipmentService.exportCSV()
+
+        then:
+        result == 'firstName,lastName,casca,code123,cap,S,2018-09-04'
+
+        and:
+        1 * employeeEquipmentRepository.findByEndDateLessThan(LocalDate.now().plusDays(8)) >> [aEmployeeEquipment()]
+        0 * _
+    }
+
 }
