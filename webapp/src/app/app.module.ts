@@ -21,6 +21,7 @@ import {PaginationComponent } from './pagination/pagination.component';
 import {ExpiringEquipmentsComponent} from "./reports/expiring-equipments/expiring-equipment.component";
 import {ExpiringEquipmentService} from "./reports/expiring-equipments/expiring-equipment.service";
 import {EmployeeEquipmentComponent} from './employees/equipment/employee-equipment.component';
+import {EmployeeEquipmentService} from "./employee-equipment/employee-equipment.service";
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import {EmployeeEquipmentComponent} from './employees/equipment/employee-equipme
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [UserService, EquipmentService, EmployeeService, ExpiringEquipmentService],
+  providers: [UserService, EquipmentService, EmployeeService, ExpiringEquipmentService, EmployeeEquipmentService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
