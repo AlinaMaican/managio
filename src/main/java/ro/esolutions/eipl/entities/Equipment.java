@@ -1,6 +1,9 @@
 package ro.esolutions.eipl.entities;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import ro.esolutions.eipl.types.MabecCode;
 
 import javax.persistence.*;

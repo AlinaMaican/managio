@@ -38,6 +38,15 @@ public class EmployeeService {
                 .collect(Collectors.toList());
     }
 
+
+    public List<EmployeeModel> getFilteredEmployees(String searchValue){
+        List<EmployeeModel> resultEmployees = employeeRepository.findDistinctByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(searchValue,searchValue)
+                .stream()
+                .map(EmployeeMapper::fromEntityToModel)
+                .collect(Collectors.toList());
+        return resultEmployees;
+    }
+
     public void uploadEmployeeFromCSV(final MultipartFile file) {
         try {
             InputStream inputStream = file.getInputStream();

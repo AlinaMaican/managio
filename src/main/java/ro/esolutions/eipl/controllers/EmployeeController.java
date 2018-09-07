@@ -23,6 +23,10 @@ public class EmployeeController {
     public ResponseEntity<List<EmployeeModel>> getAllEmployees() {
         return ResponseEntity.ok(employeeService.getAllEmployees());
     }
+   @GetMapping
+    public ResponseEntity<List<EmployeeModel>> getFilteredEmployees(@RequestParam("name_contains") String searchValue) {
+       return ResponseEntity.ok(employeeService.getFilteredEmployees(searchValue));
+   }
 
     @PostMapping(value = "/importByFile")
     public ResponseEntity<Object> uploadEmployeeFromCSV(@RequestPart("file") final MultipartFile file) {

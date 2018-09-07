@@ -1,0 +1,42 @@
+<div class="container-fluid">
+<h1 align="center" >Expiring Equipments</h1>
+<div class="row reports-list" >
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-white-14">
+      <li class="breadcrumb-item"><a href="#">EIPL</a></li>
+      <li class="breadcrumb-item"><a href="#">Reports</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Expiring Equipments</li>
+    </ol>
+  </nav>
+</div>
+<div class="row">
+
+  <a href="/api/employeeEquipment/reports/expiring/download" class="btn btn-primary">Export</a>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Last Name</th>
+      <th>First Name</th>
+      <th>Equipment</th>
+      <th>Equipment Code</th>
+      <th>Protection Type</th>
+      <th>Size</th>
+      <th>End date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let expiringEquipment of this.expiringEquipments">
+      <td>{{expiringEquipment.lastName}}</td>
+      <td>{{expiringEquipment.firstName}}</td>
+      <td>{{expiringEquipment.equipmentName}}</td>
+      <td>{{expiringEquipment.equipmentCode}}</td>
+      <td>{{expiringEquipment.protectionType}}</td>
+      <td>{{expiringEquipment.size}}</td>
+      <td>{{expiringEquipment.endDate}}</td>
+      <td></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</div>

@@ -13,10 +13,10 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 export class EmployeeEquipmentComponent implements OnInit, OnDestroy {
   public employeeId: number;
   private employeeEquipmentSubscription: Subscription;
-  public employeeEquipmentList: EmployeeEquipmentModel[];
+  employeeEquipmentList: EmployeeEquipmentModel[];
 
-  public editEquipmentForm: FormGroup;
-  public editTargetObject: EmployeeEquipmentModel;
+  editEquipmentForm: FormGroup;
+  targetEmployeeEquipment: EmployeeEquipmentModel;
 
   constructor(private employeeEquipmentService: EmployeeEquipmentService,
               private route: ActivatedRoute,
@@ -40,12 +40,16 @@ export class EmployeeEquipmentComponent implements OnInit, OnDestroy {
     this.employeeEquipmentSubscription.unsubscribe();
   }
 
-  updateModal(employeeEquipment: EmployeeEquipmentModel) {
+  prepareEdit(employeeEquipment: EmployeeEquipmentModel) {
     this.editEquipmentForm.patchValue({
       'startDate': employeeEquipment.startDate,
       'endDate': employeeEquipment.endDate
     });
-    this.editTargetObject = employeeEquipment;
+    this.targetEmployeeEquipment = employeeEquipment;
+  }
+
+  prepareDelete(employeeEquipment: EmployeeEquipmentModel) {
+    this.targetEmployeeEquipment = employeeEquipment;
   }
 
   private loadEquipment() {
@@ -61,13 +65,16 @@ export class EmployeeEquipmentComponent implements OnInit, OnDestroy {
 
   updateEmployeeEquipment() {
     if (!this.editEquipmentForm || this.editEquipmentForm.invalid) return;
-    let editedObj = Object.assign({}, this.editTargetObject);
+    let editedObj = Object.assign({}, this.targetEmployeeEquipment);
     editedObj.startDate = this.editEquipmentForm.value.startDate;
     editedObj.endDate = this.editEquipmentForm.value.endDate;
     this.employeeEquipmentService.updateEmployeeEquipment(editedObj).subscribe(
-      () => {
-        this.loadEquipment();
-      }
-    );
+      null, null, () => this.loadEquipment());
+  }
+
+  deleteEmployeeEquipment() {
+    let deleteObject = Object.assign({}, this.targetEmployeeEquipment);
+    this.employeeEquipmentService.deleteEmployeeEquipment(deleteObject).subscribe(
+      null, null, () => this.loadEquipment());
   }
 }

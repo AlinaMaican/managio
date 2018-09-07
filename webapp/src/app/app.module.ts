@@ -16,10 +16,12 @@ import {UserProfileComponent} from "./users/user-profile/user-profile.component"
 import {EmployeeService} from "./employees/employee.service";
 import {EquipmentsComponent} from "./equipments/equipments.component";
 import {EquipmentService} from "./equipments/equipment.service";
-import {PaginationComponent } from './pagination/pagination.component';
 import {EmployeeEquipmentsListComponent } from './employee-equipment-list/employee-equipments-list.component';
 import {EmployeeEquipmentService} from "./employee-equipment-list/employeeEquipment.service";
 import {EmployeeComponent} from './employees/employee.component';
+import {PaginationComponent } from './pagination/pagination.component';
+import {ExpiringEquipmentsComponent} from "./reports/expiring-equipments/expiring-equipment.component";
+import {ExpiringEquipmentService} from "./reports/expiring-equipments/expiring-equipment.service";
 import {EmployeeEquipmentComponent} from './employees/equipment/employee-equipment.component';
 import {AvailableEquipmentListComponent} from "./available-equipment-list/available-equipment-list.component";
 
@@ -35,6 +37,8 @@ import {AvailableEquipmentListComponent} from "./available-equipment-list/availa
     UserProfileComponent,
     EquipmentsComponent,
     PaginationComponent,
+    ExpiringEquipmentsComponent,
+    EquipmentsComponent,
     EmployeeEquipmentsListComponent,
     EmployeeComponent,
     EmployeeEquipmentComponent,
@@ -47,7 +51,7 @@ import {AvailableEquipmentListComponent} from "./available-equipment-list/availa
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [UserService, EquipmentService, EmployeeService, EmployeeEquipmentService],
+  providers: [UserService, EquipmentService, EmployeeService, ExpiringEquipmentService, EmployeeEquipmentService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -32,7 +32,8 @@ public class EmployeeEquipment {
     private LocalDate startDate;
 
     @NotNull
+    private LocalDate startDate;
+
+    @NotNull
     private LocalDate endDate;
-
-
 }
