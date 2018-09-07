@@ -10,8 +10,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.AbstractBindingResult;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.BindingResultUtils;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.bind.annotation.*;
 import ro.esolutions.eipl.configurations.UserDetailsImpl;
 import ro.esolutions.eipl.exceptions.BindingValidationException;
@@ -21,9 +19,6 @@ import ro.esolutions.eipl.models.validators.UsernameEmailValidator;
 import ro.esolutions.eipl.services.UserService;
 
 import javax.validation.Valid;
-import javax.validation.ValidatorFactory;
-import javax.validation.constraints.NotBlank;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")

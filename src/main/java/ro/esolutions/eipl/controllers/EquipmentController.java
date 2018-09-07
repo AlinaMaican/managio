@@ -5,16 +5,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.validation.BindingResult;
 import ro.esolutions.eipl.models.EquipmentModel;
-import ro.esolutions.eipl.models.UserModel;
 import ro.esolutions.eipl.services.EquipmentService;
 
 import javax.validation.Valid;
 import java.util.Collections;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/equipment")
