@@ -13,10 +13,10 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 export class EmployeeEquipmentComponent implements OnInit, OnDestroy {
   private employeeId: number;
   private employeeEquipmentSubscription: Subscription;
-  private employeeEquipmentList: EmployeeEquipmentModel[];
+  employeeEquipmentList: EmployeeEquipmentModel[];
 
-  private editEquipmentForm: FormGroup;
-  private targetEmployeeEquipment: EmployeeEquipmentModel;
+  editEquipmentForm: FormGroup;
+  targetEmployeeEquipment: EmployeeEquipmentModel;
 
   constructor(private employeeEquipmentService: EmployeeEquipmentService,
               private route: ActivatedRoute,
