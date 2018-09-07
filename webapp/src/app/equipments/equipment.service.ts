@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {EquipmentModel} from "./model/equipment.model";
+import index from "@angular/cli/lib/cli";
 
 @Injectable()
 export class EquipmentService {
@@ -29,10 +30,8 @@ export class EquipmentService {
     return this.httpClient.get<EquipmentModel[]>(this.equipmentUrl + '/available');
   }
 
-  saveAllocatedEquipments(selectedEquipments: EquipmentModel[]) {
-
-    debugger;
-    return this.httpClient.post<EquipmentModel[]>(this.equipmentUrl + '/saveAllocatedEquipments', selectedEquipments, {});
+  saveAllocatedEquipments(selectedEquipments: EquipmentModel[], employeeId: number) {
+    return this.httpClient.post<EquipmentModel[]>(this.equipmentUrl + '/saveAllocatedEquipments' + employeeId, selectedEquipments, {});
   }
 
   getFilteredEquipments(searchValue: string): Observable<EquipmentModel[]> {

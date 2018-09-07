@@ -83,20 +83,4 @@ public class EquipmentService {
                 .collect(Collectors.toList());
         return resultEquipments;
     }
-
-}
-
-//    public void saveAllocatedEquipments(List<EmployeeEquipmentModel> allocatedEquipments) {
-//        allocatedEquipments.stream().forEach(employeeEquipmentModel -> {
-//            EquipmentModel eq = EquipmentMapper.fromEntityToModel(equipmentRepository.findById(employeeEquipmentModel.getId()).get());
-//            employeeEquipmentModel.setEquipment(eq);
-//        });
-//        List<EmployeeEquipment> listToSave = allocatedEquipments.stream().map(equipmentModel -> {
-//            EmployeeEquipment employeeEquipment = EmployeeEquipmentMapper.fromModelToEntity(equipmentModel);
-//            employeeEquipment.setEmployee(allocatedEquipments);
-//            employeeEquipment.getEquipment().setIsAvailable(false);
-//            return employeeEquipment;
-//        }).collect(Collectors.toList());
-//        employeeEquipmentRepository.saveAll(listToSave);
-//    }
 }

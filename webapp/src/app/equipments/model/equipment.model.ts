@@ -8,8 +8,8 @@ export class EquipmentModel {
               public protectionType: string,
               public size: string,
               public sex: string,
-              public startDate: string,
-              public endDate: string,
+              public startDate: Date,
+              public endDate: Date,
               public isChecked: boolean = false
   ) {}
 }

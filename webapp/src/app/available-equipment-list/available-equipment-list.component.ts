@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {EquipmentModel} from "../equipments/model/equipment.model";
 import {Subscription} from "rxjs";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {EquipmentService} from "../equipments/equipment.service";
 import {FormControl, FormGroup} from "@angular/forms";
 
@@ -12,6 +12,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 })
 export class AvailableEquipmentListComponent implements OnInit {
 
+  private employeeId: number;
   equipments: EquipmentModel[];
   private equipmentSubscription: Subscription;
   selectedEquipments: EquipmentModel[] = [];
@@ -21,6 +22,9 @@ export class AvailableEquipmentListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.params.subscribe((params: Params) => {
+      this.employeeId = +params['id'];
+    });
     this.equipmentSubscription = this.equipmentService.getAllAvailableEquipments().subscribe(
       (equipments: EquipmentModel[]) => {
         this.equipments = equipments;
@@ -35,17 +39,24 @@ export class AvailableEquipmentListComponent implements OnInit {
     });
   }
 
-  setEquipments(equipment: EquipmentModel){
-    let equipmentIsNotInArray = this.selectedEquipments.indexOf(equipment) < 0;
-    if(equipmentIsNotInArray) {
+  setEquipments(equipment: EquipmentModel) {
+    equipment.isChecked = !equipment.isChecked;
+    let equipmentIndex = this.selectedEquipments.indexOf(equipment)
+    let equipmentIsNotInArray = equipmentIndex < 0;
+    if (equipmentIsNotInArray) {
       this.selectedEquipments.push(equipment);
+    }
+    if (!equipment.isChecked) {
+      this.selectedEquipments.splice(equipmentIndex, 1);
+      equipment.startDate = null;
+      equipment.endDate = null;
     }
   }
 
   allocateEquipmentsToEmployee() {
-    debugger;
-    this.equipmentService.saveAllocatedEquipments(this.selectedEquipments).subscribe(() => {
-        this.router.navigate(['/#/equipments']);
+    this.equipmentService.saveAllocatedEquipments(this.selectedEquipments, this.employeeId).subscribe(
+      () => {
+        this.router.navigateByUrl('/equipments');
       }
     );
   }

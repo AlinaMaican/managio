@@ -15,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EmployeeEquipmentController {
 
+    public static final String JSON_EMPTY_BODY = "{}";
     @NonNull
     private final EmployeeEquipmentService employeeEquipmentService;
 
@@ -34,5 +35,12 @@ public class EmployeeEquipmentController {
             @RequestBody @Valid final EmployeeEquipmentModel employeeEquipment) {
         employeeEquipment.setId(id);
         return ResponseEntity.ok(employeeEquipmentService.updateEmployeeEquipment(employeeEquipment));
+    }
+
+    @PostMapping("/saveAllocatedEquipments/{employeeId}")
+    public ResponseEntity<Object> saveAllocatedEquipments(@RequestBody List<EmployeeEquipmentModel> allocatedEquipments,
+                                                          @PathVariable("employeeId") final Long employeeId) {
+        employeeEquipmentService.saveAllocatedEquipments(allocatedEquipments, employeeId);
+        return ResponseEntity.ok(JSON_EMPTY_BODY);
     }
 }

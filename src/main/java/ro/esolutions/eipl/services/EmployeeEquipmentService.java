@@ -5,10 +5,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ro.esolutions.eipl.entities.EmployeeEquipment;
+import ro.esolutions.eipl.entities.Equipment;
 import ro.esolutions.eipl.exceptions.ResourceNotFoundException;
 import ro.esolutions.eipl.mappers.EmployeeEquipmentMapper;
 import ro.esolutions.eipl.models.EmployeeEquipmentModel;
 import ro.esolutions.eipl.repositories.EmployeeEquipmentRepository;
+import ro.esolutions.eipl.repositories.EquipmentRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,6 +25,7 @@ public class EmployeeEquipmentService {
 
     @NonNull
     private final EmployeeEquipmentRepository employeeEquipmentRepository;
+    private final EquipmentRepository equipmentRepository;
 
     public List<EmployeeEquipmentModel> getAllEmployeesEquipments() {
 
@@ -47,4 +50,21 @@ public class EmployeeEquipmentService {
         return employeeEquipmentRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(id, EmployeeEquipment.class.getName()));
     }
+
+//    public void saveAllocatedEquipments(List<EmployeeEquipmentModel> allocatedEquipments, Long employeeId) {
+//        Equipment equipment = equipmentRepository.getById(employeeId);
+//        equipment.setIsAvailable(false);
+//        equipmentRepository.save(equipment);
+//
+//        allocatedEquipments.stream().forEach(employeeEquipmentModel -> {
+//            EmployeeEquipment employeeEquipment = new EmployeeEquipment();
+//
+//            employeeEquipment.setStartDate(employeeEquipmentModel.getStartDate());
+//            employeeEquipment.setEndDate(employeeEquipmentModel.getEndDate());
+//            employeeEquipment.setEmployee(employeeId);
+//            employeeEquipment.setEquipment(employeeEquipmentModel.getEquipment().getId());
+//
+//            employeeEquipmentRepository.save(employeeEquipment);
+//        });
+//    }
 }
