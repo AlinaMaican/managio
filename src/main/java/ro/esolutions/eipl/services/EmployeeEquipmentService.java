@@ -26,7 +26,7 @@ public class EmployeeEquipmentService {
 
     @NonNull
     private final EmployeeEquipmentRepository employeeEquipmentRepository;
-    private static Integer days = 7;
+    private static Integer DAYS = 7;
 
     public List<EmployeeEquipmentModel> getAllEmployeesEquipments() {
         return employeeEquipmentRepository.findAll()
@@ -36,11 +36,10 @@ public class EmployeeEquipmentService {
     }
 
     public List<EmployeeEquipmentReportModel> getAllEmployeesEquipmentsReport() {
-        return employeeEquipmentRepository.findByEndDateLessThan(LocalDate.now().plusDays(days))
+        return employeeEquipmentRepository.findByEndDateLessThan(LocalDate.now().plusDays(DAYS))
                 .stream()
                 .map(EmployeeEquipmentReportMapper::fromEntityToModel)
                 .collect(Collectors.toList());
-
     }
 
     public List<EmployeeEquipmentModel> getAllEmployeeEquipmentsForEmployee(final Long employeeId) {
@@ -50,7 +49,7 @@ public class EmployeeEquipmentService {
     }
 
     public String exportCSV() {
-        return employeeEquipmentRepository.findByEndDateLessThan(LocalDate.now().plusDays(days))
+        return employeeEquipmentRepository.findByEndDateLessThan(LocalDate.now().plusDays(DAYS))
                 .stream()
                 .map(EmployeeEquipmentReportMapper::fromEntityToString)
                 .collect(Collectors.joining("\n"));

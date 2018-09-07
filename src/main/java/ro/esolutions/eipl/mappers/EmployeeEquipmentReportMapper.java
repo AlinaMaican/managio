@@ -3,7 +3,7 @@ package ro.esolutions.eipl.mappers;
 import ro.esolutions.eipl.entities.EmployeeEquipment;
 import ro.esolutions.eipl.models.EmployeeEquipmentReportModel;
 
-public class EmployeeEquipmentReportMapper {
+public final class EmployeeEquipmentReportMapper {
 
     private EmployeeEquipmentReportMapper(){
     }
