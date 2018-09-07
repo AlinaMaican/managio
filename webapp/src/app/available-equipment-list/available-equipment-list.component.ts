@@ -27,7 +27,10 @@ export class AvailableEquipmentListComponent implements OnInit {
   }
 
   setEquipments(equipment: EquipmentModel){
+    let equipmentIsNotInArray = this.selectedEquipments.indexOf(equipment) < 0;
+    if(equipmentIsNotInArray) {
       this.selectedEquipments.push(equipment);
+    }
   }
 
   allocateEquipmentsToEmployee() {

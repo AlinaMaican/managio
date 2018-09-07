@@ -55,7 +55,7 @@ public class EquipmentController {
 
     @PostMapping("/saveAllocatedEquipments")
     public ResponseEntity<Object> saveAllocatedEquipments(@RequestBody List<EmployeeEquipmentModel> allocatedEquipments) {
-        equipmentService.saveAllocatedEquipments(allocatedEquipments);
+//        equipmentService.saveAllocatedEquipments(allocatedEquipments);
         return ResponseEntity.ok(JSON_EMPTY_BODY);
     }
 }
