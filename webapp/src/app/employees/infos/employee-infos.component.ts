@@ -21,7 +21,6 @@ export class InfosComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router) {
   }
-
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
@@ -35,7 +34,6 @@ export class InfosComponent implements OnInit {
       'clothingSize': new FormControl(''),
       'footwearSize': new FormControl('')
     });
-
     this.employeeService.getEmployeeById(this.id)
       .subscribe(
         employee => {
@@ -49,7 +47,6 @@ export class InfosComponent implements OnInit {
           });
         });
   }
-
   onSubmit() {
     this.employeeService.updateEmployeeById(this.editsizes.value, this.id)
       .subscribe(
