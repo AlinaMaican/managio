@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import ro.esolutions.eipl.entities.Employee;
+import ro.esolutions.eipl.exceptions.EmployeeNotFoundException;
 import ro.esolutions.eipl.exceptions.EmployeeUploadFileNotValid;
 import ro.esolutions.eipl.exceptions.ResourceNotFoundException;
 import ro.esolutions.eipl.mappers.EmployeeMapper;
@@ -70,14 +71,14 @@ public class EmployeeService {
     }
 
     public EmployeeModel getEmployeeById(final Long employeeId) {
-        return fromEntityToModel(employeeRepository.findById(employeeId).get());
+        return employeeRepository.findById(employeeId).map(employee -> fromEntityToModel(employee)).orElseThrow(() -> new EmployeeNotFoundException());
     }
 
     public EmployeeModel editEmployeeById(final Long employeeId, final EmployeeModel employeeModel) {
         Employee employee = fromModelToEntity(employeeModel);
-        EmployeeModel employee2 = getEmployeeById(employeeId);
-        employee.setFirstName(employee2.getFirstName());
-        employee.setLastName(employee2.getLastName());
+        EmployeeModel temporarEmployee = getEmployeeById(employeeId);
+        employee.setFirstName(temporarEmployee.getFirstName());
+        employee.setLastName(temporarEmployee.getLastName());
         employee.setId(employeeId);
         return EmployeeMapper.fromEntityToModel(employeeRepository.save(employee));
     }

@@ -29,6 +29,40 @@ class EmployeeControllerSpec extends Specification {
         0 * _
     }
 
+    @Unroll
+    def "getEmployeeById"() {
+
+        given:
+        def employeeId = 0L
+
+        when:
+        def result = employeeController.getEmployeeById(employeeId)
+
+        then:
+        result == ResponseEntity.ok(aEmployeeModel())
+
+        and:
+        1 * employeeService.getEmployeeById(employeeId) >> aEmployeeModel()
+        0 * _
+    }
+
+    @Unroll
+    def "editEmployeeById"() {
+        given:
+        def employeeModel = aEmployeeModel()
+        def employeeId = 0
+
+        when:
+        def result = employeeController.editEmployeeById(employeeModel, employeeId)
+
+        then:
+        result == ResponseEntity.ok(aEmployeeModel())
+
+        and:
+        1 * employeeService.editEmployeeById(employeeId, employeeModel) >> aEmployeeModel()
+        0 * _
+    }
+
     def "uploadEmployeeFromCSV"() {
         given:
         def file = new MockMultipartFile("testUploadEmployeeFile.csv",
