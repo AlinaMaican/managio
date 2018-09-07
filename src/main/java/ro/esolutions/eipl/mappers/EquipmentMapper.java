@@ -34,7 +34,7 @@ public final class EquipmentMapper {
                 .build();
     }
 
-    public static Equipment fromRecordToEntity(final CSVRecord csvRecord){
+    public static Equipment fromRecordToEntity(final CSVRecord csvRecord) {
         return Equipment.builder()
                 .id(null)
                 .name(csvRecord.get(0))
@@ -44,5 +44,14 @@ public final class EquipmentMapper {
                 .size(csvRecord.get(4))
                 .sex(csvRecord.get(5))
                 .build();
+    }
+
+    public static String fromModelToCsvString(EquipmentModel equipmentModel) {
+        return equipmentModel.getName() + "," +
+                equipmentModel.getCode() + "," +
+                equipmentModel.getMabecCode().toString() + "," +
+                equipmentModel.getProtectionType() + "," +
+                equipmentModel.getSize() + "," +
+                equipmentModel.getSex();
     }
 }
