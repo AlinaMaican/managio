@@ -21,7 +21,7 @@ const routes: Routes = [
   {path: 'resetPassword', component: UserProfileComponent},
   {path: 'employee', component: EmployeeComponent},
   {path: 'employee/:id/equipment', component: EmployeeEquipmentComponent},
-  {path: 'employee/:id', component:InfosComponent}
+  {path: 'employee/:id', component:InfosComponent},
   {path: 'reports/expiring-equipments', component: ExpiringEquipmentsComponent},
   {path: 'employee/:id/equipment', component: EmployeeEquipmentComponent}
 ];
