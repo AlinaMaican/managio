@@ -2,7 +2,6 @@ package ro.esolutions.eipl.mappers;
 
 import ro.esolutions.eipl.configurations.UserDetailsImpl;
 import ro.esolutions.eipl.entities.User;
-import ro.esolutions.eipl.models.UserModel;
 
 import java.util.Collections;
 

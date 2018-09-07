@@ -3,7 +3,7 @@ package ro.esolutions.eipl.mappers;
 import ro.esolutions.eipl.entities.User;
 import ro.esolutions.eipl.models.UserModel;
 
-public class UserMapper {
+public final class UserMapper {
 
     private UserMapper() {}
 

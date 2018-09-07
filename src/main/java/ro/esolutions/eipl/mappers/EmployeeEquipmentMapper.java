@@ -26,4 +26,5 @@ public final class EmployeeEquipmentMapper {
                 .startDate(employeeEquipmentModel.getStartDate())
                 .endDate(employeeEquipmentModel.getEndDate())
                 .build();
-    }}
+    }
+}

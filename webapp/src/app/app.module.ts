@@ -17,7 +17,9 @@ import {EmployeeService} from "./employees/employee.service";
 import {EquipmentsComponent} from "./equipments/equipments.component";
 import {EquipmentService} from "./equipments/equipment.service";
 import {EmployeeComponent} from './employees/employee.component';
-import {PaginationComponent} from './pagination/pagination.component';
+import {PaginationComponent } from './pagination/pagination.component';
+import {ExpiringEquipmentsComponent} from "./reports/expiring-equipments/expiring-equipment.component";
+import {ExpiringEquipmentService} from "./reports/expiring-equipments/expiring-equipment.service";
 import {EmployeeEquipmentComponent} from './employees/equipment/employee-equipment.component';
 import {EmployeeEquipmentService} from "./employee-equipment/employee-equipment.service";
 
@@ -33,6 +35,8 @@ import {EmployeeEquipmentService} from "./employee-equipment/employee-equipment.
     UserProfileComponent,
     EquipmentsComponent,
     PaginationComponent,
+    ExpiringEquipmentsComponent,
+    EquipmentsComponent,
     EmployeeComponent,
     EmployeeEquipmentComponent
   ],
@@ -43,7 +47,7 @@ import {EmployeeEquipmentService} from "./employee-equipment/employee-equipment.
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [UserService, EquipmentService, EmployeeService, EmployeeEquipmentService],
+  providers: [UserService, EquipmentService, EmployeeService, ExpiringEquipmentService, EmployeeEquipmentService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

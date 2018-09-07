@@ -1,7 +1,6 @@
 package ro.esolutions.eipl.mappers;
 
 import ro.esolutions.eipl.entities.User;
-import ro.esolutions.eipl.models.UserModel;
 import ro.esolutions.eipl.models.UserModelWithPassword;
 
 public final class UserWithPasswordMapper {
