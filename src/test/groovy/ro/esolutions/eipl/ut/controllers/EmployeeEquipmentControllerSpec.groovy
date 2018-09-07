@@ -59,7 +59,6 @@ class EmployeeEquipmentControllerSpec extends Specification {
         when:
         def result = employeeEquipmentController.getAllEmployeesEquipmentsReport()
 
-
         then:
         result == ok([aEmployeeEquipmentReportModel()])
 

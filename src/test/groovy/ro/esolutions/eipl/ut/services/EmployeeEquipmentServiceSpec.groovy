@@ -94,7 +94,6 @@ class EmployeeEquipmentServiceSpec extends Specification {
         0 * _
     }
 
-
     def 'exportCSV'() {
         when:
         def result = employeeEquipmentService.exportCSV()
@@ -106,6 +105,5 @@ class EmployeeEquipmentServiceSpec extends Specification {
         1 * employeeEquipmentRepository.findByEndDateLessThan(LocalDate.now().plusDays(7)) >> [aEmployeeEquipment()]
         0 * _
     }
-
 
 }

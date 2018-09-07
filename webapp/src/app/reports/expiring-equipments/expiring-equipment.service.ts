@@ -9,7 +9,7 @@ import {ExpiringEquipmentModel} from "./expiring-equipment.model";
 @Injectable()
 export class ExpiringEquipmentService {
 
-  private expiringEquipmentUrl = environment.resourcesUrl + '/employeeEquipment/reports/expiringReports';
+  private expiringEquipmentUrl = environment.resourcesUrl + '/employeeEquipment/reports/expiring';
 
   constructor(private httpClient: HttpClient) {
   }

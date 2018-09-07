@@ -19,7 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EmployeeEquipmentController {
 
-    public static final String OCTET_CONTENT_TYPE = "application/octet-stream";
+    private static final String OCTET_CONTENT_TYPE = "application/octet-stream";
 
     @NonNull
     private final EmployeeEquipmentService employeeEquipmentService;
@@ -29,7 +29,7 @@ public class EmployeeEquipmentController {
         return ResponseEntity.ok(employeeEquipmentService.getAllEmployeesEquipments());
     }
 
-    @GetMapping("/reports/expiringReports")
+    @GetMapping("/reports/expiring")
     public ResponseEntity<List<EmployeeEquipmentReportModel>> getAllEmployeesEquipmentsReport() {
         return ResponseEntity.ok(employeeEquipmentService.getAllEmployeesEquipmentsReport());
     }
@@ -39,7 +39,7 @@ public class EmployeeEquipmentController {
         return ResponseEntity.ok(employeeEquipmentService.getAllEmployeeEquipmentsForEmployee(employeeId));
     }
 
-    @GetMapping("/reports/expiringReports/download")
+    @GetMapping("/reports/expiring/download")
     public ResponseEntity<Object> downloadFile() {
         String CSVString = employeeEquipmentService.exportCSV();
 
