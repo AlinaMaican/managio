@@ -89,7 +89,7 @@ class EmployeeEquipmentServiceSpec extends Specification {
         result == [aEmployeeEquipmentReportModel()]
 
         and:
-        1 * employeeEquipmentRepository.findByEndDateLessThan(LocalDate.now().plusDays(7)) >> [aEmployeeEquipment()]
+        1 * employeeEquipmentRepository.findByEndDateLessThan(LocalDate.now().plusDays(8)) >> [aEmployeeEquipment()]
         0 * _
     }
 
@@ -101,7 +101,7 @@ class EmployeeEquipmentServiceSpec extends Specification {
         result == 'firstName,lastName,casca,code123,cap,S,2018-09-04'
 
         and:
-        1 * employeeEquipmentRepository.findByEndDateLessThan(LocalDate.now().plusDays(7)) >> [aEmployeeEquipment()]
+        1 * employeeEquipmentRepository.findByEndDateLessThan(LocalDate.now().plusDays(8)) >> [aEmployeeEquipment()]
         0 * _
     }
 
