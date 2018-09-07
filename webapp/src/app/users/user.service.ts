@@ -7,7 +7,7 @@ import {UserWithPassword} from "./model/user-with-password.model";
 import {Service} from "../service";
 
 @Injectable()
-export class UserService extends Service<User> {
+export class UserService extends Service<User>{
 
   public basicUrl = environment.resourcesUrl + '/user';
 

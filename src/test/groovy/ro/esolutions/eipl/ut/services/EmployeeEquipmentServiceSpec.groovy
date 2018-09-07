@@ -72,7 +72,14 @@ class EmployeeEquipmentServiceSpec extends Specification {
         and:
         1 * employeeEquipmentRepository.findById(1L) >> Optional.ofNullable(null)
         0 * _
+    }
 
+    def 'deleteEmployeeEquipment'() {
+        when:
+        employeeEquipmentService.deleteEmployeeEquipmentById(1L)
+        then:
+        1 * employeeEquipmentRepository.deleteById(1L)
+        0 * _
     }
 
     def 'getAllEmployeesEquipmentsReport'() {

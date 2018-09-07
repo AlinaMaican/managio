@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -43,6 +45,9 @@ public class EquipmentService {
         return EquipmentMapper.fromEntityToModel(equipmentRepository.save(EquipmentMapper.fromModelToEntity(equipmentModel)));
     }
 
+    public Page<EquipmentModel> getAllEquipments(Pageable pageable) {
+        return equipmentRepository.findAllByOrderByIdAsc(pageable).map(EquipmentMapper::fromEntityToModel);
+    }
     public void uploadEquipmentFromCSV(final MultipartFile file) {
         try {
             InputStream inputStream = file.getInputStream();

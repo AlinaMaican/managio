@@ -144,3 +144,9 @@
     </div>
   </div>
 </div>
+<app-pagination
+  [service]="equipmentService"
+  [subscription]="equipmentSubscription"
+  [baseURL]="baseURL"
+  (retrieveContent)="getPaginatedList($event)">
+</app-pagination>

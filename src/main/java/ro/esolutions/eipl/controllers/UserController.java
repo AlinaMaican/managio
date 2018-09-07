@@ -48,7 +48,7 @@ public class UserController {
 
     @GetMapping("/all")
     public ResponseEntity<Page<UserModel>> getAllUsers(@RequestParam(defaultValue = "0", name = "page") int page,
-                                                       @RequestParam(defaultValue = "2", name = "size") int size) {
+                                                       @RequestParam(defaultValue = "5", name = "size") int size) {
 
         return ResponseEntity.ok(userService.getAllUsers(PageRequest.of(page, size)));
     }

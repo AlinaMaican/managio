@@ -44,7 +44,7 @@ public class EmployeeEquipmentService {
 
     }
 
-    public List<EmployeeEquipmentModel> getAllEmployeeEquipmentsForEmployee(Long employeeId) {
+    public List<EmployeeEquipmentModel> getAllEmployeeEquipmentsForEmployee(final Long employeeId) {
         return employeeEquipmentRepository.getEmployeeEquipmentByEmployee_Id(employeeId).stream()
                 .map(EmployeeEquipmentMapper::fromEntityToModel)
                 .collect(Collectors.toList());
@@ -58,7 +58,7 @@ public class EmployeeEquipmentService {
     }
 
 
-    public EmployeeEquipmentModel updateEmployeeEquipment(EmployeeEquipmentModel employeeEquipment) {
+    public EmployeeEquipmentModel updateEmployeeEquipment(final EmployeeEquipmentModel employeeEquipment) {
         getByIdOrThrow(employeeEquipment.getId());
         return fromEntityToModel(employeeEquipmentRepository.save(fromModelToEntity(employeeEquipment)));
     }
@@ -66,5 +66,9 @@ public class EmployeeEquipmentService {
     private EmployeeEquipment getByIdOrThrow(final long id) {
         return employeeEquipmentRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(id, EmployeeEquipment.class.getName()));
+    }
+
+    public void deleteEmployeeEquipmentById(final long id) {
+        employeeEquipmentRepository.deleteById(id);
     }
 }
