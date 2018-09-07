@@ -23,7 +23,6 @@ const routes: Routes = [
   {path: 'employee', component: EmployeeComponent},
   {path: 'reports/expiring-equipments', component: ExpiringEquipmentsComponent},
   {path: 'employee/:id/equipment', component: EmployeeEquipmentComponent},
-  {path: 'employeeEquipmentsList', component: EmployeeEquipmentsListComponent},
   {path: 'equipments/:employeeId', component: AvailableEquipmentListComponent}
 ];
 
