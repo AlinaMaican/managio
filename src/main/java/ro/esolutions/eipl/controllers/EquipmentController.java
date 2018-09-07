@@ -56,7 +56,8 @@ public class EquipmentController {
     }
 
     @GetMapping("reports/unused")
-    public ResponseEntity<Object> getAllUnusedEquipments(@RequestHeader(CONTENT_TYPE) final MediaType mediaType) {
+    public ResponseEntity<Object> getAllUnusedEquipments(
+            @RequestHeader(required = false, name = CONTENT_TYPE, defaultValue = MediaType.APPLICATION_JSON_UTF8_VALUE) final MediaType mediaType) {
         if (mediaType != null && mediaType.isCompatibleWith(new MediaType("text", "csv"))) {
             return ResponseEntity.ok(
                     equipmentService.getAllUnusedEquipments().stream()
