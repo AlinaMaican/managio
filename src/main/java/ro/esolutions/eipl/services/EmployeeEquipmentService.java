@@ -26,7 +26,7 @@ public class EmployeeEquipmentService {
 
     @NonNull
     private final EmployeeEquipmentRepository employeeEquipmentRepository;
-    private static Integer DAYS = 7;
+    private static Integer DAYS = 8;
 
     public List<EmployeeEquipmentModel> getAllEmployeesEquipments() {
         return employeeEquipmentRepository.findAll()
@@ -35,7 +35,7 @@ public class EmployeeEquipmentService {
                 .collect(Collectors.toList());
     }
 
-    public List<EmployeeEquipmentReportModel> getAllEmployeesEquipmentsReport() {
+    public List<EmployeeEquipmentReportModel> getExpiringEmployeeEquipmentsReport() {
         return employeeEquipmentRepository.findByEndDateLessThan(LocalDate.now().plusDays(DAYS))
                 .stream()
                 .map(EmployeeEquipmentReportMapper::fromEntityToModel)

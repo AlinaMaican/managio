@@ -2,7 +2,6 @@ package ro.esolutions.eipl.ut.services
 
 import ro.esolutions.eipl.entities.EmployeeEquipment
 import ro.esolutions.eipl.exceptions.ResourceNotFoundException
-import ro.esolutions.eipl.mappers.EquipmentMapper
 import ro.esolutions.eipl.repositories.EmployeeEquipmentRepository
 import ro.esolutions.eipl.services.EmployeeEquipmentService
 import spock.lang.Specification
@@ -82,9 +81,9 @@ class EmployeeEquipmentServiceSpec extends Specification {
         0 * _
     }
 
-    def 'getAllEmployeesEquipmentsReport'() {
+    def 'getExpiringEmployeeEquipmentsReport'() {
         when:
-        def result = employeeEquipmentService.getAllEmployeesEquipmentsReport()
+        def result = employeeEquipmentService.getExpiringEmployeeEquipmentsReport()
 
         then:
         result == [aEmployeeEquipmentReportModel()]

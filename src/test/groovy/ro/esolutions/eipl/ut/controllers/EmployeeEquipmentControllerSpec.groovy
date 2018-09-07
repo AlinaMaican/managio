@@ -1,7 +1,6 @@
 package ro.esolutions.eipl.ut.controllers
 
-import org.springframework.http.HttpHeaders
-import org.springframework.http.MediaType
+
 import ro.esolutions.eipl.controllers.EmployeeEquipmentController
 import ro.esolutions.eipl.services.EmployeeEquipmentService
 import spock.lang.Specification
@@ -55,24 +54,24 @@ class EmployeeEquipmentControllerSpec extends Specification {
         0 * _
     }
 
-    def "getAllEmployeesEquipmentsReport"() {
+    def "getExpiringEmployeeEquipmentsReport"() {
         when:
-        def result = employeeEquipmentController.getAllEmployeesEquipmentsReport()
+        def result = employeeEquipmentController.getAllEmployeeEquipmentsReport()
 
         then:
         result == ok([aEmployeeEquipmentReportModel()])
 
         and:
-        1 * employeeEquipmentService.getAllEmployeesEquipmentsReport() >> [aEmployeeEquipmentReportModel()]
+        1 * employeeEquipmentService.getExpiringEmployeeEquipmentsReport() >> [aEmployeeEquipmentReportModel()]
         0 * _
     }
 
-    def "downloadFile" () {
+    def "downloadExpiringEquipmentEmployeesCsvReport" () {
         given:
         def CSVString = 'test'
 
         when:
-        def result = employeeEquipmentController.downloadFile()
+        def result = employeeEquipmentController.downloadExpiringEquipmentEmployeesCsvReport()
 
         then:
         result.body == CSVString

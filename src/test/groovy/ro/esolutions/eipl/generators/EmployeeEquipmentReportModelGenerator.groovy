@@ -22,5 +22,4 @@ class EmployeeEquipmentReportModelGenerator {
         values << overrides
         return EmployeeEquipmentReportModel.newInstance(values)
     }
-
 }

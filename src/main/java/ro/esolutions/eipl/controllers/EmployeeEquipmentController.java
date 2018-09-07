@@ -30,8 +30,8 @@ public class EmployeeEquipmentController {
     }
 
     @GetMapping("/reports/expiring")
-    public ResponseEntity<List<EmployeeEquipmentReportModel>> getAllEmployeesEquipmentsReport() {
-        return ResponseEntity.ok(employeeEquipmentService.getAllEmployeesEquipmentsReport());
+    public ResponseEntity<List<EmployeeEquipmentReportModel>> getAllEmployeeEquipmentsReport() {
+        return ResponseEntity.ok(employeeEquipmentService.getExpiringEmployeeEquipmentsReport());
     }
 
     @GetMapping()
@@ -39,8 +39,8 @@ public class EmployeeEquipmentController {
         return ResponseEntity.ok(employeeEquipmentService.getAllEmployeeEquipmentsForEmployee(employeeId));
     }
 
-    @GetMapping("/reports/expiring/download")
-    public ResponseEntity<Object> downloadFile() {
+    @GetMapping(value = "/reports/expiring/download")
+    public ResponseEntity<Object> downloadExpiringEquipmentEmployeesCsvReport() {
         String CSVString = employeeEquipmentService.exportCSV();
 
         return ResponseEntity.ok()
