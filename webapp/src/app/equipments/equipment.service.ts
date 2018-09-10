@@ -4,7 +4,6 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {EquipmentModel} from "./model/equipment.model";
 import {Service} from "../service";
-import index from "@angular/cli/lib/cli";
 
 @Injectable()
 export class EquipmentService extends Service<EquipmentModel>{
