@@ -41,7 +41,7 @@ import {EditEmployeeComponent} from "./employees/edit-employee/edit-employee.com
     EquipmentsComponent,
     EmployeeComponent,
     EmployeeEquipmentComponent,
-    EditEmployeeComponent
+    EditEmployeeComponent,
     AvailableEquipmentListComponent
   ],
   imports: [
