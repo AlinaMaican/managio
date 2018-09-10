@@ -8,7 +8,10 @@ class EmployeeGenerator {
         Map values = [id : 0L,
                       firstName: "firstName",
                       lastName : "lastName",
-                      workingStation : "workingStation"]
+                      workingStation : "workingStation",
+                      helmetSize : "helmetSize",
+                      clothingSize : "clothingSize",
+                      footwearSize : "footwearSize"]
         values << overrides
         return Employee.newInstance(values)
     }
