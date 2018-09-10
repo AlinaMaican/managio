@@ -24,6 +24,7 @@ import {EmployeeEquipmentComponent} from './employees/equipment/employee-equipme
 import {EmployeeEquipmentService} from "./employee-equipment/employee-equipment.service";
 import {UnusedEquipmentsComponent} from './reports/unused-equipments/unused-equipments.component';
 import {DatePipe} from "@angular/common";
+import {EditEmployeeComponent} from "./employees/edit-employee/edit-employee.component";
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import {DatePipe} from "@angular/common";
     EquipmentsComponent,
     EmployeeComponent,
     EmployeeEquipmentComponent,
+    EditEmployeeComponent,
     UnusedEquipmentsComponent
   ],
   imports: [

@@ -8,6 +8,7 @@ import {EquipmentsComponent} from "./equipments/equipments.component";
 import {EmployeeComponent} from "./employees/employee.component";
 import {ExpiringEquipmentsComponent} from "./reports/expiring-equipments/expiring-equipment.component";
 import {EmployeeEquipmentComponent} from "./employees/equipment/employee-equipment.component";
+import {EditEmployeeComponent} from "./employees/edit-employee/edit-employee.component";
 import {UnusedEquipmentsComponent} from "./reports/unused-equipments/unused-equipments.component";
 
 
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'resetPassword', component: UserProfileComponent},
   {path: 'employee', component: EmployeeComponent},
   {path: 'employee/:id/equipment', component: EmployeeEquipmentComponent},
+  {path: 'employee/:id', component:EditEmployeeComponent},
   {path: 'reports/expiring-equipments', component: ExpiringEquipmentsComponent},
   {path: 'reports/unused-equipments', component: UnusedEquipmentsComponent}
 ];
