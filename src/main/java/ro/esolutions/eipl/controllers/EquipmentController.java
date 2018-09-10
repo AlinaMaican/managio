@@ -17,6 +17,7 @@ import ro.esolutions.eipl.services.EquipmentService;
 import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -56,8 +57,7 @@ public class EquipmentController {
     }
 
     @GetMapping("reports/unused")
-    public ResponseEntity<Object> getAllUnusedEquipments(
-            @RequestHeader(required = false, name = CONTENT_TYPE, defaultValue = MediaType.APPLICATION_JSON_UTF8_VALUE) final MediaType mediaType) {
+    public ResponseEntity<Object> getAllUnusedEquipments(@RequestParam(name = "type", required = false) final MediaType mediaType) {
         if (mediaType != null && mediaType.isCompatibleWith(new MediaType("text", "csv"))) {
             return ResponseEntity.ok(
                     equipmentService.getAllUnusedEquipments().stream()

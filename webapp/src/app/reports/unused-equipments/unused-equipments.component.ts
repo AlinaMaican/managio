@@ -12,7 +12,7 @@ import {DatePipe} from "@angular/common";
 })
 export class UnusedEquipmentsComponent implements OnInit {
   unusedEquipments: EquipmentModel[];
-  unusedEquipmentsCSVDownloadUrl = environment.resourcesUrl + '/equipment/reports/unused';
+  unusedEquipmentsCSVDownloadUrl = environment.resourcesUrl + '/equipment/reports/unused?type=text/csv';
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -28,6 +28,6 @@ export class UnusedEquipmentsComponent implements OnInit {
   }
 
   getDownloadName(): string {
-    return 'unusedEquipments-' + this.datePipe.transform(new Date(),'yyyy-mm-dd') + ".csv";
+    return 'unusedEquipments-' + this.datePipe.transform(new Date(), 'yyyy-MM-dd') + ".csv";
   }
 }
