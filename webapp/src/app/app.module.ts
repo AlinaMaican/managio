@@ -23,6 +23,7 @@ import {ExpiringEquipmentService} from "./reports/expiring-equipments/expiring-e
 import {EmployeeEquipmentComponent} from './employees/equipment/employee-equipment.component';
 import {AvailableEquipmentListComponent} from "./available-equipment-list/available-equipment-list.component";
 import {EmployeeEquipmentService} from "./employee-equipment/employee-equipment.service";
+import {EditEmployeeComponent} from "./employees/edit-employee/edit-employee.component";
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import {EmployeeEquipmentService} from "./employee-equipment/employee-equipment.
     EquipmentsComponent,
     EmployeeComponent,
     EmployeeEquipmentComponent,
+    EditEmployeeComponent
     AvailableEquipmentListComponent
   ],
   imports: [

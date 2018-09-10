@@ -25,4 +25,11 @@ public class Employee {
     private String lastName;
 
     private String workingStation;
+
+    private String helmetSize;
+
+    private String clothingSize;
+
+    private String footwearSize;
+
 }

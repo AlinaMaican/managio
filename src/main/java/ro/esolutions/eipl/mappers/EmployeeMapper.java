@@ -14,6 +14,9 @@ public final class EmployeeMapper {
                 .firstName(employee.getFirstName())
                 .lastName(employee.getLastName())
                 .workingStation(employee.getWorkingStation())
+                .helmetSize(employee.getHelmetSize())
+                .clothingSize(employee.getClothingSize())
+                .footwearSize(employee.getFootwearSize())
                 .build();
     }
 
@@ -23,6 +26,9 @@ public final class EmployeeMapper {
                 .firstName(employeeModel.getFirstName())
                 .lastName(employeeModel.getLastName())
                 .workingStation(employeeModel.getWorkingStation())
+                .helmetSize(employeeModel.getHelmetSize())
+                .clothingSize(employeeModel.getClothingSize())
+                .footwearSize(employeeModel.getFootwearSize())
                 .build();
     }
 
