@@ -39,9 +39,9 @@ public class EmployeeController {
     }
 
     @PutMapping("/{employee_id}")
-    public ResponseEntity<EmployeeModel> editEmployeeById(@RequestParam(name = "helmetSize")final String helmetSize,
-                                                          @RequestParam(name = "clothingSize")final String clothingSize,
-                                                          @RequestParam(name = "footwearSize")final String footwearSize,
+    public ResponseEntity<EmployeeModel> editEmployeeById(@RequestParam(name = "helmetSize",defaultValue = "")final String helmetSize,
+                                                          @RequestParam(name = "clothingSize",defaultValue = "")final String clothingSize,
+                                                          @RequestParam(name = "footwearSize",defaultValue = "")final String footwearSize,
                                                           @PathVariable("employee_id") final Long employeeId) {
 
         EmployeeModel employeeModel=employeeService.getEmployeeById(employeeId);
