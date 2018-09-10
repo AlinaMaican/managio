@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {EquipmentService} from "../../equipments/equipment.service";
-import {EquipmentModel} from "../../equipments/model/equipment.model";
-import {environment} from "../../../environments/environment";
-import {DatePipe} from "@angular/common";
+import {ActivatedRoute, Router} from '@angular/router';
+import {EquipmentService} from '../../equipments/equipment.service';
+import {EquipmentModel} from '../../equipments/model/equipment.model';
+import {environment} from '../../../environments/environment';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-unused-equipments',

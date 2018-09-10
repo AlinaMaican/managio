@@ -8,20 +8,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
 import ro.esolutions.eipl.mappers.EquipmentMapper;
 import ro.esolutions.eipl.models.EquipmentModel;
 import ro.esolutions.eipl.services.EquipmentService;
 
 import javax.validation.Valid;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 
 @RestController
 @RequestMapping("/api/equipment")

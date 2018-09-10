@@ -1,9 +1,9 @@
-import {environment} from "../../environments/environment";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
-import {EquipmentModel} from "./model/equipment.model";
-import {Service} from "../service";
+import {environment} from '../../environments/environment';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {EquipmentModel} from './model/equipment.model';
+import {Service} from '../service';
 
 @Injectable()
 export class EquipmentService extends Service<EquipmentModel> {
