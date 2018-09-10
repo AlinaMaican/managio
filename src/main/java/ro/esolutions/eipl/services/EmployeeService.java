@@ -76,7 +76,7 @@ public class EmployeeService {
     }
 
     public EmployeeModel editEmployeeById(final EmployeeModel employeeModel) {
-        final Employee employee=EmployeeMapper.fromModelToEntity(employeeModel);
+        final Employee employee = EmployeeMapper.fromModelToEntity(employeeModel);
         return EmployeeMapper.fromEntityToModel(employeeRepository.save(employee));
     }
 

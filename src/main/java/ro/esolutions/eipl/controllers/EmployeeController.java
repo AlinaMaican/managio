@@ -44,7 +44,7 @@ public class EmployeeController {
                                                           @RequestParam(name = "footwearSize",defaultValue = "")final String footwearSize,
                                                           @PathVariable("employee_id") final Long employeeId) {
 
-        EmployeeModel employeeModel=employeeService.getEmployeeById(employeeId);
+        EmployeeModel employeeModel = employeeService.getEmployeeById(employeeId);
         employeeModel.setHelmetSize(helmetSize);
         employeeModel.setClothingSize(clothingSize);
         employeeModel.setFootwearSize(footwearSize);
