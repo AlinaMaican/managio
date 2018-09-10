@@ -40,11 +40,14 @@
         </small>
       </div>
       <div class="form-group btn-padding-top-15">
-        <button type="button" class="btn btn-secondary btn-sm float-left btn-width-140" routerLink="/employee">
+        <button type="button"
+                class="btn btn-secondary btn-sm float-left btn-width-140"
+                routerLink="/employee">
           <span>CANCEL</span>
         </button>
         <button type="button" data-toggle="modal" data-target="#confirmModal"
-                class="btn btn-primary btn-sm float-right btn-width-140" [disabled]="!editEmployeeForm.valid"
+                class="btn btn-primary btn-sm float-right btn-width-140"
+                [disabled]="!editEmployeeForm.valid"
                 (click)="onSubmit()">
           <span>SAVE</span>
         </button>
