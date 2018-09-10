@@ -13,7 +13,8 @@ class EquipmentGenerator {
                 mabecCode     : MabecCode.MABEC_01,
                 protectionType: "cap",
                 size          : "S",
-                sex           : "F"]
+                sex           : "F",
+                isAvailable: Boolean.TRUE]
         values << overrides
         return Equipment.newInstance(values)
     }
