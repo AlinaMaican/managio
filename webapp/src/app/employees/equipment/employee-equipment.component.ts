@@ -13,7 +13,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 export class EmployeeEquipmentComponent implements OnInit, OnDestroy {
   public employeeId: number;
   private employeeEquipmentSubscription: Subscription;
-  employeeEquipmentList: EmployeeEquipmentModel[];
+  employeeEquipmentList: EmployeeEquipmentModel[] = [];
 
   editEquipmentForm: FormGroup;
   targetEmployeeEquipment: EmployeeEquipmentModel;

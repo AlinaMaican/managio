@@ -77,14 +77,18 @@ public class EmployeeEquipmentService {
         employeeEquipmentRepository.deleteById(id);
     }
 
-    public void saveAllocatedEquipments(final List<EmployeeEquipmentModel> allocatedEmployeesEquipments, final Long employeeId) {
+    public void saveAllocatedEquipments(final List<EmployeeEquipmentModel> allocatedEmployeesEquipments,
+                                        final Long employeeId) {
         final List<Equipment> equipments = new ArrayList<>();
         final List<EmployeeEquipment> employeeEquipments = new ArrayList<>();
 
         allocatedEmployeesEquipments.forEach(allocateEquipmentModel -> {
-            final Optional<Equipment> optionalEquipment = equipmentRepository.findById(allocateEquipmentModel.getEquipment().getId());
-            optionalEquipment.ifPresent(equipment -> equipment.setIsAvailable(Boolean.FALSE));
-            equipments.add(optionalEquipment.get());
+            final Optional<Equipment> optionalEquipment =
+                    equipmentRepository.findById(allocateEquipmentModel.getEquipment().getId());
+            optionalEquipment.ifPresent(equipment -> {
+                equipment.setIsAvailable(Boolean.FALSE);
+                equipments.add(optionalEquipment.get());
+            });
 
             final EmployeeEquipment employeeEquipment = EmployeeEquipment.builder()
                     .startDate(allocateEquipmentModel.getStartDate())

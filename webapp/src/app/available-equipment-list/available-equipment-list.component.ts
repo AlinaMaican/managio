@@ -62,7 +62,8 @@ export class AvailableEquipmentListComponent implements OnInit {
     });
     this.employeeEquipmentService.saveAllocatedEquipments(this.selectedEmployeeEquipments, this.employeeId).subscribe(
       () => {
-        this.router.navigateByUrl('/equipments/'+this.employeeId);
+        this.router.navigate(['/employee/:id/equipment']);
+        location.reload();
       }
     );
   }

@@ -1,6 +1,6 @@
 package ro.esolutions.eipl.ut.controllers
 
-
+import org.springframework.http.ResponseEntity
 import ro.esolutions.eipl.controllers.EmployeeEquipmentController
 import ro.esolutions.eipl.services.EmployeeEquipmentService
 import spock.lang.Specification
@@ -11,6 +11,7 @@ import static ro.esolutions.eipl.generators.EmployeeEquipmentReportModelGenerato
 
 class EmployeeEquipmentControllerSpec extends Specification {
 
+    public static final String JSON_EMPTY_BODY = "{}"
     def employeeEquipmentService = Mock(EmployeeEquipmentService)
     def employeeEquipmentController = new EmployeeEquipmentController(employeeEquipmentService)
 
@@ -81,12 +82,25 @@ class EmployeeEquipmentControllerSpec extends Specification {
         0 * _
     }
 
-
     def 'deleteEmployeeEquipment'() {
         when:
         employeeEquipmentController.deleteEmployeeEquipment(1L)
         then:
         1 * employeeEquipmentService.deleteEmployeeEquipmentById(1L)
+        0 * _
+    }
+
+    def 'saveAllocatedEquipments'() {
+        given:
+        def allocatedEquipments = [aEmployeeEquipmentModel()]
+        def employeeId = aEmployeeEquipmentModel().employee.id
+
+        when:
+        def result = employeeEquipmentController.saveAllocatedEquipments(allocatedEquipments, employeeId)
+
+        then:
+        1 * employeeEquipmentService.saveAllocatedEquipments(allocatedEquipments, employeeId)
+        result == ResponseEntity.ok(JSON_EMPTY_BODY)
         0 * _
     }
 }
