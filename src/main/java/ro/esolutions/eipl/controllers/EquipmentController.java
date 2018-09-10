@@ -56,9 +56,9 @@ public class EquipmentController {
         return ResponseEntity.ok(JSON_EMPTY_BODY);
     }
 
-    @GetMapping("reports/unused")
+    @GetMapping("/reports/unused")
     public ResponseEntity<Object> getAllUnusedEquipments(@RequestParam(name = "type", required = false) final MediaType mediaType) {
-        if (mediaType != null && mediaType.isCompatibleWith(new MediaType("text", "csv"))) {
+        if (new MediaType("text", "csv").isCompatibleWith(mediaType)) {
             return ResponseEntity.ok(
                     equipmentService.getAllUnusedEquipments().stream()
                             .map(EquipmentMapper::fromModelToCsvString)
