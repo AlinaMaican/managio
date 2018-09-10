@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ro.esolutions.eipl.models.EmployeeModel;
 import ro.esolutions.eipl.services.EmployeeService;
-
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,7 +28,7 @@ public class EmployeeController {
    }
 
     @GetMapping("/{employee_id}")
-    public ResponseEntity<EmployeeModel> getEmployeeById(@PathVariable("employee_id") Long employeeId) {
+    public ResponseEntity<EmployeeModel> getEmployeeById(@PathVariable("employee_id") final Long employeeId) {
         return ResponseEntity.ok(employeeService.getEmployeeById(employeeId));
     }
 
@@ -41,9 +39,15 @@ public class EmployeeController {
     }
 
     @PutMapping("/{employee_id}")
-    public ResponseEntity<Object> editEmployeeById(@RequestBody @Valid final EmployeeModel employeeModel,
-                                               @PathVariable("employee_id") final Long employeeId) {
-        employeeModel.setId(employeeId);
-        return ResponseEntity.ok(employeeService.editEmployeeById(employeeId, employeeModel));
+    public ResponseEntity<EmployeeModel> editEmployeeById(@RequestParam(name = "helmetSize")final String helmetSize,
+                                                          @RequestParam(name = "clothingSize")final String clothingSize,
+                                                          @RequestParam(name = "footwearSize")final String footwearSize,
+                                                          @PathVariable("employee_id") final Long employeeId) {
+
+        EmployeeModel employeeModel=employeeService.getEmployeeById(employeeId);
+        employeeModel.setHelmetSize(helmetSize);
+        employeeModel.setClothingSize(clothingSize);
+        employeeModel.setFootwearSize(footwearSize);
+        return ResponseEntity.ok(employeeService.editEmployeeById(employeeModel));
     }
 }

@@ -1,4 +1,4 @@
-alter table employees add column helmet_size character varying(255);
-alter table employees add column clothing_size character varying(255);
-alter table employees add column footwear_size character varying(255);
+ALTER TABLE employees ADD COLUMN helmet_size CHARACTER VARYING(255);
+ALTER TABLE employees ADD COLUMN clothing_size CHARACTER VARYING(255);
+ALTER TABLE employees ADD COLUMN footwear_size CHARACTER VARYING(255);
 

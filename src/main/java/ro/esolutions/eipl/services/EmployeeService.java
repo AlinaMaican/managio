@@ -44,7 +44,6 @@ public class EmployeeService {
                 .collect(Collectors.toList());
     }
 
-
     public List<EmployeeModel> getFilteredEmployees(String searchValue){
         List<EmployeeModel> resultEmployees = employeeRepository.findDistinctByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(searchValue,searchValue)
                 .stream()
@@ -52,6 +51,7 @@ public class EmployeeService {
                 .collect(Collectors.toList());
         return resultEmployees;
     }
+
     public void uploadEmployeeFromCSV(final MultipartFile file) {
         try {
             InputStream inputStream = file.getInputStream();
@@ -75,14 +75,11 @@ public class EmployeeService {
         return employeeRepository.findById(employeeId).map(employee -> fromEntityToModel(employee)).orElseThrow(() -> new EmployeeNotFoundException());
     }
 
-    public EmployeeModel editEmployeeById(final Long employeeId, final EmployeeModel employeeModel) {
-        Employee employee = fromModelToEntity(employeeModel);
-        EmployeeModel temporarEmployee = getEmployeeById(employeeId);
-        employee.setFirstName(temporarEmployee.getFirstName());
-        employee.setLastName(temporarEmployee.getLastName());
-        employee.setId(employeeId);
+    public EmployeeModel editEmployeeById(final EmployeeModel employeeModel) {
+        final Employee employee=EmployeeMapper.fromModelToEntity(employeeModel);
         return EmployeeMapper.fromEntityToModel(employeeRepository.save(employee));
     }
+
 
 
 }

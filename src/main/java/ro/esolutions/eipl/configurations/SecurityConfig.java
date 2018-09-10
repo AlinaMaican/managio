@@ -38,7 +38,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessHandler((request, response, authentication) ->
                         new DefaultRedirectStrategy().sendRedirect(request, response, LOGIN_PATH_FULL))
                 .permitAll();
-       // http.csrf().disable().authorizeRequests().anyRequest().permitAll();
     }
 
     @Autowired

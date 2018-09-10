@@ -19,7 +19,7 @@
   </div>
   <div class="row">
     <div class="col-sm-4 offset-sm-4">
-      <form class="form " [formGroup]="editsizes">
+      <form class="form " [formGroup]="editEmployeeForm">
         <div class="form-group">
           <label>Working station</label>
           <input type="text" class="form-control" placeholder="working station" formControlName="workingStation"
@@ -28,17 +28,17 @@
         <div class="form-group">
           <label>Helmet Size</label>
           <input type="text" class="form-control" placeholder="helmet size" formControlName="helmetSize">
-          <small *ngIf="editsizes.get('helmetSize').errors">*Helmet size should only contain capital letters or numbers</small>
+          <small *ngIf="editEmployeeForm.get('helmetSize').errors">*Helmet size should only contain capital letters or numbers</small>
         </div>
         <div class="form-group">
           <label>Clothing Size</label>
           <input type="text" class="form-control" placeholder="clothing size" formControlName="clothingSize">
-          <small *ngIf="editsizes.get('clothingSize').errors">*Clothing size should only contain capital letters or numbers</small>
+          <small *ngIf="editEmployeeForm.get('clothingSize').errors">*Clothing size should only contain capital letters or numbers</small>
         </div>
         <div class="form-group">
           <label>Footwear Size</label>
           <input type="text" class="form-control" placeholder="footwear size" formControlName="footwearSize">
-          <small *ngIf="editsizes.get('footwearSize').errors">*Footwear size should only contain capital letters or numbers</small>
+          <small *ngIf="editEmployeeForm.get('footwearSize').errors">*Footwear size should only contain capital letters or numbers</small>
         </div>
         <div >
           <div class="d-flex w-100 justify-content-between">

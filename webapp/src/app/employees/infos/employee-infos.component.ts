@@ -1,8 +1,8 @@
 import { Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Params, Router} from "@angular/router";
-import {EmployeeService} from "../employee.service";
-import {Employee} from "../employee.model";
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Params, Router} from '@angular/router';
+import {EmployeeService} from '../employee.service';
+import {Employee} from '../employee.model';
 
 @Component({
   selector: 'app-infos',
@@ -11,11 +11,11 @@ import {Employee} from "../employee.model";
 })
 export class InfosComponent implements OnInit {
 
-  editsizes: FormGroup;
-  employee:Employee;
-  firstName : String;
-  lastName : String;
-  REGEX_NAME: string = '^[A-Z0-9]+';
+  editEmployeeForm: FormGroup;
+  employee: Employee;
+  firstName: String;
+  lastName: String;
+  REGEX_NAME: '^[A-Z0-9]+';
   private id: number;
 
   constructor(private employeeService: EmployeeService,
@@ -29,7 +29,7 @@ export class InfosComponent implements OnInit {
     });
   }
   initForm() {
-    this.editsizes = new FormGroup({
+    this.editEmployeeForm = new FormGroup({
       'workingStation': new FormControl(''),
       'helmetSize': new FormControl('', Validators.pattern(this.REGEX_NAME)),
       'clothingSize': new FormControl('', Validators.pattern(this.REGEX_NAME)),
@@ -38,9 +38,9 @@ export class InfosComponent implements OnInit {
     this.employeeService.getEmployeeById(this.id)
       .subscribe(
         employee => {
-          this.firstName=employee.firstName;
-          this.lastName=employee.lastName;
-          this.editsizes.patchValue({
+          this.firstName = employee.firstName;
+          this.lastName = employee.lastName;
+          this.editEmployeeForm.patchValue({
             workingStation : employee.workingStation,
             helmetSize : employee.helmetSize,
             clothingSize : employee.clothingSize,
@@ -49,10 +49,11 @@ export class InfosComponent implements OnInit {
         });
   }
   onSubmit() {
-    this.employeeService.updateEmployeeById(this.editsizes.value, this.id)
+    this.employeeService.updateEmployeeById(this.editEmployeeForm.value, this.id)
+    this.employeeService.updateEmployeeById(this.editEmployeeForm.value, this.id)
       .subscribe(
         () => {
-          this.router.navigateByUrl('/employee')
+          this.router.navigateByUrl('/employee');
         }
       );
   }

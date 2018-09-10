@@ -48,8 +48,8 @@
           <ng-container *ngFor="let employee of employeeGroup">
             <td>{{employee.firstName}} {{employee.lastName}}</td>
             <td>
-              <i class="fas fa-user" [routerLink]="'/employee/'+employee.id" (click)="getFullName()"></i> &nbsp;
-              <i class="fas fa-tshirt" [routerLink]="'/employee/'+employee.id+'/equipment'"></i>
+              <i class="fas fa-user" [routerLink]="'/employee/' + employee.id"></i> &nbsp;
+              <i class="fas fa-tshirt" [routerLink]="'/employee/' + employee.id + '/equipment'"></i>
             </td>
           </ng-container>
         </tr>
