@@ -41,7 +41,10 @@
     "confirm-password": "Confirm password",
     "warning3": "Password mismatch!",
     "cancel": "Cancel",
-    "save": "Save"
+    "save": "Save",
+    "language": "Choose language:",
+    "english": "English",
+    "romana": "Romana"
   },
 
   "add-user": {
@@ -75,7 +78,9 @@
     "save": "Save",
     "prompt": "Are you sure you want to save?",
     "no": "No",
-    "yes": "Yes"
+    "yes": "Yes",
+    "firstname-error": "Firstname is required",
+    "lastname-error": "Lastname is required"
   },
 
   "equipment": {
@@ -124,5 +129,9 @@
     "type": "Protection type",
     "size": "Size",
     "end-date": "End date"
+  },
+
+  "pagination": {
+    "items": "Items per page: "
   }
 }

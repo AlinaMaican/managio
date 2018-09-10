@@ -8,7 +8,7 @@
         <div class="row-fluid">
           <div class="form-group">
             <label>{{'add-user.username' | translate}}</label>
-            <input type="text" class="form-control" placeholder="Username" formControlName="username"
+            <input type="text" class="form-control" placeholder="{{'add-user.username' | translate}}" formControlName="username"
                    required="required"
                    [ngClass]="{'is-invalid' : isUsernameError}"
             >
@@ -18,17 +18,17 @@
           </div>
           <div class="form-group">
             <label>{{'add-user.firstname' | translate}}</label>
-            <input type="text" class="form-control" placeholder="First Name" formControlName="firstName"
+            <input type="text" class="form-control" placeholder="{{'add-user.firstname' | translate}}" formControlName="firstName"
                    required="required">
           </div>
           <div class="form-group">
             <label>{{'add-user.lastname' | translate}}</label>
-            <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName"
+            <input type="text" class="form-control" placeholder="{{'add-user.lastname' | translate}}" formControlName="lastName"
                    required="required">
           </div>
           <div class="form-group">
             <label>{{'add-user.email' | translate}}</label>
-            <input type="email" class="form-control" placeholder="Email" formControlName="email" required="required"
+            <input type="email" class="form-control" placeholder="{{'add-user.email' | translate}}" formControlName="email" required="required"
                    [ngClass]="{'is-invalid' : isEmailError}">
             <div *ngIf="isEmailError && emailFieldError && emailFieldError.codeMessageMap">
               <p *ngFor="let message of emailFieldError.codeMessageMap | keyvalue">{{message.value}}</p>
@@ -36,7 +36,7 @@
           </div>
           <div class="form-group">
             <label for="pass">{{'add-user.password' | translate}}</label>
-            <input type="password" class="form-control" placeholder="Password" formControlName="password"
+            <input type="password" class="form-control" placeholder="{{'add-user.password' | translate}}" formControlName="password"
                    required="required" id="pass">
           </div>
           <div class="form-check form-check-inline">

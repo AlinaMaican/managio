@@ -1,7 +1,7 @@
 <div class="row bigger-size">
 
   <div>
-    <label for="itemsPerPage">Items per page: &nbsp;
+    <label for="itemsPerPage">{{'pagination.items' | translate}}&nbsp;
     </label>
 
     <select id="itemsPerPage" [(ngModel)]="pageSize" (click)="onFirst(pageSize)">

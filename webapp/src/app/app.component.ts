@@ -12,7 +12,4 @@ export class AppComponent {
     translate.setDefaultLang('en');
   }
 
-  useLanguage(language: string) {
-    this.translate.use(language);
-  }
 }

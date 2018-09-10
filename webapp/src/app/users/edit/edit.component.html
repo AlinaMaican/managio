@@ -26,7 +26,7 @@
               </label>
             </div>
 
-            <small *ngIf="formGroup.get('firstName').errors">Firstname is required</small>
+            <small *ngIf="formGroup.get('firstName').errors"> {{'edit-user.firstname-error' | translate}}</small>
             <div class="form-group">
               <label>
                 {{'edit-user.firstname' | translate}}
@@ -34,7 +34,7 @@
               </label>
             </div>
 
-            <small *ngIf="formGroup.get('lastName').errors">Lastname is required</small>
+            <small *ngIf="formGroup.get('lastName').errors"> {{'edit-user.lastname-error' | translate}}</small>
             <div class="form-group">
               <label>
                 {{'edit-user.lastname' | translate}}

@@ -41,7 +41,10 @@
     "confirm-password": "Confirma parola",
     "warning3": "Parolele nu sunt identice!",
     "cancel": "Anulare",
-    "save": "Salvare"
+    "save": "Salvare",
+    "language": "Alege limba:",
+    "english": "English",
+    "romana": "Romana"
   },
 
   "add-user": {
@@ -75,7 +78,9 @@
     "save": "Salvare",
     "prompt": "Sunteti sigur ca doriti sa salvati?",
     "no": "Nu",
-    "yes": "Da"
+    "yes": "Da",
+    "firstname-error": "Introduceti prenumele!",
+    "lastname-error": "Introduceti numele!"
   },
 
   "equipment": {
@@ -124,5 +129,9 @@
     "type": "Tip protectie",
     "size": "Marime",
     "end-date": "Data expirare"
+  },
+
+  "pagination": {
+    "items": "Intrari pe pagina: "
   }
 }
