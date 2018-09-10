@@ -1,7 +1,6 @@
 package ro.esolutions.eipl.ut.services
 
 import org.springframework.mock.web.MockMultipartFile
-import ro.esolutions.eipl.exceptions.EmployeeNotFoundException
 import ro.esolutions.eipl.repositories.EmployeeRepository
 import ro.esolutions.eipl.services.EmployeeService
 import spock.lang.Specification
@@ -62,38 +61,18 @@ class EmployeeServiceSpec extends Specification {
         given:
         def employeeModel = aEmployeeModel()
         def employee = aEmployee()
-        def employeeId = 0L
 
         when:
-        def result = employeeService.editEmployeeById(employeeId, employeeModel)
+        def result = employeeService.editEmployeeById(employeeModel)
 
         then:
         result == employeeModel
         0 * _
 
         and:
-        1 * employeeRepository.findById(employeeId) >> Optional.of(employee)
         1 * employeeRepository.save(employee) >> employee
         0 * _
 
-    }
-
-    def "editUserByIdError"() {
-
-        given:
-        def employeeModel = aEmployeeModel()
-        def employeeId = 0
-
-        when:
-        def result = employeeService.editEmployeeById(employeeId, employeeModel)
-
-        then:
-        result == null
-        0 * _
-        thrown(EmployeeNotFoundException)
-
-        and:
-        1 * employeeRepository.findById(employeeId) >> Optional.empty()
     }
 
     def "getFilteredEmployees"(){

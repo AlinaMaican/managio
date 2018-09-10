@@ -50,16 +50,20 @@ class EmployeeControllerSpec extends Specification {
     def "editEmployeeById"() {
         given:
         def employeeModel = aEmployeeModel()
+        def helmetSize = "helmetSize"
+        def clothingSize = "clothingSize"
+        def footwearSize = "footwearSize"
         def employeeId = 0
 
         when:
-        def result = employeeController.editEmployeeById(employeeModel, employeeId)
+        def result = employeeController.editEmployeeById(helmetSize,clothingSize,footwearSize,employeeId)
 
         then:
         result == ResponseEntity.ok(aEmployeeModel())
 
         and:
-        1 * employeeService.editEmployeeById(employeeId, employeeModel) >> aEmployeeModel()
+        1 * employeeService.getEmployeeById(employeeId) >> aEmployeeModel()
+        1 * employeeService.editEmployeeById(employeeModel) >> aEmployeeModel()
         0 * _
     }
 

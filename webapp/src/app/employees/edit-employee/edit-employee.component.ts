@@ -6,10 +6,10 @@ import {Employee} from '../employee.model';
 
 @Component({
   selector: 'app-infos',
-  templateUrl: './employee-infos.component.html',
-  styleUrls: ['./employee-infos.component.css']
+  templateUrl: './edit-employee.component.html',
+  styleUrls: ['./edit-employee.component.css']
 })
-export class InfosComponent implements OnInit {
+export class EditEmployeeComponent implements OnInit {
 
   editEmployeeForm: FormGroup;
   employee: Employee;

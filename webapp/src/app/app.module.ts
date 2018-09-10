@@ -22,7 +22,7 @@ import {ExpiringEquipmentsComponent} from "./reports/expiring-equipments/expirin
 import {ExpiringEquipmentService} from "./reports/expiring-equipments/expiring-equipment.service";
 import {EmployeeEquipmentComponent} from './employees/equipment/employee-equipment.component';
 import {EmployeeEquipmentService} from "./employee-equipment/employee-equipment.service";
-import {InfosComponent} from "./employees/infos/employee-infos.component";
+import {EditEmployeeComponent} from "./employees/edit-employee/edit-employee.component";
 
 @NgModule({
   declarations: [
@@ -40,7 +40,7 @@ import {InfosComponent} from "./employees/infos/employee-infos.component";
     EquipmentsComponent,
     EmployeeComponent,
     EmployeeEquipmentComponent,
-    InfosComponent
+    EditEmployeeComponent
   ],
   imports: [
     BrowserModule,
