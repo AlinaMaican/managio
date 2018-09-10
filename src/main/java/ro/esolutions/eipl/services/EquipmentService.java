@@ -14,6 +14,8 @@ import ro.esolutions.eipl.entities.Equipment;
 import ro.esolutions.eipl.exceptions.EquipmentUploadFileNotValid;
 import ro.esolutions.eipl.mappers.EquipmentMapper;
 import ro.esolutions.eipl.models.EquipmentModel;
+import ro.esolutions.eipl.repositories.EmployeeEquipmentRepository;
+import ro.esolutions.eipl.repositories.EmployeeRepository;
 import ro.esolutions.eipl.repositories.EquipmentRepository;
 import ro.esolutions.eipl.types.MabecCode;
 
@@ -33,6 +35,11 @@ public class EquipmentService {
 
     @NonNull
     private final EquipmentRepository equipmentRepository;
+    @NonNull
+    private final EmployeeRepository employeeRepository;
+    @NonNull
+    private final EmployeeEquipmentRepository employeeEquipmentRepository;
+
 
     public List<EquipmentModel> getAllEquipments() {
         return equipmentRepository.findAll()
@@ -48,6 +55,7 @@ public class EquipmentService {
     public Page<EquipmentModel> getAllEquipments(Pageable pageable) {
         return equipmentRepository.findAllByOrderByIdAsc(pageable).map(EquipmentMapper::fromEntityToModel);
     }
+
     public void uploadEquipmentFromCSV(final MultipartFile file) {
         try {
             InputStream inputStream = file.getInputStream();
@@ -56,7 +64,7 @@ public class EquipmentService {
             List<Equipment> equipmentsToSave = StreamSupport.stream(csvParser.spliterator(), false)
                     .filter(record -> MabecCode.contains(record.get(2)))
                     .map(record -> {
-                       Equipment equipment = EquipmentMapper.fromRecordToEntity(record);
+                        Equipment equipment = EquipmentMapper.fromRecordToEntity(record);
                         equipmentRepository.findByCode(equipment.getCode())
                                 .ifPresent(equipment1 -> equipment.setId(equipment1.getId()));
                         return equipment;
@@ -67,4 +75,22 @@ public class EquipmentService {
             throw new EquipmentUploadFileNotValid();
         }
     }
+
+//    public List<EquipmentModel> getAllAvailableEquipments() {
+//        return equipmentRepository.findAllByIsAvailable(true)
+//                .stream()
+//                .map(EquipmentMapper::fromEntityToModel)
+//                .collect(Collectors.toList());
+//    }
+
+    public List<EquipmentModel> getFilteredEquipments(String searchValue) {
+        List<EquipmentModel> resultEquipments = equipmentRepository.findDistinctByNameContainingIgnoreCase(searchValue)
+                .stream()
+                .map(EquipmentMapper::fromEntityToModel)
+                .collect(Collectors.toList());
+        return resultEquipments;
+    }
+
 }
+
+

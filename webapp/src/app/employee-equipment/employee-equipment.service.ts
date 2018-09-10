@@ -24,4 +24,9 @@ export class EmployeeEquipmentService {
   deleteEmployeeEquipment(employeeEquipment: EmployeeEquipmentModel): Observable<Object> {
     return this.httpClient.delete(`${this.employeeEquipmentUrl}/${employeeEquipment.id}`);
   }
+
+  saveAllocatedEquipments(selectedEmployeeEquipments: EmployeeEquipmentModel[], employeeId: number) {
+    return this.httpClient.post<EmployeeEquipmentModel[]>(this.employeeEquipmentUrl + '/saveAllocatedEquipments/' + employeeId, selectedEmployeeEquipments, {});
+  }
+
 }

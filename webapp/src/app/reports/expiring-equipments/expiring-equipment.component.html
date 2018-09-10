@@ -1,6 +1,4 @@
-<div class="container-fluid">
-<h1 align="center" >Expiring Equipments</h1>
-<div class="row reports-list" >
+<div class="row padding-top-30-bottom-10">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb breadcrumb-white-14">
       <li class="breadcrumb-item"><a href="#">EIPL</a></li>
@@ -9,23 +7,31 @@
     </ol>
   </nav>
 </div>
+<div class="row padding-top-10-bottom-30">
+  <div class="col-md-6 offset-md-3">
+    <div class="text-center">
+      <div>
+        <h1>Expiring Equipments</h1>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="row">
-
-  <a href="/api/employeeEquipment/reports/expiring/download" class="btn btn-primary">Export</a>
-
+  <a href="/api/employeeEquipment/reports/expiring/download"
+     class="btn btn-outline-secondary margin-7 width-140-margin-right-15">Export</a>
   <table class="table">
-    <thead>
-    <tr>
-      <th>Last Name</th>
-      <th>First Name</th>
-      <th>Equipment</th>
-      <th>Equipment Code</th>
-      <th>Protection Type</th>
-      <th>Size</th>
-      <th>End date</th>
+    <thead class="table-active">
+    <tr scope="row">
+      <th scope="col">Last Name</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Equipment</th>
+      <th scope="col">Equipment Code</th>
+      <th scope="col">Protection Type</th>
+      <th scope="col">Size</th>
+      <th scope="col">End date</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody class="table-hover">
     <tr *ngFor="let expiringEquipment of this.expiringEquipments">
       <td>{{expiringEquipment.lastName}}</td>
       <td>{{expiringEquipment.firstName}}</td>
@@ -39,4 +45,4 @@
     </tbody>
   </table>
 </div>
-</div>
+

@@ -1,14 +1,28 @@
-<div class="row">
-  <div class="col-sm-8 offset-sm-2 col-md-4 offset-md-4">
-    <h2 class="text-center">Employee equipment</h2>
+<div class="row padding-top-30-bottom-10">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-white-14">
+      <li class="breadcrumb-item"><a href="#">EIPL</a></li>
+      <li class="breadcrumb-item"><a href="#">Employee</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Employee Equipment</li>
+    </ol>
+  </nav>
+</div>
+<div class="row padding-top-10-bottom-30">
+  <div class="col-md-6 offset-md-3">
+    <div class="text-center">
+      <div>
+        <h1>Employee Equipment</h1>
+      </div>
+    </div>
   </div>
 </div>
 <div class="row">
-  <button class="btn btn-primary">Add equipment</button>
+  <button class="btn btn-outline-secondary width-140-margin-right-15 margin-7">Add equipment</button>
 </div>
+<div class="row">
 <table class="table">
-  <thead>
-  <tr>
+  <thead class="table-active">
+  <tr scope="row">
     <th scope="col">Equipment name</th>
     <th scope="col">Size</th>
     <th scope="col">Start Date</th>
@@ -17,7 +31,7 @@
     <th scope="col">Actions</th>
   </tr>
   </thead>
-  <tbody>
+  <tbody class="table-hover">
   <tr *ngFor="let employeeEquipment of employeeEquipmentList">
     <td>{{employeeEquipment.equipment.name}}</td>
     <td>{{employeeEquipment.equipment.size}}</td>
@@ -31,7 +45,7 @@
   </tr>
   </tbody>
 </table>
-
+</div>
 <!-- Modal -->
 <div class="modal" id="editEmployeeEquipment" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -45,7 +59,6 @@
             Start date
             <input type="date" name="start-date" class="form-control" formControlName="startDate">
           </label>
-
           <label>
             End date
             <input type="date" name="end-date" class="form-control" formControlName="endDate">
@@ -60,8 +73,8 @@
     </div>
   </div>
 </div>
-
-<div *ngIf="targetEmployeeEquipment" class="modal" id="deleteEmployeeEquipment" tabindex="-1" role="dialog" aria-hidden="true">
+<div *ngIf="targetEmployeeEquipment" class="modal" id="deleteEmployeeEquipment" tabindex="-1" role="dialog"
+     aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
