@@ -15,7 +15,7 @@ export class InfosComponent implements OnInit {
   employee: Employee;
   firstName: String;
   lastName: String;
-  REGEX_NAME: '^[A-Z0-9]+';
+  REGEX_NAME: string = '^[A-Z0-9]+';
   private id: number;
 
   constructor(private employeeService: EmployeeService,
@@ -49,11 +49,10 @@ export class InfosComponent implements OnInit {
         });
   }
   onSubmit() {
-    this.employeeService.updateEmployeeById(this.editEmployeeForm.value, this.id)
-    this.employeeService.updateEmployeeById(this.editEmployeeForm.value, this.id)
+    this.employeeService.updateEmployeeById(this.editEmployeeForm.controls['helmetSize'].value, this.editEmployeeForm.controls['clothingSize'].value,this.editEmployeeForm.controls['footwearSize'].value, this.id)
       .subscribe(
         () => {
-          this.router.navigateByUrl('/employee');
+          this.router.navigateByUrl('/employee')
         }
       );
   }

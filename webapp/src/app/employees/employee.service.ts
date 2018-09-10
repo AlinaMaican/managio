@@ -31,8 +31,7 @@ export class EmployeeService {
   getEmployeeById(id: number): Observable<Employee> {
     return this.httpClient.get<Employee>(this.employeeUrl + '/' + id);
   }
-  updateEmployeeById(employee: Employee, id: number): Observable<Employee> {
-
-    return this.httpClient.put<Employee>(this.employeeUrl + '/' + id, employee);
+  updateEmployeeById(helmetSize: String, clothingSize: String, footwearSize: String, id: number): Observable<Employee> {
+    return this.httpClient.put<Employee>(this.employeeUrl + '/' + id + '?helmetSize=' + helmetSize + '&clothingSize=' + clothingSize + '&footwearSize=' + footwearSize, {});
   }
 }
