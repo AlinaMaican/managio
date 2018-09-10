@@ -22,6 +22,7 @@ import {ExpiringEquipmentsComponent} from "./reports/expiring-equipments/expirin
 import {ExpiringEquipmentService} from "./reports/expiring-equipments/expiring-equipment.service";
 import {EmployeeEquipmentComponent} from './employees/equipment/employee-equipment.component';
 import {EmployeeEquipmentService} from "./employee-equipment/employee-equipment.service";
+import {EditEmployeeComponent} from "./employees/edit-employee/edit-employee.component";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {EmployeeEquipmentService} from "./employee-equipment/employee-equipment.
     ExpiringEquipmentsComponent,
     EquipmentsComponent,
     EmployeeComponent,
-    EmployeeEquipmentComponent
+    EmployeeEquipmentComponent,
+    EditEmployeeComponent
   ],
   imports: [
     BrowserModule,

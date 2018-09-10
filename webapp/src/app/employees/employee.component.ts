@@ -36,13 +36,13 @@ export class EmployeeComponent implements OnInit,OnDestroy {
     });
   }
 
-  fill():void{
+  fill(): void {
     this.employeeSubscription.unsubscribe();
     this.employeeSubscription = this.employeeService.getFilteredEmployees(this.stringForm.get("searchValue").value).subscribe(
       (employee: Employee[]) => this.employeesGrid(employee));
   }
 
-  employeesGrid(employee: Employee[]): void{
+  employeesGrid(employee: Employee[]): void {
 
     this.employees = employee;
     this.groupedEmployees = [];
