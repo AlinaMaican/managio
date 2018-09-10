@@ -22,7 +22,7 @@ class EmployeeEquipmentServiceSpec extends Specification {
 
     def "getAllEmployeesEquipments"() {
         when:
-        def result = employeeEquipmentService.getAllEmployeesEquipments()
+        def result = employeeEquipmentService.getAllEmployeeEquipments()
 
         then:
         result == [aEmployeeEquipmentModel()]

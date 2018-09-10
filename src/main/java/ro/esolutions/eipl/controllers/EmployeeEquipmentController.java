@@ -2,9 +2,10 @@ package ro.esolutions.eipl.controllers;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.esolutions.eipl.models.EmployeeEquipmentModel;
@@ -25,13 +26,10 @@ public class EmployeeEquipmentController {
     private final EmployeeEquipmentService employeeEquipmentService;
 
     @GetMapping("/all")
-    public ResponseEntity<List<EmployeeEquipmentModel>> getAllEmployeesEquipments() {
-        return ResponseEntity.ok(employeeEquipmentService.getAllEmployeesEquipments());
-    }
-
-    @GetMapping("/reports/expiring")
-    public ResponseEntity<List<EmployeeEquipmentReportModel>> getAllEmployeeEquipmentsReport() {
-        return ResponseEntity.ok(employeeEquipmentService.getExpiringEmployeeEquipmentsReport());
+    public ResponseEntity<Page<EmployeeEquipmentReportModel>> getAllEmployeeEquipments(
+            @RequestParam(defaultValue = "0", name = "page") int page,
+            @RequestParam(defaultValue = "5", name = "size") int size) {
+        return ResponseEntity.ok(employeeEquipmentService.getExpiringEmployeeEquipmentsReportPaginated(page, size));
     }
 
     @GetMapping()
@@ -63,4 +61,5 @@ public class EmployeeEquipmentController {
     public void deleteEmployeeEquipment(@PathVariable("id") final long id){
         employeeEquipmentService.deleteEmployeeEquipmentById(id);
     }
+
 }

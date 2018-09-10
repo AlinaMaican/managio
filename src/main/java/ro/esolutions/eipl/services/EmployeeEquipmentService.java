@@ -2,6 +2,9 @@ package ro.esolutions.eipl.services;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ro.esolutions.eipl.entities.EmployeeEquipment;
@@ -28,7 +31,7 @@ public class EmployeeEquipmentService {
     private final EmployeeEquipmentRepository employeeEquipmentRepository;
     private static Integer DAYS_UNTIL_EXPIRES = 8;
 
-    public List<EmployeeEquipmentModel> getAllEmployeesEquipments() {
+    public List<EmployeeEquipmentModel> getAllEmployeeEquipments() {
         return employeeEquipmentRepository.findAll()
                 .stream()
                 .map(EmployeeEquipmentMapper::fromEntityToModel)
@@ -67,5 +70,15 @@ public class EmployeeEquipmentService {
 
     public void deleteEmployeeEquipmentById(final long id) {
         employeeEquipmentRepository.deleteById(id);
+    }
+
+    public Page<EmployeeEquipmentReportModel> getAllEmployeeEquipments(Pageable pageable) {
+        return employeeEquipmentRepository.findAllByOrderByIdAsc(pageable).map(EmployeeEquipmentReportMapper::fromEntityToModel);
+    }
+
+    public Page<EmployeeEquipmentReportModel> getExpiringEmployeeEquipmentsReportPaginated(int page, int size) {
+        return employeeEquipmentRepository.findByEndDateLessThan(
+                LocalDate.now().plusDays(DAYS_UNTIL_EXPIRES), PageRequest.of(page, size))
+                .map(EmployeeEquipmentReportMapper::fromEntityToModel);
     }
 }
