@@ -15,6 +15,4 @@ public interface EmployeeEquipmentRepository extends JpaRepository<EmployeeEquip
     Page<EmployeeEquipment> findByEndDateLessThan(LocalDate endDate, Pageable pageable);
 
     List<EmployeeEquipment> getEmployeeEquipmentByEmployee_Id(Long employeeId);
-
-    Page<EmployeeEquipment> findAllByOrderByIdAsc(Pageable pageable);
 }
