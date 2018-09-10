@@ -4,7 +4,6 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ro.esolutions.eipl.entities.EmployeeEquipment;
@@ -72,11 +71,8 @@ public class EmployeeEquipmentService {
         employeeEquipmentRepository.deleteById(id);
     }
 
-    public Page<EmployeeEquipmentReportModel> getAllEmployeeEquipments(Pageable pageable) {
-        return employeeEquipmentRepository.findAllByOrderByIdAsc(pageable).map(EmployeeEquipmentReportMapper::fromEntityToModel);
-    }
 
-    public Page<EmployeeEquipmentReportModel> getExpiringEmployeeEquipmentsReportPaginated(int page, int size) {
+    public Page<EmployeeEquipmentReportModel> getExpiringEmployeeEquipmentsReportPaginated(final int page, final int size) {
         return employeeEquipmentRepository.findByEndDateLessThan(
                 LocalDate.now().plusDays(DAYS_UNTIL_EXPIRES), PageRequest.of(page, size))
                 .map(EmployeeEquipmentReportMapper::fromEntityToModel);

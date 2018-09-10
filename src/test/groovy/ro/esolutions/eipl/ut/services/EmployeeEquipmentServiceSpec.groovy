@@ -1,5 +1,7 @@
 package ro.esolutions.eipl.ut.services
 
+import org.springframework.data.domain.PageImpl
+import org.springframework.data.domain.PageRequest
 import ro.esolutions.eipl.entities.EmployeeEquipment
 import ro.esolutions.eipl.exceptions.ResourceNotFoundException
 import ro.esolutions.eipl.repositories.EmployeeEquipmentRepository
@@ -103,6 +105,25 @@ class EmployeeEquipmentServiceSpec extends Specification {
         and:
         1 * employeeEquipmentRepository.findByEndDateLessThan(LocalDate.now().plusDays(8)) >> [aEmployeeEquipment()]
         0 * _
+    }
+
+    def 'getExpiringEmployeeEquipmentsReportPaginated'() {
+        given:
+        def page = 0
+        def size = 5
+        def pageResult = new PageImpl([aEmployeeEquipment()])
+
+        when:
+        def result = employeeEquipmentService.getExpiringEmployeeEquipmentsReportPaginated(page, size)
+
+        then:
+        result == new PageImpl([aEmployeeEquipmentReportModel()])
+
+        and:
+        1 * employeeEquipmentRepository.findByEndDateLessThan(LocalDate.now().plusDays(8), PageRequest.of(page, size)) >> pageResult
+        0 * _
+
+
     }
 
 }
