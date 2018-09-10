@@ -7,7 +7,7 @@
       <form [formGroup]="adduser" (ngSubmit)="createUser()">
         <div class="row-fluid">
           <div class="form-group">
-            <label>Username</label>
+            <label>{{'add-user.username' | translate}}</label>
             <input type="text" class="form-control" placeholder="Username" formControlName="username"
                    required="required"
                    [ngClass]="{'is-invalid' : isUsernameError}"
@@ -17,17 +17,17 @@
             </div>
           </div>
           <div class="form-group">
-            <label>First Name</label>
+            <label>{{'add-user.firstname' | translate}}</label>
             <input type="text" class="form-control" placeholder="First Name" formControlName="firstName"
                    required="required">
           </div>
           <div class="form-group">
-            <label>Last Name</label>
+            <label>{{'add-user.lastname' | translate}}</label>
             <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName"
                    required="required">
           </div>
           <div class="form-group">
-            <label>Email</label>
+            <label>{{'add-user.email' | translate}}</label>
             <input type="email" class="form-control" placeholder="Email" formControlName="email" required="required"
                    [ngClass]="{'is-invalid' : isEmailError}">
             <div *ngIf="isEmailError && emailFieldError && emailFieldError.codeMessageMap">
@@ -35,7 +35,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="pass">Password</label>
+            <label for="pass">{{'add-user.password' | translate}}</label>
             <input type="password" class="form-control" placeholder="Password" formControlName="password"
                    required="required" id="pass">
           </div>
@@ -43,32 +43,32 @@
             <label class="form-check-label">
               <input class="form-check-input" type="radio" name="userRole" value="USER" formControlName="userRole"
                      required="required">
-              User</label>
+              {{'add-user.user' | translate}}</label>
           </div>
           <div class="form-check form-check-inline">
             <label class="form-check-label"><input class="form-check-input" type="radio" name="userRole" value="ADMIN"
                                                    formControlName="userRole">
-              Admin</label>
+              {{'add-user.admin' | translate}}</label>
           </div>
           <div class="form-check form-check-inline">
             <label class="form-check-label"><input class="form-check-input" type="radio" name="userRole"
                                                    value="MANAGER"
                                                    formControlName="userRole">
-              Manager</label>
+              {{'add-user.manager' | translate}}</label>
           </div>
           <div class="form-check form-check-inline">
             <label class="form-check-label"><input class="form-check-input" type="radio" name="userRole"
                                                    value="CONSULTANT"
                                                    formControlName="userRole">
-              Consultant</label>
+              {{'add-user.consultant' | translate}}</label>
           </div>
         </div>
         <div class="row btn-add-user">
           <div class="col-sm-6">
-            <button class="btn btn-default" routerLink="/">Cancel</button>
+            <button class="btn btn-default" routerLink="/">{{'add-user.cancel' | translate}}</button>
           </div>
           <div class="col-sm-6">
-            <button type="submit" class="btn btn-primary" [disabled]="!adduser.valid">Submit</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!adduser.valid">{{'add-user.submit' | translate}}</button>
           </div>
         </div>
       </form>

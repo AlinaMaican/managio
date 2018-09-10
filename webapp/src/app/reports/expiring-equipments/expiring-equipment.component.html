@@ -1,5 +1,5 @@
 <div class="container-fluid">
-<h1 align="center" >Expiring Equipments</h1>
+<h1 align="center">{{'expiring-equipment.title' | translate}}</h1>
 <div class="row reports-list" >
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb breadcrumb-white-14">
@@ -11,18 +11,20 @@
 </div>
 <div class="row">
 
-  <a href="/api/employeeEquipment/reports/expiring/download" class="btn btn-primary">Export</a>
+  <a href="/api/employeeEquipment/reports/expiring/download" class="btn btn-primary">
+    {{'expiring-equipment.export' | translate}}
+  </a>
 
   <table class="table">
     <thead>
     <tr>
-      <th>Last Name</th>
-      <th>First Name</th>
-      <th>Equipment</th>
-      <th>Equipment Code</th>
-      <th>Protection Type</th>
-      <th>Size</th>
-      <th>End date</th>
+      <th>{{'expiring-equipment.lastname' | translate}}</th>
+      <th>{{'expiring-equipment.firstname' | translate}}</th>
+      <th>{{'expiring-equipment.equipment' | translate}}</th>
+      <th>{{'expiring-equipment.code' | translate}}</th>
+      <th>{{'expiring-equipment.type' | translate}}</th>
+      <th>{{'expiring-equipment.size' | translate}}</th>
+      <th>{{'expiring-equipment.end-date' | translate}}</th>
     </tr>
     </thead>
     <tbody>

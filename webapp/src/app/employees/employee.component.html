@@ -10,7 +10,7 @@
   </div>
   <div class="row">
     <div class="col-sm-8 offset-sm-2 col-md-4 offset-md-4">
-      <h2 class="text-center">Employees</h2>
+      <h2 class="text-center">{{'employee.title' | translate}}</h2>
     </div>
   </div>
   <div class="row">
@@ -27,20 +27,20 @@
       </form>
       <form name="employeeForm">
         <label for="file-upload" class="btn btn-outline-secondary float-left width-140-margin-right-15">
-          Upload </label>
+          {{'employee.upload' | translate}} </label>
         <input id="file-upload" type="file" (change)="upload($event)" accept=".csv"/>
       </form>
       <table class="table table-hover">
         <thead>
         <tr>
-          <th scope="col">Employee</th>
-          <th scope="col">Actions</th>
-          <th scope="col">Employee</th>
-          <th scope="col">Actions</th>
-          <th scope="col">Employee</th>
-          <th scope="col">Actions</th>
-          <th scope="col">Employee</th>
-          <th scope="col">Actions</th>
+          <th scope="col">{{'employee.employee' | translate}}</th>
+          <th scope="col">{{'employee.actions' | translate}}</th>
+          <th scope="col">{{'employee.employee' | translate}}</th>
+          <th scope="col">{{'employee.actions' | translate}}</th>
+          <th scope="col">{{'employee.employee' | translate}}</th>
+          <th scope="col">{{'employee.actions' | translate}}</th>
+          <th scope="col">{{'employee.employee' | translate}}</th>
+          <th scope="col">{{'employee.actions' | translate}}</th>
         </tr>
         </thead>
         <tbody>

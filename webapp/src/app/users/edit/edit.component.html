@@ -10,7 +10,7 @@
           <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
             <div class="form-group">
               <label for="username">
-                Username:
+                {{'edit-user.username' | translate}}
                 <input type="text" class="form-control" name="username" id="username" formControlName="username"
                        readonly
                        required>
@@ -19,7 +19,7 @@
 
             <div class="form-group">
               <label for="email">
-                Email:
+                {{'edit-user.email' | translate}}
                 <input type="text" class="form-control" name="email" id="email" formControlName="email"
                        readonly
                        required>
@@ -29,7 +29,7 @@
             <small *ngIf="formGroup.get('firstName').errors">Firstname is required</small>
             <div class="form-group">
               <label>
-                First name:
+                {{'edit-user.firstname' | translate}}
                 <input type="text" class="form-control" name="firstName" formControlName="firstName" required/>
               </label>
             </div>
@@ -37,35 +37,35 @@
             <small *ngIf="formGroup.get('lastName').errors">Lastname is required</small>
             <div class="form-group">
               <label>
-                Last name:
+                {{'edit-user.lastname' | translate}}
                 <input type="text" class="form-control" name="lastName" formControlName="lastName"/>
               </label>
             </div>
 
             <div class="form-group">
-              <label>Choose your role:
+              <label>{{'edit-user.choose' | translate}}
                 <select formControlName="userRole" class="form-control">
-                  <option value="USER">USER</option>
-                  <option value="ADMIN">ADMIN</option>
-                  <option value="MANAGER">MANAGER</option>
-                  <option value="CONSULTANT">CONSULTANT</option>
+                  <option value="USER">{{'edit-user.user' | translate}}</option>
+                  <option value="ADMIN">{{'edit-user.admin' | translate}}</option>
+                  <option value="MANAGER">{{'edit-user.manager' | translate}}</option>
+                  <option value="CONSULTANT">{{'edit-user.consultant' | translate}}</option>
                 </select>
               </label>
             </div>
 
             <fieldset class="form-group">
-              <label>User Status:
+              <label>{{'edit-user.status' | translate}}
 
                 <label class="form-check-label form-check">
                   <input type="radio" class="form-check-input" name="isActive"
                          value="true" formControlName="isActive">
-                  Active
+                  {{'edit-user.active' | translate}}
                 </label>
 
                 <label class="form-check-label form-check">
                   <input type="radio" class="form-check-input" name="isActive"
                          value="false" formControlName="isActive">
-                  Not Active
+                  {{'edit-user.inactive' | translate}}
                 </label>
 
               </label>
@@ -74,12 +74,12 @@
             <div class="col-xs-12">
               <div class="d-flex w-100 justify-content-between">
                 <button class="btn btn-secondary btn-block rounded m-0" routerLink="/">
-                  <span>CANCEL</span>
+                  <span>{{'edit-user.cancel' | translate}}</span>
                 </button>
                 <div class="m-3"></div>
                 <button type="button" data-toggle="modal" data-target="#confirmModal"
                         class="btn btn-primary btn-block rounded m-0" [disabled]="!formGroup.valid">
-                  <span>SAVE</span>
+                  <span>{{'edit-user.save' | translate}}</span>
                 </button>
               </div>
             </div>
@@ -90,7 +90,7 @@
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-body">
-                    Are you sure you want to save?
+                    {{'edit-user.prompt' | translate}}
                   </div>
                   <div class="modal-footer">
                     <button class="btn btn-secondary" data-dismiss="modal">No</button>

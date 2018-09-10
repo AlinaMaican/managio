@@ -6,7 +6,7 @@ import {UserListComponent} from './users/user-list.component';
 import {DetailsComponent} from './users/details/details.component';
 import {FormComponent} from './users/form/form.component';
 import {UserService} from './users/user.service';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {HeaderComponent} from './header/header.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppRouterModule} from "./app.router.module";
@@ -22,6 +22,8 @@ import {ExpiringEquipmentsComponent} from "./reports/expiring-equipments/expirin
 import {ExpiringEquipmentService} from "./reports/expiring-equipments/expiring-equipment.service";
 import {EmployeeEquipmentComponent} from './employees/equipment/employee-equipment.component';
 import {EmployeeEquipmentService} from "./employee-equipment/employee-equipment.service";
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 @NgModule({
   declarations: [
@@ -45,10 +47,21 @@ import {EmployeeEquipmentService} from "./employee-equipment/employee-equipment.
     HttpClientModule,
     AppRouterModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [UserService, EquipmentService, EmployeeService, ExpiringEquipmentService, EmployeeEquipmentService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
+}
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
 }

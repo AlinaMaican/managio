@@ -1,0 +1,128 @@
+{
+  "navbar": {
+    "management-users": "MANAGEMENT USERS",
+    "management-forms": "MANAGEMENT FORMS",
+    "employees": "EMPLOYEES",
+    "reports": "REPORTS",
+    "protection-type": "Protection type",
+    "structural-unit": "Structural unit",
+    "equipments": "Equipments",
+    "working-stations": "Working stations",
+    "frequency": "Frequency",
+    "clothing-sizes": "Clothing sizes",
+    "shoe-sizes": "Shoe sizes",
+    "helmet-sizes": "Helmet sizes",
+    "expiring-equipments": "Expiring equipments",
+    "edit-profile": "Edit profile",
+    "sign-out": "Sign out"
+  },
+
+  "user-list": {
+    "title": "User List",
+    "add": "Add User",
+    "username": "Username",
+    "firstname": "First name",
+    "lastname": "Last name",
+    "email": "Email",
+    "status": "Status",
+    "role": "Role",
+    "actions": "Actions"
+  },
+
+  "user-profile": {
+    "title": "User profile settings",
+    "username": "Username",
+    "firstname": "First name",
+    "lastname": "Last name",
+    "email": "Email",
+    "password": "Password",
+    "warning1": "Password is required!",
+    "warning2": "Password must contain at least 8 characters, including one letter and one number!",
+    "confirm-password": "Confirm password",
+    "warning3": "Password mismatch!",
+    "cancel": "Cancel",
+    "save": "Save"
+  },
+
+  "add-user": {
+    "username": "Username",
+    "firstname": "First Name",
+    "lastname": "Last Name",
+    "email": "Email",
+    "password": "Password",
+    "user": "User",
+    "admin": "Administrator",
+    "manager": "Manager",
+    "consultant": "Consultant",
+    "cancel": "Cancel",
+    "submit": "Submit"
+  },
+
+  "edit-user": {
+    "username": "Username",
+    "firstname": "First Name",
+    "lastname": "Last Name",
+    "email": "Email",
+    "choose": "Role",
+    "user": "USER",
+    "admin": "ADMINISTRATOR",
+    "manager": "MANAGER",
+    "consultant": "CONSULTANT",
+    "status": "User status",
+    "active": "Active",
+    "inactive": "Inactive",
+    "cancel": "Cancel",
+    "save": "Save",
+    "prompt": "Are you sure you want to save?",
+    "no": "No",
+    "yes": "Yes"
+  },
+
+  "equipment": {
+    "title": "Equipments",
+    "modal-title": "Add new equipment",
+    "upload": "Upload",
+    "add": "Add",
+    "name": "Name",
+    "code": "Code",
+    "mabec-code": "Mabec Code",
+    "protection-type": "Protection type",
+    "size": "Size",
+    "sex": "Sex",
+    "male": "Male",
+    "female": "Female",
+    "cancel": "Cancel",
+    "save": "Save",
+    "warning1": "*Size should only contain capital letters and numbers"
+  },
+
+  "employee": {
+    "title": "Employees",
+    "employee": "Employee",
+    "actions": "Actions",
+    "upload": "Upload"
+  },
+
+  "employee-equipment": {
+    "title": "Employee equipment",
+    "add": "Add equipment",
+    "name": "Equipment name",
+    "size": "Size",
+    "start-date": "Start date",
+    "end-date": "End date",
+    "sex": "Sex",
+    "actions": "Actions"
+  },
+
+  "expiring-equipment": {
+    "title": "Expiring equipments",
+    "export": "Export",
+    "lastname": "Last name",
+    "firstname": "First name",
+    "equipment": "Equipment",
+    "code": "Equipment code",
+    "type": "Protection type",
+    "size": "Size",
+    "end-date": "End date"
+  }
+}
