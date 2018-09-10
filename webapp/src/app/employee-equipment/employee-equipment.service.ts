@@ -26,7 +26,7 @@ export class EmployeeEquipmentService {
     return this.httpClient.delete(`${this.employeeEquipmentUrl}/${employeeEquipment.id}`);
   }
 
-  saveAllocatedEquipments(selectedEquipments: EquipmentModel[], employeeId: number) {
-    return this.httpClient.post<EquipmentModel[]>(this.employeeEquipmentUrl + '/saveAllocatedEquipments/' + employeeId, selectedEquipments, {});
+  saveAllocatedEquipments(selectedEmployeeEquipments: EmployeeEquipmentModel[], employeeId: number) {
+    return this.httpClient.post<EmployeeEquipmentModel[]>(this.employeeEquipmentUrl + '/saveAllocatedEquipments/' + employeeId, selectedEmployeeEquipments, {});
   }
 }

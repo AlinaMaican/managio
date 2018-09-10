@@ -28,17 +28,7 @@ public class EmployeeEquipment {
     @ManyToOne
     private Equipment equipment;
 
-    @NotNull
     private LocalDate startDate;
 
-    @NotNull
     private LocalDate endDate;
-
-    @PrePersist
-    public void initStartDate() {
-        if (this.startDate == null) {
-            this.startDate = LocalDate.now();
-        }
-    }
-
 }

@@ -5,6 +5,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {EquipmentService} from "../equipments/equipment.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {EmployeeEquipmentService} from "../employee-equipment/employee-equipment.service";
+import {EmployeeEquipmentModel} from "../employee-equipment/employee-equipment.model";
 
 @Component({
   selector: 'app-available-equipment-list',
@@ -14,10 +15,11 @@ import {EmployeeEquipmentService} from "../employee-equipment/employee-equipment
 export class AvailableEquipmentListComponent implements OnInit {
 
   private employeeId: number;
-  equipments: EquipmentModel[];
   private equipmentSubscription: Subscription;
+  availableEquipments: EquipmentModel[] = [];
   selectedEquipments: EquipmentModel[] = [];
-  stringForm: FormGroup;
+  filterByEquipmentName: FormGroup;
+  selectedEmployeeEquipments: EmployeeEquipmentModel[] = [];
 
   constructor(private route: ActivatedRoute, private equipmentService: EquipmentService, private router: Router, private employeeEquipmentService: EmployeeEquipmentService) {
   }
@@ -28,45 +30,48 @@ export class AvailableEquipmentListComponent implements OnInit {
     });
     this.equipmentSubscription = this.equipmentService.getAllAvailableEquipments().subscribe(
       (equipments: EquipmentModel[]) => {
-        this.equipments = equipments;
+        this.availableEquipments = equipments;
       }
     );
     this.initForm();
   }
 
   initForm() {
-    this.stringForm = new FormGroup({
+    this.filterByEquipmentName = new FormGroup({
       'searchValue': new FormControl('')
     });
   }
 
-  setEquipments(equipment: EquipmentModel) {
-    equipment.isChecked = !equipment.isChecked;
-    let equipmentIndex = this.selectedEquipments.indexOf(equipment)
+  allocateOrDeallocateEquipment(availableEquipment: EquipmentModel) {
+    availableEquipment.isChecked = !availableEquipment.isChecked;
+    let equipmentIndex = this.selectedEquipments.indexOf(availableEquipment);
     let equipmentIsNotInArray = equipmentIndex < 0;
     if (equipmentIsNotInArray) {
-      this.selectedEquipments.push(equipment);
+      this.selectedEquipments.push(availableEquipment);
     }
-    if (!equipment.isChecked) {
+    if (!availableEquipment.isChecked) {
       this.selectedEquipments.splice(equipmentIndex, 1);
-      equipment.startDate = null;
-      equipment.endDate = null;
+      availableEquipment.startDate = null;
+      availableEquipment.endDate = null;
     }
   }
 
   allocateEquipmentsToEmployee() {
-    this.employeeEquipmentService.saveAllocatedEquipments(this.selectedEquipments, this.employeeId).subscribe(
+    this.selectedEmployeeEquipments = this.selectedEquipments.map((selectedEquipment) => {
+      return new EmployeeEquipmentModel(null, null, selectedEquipment, selectedEquipment.startDate, selectedEquipment.endDate);
+    });
+    this.employeeEquipmentService.saveAllocatedEquipments(this.selectedEmployeeEquipments, this.employeeId).subscribe(
       () => {
         this.router.navigateByUrl('/equipments/'+this.employeeId);
       }
     );
   }
 
-  fill(): void {
+  filterEquipmentsByName(): void {
     this.equipmentSubscription.unsubscribe();
-    this.equipmentSubscription = this.equipmentService.getFilteredEquipments(this.stringForm.get("searchValue").value).subscribe(
+    this.equipmentSubscription = this.equipmentService.getFilteredEquipments(this.filterByEquipmentName.get("searchValue").value).subscribe(
       (equipmentModels: EquipmentModel[]) => {
-        this.equipments = equipmentModels;
+        this.availableEquipments = equipmentModels;
       });
   }
 }

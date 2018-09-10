@@ -4,21 +4,19 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ro.esolutions.eipl.entities.Employee;
 import ro.esolutions.eipl.entities.EmployeeEquipment;
 import ro.esolutions.eipl.entities.Equipment;
 import ro.esolutions.eipl.exceptions.ResourceNotFoundException;
 import ro.esolutions.eipl.mappers.EmployeeEquipmentMapper;
 import ro.esolutions.eipl.mappers.EmployeeEquipmentReportMapper;
-import ro.esolutions.eipl.mappers.EquipmentMapper;
 import ro.esolutions.eipl.models.EmployeeEquipmentModel;
 import ro.esolutions.eipl.models.EmployeeEquipmentReportModel;
-import ro.esolutions.eipl.models.EquipmentModel;
 import ro.esolutions.eipl.repositories.EmployeeEquipmentRepository;
 import ro.esolutions.eipl.repositories.EmployeeRepository;
 import ro.esolutions.eipl.repositories.EquipmentRepository;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -79,12 +77,24 @@ public class EmployeeEquipmentService {
         employeeEquipmentRepository.deleteById(id);
     }
 
-    public void saveAllocatedEquipments(final List<EmployeeEquipmentModel> allocatedEquipments, final Long employeeId) {
-        Optional<Employee> byId = employeeRepository.findById(employeeId);
+    public void saveAllocatedEquipments(final List<EmployeeEquipmentModel> allocatedEmployeesEquipments, final Long employeeId) {
+        final List<Equipment> equipments = new ArrayList<>();
+        final List<EmployeeEquipment> employeeEquipments = new ArrayList<>();
 
-        byId.orElseThrow(() -> new ResourceNotFoundException(employeeId, Employee.class.getName()));
-        byId.ifPresent(employee -> {
+        allocatedEmployeesEquipments.forEach(allocateEquipmentModel -> {
+            final Optional<Equipment> optionalEquipment = equipmentRepository.findById(allocateEquipmentModel.getEquipment().getId());
+            optionalEquipment.ifPresent(equipment -> equipment.setIsAvailable(Boolean.FALSE));
+            equipments.add(optionalEquipment.get());
 
+            final EmployeeEquipment employeeEquipment = EmployeeEquipment.builder()
+                    .startDate(allocateEquipmentModel.getStartDate())
+                    .endDate(allocateEquipmentModel.getEndDate())
+                    .employee(employeeRepository.findById(employeeId).get())
+                    .equipment(optionalEquipment.get())
+                    .build();
+            employeeEquipments.add(employeeEquipment);
         });
+        equipmentRepository.saveAll(equipments);
+        employeeEquipmentRepository.saveAll(employeeEquipments);
     }
 }

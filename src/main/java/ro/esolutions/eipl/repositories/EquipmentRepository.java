@@ -23,8 +23,4 @@ public interface EquipmentRepository extends JpaRepository<Equipment,Long> {
     List<Equipment> findAllByIsAvailable(boolean b);
 
     List<Equipment> findDistinctByNameContainingIgnoreCase(String searchValue);
-
-    @Query("select e from Equipment e where e.id in ?1")
-    List<Equipment> findByIds(Collection<Long> ids);
-
 }
