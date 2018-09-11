@@ -39,4 +39,6 @@ public class Equipment {
     private String size;
 
     private String sex;
+
+    private Boolean isAvailable;
 }
