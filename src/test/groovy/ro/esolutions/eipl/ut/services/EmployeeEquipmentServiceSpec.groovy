@@ -18,7 +18,7 @@ import static ro.esolutions.eipl.generators.EmployeeEquipmentGenerator.aEmployee
 import static ro.esolutions.eipl.generators.EmployeeEquipmentModelGenerator.aEmployeeEquipmentModel
 import static ro.esolutions.eipl.generators.EmployeeEquipmentReportModelGenerator.aEmployeeEquipmentReportModel
 import static ro.esolutions.eipl.generators.EmployeeGenerator.aEmployee
-import static ro.esolutions.eipl.generators.EquipmentGenerator.anEquipment
+import static ro.esolutions.eipl.generators.EquipmentGenerator.aEquipment
 
 class EmployeeEquipmentServiceSpec extends Specification {
 
@@ -118,14 +118,14 @@ class EmployeeEquipmentServiceSpec extends Specification {
         given:
         def allocatedEmployeesEquipments = [aEmployeeEquipmentModel()]
         def employeeId = 1L
-        def equipments = [anEquipment(isAvailable: false)]
-        def employeeEquipments = [aEmployeeEquipment(id: null, equipment: anEquipment(isAvailable: false))]
+        def equipments = [aEquipment(isAvailable: false)]
+        def employeeEquipments = [aEmployeeEquipment(id: null, equipment: aEquipment(isAvailable: false))]
 
         when:
         employeeEquipmentService.saveAllocatedEquipments(allocatedEmployeesEquipments, employeeId)
 
         then:
-        1 * equipmentRepository.findById(1L) >> of(anEquipment())
+        1 * equipmentRepository.findById(1L) >> of(aEquipment())
         1 * employeeRepository.findById(employeeId) >> of(aEmployee())
         1 * equipmentRepository.saveAll(equipments)
         1 * employeeEquipmentRepository.saveAll(employeeEquipments)
