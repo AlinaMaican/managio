@@ -98,8 +98,12 @@
         </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="allocateEquipmentsToEmployee()">Save</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <div class="col-6">
+        <button type="button" class="btn btn-default btn-sm float-left btn-width-140" data-dismiss="modal">Cancel</button>
+        </div>
+        <div class="col-6">
+        <button type="button" class="btn btn-primary btn-sm float-right btn-width-140" (click)="allocateEquipmentsToEmployee()">Save</button>
+        </div>
       </div>
     </div>
   </div>
