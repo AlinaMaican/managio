@@ -31,4 +31,8 @@ export class EquipmentService extends Service<EquipmentModel> {
     let param = new HttpParams().append('name_contains', searchValue);
     return this.httpClient.get<EquipmentModel[]>(this.basicUrl, {params: param});
   }
+
+  getUnusedEquipments(): Observable<EquipmentModel[]> {
+    return this.httpClient.get<EquipmentModel[]>(this.basicUrl + '/reports/unused');
+  }
 }

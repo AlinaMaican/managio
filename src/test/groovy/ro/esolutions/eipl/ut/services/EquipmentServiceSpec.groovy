@@ -8,8 +8,8 @@ import ro.esolutions.eipl.services.EquipmentService
 import spock.lang.Specification
 import spock.lang.Subject
 
-import static ro.esolutions.eipl.generators.EquipmentGenerator.anEquipment
-import static ro.esolutions.eipl.generators.EquipmentModelGenerator.anEquipmentModel
+import static ro.esolutions.eipl.generators.EquipmentGenerator.aEquipment
+import static ro.esolutions.eipl.generators.EquipmentModelGenerator.aEquipmentModel
 
 class EquipmentServiceSpec extends Specification {
 
@@ -22,8 +22,8 @@ class EquipmentServiceSpec extends Specification {
 
     def "addNewEquipment"() {
         given:
-        def equipmentModel = anEquipmentModel()
-        def equipment = anEquipment()
+        def equipmentModel = aEquipmentModel()
+        def equipment = aEquipment()
 
         when:
         def result = equipmentService.addNewEquipment(equipmentModel)
@@ -41,16 +41,16 @@ class EquipmentServiceSpec extends Specification {
         equipmentService.getAllEquipments()
 
         then:
-        1 * equipmentRepository.findAll() >> [anEquipment()]
+        1 * equipmentRepository.findAll() >> [aEquipment()]
     }
 
     def "uploadEquipmentFromCSV"() {
         given:
         def file = new MockMultipartFile("testUploadEquipmentFIle.csv",
                 this.getClass().getResourceAsStream("/testUploadEquipmentFIle.csv"))
-        def equipment = anEquipment()
-        def equipmentList = [anEquipment()]
-        def code = anEquipment().getCode()
+        def equipment = aEquipment()
+        def equipmentList = [aEquipment()]
+        def code = aEquipment().getCode()
 
         when:
         equipmentService.uploadEquipmentFromCSV(file)
@@ -58,6 +58,18 @@ class EquipmentServiceSpec extends Specification {
         then:
         1 * equipmentRepository.findByCode(code) >> Optional.of(equipment)
         1 * equipmentRepository.saveAll(equipmentList)
+        0 * _
+    }
+
+    def 'getAllUnusedEquipments'() {
+        when:
+        def result = equipmentService.getAllUnusedEquipments()
+
+        then:
+        result == [aEquipmentModel(), aEquipmentModel([id: 2L])]
+
+        and:
+        1 * equipmentRepository.getAllUnusedEquipments() >> [aEquipment(), aEquipment([id: 2L])]
         0 * _
     }
 }

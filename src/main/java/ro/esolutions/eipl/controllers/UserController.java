@@ -83,7 +83,7 @@ public class UserController {
                 return newPassword;
             }
         };
-        if (Strings.isBlank(newPassword)) bindingResult.rejectValue("password","NotBlank");
+        if (Strings.isBlank(newPassword)) bindingResult.rejectValue("password", "NotBlank");
         throwIfErrors(bindingResult);
         return ResponseEntity.ok(userService.changePasswordById(getAuthenticatedIdOrThrow(), newPassword));
     }

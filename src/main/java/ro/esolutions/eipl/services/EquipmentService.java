@@ -27,6 +27,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import static ro.esolutions.eipl.mappers.EquipmentMapper.fromEntityToModel;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -48,12 +50,13 @@ public class EquipmentService {
     }
 
     public EquipmentModel addNewEquipment(final EquipmentModel equipmentModel) {
-        return EquipmentMapper.fromEntityToModel(equipmentRepository.save(EquipmentMapper.fromModelToEntity(equipmentModel)));
+        return fromEntityToModel(equipmentRepository.save(EquipmentMapper.fromModelToEntity(equipmentModel)));
     }
 
     public Page<EquipmentModel> getAllEquipments(Pageable pageable) {
         return equipmentRepository.findAllByOrderByIdAsc(pageable).map(EquipmentMapper::fromEntityToModel);
     }
+
     public void uploadEquipmentFromCSV(final MultipartFile file) {
         try {
             InputStream inputStream = file.getInputStream();
@@ -62,7 +65,7 @@ public class EquipmentService {
             List<Equipment> equipmentsToSave = StreamSupport.stream(csvParser.spliterator(), false)
                     .filter(record -> MabecCode.contains(record.get(2)))
                     .map(record -> {
-                       Equipment equipment = EquipmentMapper.fromRecordToEntity(record);
+                        Equipment equipment = EquipmentMapper.fromRecordToEntity(record);
                         equipmentRepository.findByCode(equipment.getCode())
                                 .ifPresent(equipment1 -> equipment.setId(equipment1.getId()));
                         return equipment;
@@ -87,5 +90,11 @@ public class EquipmentService {
                 .map(EquipmentMapper::fromEntityToModel)
                 .collect(Collectors.toList());
         return resultEquipments;
+    }
+
+    public List<EquipmentModel> getAllUnusedEquipments() {
+        return equipmentRepository.getAllUnusedEquipments().stream()
+                .map(EquipmentMapper::fromEntityToModel)
+                .collect(Collectors.toList());
     }
 }
