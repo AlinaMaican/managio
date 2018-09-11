@@ -14,6 +14,7 @@
     "helmet-sizes": "Helmet sizes",
     "expiring-equipments": "Expiring equipments",
     "edit-profile": "Edit profile",
+    "unused-equipments": "Unused equipments",
     "sign-out": "Sign out"
   },
 
@@ -48,6 +49,7 @@
   },
 
   "add-user": {
+    "title": "Add User",
     "username": "Username",
     "firstname": "First Name",
     "lastname": "Last Name",
@@ -116,7 +118,12 @@
     "start-date": "Start date",
     "end-date": "End date",
     "sex": "Sex",
-    "actions": "Actions"
+    "actions": "Actions",
+    "edit-equipment": "Edit equipment",
+    "submit": "Submit",
+    "close": "Close",
+    "no": "No",
+    "yes": "Yes"
   },
 
   "expiring-equipment": {

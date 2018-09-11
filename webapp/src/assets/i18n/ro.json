@@ -14,6 +14,7 @@
     "helmet-sizes": "Marmimi casca",
     "expiring-equipments": "Echipamente invechite",
     "edit-profile": "Editeaza profil",
+    "unused-equipments": "Echipamente nefolosite",
     "sign-out": "Deconectare"
   },
 
@@ -48,6 +49,7 @@
   },
 
   "add-user": {
+    "title": "Adauga Utilizator",
     "username": "Username",
     "firstname": "Prenume",
     "lastname": "Nume",
@@ -116,7 +118,12 @@
     "start-date": "Data inceput",
     "end-date": "Data sfarsit",
     "sex": "Sex",
-    "actions": "Actiuni"
+    "actions": "Actiuni",
+    "edit-equipment": "Editeaza echipament",
+    "submit": "Salveaza",
+    "close": "Inchide",
+    "no": "Nu",
+    "yes": "Da"
   },
 
   "expiring-equipment": {

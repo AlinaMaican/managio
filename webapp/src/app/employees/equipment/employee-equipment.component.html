@@ -11,24 +11,26 @@
   <div class="col-md-6 offset-md-3">
     <div class="text-center">
       <div>
-        <h1>Employee Equipment</h1>
+        <h1>{{'employee-equipment.title' | translate}}</h1>
       </div>
     </div>
   </div>
 </div>
 <div class="row">
-  <button class="btn btn-primary width-140-margin-right-15 margin-7" [routerLink]="'/equipments/'+ employeeId">Add</button>
+  <button class="btn btn-primary width-140-margin-right-15 margin-7" [routerLink]="'/equipments/'+ employeeId">
+    {{'employee-equipment.add' | translate}}
+  </button>
 </div>
 <div class="row">
 <table class="table">
   <thead class="table-active">
   <tr scope="row">
-    <th scope="col">Equipment name</th>
-    <th scope="col">Size</th>
-    <th scope="col">Start Date</th>
-    <th scope="col">End Date</th>
-    <th scope="col">Sex</th>
-    <th scope="col">Actions</th>
+    <th scope="col">{{'employee-equipment.name' | translate}}</th>
+    <th scope="col">{{'employee-equipment.size' | translate}}</th>
+    <th scope="col">{{'employee-equipment.start-date' | translate}}</th>
+    <th scope="col">{{'employee-equipment.end-date' | translate}}</th>
+    <th scope="col">{{'employee-equipment.sex' | translate}}</th>
+    <th scope="col">{{'employee-equipment.actions' | translate}}</th>
   </tr>
   </thead>
   <tbody class="table-hover">
@@ -51,17 +53,17 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Edit equipment</h5>
+        <h5 class="modal-title">{{'employee-equipment.edit-equipment' | translate}}</h5>
       </div>
       <div class="modal-body">
         <form [formGroup]="editEquipmentForm">
           <label>
-            Start date
+            {{'employee-equipment.start-date' | translate}}
             <input type="date" name="start-date" class="form-control" formControlName="startDate">
           </label>
 
           <label>
-            End date
+            {{'employee-equipment.end-date' | translate}}
             <input type="date" name="end-date" class="form-control" formControlName="endDate">
           </label>
         </form>
@@ -84,9 +86,12 @@
           {{targetEmployeeEquipment.employee.firstName}} {{targetEmployeeEquipment.employee.lastName}}?</h5>
       </div>
       <div class="modal-body">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteEmployeeEquipment()">Yes
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteEmployeeEquipment()">
+          {{'employee-equipment.yes' | translate}}
         </button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          {{'employee-equipment.no' | translate}}
+        </button>
       </div>
     </div>
   </div>
