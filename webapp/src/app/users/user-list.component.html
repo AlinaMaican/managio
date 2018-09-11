@@ -1,22 +1,38 @@
-<h1 align="center" >User List</h1>
-<div class="row padding-button-10">
-  <a class="btn btn-primary" [routerLink]="'/management-users/add'">Add User</a>
+<div class="row padding-top-30-bottom-10">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-white-14">
+      <li class="breadcrumb-item"><a href="#">EIPL</a></li>
+      <li class="breadcrumb-item"><a href="#">Management users</a></li>
+      <li class="breadcrumb-item active" aria-current="page">User List</li>
+    </ol>
+  </nav>
+</div>
+<div class="row padding-top-10-bottom-30">
+  <div class="col-sm-4 offset-sm-4">
+    <div class="text-center">
+      <div>
+        <h1>User List</h1>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="row">
+  <a class="btn btn-primary  width-140-margin-right-15 margin-7" [routerLink]="'/management-users/add'">Add</a>
+</div>
+<!--<div class="row">-->
   <table class="table">
-    <thead>
-    <tr>
-      <th>Username</th>
-      <th>Surname</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Status</th>
-      <th>Rol</th>
-      <th>Actiuni</th>
-
+    <thead class="table-active">
+    <tr scope="row">
+      <th scope="col">Username</th>
+      <th scope="col">Surname</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Status</th>
+      <th scope="col">Rol</th>
+      <th scope="col">Actiuni</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody class="table-hover">
     <tr *ngFor="let user of users;">
       <td>{{user.username}}</td>
       <td>{{user.firstName}}</td>
@@ -25,12 +41,11 @@
       <td>{{user.isActive}}</td>
       <td>{{user.userRole | lowercase}}</td>
       <td><i class="fas fa-pencil-alt" [routerLink]="'/management-users/edit/' + user.id"></i>&nbsp;
-          <i class="fas fa-trash-alt"></i></td>
+        <i class="fas fa-trash-alt"></i></td>
     </tr>
     </tbody>
   </table>
-</div>
-
+<!--</div>-->
 <app-pagination
   [service]="userService"
   [subscription]="userSubscription"
