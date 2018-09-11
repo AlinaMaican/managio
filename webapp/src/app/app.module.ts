@@ -9,19 +9,21 @@ import {UserService} from './users/user.service';
 import {HttpClientModule} from '@angular/common/http';
 import {HeaderComponent} from './header/header.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {AppRouterModule} from "./app.router.module";
+import {AppRouterModule} from './app.router.module';
 import {EditComponent} from './users/edit/edit.component';
-import {AddUserComponent} from "./users/add-user/add-user.component";
-import {UserProfileComponent} from "./users/user-profile/user-profile.component";
-import {EmployeeService} from "./employees/employee.service";
-import {EquipmentsComponent} from "./equipments/equipments.component";
-import {EquipmentService} from "./equipments/equipment.service";
+import {AddUserComponent} from './users/add-user/add-user.component';
+import {UserProfileComponent} from './users/user-profile/user-profile.component';
+import {EmployeeService} from './employees/employee.service';
+import {EquipmentsComponent} from './equipments/equipments.component';
+import {EquipmentService} from './equipments/equipment.service';
 import {EmployeeComponent} from './employees/employee.component';
-import {PaginationComponent } from './pagination/pagination.component';
-import {ExpiringEquipmentsComponent} from "./reports/expiring-equipments/expiring-equipment.component";
-import {ExpiringEquipmentService} from "./reports/expiring-equipments/expiring-equipment.service";
+import {PaginationComponent} from './pagination/pagination.component';
+import {ExpiringEquipmentsComponent} from './reports/expiring-equipments/expiring-equipment.component';
+import {ExpiringEquipmentService} from './reports/expiring-equipments/expiring-equipment.service';
 import {EmployeeEquipmentComponent} from './employees/equipment/employee-equipment.component';
-import {EmployeeEquipmentService} from "./employee-equipment/employee-equipment.service";
+import {EmployeeEquipmentService} from './employee-equipment/employee-equipment.service';
+import {UnusedEquipmentsComponent} from './reports/unused-equipments/unused-equipments.component';
+import {DatePipe} from '@angular/common';
 import {EditEmployeeComponent} from "./employees/edit-employee/edit-employee.component";
 
 @NgModule({
@@ -40,7 +42,8 @@ import {EditEmployeeComponent} from "./employees/edit-employee/edit-employee.com
     EquipmentsComponent,
     EmployeeComponent,
     EmployeeEquipmentComponent,
-    EditEmployeeComponent
+    EditEmployeeComponent,
+    UnusedEquipmentsComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,14 @@ import {EditEmployeeComponent} from "./employees/edit-employee/edit-employee.com
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [UserService, EquipmentService, EmployeeService, ExpiringEquipmentService, EmployeeEquipmentService],
+  providers: [
+    UserService,
+    EquipmentService,
+    EmployeeService,
+    ExpiringEquipmentService,
+    EmployeeEquipmentService,
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

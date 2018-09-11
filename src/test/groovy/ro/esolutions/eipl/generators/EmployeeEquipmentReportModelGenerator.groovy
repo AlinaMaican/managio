@@ -5,7 +5,7 @@ import ro.esolutions.eipl.models.EmployeeEquipmentReportModel
 import java.time.LocalDate
 
 import static ro.esolutions.eipl.generators.EmployeeModelGenerator.aEmployeeModel
-import static ro.esolutions.eipl.generators.EquipmentModelGenerator.anEquipmentModel
+import static ro.esolutions.eipl.generators.EquipmentModelGenerator.aEquipmentModel
 
 class EmployeeEquipmentReportModelGenerator {
 
@@ -13,10 +13,10 @@ class EmployeeEquipmentReportModelGenerator {
         Map values = [
                 lastName : aEmployeeModel().lastName,
                 firstName : aEmployeeModel().firstName,
-                equipmentName: anEquipmentModel().name,
-                equipmentCode: anEquipmentModel().code,
-                protectionType: anEquipmentModel().protectionType,
-                size: anEquipmentModel().size,
+                equipmentName: aEquipmentModel().name,
+                equipmentCode: aEquipmentModel().code,
+                protectionType: aEquipmentModel().protectionType,
+                size: aEquipmentModel().size,
                 endDate: LocalDate.of(2018,9,4)
         ]
         values << overrides

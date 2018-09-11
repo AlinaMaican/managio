@@ -5,13 +5,13 @@ import ro.esolutions.eipl.entities.EmployeeEquipment
 import java.time.LocalDate
 
 import static ro.esolutions.eipl.generators.EmployeeGenerator.aEmployee
-import static ro.esolutions.eipl.generators.EquipmentGenerator.anEquipment
+import static ro.esolutions.eipl.generators.EquipmentGenerator.aEquipment
 
 class EmployeeEquipmentGenerator {
     static aEmployeeEquipment(Map overrides = [:]) {
         Map values = [id       : 0L,
                       employee : aEmployee(),
-                      equipment: anEquipment(),
+                      equipment: aEquipment(),
                       startDate: LocalDate.of(2018, 8, 4),
                       endDate  : LocalDate.of(2018, 9, 4)]
         values << overrides
