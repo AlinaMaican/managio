@@ -9,12 +9,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.validation.BindingResult;
+import ro.esolutions.eipl.mappers.EquipmentMapper;
+import ro.esolutions.eipl.models.EmployeeEquipmentModel;
 import ro.esolutions.eipl.mappers.EquipmentMapper;
 import ro.esolutions.eipl.models.EquipmentModel;
 import ro.esolutions.eipl.services.EquipmentService;
 
 import javax.validation.Valid;
 import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
@@ -31,7 +35,6 @@ public class EquipmentController {
     @GetMapping("/all")
     public ResponseEntity<Page<EquipmentModel>> getAllEquipments(@RequestParam(defaultValue = "0", name = "page") int page,
                                                                  @RequestParam(defaultValue = "5", name = "size") int size) {
-
         return ResponseEntity.ok(equipmentService.getAllEquipments(PageRequest.of(page, size)));
     }
 
@@ -59,5 +62,15 @@ public class EquipmentController {
                             .collect(Collectors.joining("\r\n")));
         }
         return ResponseEntity.ok(equipmentService.getAllUnusedEquipments());
+    }
+
+    @GetMapping("/available")
+    public ResponseEntity<List<EquipmentModel>> getAllAvailableEquipments() {
+        return ResponseEntity.ok(equipmentService.getAllAvailableEquipments());
+    }
+
+    @GetMapping
+    public ResponseEntity<List<EquipmentModel>> getFilteredEquipments(@RequestParam("name_contains") String searchValue) {
+        return ResponseEntity.ok(equipmentService.getFilteredEquipments(searchValue));
     }
 }

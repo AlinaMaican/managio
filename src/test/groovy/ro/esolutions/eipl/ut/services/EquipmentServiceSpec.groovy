@@ -1,16 +1,24 @@
 package ro.esolutions.eipl.ut.services
 
 import org.springframework.mock.web.MockMultipartFile
+import ro.esolutions.eipl.repositories.EmployeeEquipmentRepository
+import ro.esolutions.eipl.repositories.EmployeeRepository
 import ro.esolutions.eipl.repositories.EquipmentRepository
 import ro.esolutions.eipl.services.EquipmentService
 import spock.lang.Specification
+import spock.lang.Subject
 
 import static ro.esolutions.eipl.generators.EquipmentGenerator.aEquipment
 import static ro.esolutions.eipl.generators.EquipmentModelGenerator.aEquipmentModel
 
 class EquipmentServiceSpec extends Specification {
+
     def equipmentRepository = Mock(EquipmentRepository)
-    def equipmentService = new EquipmentService(equipmentRepository)
+    def employeeEquipmentRepository = Mock(EmployeeEquipmentRepository)
+    def employeeRepository = Mock(EmployeeRepository)
+
+    @Subject
+    def equipmentService = new EquipmentService(equipmentRepository, employeeEquipmentRepository, employeeRepository)
 
     def "addNewEquipment"() {
         given:

@@ -22,6 +22,7 @@ public class EmployeeEquipmentController {
 
     private static final String OCTET_CONTENT_TYPE = "application/octet-stream";
 
+    public static final String JSON_EMPTY_BODY = "{}";
     @NonNull
     private final EmployeeEquipmentService employeeEquipmentService;
 
@@ -47,7 +48,6 @@ public class EmployeeEquipmentController {
                 .body(CSVString);
     }
 
-
     @PutMapping("/{id}")
     public ResponseEntity<EmployeeEquipmentModel> updateEmployeeEquipment(
             @PathVariable("id") final long id,
@@ -58,8 +58,14 @@ public class EmployeeEquipmentController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
-    public void deleteEmployeeEquipment(@PathVariable("id") final long id){
+    public void deleteEmployeeEquipment(@PathVariable("id") final long id) {
         employeeEquipmentService.deleteEmployeeEquipmentById(id);
     }
 
+    @PostMapping("/saveAllocatedEquipments/{employeeId}")
+    public ResponseEntity saveAllocatedEquipments(@RequestBody final List<EmployeeEquipmentModel> allocatedEquipments,
+                                                          @PathVariable("employeeId") final Long employeeId) {
+        employeeEquipmentService.saveAllocatedEquipments(allocatedEquipments, employeeId);
+        return ResponseEntity.ok(JSON_EMPTY_BODY);
+    }
 }

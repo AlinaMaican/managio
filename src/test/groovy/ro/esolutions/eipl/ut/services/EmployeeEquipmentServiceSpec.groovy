@@ -5,22 +5,29 @@ import org.springframework.data.domain.PageRequest
 import ro.esolutions.eipl.entities.EmployeeEquipment
 import ro.esolutions.eipl.exceptions.ResourceNotFoundException
 import ro.esolutions.eipl.repositories.EmployeeEquipmentRepository
+import ro.esolutions.eipl.repositories.EmployeeRepository
+import ro.esolutions.eipl.repositories.EquipmentRepository
 import ro.esolutions.eipl.services.EmployeeEquipmentService
 import spock.lang.Specification
 import spock.lang.Subject
 
 import java.time.LocalDate
 
+import static java.util.Optional.of
 import static ro.esolutions.eipl.generators.EmployeeEquipmentGenerator.aEmployeeEquipment
 import static ro.esolutions.eipl.generators.EmployeeEquipmentModelGenerator.aEmployeeEquipmentModel
-
 import static ro.esolutions.eipl.generators.EmployeeEquipmentReportModelGenerator.aEmployeeEquipmentReportModel
+import static ro.esolutions.eipl.generators.EmployeeGenerator.aEmployee
+import static ro.esolutions.eipl.generators.EquipmentGenerator.aEquipment
 
 class EmployeeEquipmentServiceSpec extends Specification {
 
     def employeeEquipmentRepository = Mock(EmployeeEquipmentRepository)
+    def equipmentRepository = Mock(EquipmentRepository)
+    def employeeRepository = Mock(EmployeeRepository)
+
     @Subject
-    def employeeEquipmentService = new EmployeeEquipmentService(employeeEquipmentRepository)
+    def employeeEquipmentService = new EmployeeEquipmentService(employeeEquipmentRepository, equipmentRepository, employeeRepository)
 
     def "getAllEmployeesEquipments"() {
         when:
@@ -57,7 +64,7 @@ class EmployeeEquipmentServiceSpec extends Specification {
         result == employeeEquipment
 
         and:
-        1 * employeeEquipmentRepository.findById(1L) >> Optional.of(employeeEquipmentEntity)
+        1 * employeeEquipmentRepository.findById(1L) >> of(employeeEquipmentEntity)
         1 * employeeEquipmentRepository.save(employeeEquipmentEntity) >> employeeEquipmentEntity
         0 * _
     }
@@ -107,6 +114,24 @@ class EmployeeEquipmentServiceSpec extends Specification {
         0 * _
     }
 
+    def 'saveAllocatedEquipments'() {
+        given:
+        def allocatedEmployeesEquipments = [aEmployeeEquipmentModel()]
+        def employeeId = 1L
+        def equipments = [aEquipment(isAvailable: false)]
+        def employeeEquipments = [aEmployeeEquipment(id: null, equipment: aEquipment(isAvailable: false))]
+
+        when:
+        employeeEquipmentService.saveAllocatedEquipments(allocatedEmployeesEquipments, employeeId)
+
+        then:
+        1 * equipmentRepository.findById(1L) >> of(aEquipment())
+        1 * employeeRepository.findById(employeeId) >> of(aEmployee())
+        1 * equipmentRepository.saveAll(equipments)
+        1 * employeeEquipmentRepository.saveAll(employeeEquipments)
+        0 * _
+    }
+
     def 'getExpiringEmployeeEquipmentsReportPaginated'() {
         given:
         def page = 0
@@ -122,8 +147,5 @@ class EmployeeEquipmentServiceSpec extends Specification {
         and:
         1 * employeeEquipmentRepository.findByEndDateLessThan(LocalDate.now().plusDays(8), PageRequest.of(page, size)) >> pageResult
         0 * _
-
-
     }
-
 }

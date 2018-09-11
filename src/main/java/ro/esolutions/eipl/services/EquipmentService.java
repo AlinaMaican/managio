@@ -14,6 +14,8 @@ import ro.esolutions.eipl.entities.Equipment;
 import ro.esolutions.eipl.exceptions.EquipmentUploadFileNotValid;
 import ro.esolutions.eipl.mappers.EquipmentMapper;
 import ro.esolutions.eipl.models.EquipmentModel;
+import ro.esolutions.eipl.repositories.EmployeeEquipmentRepository;
+import ro.esolutions.eipl.repositories.EmployeeRepository;
 import ro.esolutions.eipl.repositories.EquipmentRepository;
 import ro.esolutions.eipl.types.MabecCode;
 
@@ -35,6 +37,10 @@ public class EquipmentService {
 
     @NonNull
     private final EquipmentRepository equipmentRepository;
+    @NonNull
+    private final EmployeeEquipmentRepository employeeEquipmentRepository;
+    @NonNull
+    private final EmployeeRepository employeeRepository;
 
     public List<EquipmentModel> getAllEquipments() {
         return equipmentRepository.findAll()
@@ -69,6 +75,21 @@ public class EquipmentService {
             log.error(e.getMessage(), e);
             throw new EquipmentUploadFileNotValid();
         }
+    }
+
+    public List<EquipmentModel> getAllAvailableEquipments() {
+        return equipmentRepository.findAllByIsAvailable(true)
+                .stream()
+                .map(EquipmentMapper::fromEntityToModel)
+                .collect(Collectors.toList());
+    }
+
+    public List<EquipmentModel> getFilteredEquipments(String searchValue) {
+        List<EquipmentModel> resultEquipments = equipmentRepository.findDistinctByNameContainingIgnoreCase(searchValue)
+                .stream()
+                .map(EquipmentMapper::fromEntityToModel)
+                .collect(Collectors.toList());
+        return resultEquipments;
     }
 
     public List<EquipmentModel> getAllUnusedEquipments() {

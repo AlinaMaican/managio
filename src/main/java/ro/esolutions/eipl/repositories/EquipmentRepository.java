@@ -14,7 +14,13 @@ import java.util.Optional;
 public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
 
     Optional<Equipment> findByCode(String code);
+
     Page<Equipment> findAllByOrderByIdAsc(Pageable pageable);
+
+    List<Equipment> findAllByIsAvailable(boolean b);
+
+    List<Equipment> findDistinctByNameContainingIgnoreCase(String searchValue);
+
     @Query("SELECT eq FROM Equipment eq LEFT JOIN EmployeeEquipment ee on (eq.id = ee.equipment) where ee.id is null")
     List<Equipment> getAllUnusedEquipments();
 }

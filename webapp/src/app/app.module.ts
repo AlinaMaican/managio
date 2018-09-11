@@ -21,7 +21,8 @@ import {PaginationComponent} from './pagination/pagination.component';
 import {ExpiringEquipmentsComponent} from './reports/expiring-equipments/expiring-equipment.component';
 import {ExpiringEquipmentService} from './reports/expiring-equipments/expiring-equipment.service';
 import {EmployeeEquipmentComponent} from './employees/equipment/employee-equipment.component';
-import {EmployeeEquipmentService} from './employee-equipment/employee-equipment.service';
+import {AvailableEquipmentListComponent} from "./available-equipment-list/available-equipment-list.component";
+import {EmployeeEquipmentService} from "./employee-equipment/employee-equipment.service";
 import {UnusedEquipmentsComponent} from './reports/unused-equipments/unused-equipments.component';
 import {DatePipe} from '@angular/common';
 import {EditEmployeeComponent} from "./employees/edit-employee/edit-employee.component";
@@ -43,7 +44,8 @@ import {EditEmployeeComponent} from "./employees/edit-employee/edit-employee.com
     EmployeeComponent,
     EmployeeEquipmentComponent,
     EditEmployeeComponent,
-    UnusedEquipmentsComponent
+    UnusedEquipmentsComponent,
+    AvailableEquipmentListComponent
   ],
   imports: [
     BrowserModule,
