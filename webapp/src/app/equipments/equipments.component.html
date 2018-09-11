@@ -14,10 +14,10 @@
 </div>
 <form name="equipmentForm">
   <div class="d-flex w-100 justify-content-between">
-    <label for="file-upload" class="btn btn-outline-secondary width-140-margin-right-15">
+    <label for="file-upload" class="btn btn-success width-140-margin-right-15">
       Upload </label>
     <input id="file-upload" type="file" (change)="upload($event)" accept=".csv"/>
-    <label class="btn btn-outline-secondary width-140" data-toggle="modal" data-target="#addEquipmentModal"
+    <label class="btn btn-primary width-140" data-toggle="modal" data-target="#addEquipmentModal"
            (click)="initForm()">Add</label>
   </div>
 </form>
@@ -110,19 +110,21 @@
         </div>
       </div>
       <div class="modal-footer my-modal">
-        <div class="col-xs-12">
+        <div class="row">
+        <!--<div class="col-xs-12">-->
           <div class="d-flex w-100 justify-content-between">
-            <button class="btn btn-secondary btn-block rounded m-0" data-dismiss="modal">
+            <button class="btn btn-secondary rounded m-0" data-dismiss="modal">
               <span>Cancel</span>
             </button>
             <div class="m-3"></div>
             <button type="submit"
-                    class="btn btn-primary btn-block rounded m-0" [disabled]="!addequipment.valid" data-dismiss="modal"
+                    class="btn btn-primary rounded m-0" [disabled]="!addequipment.valid" data-dismiss="modal"
                     (click)="createEquipment()">
               <span>Save</span>
             </button>
-          </div>
+          <!--</div>-->
         </div>
+      </div>
       </div>
     </div>
   </div>
