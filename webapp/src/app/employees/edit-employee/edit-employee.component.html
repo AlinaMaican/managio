@@ -1,58 +1,57 @@
-<div class="container-fluid">
-  <div class="row employee-list">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb breadcrumb-white-14">
-        <li class="breadcrumb-item"><a href="#">EIPL</a></li>
-        <li class="breadcrumb-item"><a href="#">Employee</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Employee Info</li>
-      </ol>
-    </nav>
-  </div>
-  <div class="row">
-    <div class="col-sm-4 offset-sm-4">
-      <div class="text-center padd">
-        <div>
-          <h2>{{firstName}} {{lastName}}'s Infos</h2>
-        </div>
+<div class="row">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-white-14">
+      <li class="breadcrumb-item"><a href="#">EIPL</a></li>
+      <li class="breadcrumb-item"><a href="#">Employee</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Employee Info</li>
+    </ol>
+  </nav>
+</div>
+<div>
+  <h1 align="center">{{firstName}} {{lastName}}'s Infos</h1>
+</div>
+<div class="row">
+  <div class="col-sm-8 offset-sm-2 col-md-4 offset-md-4">
+    <form class="form " [formGroup]="editEmployeeForm">
+      <div class="form-group">
+        <label>Working station</label>
+        <input type="text" class="form-control" placeholder="working station" formControlName="workingStation"
+               readonly>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-4 offset-sm-4">
-      <form class="form " [formGroup]="editEmployeeForm">
-        <div class="form-group">
-          <label>Working station</label>
-          <input type="text" class="form-control" placeholder="working station" formControlName="workingStation"
-                 readonly>
-        </div>
-        <div class="form-group">
-          <label>Helmet Size</label>
-          <input type="text" class="form-control" placeholder="helmet size" formControlName="helmetSize">
-          <small *ngIf="editEmployeeForm.get('helmetSize').errors">*Helmet size should only contain capital letters or numbers</small>
-        </div>
-        <div class="form-group">
-          <label>Clothing Size</label>
-          <input type="text" class="form-control" placeholder="clothing size" formControlName="clothingSize">
-          <small *ngIf="editEmployeeForm.get('clothingSize').errors">*Clothing size should only contain capital letters or numbers</small>
-        </div>
-        <div class="form-group">
-          <label>Footwear Size</label>
-          <input type="text" class="form-control" placeholder="footwear size" formControlName="footwearSize">
-          <small *ngIf="editEmployeeForm.get('footwearSize').errors">*Footwear size should only contain capital letters or numbers</small>
-        </div>
-        <div >
-          <div class="d-flex w-100 justify-content-between">
-            <button class="btn btn-secondary btn-block rounded m-0" routerLink="/employee">
-              <span>CANCEL</span>
-            </button>
-            <div class="m-2"></div>
-            <button type="button" data-toggle="modal" data-target="#confirmModal"
-                    class="btn btn-primary btn-block rounded m-0" [disabled]="!editEmployeeForm.valid" (click)="onSubmit()">
-              <span>SAVE</span>
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
+      <div class="form-group">
+        <label>Helmet Size</label>
+        <input type="text" class="form-control" placeholder="helmet size" formControlName="helmetSize">
+        <small *ngIf="editEmployeeForm.get('helmetSize').errors">*Helmet size should only contain capital letters or
+          numbers
+        </small>
+      </div>
+      <div class="form-group">
+        <label>Clothing Size</label>
+        <input type="text" class="form-control" placeholder="clothing size" formControlName="clothingSize">
+        <small *ngIf="editEmployeeForm.get('clothingSize').errors">*Clothing size should only contain capital letters or
+          numbers
+        </small>
+      </div>
+      <div class="form-group">
+        <label>Footwear Size</label>
+        <input type="text" class="form-control" placeholder="footwear size" formControlName="footwearSize">
+        <small *ngIf="editEmployeeForm.get('footwearSize').errors">*Footwear size should only contain capital letters or
+          numbers
+        </small>
+      </div>
+      <div class="form-group btn-padding-top-15">
+        <button type="button"
+                class="btn btn-secondary btn-sm float-left btn-width-140"
+                routerLink="/employee">
+          <span>CANCEL</span>
+        </button>
+        <button type="button" data-toggle="modal" data-target="#confirmModal"
+                class="btn btn-primary btn-sm float-right btn-width-140"
+                [disabled]="!editEmployeeForm.valid"
+                (click)="onSubmit()">
+          <span>SAVE</span>
+        </button>
+      </div>
+    </form>
   </div>
 </div>
