@@ -65,7 +65,7 @@ public class EmployeeEquipmentController {
     }
 
     @PostMapping("/saveAllocatedEquipments/{employeeId}")
-    public ResponseEntity<Object> saveAllocatedEquipments(@RequestBody final List<EmployeeEquipmentModel> allocatedEquipments,
+    public ResponseEntity saveAllocatedEquipments(@RequestBody final List<EmployeeEquipmentModel> allocatedEquipments,
                                                           @PathVariable("employeeId") final Long employeeId) {
         employeeEquipmentService.saveAllocatedEquipments(allocatedEquipments, employeeId);
         return ResponseEntity.ok(JSON_EMPTY_BODY);

@@ -36,7 +36,6 @@ public class EmployeeEquipmentService {
     private final EmployeeRepository employeeRepository;
 
     public List<EmployeeEquipmentModel> getAllEmployeesEquipments() {
-
         return employeeEquipmentRepository.findAll()
                 .stream()
                 .map(EmployeeEquipmentMapper::fromEntityToModel)

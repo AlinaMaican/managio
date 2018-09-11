@@ -28,8 +28,8 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
-@RequiredArgsConstructor
 @Transactional
+@RequiredArgsConstructor
 @Slf4j
 public class EquipmentService {
 
