@@ -1,144 +1,122 @@
-<div class="container-fluid">
-  <div class="row padding-top-30-bottom-10">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb breadcrumb-white-14">
-        <li class="breadcrumb-item"><a href="#">EIPL</a></li>
-        <li class="breadcrumb-item"><a href="#">Management forms</a></li>
-        <li class="breadcrumb-item active" aria-current="page">EquipmentModel</li>
-      </ol>
-    </nav>
+<div class="row padding-top-30-bottom-10">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-white-14">
+      <li class="breadcrumb-item"><a href="#">EIPL</a></li>
+      <li class="breadcrumb-item"><a href="#">Management forms</a></li>
+      <li class="breadcrumb-item active" aria-current="page">EquipmentModel</li>
+    </ol>
+  </nav>
+</div>
+<div class="row padding-top-10-bottom-30">
+  <div class="col-md-4 offset-md-4">
+    <h1 class="text-center">Equipments</h1>
   </div>
-  <div class="row">
-    <div class="col-sm-8 offset-sm-2 col-md-4 offset-md-4">
-      <h2 class="text-center">{{'equipment.title' | translate}}</h2>
-    </div>
+</div>
+<form name="equipmentForm">
+  <div class="d-flex w-100 justify-content-between">
+    <label for="file-upload" class="btn btn-success width-140-margin-right-15">
+      Upload </label>
+    <input id="file-upload" type="file" (change)="upload($event)" accept=".csv"/>
+    <label class="btn btn-primary width-140" data-toggle="modal" data-target="#addEquipmentModal"
+           (click)="initForm()">Add</label>
   </div>
-  <div class="row">
-    <div class="col-sm-10 offset-sm-1">
-      <form name="equipmentForm">
-        <label for="file-upload" class="btn btn-outline-secondary float-left width-140-margin-right-15">
-          {{'equipment.upload' | translate}} </label>
-        <input id="file-upload" type="file" (change)="upload($event)" accept=".csv"/>
-        <button type="button" class="btn btn-outline-secondary float-left width-140" data-toggle= "modal" data-target="#addEquipmentModal"
-                (click)="initForm()"> {{'equipment.add' | translate}} </button>
-      </form>
-      <table class="table table-hover">
-        <thead>
-        <tr>
-          <th scope="col">{{'equipment.name' | translate}}</th>
-          <th scope="col">{{'equipment.code' | translate}}</th>
-          <th scope="col">{{'equipment.mabec-code' | translate}}</th>
-          <th scope="col">{{'equipment.protection-type' | translate}}</th>
-          <th scope="col">{{'equipment.size' | translate}}</th>
-          <th scope="col">{{'equipment.sex' | translate}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let equipment of equipments;">
-          <td>{{equipment.name}}</td>
-          <td>{{equipment.code}}</td>
-          <td>{{equipment.mabecCode}}</td>
-          <td>{{equipment.protectionType}}</td>
-          <td>{{equipment.size}}</td>
-          <td>{{equipment.sex}}</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <!--Modal-->
-  <div class="modal" id="addEquipmentModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalTitle"
-       aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-m" role="document">
-
-      <div class="modal-content">
-        <div class="modal-header col-xs-4 offset-2">
-          <h2>{{'equipment.modal-title' | translate}}</h2>
-        </div>
-
-        <div class="modal-body ">
-
-          <div class="row">
-            <div class="col-xs-4 offset-3">
-              <form [formGroup]="addequipment" >
-                <div class="row-fluid">
-
-                  <div class="form-group">
-                    <label for="name">{{'equipment.name' | translate}}</label>
-                    <input type="text"  placeholder="{{'equipment.name' | translate}}"
-                           required="required" id="name" class="form-control" formControlName="name">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="code">{{'equipment.code' | translate}}</label>
-                    <input type="text"  placeholder="{{'equipment.code' | translate}}"
-                           required="required" id="code" class="form-control" formControlName="code">
-                  </div>
-
-
-                  <div class="form-group">
-                    <label>{{'equipment.mabec-code' | translate}}
-                      <select class="form-control"  formControlName="mabecCode" id="'my-select">
-                        <option value="" disabled selected>{{'equipment.mabec-code' | translate}}</option>
-                        <option *ngFor="let o of optionArray" [value]="o" > {{o}}</option>
-                      </select>
-                    </label>
-                  </div>
-
-
-                  <div class="form-group">
-                    <label for="protectionType">{{'equipment.protection-type' | translate}}</label>
-                    <input type="text"  placeholder="{{'equipment.protection-type' | translate}}"
-                            required="required" id="protectionType" class="form-control" formControlName="protectionType">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="size">{{'equipment.size' | translate}}</label>
-                    <input type="text"  placeholder="{{'equipment.size' | translate}}"
-                           required="required" id="size" class="form-control" formControlName="size">
-                    <small *ngIf="addequipment.get('size').errors">{{'equipment.warning1' | translate}}</small>
-                  </div>
-
-
-                  <fieldset class="form-group" >
-                    <label>{{'equipment.sex' | translate}}
-
-                      <label class="form-check-label form-check">
-                        <input type="radio" class="form-check-input " name="sex"
-                               value="M"
-                                formControlName="sex" >
-                        {{'equipment.male' | translate}}
-                      </label>
-
-                      <label class="form-check-label form-check">
-                        <input type="radio" class="form-check-input" name="sex"
-                               value="F"
-                                formControlName="sex">
-                        {{'equipment.female' | translate}}
-                      </label>
-
-                    </label>
-                  </fieldset>
-
-                </div>
-              </form>
+</form>
+<div class="row">
+  <table class="table">
+    <thead class="table-active">
+    <tr scope="row">
+      <th scope="col">Name</th>
+      <th scope="col">Code</th>
+      <th scope="col">Mabec Code</th>
+      <th scope="col">Protection Type</th>
+      <th scope="col">Size</th>
+      <th scope="col">Sex</th>
+    </tr>
+    </thead>
+    <tbody class="table-hover">
+    <tr *ngFor="let equipment of equipments;">
+      <td>{{equipment.name}}</td>
+      <td>{{equipment.code}}</td>
+      <td>{{equipment.mabecCode}}</td>
+      <td>{{equipment.protectionType}}</td>
+      <td>{{equipment.size}}</td>
+      <td>{{equipment.sex}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<!--Modal-->
+<div class="modal" id="addEquipmentModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalTitle"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Add new equipment</h2>
+      </div>
+      <div class="modal-body ">
+        <form [formGroup]="addequipment">
+          <div class="row-fluid">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" placeholder="Name"
+                     required="required" id="name" class="form-control" formControlName="name">
             </div>
-          </div>
-        </div>
-
-        <div class="modal-footer my-modal">
-          <div class="col-xs-12">
-            <div class="d-flex w-100 justify-content-between">
-              <button class="btn btn-secondary btn-block rounded m-0" data-dismiss="modal" >
-                <span>{{'equipment.cancel' | translate}}</span>
-              </button>
-              <div class="m-3"></div>
-              <button type="submit"
-                      class="btn btn-primary btn-block rounded m-0" [disabled]="!addequipment.valid" data-dismiss="modal" (click)="createEquipment()">
-                <span>{{'equipment.save' | translate}}</span>
-              </button>
+            <div class="form-group">
+              <label for="code">Code</label>
+              <input type="text" placeholder="Code"
+                     required="required" id="code" class="form-control" formControlName="code">
             </div>
+            <div class="form-group">
+              <label>Choose the MabecCode:
+                <select class="form-control" formControlName="mabecCode" id="'my-select">
+                  <option value="" disabled selected>Mabec code</option>
+                  <option *ngFor="let o of optionArray" [value]="o"> {{o}}</option>
+                </select>
+              </label>
+            </div>
+            <div class="form-group">
+              <label for="protectionType">Protection type</label>
+              <input type="text" placeholder="Protection type"
+                     required="required" id="protectionType" class="form-control" formControlName="protectionType">
+            </div>
+            <div class="form-group">
+              <label for="size">Size</label>
+              <input type="text" placeholder="Size"
+                     required="required" id="size" class="form-control" formControlName="size">
+              <small *ngIf="addequipment.get('size').errors">*Size should only contain capital letters or numbers
+              </small>
+            </div>
+            <fieldset class="form-group">
+              <label>Sex:
+                <label class="form-check-label form-check">
+                  <input type="radio" class="form-check-input " name="sex"
+                         value="M"
+                         formControlName="sex">
+                  MALE
+                </label>
+                <label class="form-check-label form-check">
+                  <input type="radio" class="form-check-input" name="sex"
+                         value="F"
+                         formControlName="sex">
+                  FEMALE
+                </label>
+              </label>
+            </fieldset>
           </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <div class="col-6">
+          <button type="button" class="btn btn-default btn-sm float-left btn-width-140" data-dismiss="modal">
+            <span>Cancel</span>
+          </button>
+        </div>
+        <div class="col-6">
+          <button type="submit"
+                  class="btn btn-primary btn-sm float-right btn-width-140" [disabled]="!addequipment.valid"
+                  data-dismiss="modal" (click)="createEquipment()">
+            <span>Save</span>
+          </button>
         </div>
       </div>
     </div>

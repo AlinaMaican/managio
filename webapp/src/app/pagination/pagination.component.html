@@ -1,4 +1,4 @@
-<div class="row bigger-size">
+<div class="d-flex w-100 justify-content-between bigger-size">
 
   <div>
     <label for="itemsPerPage">{{'pagination.items' | translate}}&nbsp;
@@ -11,7 +11,7 @@
     </select>
   </div>
 
-  <div class="offset-8">
+  <div>
     <button class="fas fa-angle-double-left" (click)="onFirst(pageSize)" [disabled]="pageNumber == 1"></button>&nbsp;
     <button class="fas fa-angle-left" (click)="onPrev()" [disabled]="pageNumber == 1"></button>&nbsp;
     {{pageNumber}}&nbsp;

@@ -28,7 +28,6 @@ mvnw.cmd
 /nbdist/
 /.nb-gradle/
 
-
 ### Angular Compiled application ###
 /src/main/resources/static/3rdpartylicenses.txt
 /src/main/resources/static/favicon.ico
@@ -44,3 +43,4 @@ mvnw.cmd
 /src/main/resources/static/styles.js.map
 /src/main/resources/static/vendor.js
 /src/main/resources/static/vendor.js.map
+/webapp/package-lock.json

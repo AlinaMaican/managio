@@ -23,4 +23,10 @@ public class EmployeeModel {
 
     @NotBlank
     private String workingStation;
+
+    private String helmetSize;
+
+    private String clothingSize;
+
+    private String footwearSize;
 }

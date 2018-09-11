@@ -14,6 +14,8 @@ import ro.esolutions.eipl.entities.Equipment;
 import ro.esolutions.eipl.exceptions.EquipmentUploadFileNotValid;
 import ro.esolutions.eipl.mappers.EquipmentMapper;
 import ro.esolutions.eipl.models.EquipmentModel;
+import ro.esolutions.eipl.repositories.EmployeeEquipmentRepository;
+import ro.esolutions.eipl.repositories.EmployeeRepository;
 import ro.esolutions.eipl.repositories.EquipmentRepository;
 import ro.esolutions.eipl.types.MabecCode;
 
@@ -25,6 +27,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import static ro.esolutions.eipl.mappers.EquipmentMapper.fromEntityToModel;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -33,6 +37,10 @@ public class EquipmentService {
 
     @NonNull
     private final EquipmentRepository equipmentRepository;
+    @NonNull
+    private final EmployeeEquipmentRepository employeeEquipmentRepository;
+    @NonNull
+    private final EmployeeRepository employeeRepository;
 
     public List<EquipmentModel> getAllEquipments() {
         return equipmentRepository.findAll()
@@ -42,12 +50,13 @@ public class EquipmentService {
     }
 
     public EquipmentModel addNewEquipment(final EquipmentModel equipmentModel) {
-        return EquipmentMapper.fromEntityToModel(equipmentRepository.save(EquipmentMapper.fromModelToEntity(equipmentModel)));
+        return fromEntityToModel(equipmentRepository.save(EquipmentMapper.fromModelToEntity(equipmentModel)));
     }
 
     public Page<EquipmentModel> getAllEquipments(Pageable pageable) {
         return equipmentRepository.findAllByOrderByIdAsc(pageable).map(EquipmentMapper::fromEntityToModel);
     }
+
     public void uploadEquipmentFromCSV(final MultipartFile file) {
         try {
             InputStream inputStream = file.getInputStream();
@@ -56,7 +65,7 @@ public class EquipmentService {
             List<Equipment> equipmentsToSave = StreamSupport.stream(csvParser.spliterator(), false)
                     .filter(record -> MabecCode.contains(record.get(2)))
                     .map(record -> {
-                       Equipment equipment = EquipmentMapper.fromRecordToEntity(record);
+                        Equipment equipment = EquipmentMapper.fromRecordToEntity(record);
                         equipmentRepository.findByCode(equipment.getCode())
                                 .ifPresent(equipment1 -> equipment.setId(equipment1.getId()));
                         return equipment;
@@ -66,5 +75,26 @@ public class EquipmentService {
             log.error(e.getMessage(), e);
             throw new EquipmentUploadFileNotValid();
         }
+    }
+
+    public List<EquipmentModel> getAllAvailableEquipments() {
+        return equipmentRepository.findAllByIsAvailable(true)
+                .stream()
+                .map(EquipmentMapper::fromEntityToModel)
+                .collect(Collectors.toList());
+    }
+
+    public List<EquipmentModel> getFilteredEquipments(String searchValue) {
+        List<EquipmentModel> resultEquipments = equipmentRepository.findDistinctByNameContainingIgnoreCase(searchValue)
+                .stream()
+                .map(EquipmentMapper::fromEntityToModel)
+                .collect(Collectors.toList());
+        return resultEquipments;
+    }
+
+    public List<EquipmentModel> getAllUnusedEquipments() {
+        return equipmentRepository.getAllUnusedEquipments().stream()
+                .map(EquipmentMapper::fromEntityToModel)
+                .collect(Collectors.toList());
     }
 }

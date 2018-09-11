@@ -1,2 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/bootstrap/scss/bootstrap";
+.padding-top-30-bottom-10 {
+  padding-top: 30px;
+  padding-bottom: 10px;
+}
+.padding-top-10-bottom-30 {
+  padding-top: 10px;
+  padding-bottom: 30px;
+}
+.breadcrumb-white-14 {
+  background-color: white;
+  font-size: 14px;
+}
+.width-140-margin-right-15 {
+  width: 140px; margin-right: 15px;
+}
+.margin-7 {
+  margin-bottom: 7px;
+}
+small{
+  color:red;
+}
+.my-modal{
+  margin-right: 160px;
+}
+.width-140 {
+  width: 140px;
+}
+
+.padding-left-right-0 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.btn-padding-right-left-20 {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.btn-padding-top-15{
+  padding-top: 15px;
+}
+
+.btn-width-140 {
+  width: 140px;
+}

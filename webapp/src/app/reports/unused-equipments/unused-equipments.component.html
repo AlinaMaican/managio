@@ -1,0 +1,48 @@
+<div class="row padding-top-30-bottom-10">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-white-14">
+      <li class="breadcrumb-item"><a href="#">EIPL</a></li>
+      <li class="breadcrumb-item"><a href="#">Reports</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Unused Equipments</li>
+    </ol>
+  </nav>
+</div>
+<div class="row padding-top-10-bottom-30">
+  <div class="col-sm-6 offset-sm-3">
+    <div class="text-center">
+      <div>
+        <h1>Unused Equipments</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <a class="btn btn-warning margin-7 width-140-margin-right-15" [download]="getDownloadName()"
+     [href]="unusedEquipmentsCSVDownloadUrl" type="text/csv"
+  >Export</a>
+</div>
+<div class="row">
+  <table class="table">
+    <thead class="table-active">
+    <tr scope="row">
+      <th scope="col">Name</th>
+      <th scope="col">Code</th>
+      <th scope="col">MABEC Code</th>
+      <th scope="col">Protection Type</th>
+      <th scope="col">Size</th>
+      <th scope="col">Sex</th>
+    </tr>
+    </thead>
+    <tbody class="table-hover">
+    <tr *ngFor="let unusedEquipment of unusedEquipments">
+      <td>{{unusedEquipment.name}}</td>
+      <td>{{unusedEquipment.code}}</td>
+      <td>{{unusedEquipment.mabecCode}}</td>
+      <td>{{unusedEquipment.protectionType}}</td>
+      <td>{{unusedEquipment.size}}</td>
+      <td>{{unusedEquipment.sex}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
