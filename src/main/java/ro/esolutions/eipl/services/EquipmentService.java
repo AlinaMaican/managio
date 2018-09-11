@@ -27,6 +27,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import static ro.esolutions.eipl.mappers.EquipmentMapper.fromEntityToModel;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -36,10 +38,9 @@ public class EquipmentService {
     @NonNull
     private final EquipmentRepository equipmentRepository;
     @NonNull
-    private final EmployeeRepository employeeRepository;
-    @NonNull
     private final EmployeeEquipmentRepository employeeEquipmentRepository;
-
+    @NonNull
+    private final EmployeeRepository employeeRepository;
 
     public List<EquipmentModel> getAllEquipments() {
         return equipmentRepository.findAll()
@@ -49,7 +50,7 @@ public class EquipmentService {
     }
 
     public EquipmentModel addNewEquipment(final EquipmentModel equipmentModel) {
-        return EquipmentMapper.fromEntityToModel(equipmentRepository.save(EquipmentMapper.fromModelToEntity(equipmentModel)));
+        return fromEntityToModel(equipmentRepository.save(EquipmentMapper.fromModelToEntity(equipmentModel)));
     }
 
     public Page<EquipmentModel> getAllEquipments(Pageable pageable) {
@@ -76,12 +77,12 @@ public class EquipmentService {
         }
     }
 
-//    public List<EquipmentModel> getAllAvailableEquipments() {
-//        return equipmentRepository.findAllByIsAvailable(true)
-//                .stream()
-//                .map(EquipmentMapper::fromEntityToModel)
-//                .collect(Collectors.toList());
-//    }
+    public List<EquipmentModel> getAllAvailableEquipments() {
+        return equipmentRepository.findAllByIsAvailable(true)
+                .stream()
+                .map(EquipmentMapper::fromEntityToModel)
+                .collect(Collectors.toList());
+    }
 
     public List<EquipmentModel> getFilteredEquipments(String searchValue) {
         List<EquipmentModel> resultEquipments = equipmentRepository.findDistinctByNameContainingIgnoreCase(searchValue)
@@ -91,6 +92,9 @@ public class EquipmentService {
         return resultEquipments;
     }
 
+    public List<EquipmentModel> getAllUnusedEquipments() {
+        return equipmentRepository.getAllUnusedEquipments().stream()
+                .map(EquipmentMapper::fromEntityToModel)
+                .collect(Collectors.toList());
+    }
 }
-
-

@@ -2,9 +2,10 @@ package ro.esolutions.eipl.controllers;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.esolutions.eipl.models.EmployeeEquipmentModel;
@@ -21,17 +22,15 @@ public class EmployeeEquipmentController {
 
     private static final String OCTET_CONTENT_TYPE = "application/octet-stream";
 
+    public static final String JSON_EMPTY_BODY = "{}";
     @NonNull
     private final EmployeeEquipmentService employeeEquipmentService;
 
     @GetMapping("/all")
-    public ResponseEntity<List<EmployeeEquipmentModel>> getAllEmployeesEquipments() {
-        return ResponseEntity.ok(employeeEquipmentService.getAllEmployeesEquipments());
-    }
-
-    @GetMapping("/reports/expiring")
-    public ResponseEntity<List<EmployeeEquipmentReportModel>> getAllEmployeeEquipmentsReport() {
-        return ResponseEntity.ok(employeeEquipmentService.getExpiringEmployeeEquipmentsReport());
+    public ResponseEntity<Page<EmployeeEquipmentReportModel>> getAllEmployeeEquipments(
+            @RequestParam(defaultValue = "0", name = "page") int page,
+            @RequestParam(defaultValue = "5", name = "size") int size) {
+        return ResponseEntity.ok(employeeEquipmentService.getExpiringEmployeeEquipmentsReportPaginated(page, size));
     }
 
     @GetMapping()
@@ -49,7 +48,6 @@ public class EmployeeEquipmentController {
                 .body(CSVString);
     }
 
-
     @PutMapping("/{id}")
     public ResponseEntity<EmployeeEquipmentModel> updateEmployeeEquipment(
             @PathVariable("id") final long id,
@@ -60,7 +58,14 @@ public class EmployeeEquipmentController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
-    public void deleteEmployeeEquipment(@PathVariable("id") final long id){
+    public void deleteEmployeeEquipment(@PathVariable("id") final long id) {
         employeeEquipmentService.deleteEmployeeEquipmentById(id);
+    }
+
+    @PostMapping("/saveAllocatedEquipments/{employeeId}")
+    public ResponseEntity saveAllocatedEquipments(@RequestBody final List<EmployeeEquipmentModel> allocatedEquipments,
+                                                          @PathVariable("employeeId") final Long employeeId) {
+        employeeEquipmentService.saveAllocatedEquipments(allocatedEquipments, employeeId);
+        return ResponseEntity.ok(JSON_EMPTY_BODY);
     }
 }

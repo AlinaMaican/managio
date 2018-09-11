@@ -9,7 +9,6 @@ import {Employee} from './employee.model';
 export class EmployeeService {
   private employeeUrl = environment.resourcesUrl + '/employee';
 
-
   constructor(private httpClient: HttpClient) {
   }
 

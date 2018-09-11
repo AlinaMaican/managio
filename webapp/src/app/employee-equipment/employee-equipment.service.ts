@@ -28,5 +28,4 @@ export class EmployeeEquipmentService {
   saveAllocatedEquipments(selectedEmployeeEquipments: EmployeeEquipmentModel[], employeeId: number) {
     return this.httpClient.post<EmployeeEquipmentModel[]>(this.employeeEquipmentUrl + '/saveAllocatedEquipments/' + employeeId, selectedEmployeeEquipments, {});
   }
-
 }

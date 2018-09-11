@@ -1,0 +1,29 @@
+<div class="row">
+  <a class="btn btn-primary" [download]="getDownloadName()"
+     [href]="unusedEquipmentsCSVDownloadUrl" type="text/csv"
+  >Download CSV</a>
+</div>
+<div class="row">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Code</th>
+      <th scope="col">MABEC Code</th>
+      <th scope="col">Protection Type</th>
+      <th scope="col">Size</th>
+      <th scope="col">Sex</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let unusedEquipment of unusedEquipments">
+      <td>{{unusedEquipment.name}}</td>
+      <td>{{unusedEquipment.code}}</td>
+      <td>{{unusedEquipment.mabecCode}}</td>
+      <td>{{unusedEquipment.protectionType}}</td>
+      <td>{{unusedEquipment.size}}</td>
+      <td>{{unusedEquipment.sex}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

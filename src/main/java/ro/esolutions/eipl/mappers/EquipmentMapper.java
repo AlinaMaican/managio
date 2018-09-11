@@ -31,10 +31,11 @@ public final class EquipmentMapper {
                 .protectionType(equipmentModel.getProtectionType())
                 .size(equipmentModel.getSize())
                 .sex(equipmentModel.getSex())
+                .isAvailable(true)
                 .build();
     }
 
-    public static Equipment fromRecordToEntity(final CSVRecord csvRecord){
+    public static Equipment fromRecordToEntity(final CSVRecord csvRecord) {
         return Equipment.builder()
                 .id(null)
                 .name(csvRecord.get(0))
@@ -43,6 +44,16 @@ public final class EquipmentMapper {
                 .protectionType(csvRecord.get(3))
                 .size(csvRecord.get(4))
                 .sex(csvRecord.get(5))
+                .isAvailable(true)
                 .build();
+    }
+
+    public static String fromModelToCsvString(EquipmentModel equipmentModel) {
+        return equipmentModel.getName() + "," +
+                equipmentModel.getCode() + "," +
+                equipmentModel.getMabecCode().toString() + "," +
+                equipmentModel.getProtectionType() + "," +
+                equipmentModel.getSize() + "," +
+                equipmentModel.getSex();
     }
 }

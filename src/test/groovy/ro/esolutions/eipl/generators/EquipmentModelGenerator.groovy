@@ -5,7 +5,7 @@ import ro.esolutions.eipl.types.MabecCode
 
 class EquipmentModelGenerator {
 
-    static anEquipmentModel(Map ovverrides = [:]) {
+    static aEquipmentModel(Map ovverrides = [:]) {
         Map values = [
                 id            : 1L,
                 name          : "casca",

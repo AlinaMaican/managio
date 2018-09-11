@@ -45,4 +45,11 @@
     </tbody>
   </table>
 </div>
+</div>
 
+<app-pagination
+  [service]="expiringEquipmentService"
+  [subscription]="employeeEquipmentSubscription"
+  [baseURL]="baseURL"
+  (retrieveContent)="getPaginatedList($event)">
+</app-pagination>
