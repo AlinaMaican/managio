@@ -11,7 +11,6 @@ import {EmployeeEquipmentComponent} from "./employees/equipment/employee-equipme
 import {EditEmployeeComponent} from "./employees/edit-employee/edit-employee.component";
 import {AvailableEquipmentListComponent} from "./available-equipment-list/available-equipment-list.component";
 
-
 const routes: Routes = [
   {path: '', redirectTo: 'management-users', pathMatch: 'full'},
   {path: 'management-users', component: UserListComponent},
@@ -24,7 +23,6 @@ const routes: Routes = [
   {path: 'employee/:id/equipment', component: EmployeeEquipmentComponent},
   {path: 'employee/:id', component:EditEmployeeComponent},
   {path: 'reports/expiring-equipments', component: ExpiringEquipmentsComponent},
-  {path: 'employee/:id/equipment', component: EmployeeEquipmentComponent},
   {path: 'equipments/:employeeId', component: AvailableEquipmentListComponent}
 ];
 

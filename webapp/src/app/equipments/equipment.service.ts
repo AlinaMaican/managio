@@ -6,7 +6,7 @@ import {EquipmentModel} from "./model/equipment.model";
 import {Service} from "../service";
 
 @Injectable()
-export class EquipmentService extends Service<EquipmentModel>{
+export class EquipmentService extends Service<EquipmentModel> {
   public basicUrl = environment.resourcesUrl + '/equipment';
 
   constructor(public httpClient: HttpClient) {
@@ -17,7 +17,7 @@ export class EquipmentService extends Service<EquipmentModel>{
     return this.httpClient.post<EquipmentModel>(this.basicUrl, newEquipmentModel, {});
   }
 
-  saveFile(importedFile: File){
+  saveFile(importedFile: File) {
     const formData: FormData = new FormData();
     formData.append('file', importedFile, importedFile.name);
     return this.httpClient.post(this.basicUrl + '/importByFile', formData);
@@ -28,8 +28,7 @@ export class EquipmentService extends Service<EquipmentModel>{
   }
 
   getFilteredEquipments(searchValue: string): Observable<EquipmentModel[]> {
-    let Param = new HttpParams();
-    Param = Param.append('name_contains',searchValue);
-    return this.httpClient.get<EquipmentModel[]>(this.basicUrl,{params:Param});
+    let param = new HttpParams().append('name_contains', searchValue);
+    return this.httpClient.get<EquipmentModel[]>(this.basicUrl, {params: param});
   }
 }
