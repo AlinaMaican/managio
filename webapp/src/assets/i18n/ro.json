@@ -1,0 +1,144 @@
+{
+  "navbar": {
+    "management-users": "MANAGEMENT UTILIZATORI",
+    "management-forms": "MANAGEMENT DE FORMULARE",
+    "employees": "ANGAJATI",
+    "reports": "RAPOARTE",
+    "protection-type": "Tip protectie",
+    "structural-unit": "Unitate structurala",
+    "equipments": "Echipamente",
+    "working-stations": "Posturi de lucru",
+    "frequency": "Frecventa",
+    "clothing-sizes": "Marimi imbracaminte",
+    "shoe-sizes": "Marimi incaltaminte",
+    "helmet-sizes": "Marmimi casca",
+    "expiring-equipments": "Echipamente invechite",
+    "edit-profile": "Editeaza profil",
+    "unused-equipments": "Echipamente nefolosite",
+    "sign-out": "Deconectare"
+  },
+
+  "user-list": {
+    "title": "Lista de utilizatori",
+    "add": "Adauga utilizator",
+    "username": "Username",
+    "firstname": "Prenume",
+    "lastname": "Nume",
+    "email": "Email",
+    "status": "Status",
+    "role": "Rol",
+    "actions": "Actiuni"
+  },
+
+  "user-profile": {
+    "title": "Setari profil utilizator",
+    "username": "Username",
+    "firstname": "Prenume",
+    "lastname": "Nume",
+    "email": "Email",
+    "password": "Parola",
+    "warning1": "Este necesara introducerea parolei!",
+    "warning2": "Parola trebuie sa contina cel putin 8 caractere, incluzand o litera si un numar!",
+    "confirm-password": "Confirma parola",
+    "warning3": "Parolele nu sunt identice!",
+    "cancel": "Anulare",
+    "save": "Salvare",
+    "language": "Alege limba:",
+    "english": "English",
+    "romana": "Romana"
+  },
+
+  "add-user": {
+    "title": "Adauga Utilizator",
+    "username": "Username",
+    "firstname": "Prenume",
+    "lastname": "Nume",
+    "email": "Email",
+    "password": "Parola",
+    "user": "Utilizator",
+    "admin": "Administrator",
+    "manager": "Manager",
+    "consultant": "Consultant",
+    "cancel": "Anulare",
+    "submit": "Salvare"
+  },
+
+  "edit-user": {
+    "username": "Username",
+    "firstname": "Prenume",
+    "lastname": "Nume",
+    "email": "Email",
+    "choose": "Rol",
+    "user": "UTILIZATOR",
+    "admin": "ADMINISTRATOR",
+    "manager": "MANAGER",
+    "consultant": "CONSULTANT",
+    "status": "Status",
+    "active": "Activ",
+    "inactive": "Inactiv",
+    "cancel": "Anulare",
+    "save": "Salvare",
+    "prompt": "Sunteti sigur ca doriti sa salvati?",
+    "no": "Nu",
+    "yes": "Da",
+    "firstname-error": "Introduceti prenumele!",
+    "lastname-error": "Introduceti numele!"
+  },
+
+  "equipment": {
+    "title": "Echipamente",
+    "modal-title": "Adauga echipament nou",
+    "upload": "Incarcare",
+    "add": "Adauga",
+    "name": "Nume",
+    "code": "Cod",
+    "mabec-code": "Cod Mabec",
+    "protection-type": "Tip de protectie",
+    "size": "Marime",
+    "sex": "Sex",
+    "male": "Masculin",
+    "female": "Feminin",
+    "cancel": "Anulare",
+    "save": "Salvare",
+    "warning1": "*Marimea poate contine doar majuscule si numere"
+  },
+
+  "employee": {
+    "title": "Angajati",
+    "employee": "Angajat",
+    "actions": "Actiuni",
+    "upload": "Incarca"
+  },
+
+  "employee-equipment": {
+    "title": "Echipament angajat",
+    "add": "Adauga echipament",
+    "name": "Nume echipament",
+    "size": "Marime",
+    "start-date": "Data inceput",
+    "end-date": "Data sfarsit",
+    "sex": "Sex",
+    "actions": "Actiuni",
+    "edit-equipment": "Editeaza echipament",
+    "submit": "Salveaza",
+    "close": "Inchide",
+    "no": "Nu",
+    "yes": "Da"
+  },
+
+  "expiring-equipment": {
+    "title": "Echipamente invechite",
+    "export": "Descarca",
+    "lastname": "Nume",
+    "firstname": "Prenume",
+    "equipment": "Echipament",
+    "code": "Cod echipament",
+    "type": "Tip protectie",
+    "size": "Marime",
+    "end-date": "Data expirare"
+  },
+
+  "pagination": {
+    "items": "Intrari pe pagina: "
+  }
+}

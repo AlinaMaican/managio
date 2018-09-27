@@ -12,7 +12,7 @@
     <div class="col-sm-6 offset-sm-3">
       <div class="text-center padd">
         <div>
-          <h1>User profile settings</h1>
+          <h1>{{'user-profile.title' | translate}}</h1>
         </div>
       </div>
     </div>
@@ -23,28 +23,28 @@
         <div class="row">
           <div class="col-sm-10 offset-sm-1" style="padding-left: 0;padding-right: 0;">
             <div class="form-group">
-              <label>Username</label>
+              <label>{{'user-profile.username' | translate}}</label>
               <input type="text"
                      class="form-control"
                      readonly
                      [(ngModel)]="userProfileModel.username"/>
             </div>
             <div class="form-group">
-              <label>Last Name</label>
+              <label>{{'user-profile.lastname' | translate}}</label>
               <input type="text"
                      class="form-control"
                      readonly
                      [(ngModel)]="userProfileModel.lastName"/>
             </div>
             <div class="form-group">
-              <label>First Name</label>
+              <label>{{'user-profile.firstname' | translate}}</label>
               <input type="text"
                      class="form-control"
                      readonly
                      [(ngModel)]="userProfileModel.firstName"/>
             </div>
             <div class="form-group">
-              <label>Email</label>
+              <label>{{'user-profile.email' | translate}}</label>
               <input type="email"
                      class="form-control"
                      readonly
@@ -52,52 +52,64 @@
             </div>
             <form [formGroup]="userProfileForm" class="form" (ngSubmit)="resetPassword()">
               <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password">{{'user-profile.password' | translate}}</label>
                 <input id="password"
                        type="password"
                        class="form-control"
-                       placeholder="Password"
+                       placeholder="{{'user-profile.password' | translate}}"
                        name="password"
                        formControlName="password"
                        pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
                 <small
                   *ngIf="checkForErrors('password') && getField('password').errors.required && getField('password').dirty"
-                  class="text-danger">Password is required!
+                  class="text-danger">{{'user-profile.warning1' | translate}}
                 </small>
                 <small
                   *ngIf="checkForErrors('password') && getField('password').errors.pattern && getField('password').dirty"
                   class="text-danger">
-                  <span>Password must contain at least 8 characters, including one letter and one number!</span>
+                  <span>{{'user-profile.warning2' | translate}}</span>
                 </small>
               </div>
               <div class="form-group">
-                <label for="confirmPassword">Confirm password</label>
+                <label for="confirmPassword">{{'user-profile.confirm-password' | translate}}</label>
                 <input id="confirmPassword"
                        type="password"
                        class="form-control"
-                       placeholder="Confirm password"
+                       placeholder="{{'user-profile.confirm-password' | translate}}"
                        name="confirmPassword"
                        formControlName="confirmPassword">
                 <small
                   *ngIf="validatePasswordsEquality(getField('password').value,getField('confirmPassword').value)
                   && getField('confirmPassword').dirty"
                   class="text-danger ng-hide">
-                  <span>Password mismatch!</span>
+                  <span>{{'user-profile.warning3' | translate}}</span>
                 </small>
               </div>
               <div class="form-group btn-padding-top-15">
                 <button type="button"
                         class="btn btn-secondary btn-sm float-left btn-width-140"
                         (click)="onClickCancelButton()">
-                  <span>CANCEL</span>
+                  <span>{{'user-profile.cancel' | translate}}</span>
                 </button>
                 <button type="submit"
                         class="btn btn-primary btn-sm float-right btn-width-140"
                         [disabled]="!passwordMatchesConditions(userProfileForm)">
-                  <span>SAVE</span>
+                  <span>{{'user-profile.save' | translate}}</span>
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="row input">
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{'user-profile.language' | translate}}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <button class="dropdown-item" (click)="useLanguage('en')">{{'user-profile.english' | translate}}</button>
+            <button class="dropdown-item" (click)="useLanguage('ro')">{{'user-profile.romana' | translate}}</button>
           </div>
         </div>
       </div>

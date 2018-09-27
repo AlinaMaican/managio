@@ -7,6 +7,7 @@ import {User} from "../model/user.model";
 import {UserProfileModel} from "../model/user-profile.model";
 import {UserProfileMapper} from "../mappers/user-profile.mapper";
 import {HttpErrorResponse} from "@angular/common/http";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-user-profile',
@@ -30,9 +31,15 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   hasPasswordErrors = false;
 
   constructor(private route: ActivatedRoute, private router: Router,
-              private userService: UserService) {
+              private userService: UserService, private translate: TranslateService) {
+    translate.setDefaultLang('en');
   }
 
+
+
+  useLanguage(language: string) {
+    this.translate.use(language);
+  }
   ngOnInit(): void {
     this.route.params
       .subscribe(
@@ -108,4 +115,6 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   onClickCancelButton() {
     return this.router.navigateByUrl('/');
   }
+
+
 }
