@@ -121,6 +121,16 @@
             <artifactId>cglib-nodep</artifactId>
             <version>3.2.4</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.5</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -196,6 +206,7 @@
                         </goals>
                         <configuration>
                             <!-- Sets the VM argument line used when integration tests are run. -->
+                            <!--suppress UnresolvedMavenProperty -->
                             <argLine>${failsafeArgLine}</argLine>
                             <includes>
                                 <include>**/*IT.java</include>

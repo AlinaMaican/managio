@@ -1,9 +1,9 @@
 <div class="row padding-top-30-bottom-10">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb breadcrumb-white-14">
-      <li class="breadcrumb-item"><a href="#">EIPL</a></li>
-      <li class="breadcrumb-item"><a href="#">Reports</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Unused Equipments</li>
+      <li class="breadcrumb-item"><a href="#">MANAGIO</a></li>
+      <li class="breadcrumb-item"><a>{{'navbar.reports' |translate}}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{'unused-equipment.title' | translate}}</li>
     </ol>
   </nav>
 </div>
@@ -11,7 +11,7 @@
   <div class="col-sm-6 offset-sm-3">
     <div class="text-center">
       <div>
-        <h1>Unused Equipments</h1>
+        <h1>{{'unused-equipment.title' | translate}}</h1>
       </div>
     </div>
   </div>
@@ -19,18 +19,20 @@
 <div class="row">
   <a class="btn btn-warning margin-7 width-140-margin-right-15" [download]="getDownloadName()"
      [href]="unusedEquipmentsCSVDownloadUrl" type="text/csv"
-  >Export</a>
+  >{{'unused-equipment.export' | translate}}</a>
 </div>
 <div class="row">
   <table class="table">
     <thead class="table-active">
     <tr scope="row">
-      <th scope="col">Name</th>
-      <th scope="col">Code</th>
-      <th scope="col">MABEC Code</th>
-      <th scope="col">Protection Type</th>
-      <th scope="col">Size</th>
-      <th scope="col">Sex</th>
+      <th scope="col">{{'unused-equipment.name' | translate}}</th>
+      <th scope="col">{{'unused-equipment.code' | translate}}</th>
+      <th scope="col">{{'unused-equipment.mabecCode' | translate}}</th>
+      <th scope="col">{{'unused-equipment.protectionType' | translate}}</th>
+      <th scope="col">{{'unused-equipment.size' | translate}}</th>
+      <th scope="col">{{'unused-equipment.sex' | translate}}</th>
+      <th scope="col">{{'unused-equipment.expirationDate' | translate}}</th>
+
     </tr>
     </thead>
     <tbody class="table-hover">
@@ -41,6 +43,7 @@
       <td>{{unusedEquipment.protectionType}}</td>
       <td>{{unusedEquipment.size}}</td>
       <td>{{unusedEquipment.sex}}</td>
+      <td>{{unusedEquipment.expirationDate}}</td>
     </tr>
     </tbody>
   </table>

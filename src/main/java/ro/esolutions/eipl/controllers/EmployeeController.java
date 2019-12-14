@@ -2,11 +2,16 @@ package ro.esolutions.eipl.controllers;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.TransactionException;
+import org.hibernate.jdbc.TooManyRowsAffectedException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ro.esolutions.eipl.models.EmployeeModel;
 import ro.esolutions.eipl.services.EmployeeService;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -24,7 +29,13 @@ public class EmployeeController {
     }
    @GetMapping
     public ResponseEntity<List<EmployeeModel>> getFilteredEmployees(@RequestParam("name_contains") String searchValue) {
-       return ResponseEntity.ok(employeeService.getFilteredEmployees(searchValue));
+        try {
+            return ResponseEntity.ok(employeeService.getFilteredEmployees(searchValue));
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_REQUEST);
+        }
+
    }
 
     @GetMapping("/{employee_id}")

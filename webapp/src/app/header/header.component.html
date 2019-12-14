@@ -1,8 +1,8 @@
-<nav class="navbar navbar-inverse navbar-expand-lg navbar-light bg-light my-nav">
+<nav class="navbar navbar-inverse navbar-expand-lg navbar-light my-nav" style="background-color:turquoise">
   <div class="container-fluid">
     <div class="navbar-header">
       <a href="#" class="navbar-brand white-color">
-        EIPL
+       MANAGIO
       </a>
       <div class="btn-group float-right mt-2" role="group">
         <button class="navbar-toggler btn btn-secondary btn-md" type="button" data-toggle="collapse"
@@ -14,30 +14,26 @@
     <div>
       <div class="collapse navbar-collapse" id="myDropdown">
         <ul class="nav navbar-nav">
-          <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="/management-users">
-            {{'navbar.management-users' | translate}}
-          </a></li>
-          <li class="nav-item dropdown" routerLinkActive="active">
-            <a class="nav-link my-pointer" role="button" id="dropdownManagementForms"
-               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{'navbar.management-forms' | translate}}</a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownManagementForms">
-              <li><a class="dropdown-item" href="#">{{'navbar.protection-type' | translate}}</a></li>
-              <li><a class="dropdown-item" href="#">{{'navbar.structural-unit' | translate}}</a></li>
-              <li><a class="dropdown-item" routerLink="/equipment">{{'navbar.equipments' | translate}}</a></li>
-              <li><a class="dropdown-item" href="#">{{'navbar.working-stations' | translate}}</a></li>
-              <li><a class="dropdown-item" href="#">{{'navbar.frequency' | translate}}</a></li>
-              <li><a class="dropdown-item" href="#">{{'navbar.clothing-sizes' | translate}}</a></li>
-              <li><a class="dropdown-item" href="#">{{'navbar.shoe-sizes' | translate}}</a></li>
-              <li><a class="dropdown-item" href="#">{{'navbar.helmet-sizes' | translate}}</a></li>
-            </ul>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" *ngIf="isAdmin" routerLink="/management-users">
+              {{'navbar.management-users' | translate}}
+            </a></li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" routerLink="/equipment">
+              {{'navbar.equipments' | translate}}</a>
           </li>
-          <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="/employee">{{'navbar.employees' | translate}}</a></li>
+          <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="/employee">{{'navbar.employees'
+            | translate}}</a></li>
           <li class="nav-item dropdown" routerLinkActive="active">
             <a class="nav-link my-pointer" role="button"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{'navbar.reports' | translate}}</a>
             <ul class="dropdown-menu" aria-labelledby="dropdownManagementForms">
-              <li><a class="dropdown-item" routerLink="/reports/expiring-equipments">{{'navbar.expiring-equipments' | translate}}</a></li>
-              <li><a class="dropdown-item" routerLink="/reports/unused-equipments">{{'navbar.unused-equipments' | translate}}</a></li>
+              <li><a class="dropdown-item" routerLink="/reports/assigned-equipments">{{'navbar.assigned-equipments' |
+                translate}}</a></li>
+              <li><a class="dropdown-item" routerLink="/reports/expiring-equipments">{{'navbar.expiring-equipments' |
+                translate}}</a></li>
+              <li><a class="dropdown-item" routerLink="/reports/unused-equipments">{{'navbar.unused-equipments' |
+                translate}}</a></li>
             </ul>
         </ul>
       </div>

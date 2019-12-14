@@ -1,21 +1,34 @@
 {
   "navbar": {
     "management-users": "MANAGEMENT UTILIZATORI",
-    "management-forms": "MANAGEMENT DE FORMULARE",
     "employees": "ANGAJATI",
     "reports": "RAPOARTE",
-    "protection-type": "Tip protectie",
-    "structural-unit": "Unitate structurala",
-    "equipments": "Echipamente",
-    "working-stations": "Posturi de lucru",
-    "frequency": "Frecventa",
-    "clothing-sizes": "Marimi imbracaminte",
-    "shoe-sizes": "Marimi incaltaminte",
-    "helmet-sizes": "Marmimi casca",
-    "expiring-equipments": "Echipamente invechite",
+    "equipments": "ECHIPAMENTE",
+    "expiring-equipments": "Echipamente expirate",
     "edit-profile": "Editeaza profil",
+    "assigned-equipments": "Echipamente asignate",
     "unused-equipments": "Echipamente nefolosite",
     "sign-out": "Deconectare"
+  },
+
+  "dashboard":{
+    "title":"Bine ai venit!",
+    "title-last-added":"Utimele echipamente adaugate",
+    "title-to-end":"Echipamente a caror asignare se va termina intr-o saptamana",
+    "title-to-expire":"Echipmanete care vor expira intr-o saptamana",
+    "name": "Nume",
+    "code": "Cod",
+    "mabecCode":"MABEC cod",
+    "protectionType": "Tip de protectie",
+    "size": "Marime",
+    "sex": "Sex",
+    "expirationDate": "Date expirare",
+    "lastname": "Nume",
+    "firstname": "Prenume",
+    "endDate": "Data de sfarsit a asignarii",
+    "message1": "Aceasta aplicatie este aici sa va ajute in gestionarea angajatilor si echipamentelor dumneavoastra",
+    "message2": "Este o aplicatie intuitiva si usor de folosit",
+    "message3": "Mult spor!"
   },
 
   "user-list": {
@@ -27,7 +40,8 @@
     "email": "Email",
     "status": "Status",
     "role": "Rol",
-    "actions": "Actiuni"
+    "actions": "Actiuni",
+    "warning":"Sunteti sigur ca vreti sa stergeti urmatorul user "
   },
 
   "user-profile": {
@@ -44,7 +58,7 @@
     "cancel": "Anulare",
     "save": "Salvare",
     "language": "Alege limba:",
-    "english": "English",
+    "english": "Engleza",
     "romana": "Romana"
   },
 
@@ -64,6 +78,7 @@
   },
 
   "edit-user": {
+    "title":"Editeaza utilizator",
     "username": "Username",
     "firstname": "Prenume",
     "lastname": "Nume",
@@ -100,6 +115,7 @@
     "female": "Feminin",
     "cancel": "Anulare",
     "save": "Salvare",
+    "expiration-date":"Data expirarii",
     "warning1": "*Marimea poate contine doar majuscule si numere"
   },
 
@@ -108,6 +124,16 @@
     "employee": "Angajat",
     "actions": "Actiuni",
     "upload": "Incarca"
+  },
+
+  "employee-info":{
+    "title":"Informatii despre angajat",
+    "working-station":"Statia de lucru",
+    "helmet-size":"Marime casca",
+    "clothing-size":"Marime imbracaminte",
+    "footwear-size":"Marime incaltaminte",
+    "save":"Salvare",
+    "cancel":"Anulare"
   },
 
   "employee-equipment": {
@@ -126,18 +152,57 @@
     "yes": "Da"
   },
 
-  "expiring-equipment": {
-    "title": "Echipamente invechite",
+  "employee-assign-equipment":{
+    "title": "Echipamente disponibile",
+    "allocate-button":"Aloca echipamente",
+    "name": "Nume",
+    "code": "Cod",
+    "mabecCode":"MABEC cod",
+    "protectionType": "Tip de protectie",
+    "size": "Marime",
+    "sex": "Sex",
+    "expirationDate": "Date expirare",
+    "allocate":"Aloca",
+    "start-date": "Data inceput",
+    "end-date": "Data sfarsit",
+    "warning":"Sunteti sigur ca vrei sa alocati urmatoarele echipamente?",
+    "save":"Slaveaza",
+    "cancel":"Anuleaza"
+  },
+
+  "assigned-equipment": {
+    "title": "Echipamente asignate",
     "export": "Descarca",
     "lastname": "Nume",
     "firstname": "Prenume",
     "equipment": "Echipament",
-    "code": "Cod echipament",
+    "code": "Cod",
     "type": "Tip protectie",
     "size": "Marime",
-    "end-date": "Data expirare"
+    "endDate": "Data de sfarsit a asignarii"
   },
-
+  "expired-equipment": {
+    "title": "Echipamente expirate",
+    "export": "Descarca",
+    "name": "Nume",
+    "code": "Cod echipament",
+    "mabecCode":"Cod MABEC",
+    "protectionType": "Tip protectie",
+    "size": "Marime",
+    "sex": "Sex",
+    "expirationDate": "Data expirare"
+  },
+  "unused-equipment": {
+    "title": "Echipamente nefolosite",
+    "export": "Descarca",
+    "name": "Nume",
+    "code": "Cod echipament",
+    "mabecCode":"Cod MABEC",
+    "protectionType": "Tip protectie",
+    "size": "Marime",
+    "sex": "Sex",
+    "expirationDate": "Data expirare"
+  },
   "pagination": {
     "items": "Intrari pe pagina: "
   }

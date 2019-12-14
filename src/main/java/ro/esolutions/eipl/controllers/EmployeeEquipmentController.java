@@ -27,10 +27,10 @@ public class EmployeeEquipmentController {
     private final EmployeeEquipmentService employeeEquipmentService;
 
     @GetMapping("/all")
-    public ResponseEntity<Page<EmployeeEquipmentReportModel>> getAllEmployeeEquipments(
+    public ResponseEntity<Page<EmployeeEquipmentReportModel>> getAssignedEmployeeEquipments(
             @RequestParam(defaultValue = "0", name = "page") int page,
             @RequestParam(defaultValue = "5", name = "size") int size) {
-        return ResponseEntity.ok(employeeEquipmentService.getExpiringEmployeeEquipmentsReportPaginated(page, size));
+        return ResponseEntity.ok(employeeEquipmentService.getAssignedEmployeeEquipmentsReportPaginated(page, size));
     }
 
     @GetMapping()
@@ -38,8 +38,13 @@ public class EmployeeEquipmentController {
         return ResponseEntity.ok(employeeEquipmentService.getAllEmployeeEquipmentsForEmployee(employeeId));
     }
 
-    @GetMapping(value = "/reports/expiring/download")
-    public ResponseEntity<Object> downloadExpiringEquipmentEmployeesCsvReport() {
+    @GetMapping("/employeeEquipmentsAboutToEndThisAWeek")
+    public ResponseEntity<List<EmployeeEquipmentModel>> getAllEmployeeEquipmentAboutToEndThisWeek(){
+        return ResponseEntity.ok(employeeEquipmentService.getEmployeeEquipmentAboutToExpireThisWeek());
+    }
+
+    @GetMapping(value = "/reports/assigned/download")
+    public ResponseEntity<Object> downloadAssignedEquipmentEmployeesCsvReport() {
         String CSVString = employeeEquipmentService.exportCSV();
 
         return ResponseEntity.ok()

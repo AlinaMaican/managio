@@ -1,3 +1,3 @@
 export enum UserRole {
-  USER, ADMIN, MANAGER, CONSULTANT
+   ADMIN, MANAGER, CONSULTANT
 }

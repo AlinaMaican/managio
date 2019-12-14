@@ -3,6 +3,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {EmployeeService} from '../employee.service';
 import {Employee} from '../employee.model';
+import {UserService} from "../../users/user.service";
+import {User} from "../../users/model/user.model";
 
 @Component({
   selector: 'app-infos',
@@ -15,14 +17,25 @@ export class EditEmployeeComponent implements OnInit {
   employee: Employee;
   firstName: String;
   lastName: String;
+  loggedUser:User;
+  isAdminOrManager=false;
   REGEX_NAME: string = '^[A-Z0-9]+';
   private id: number;
 
   constructor(private employeeService: EmployeeService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private service: UserService) {
   }
   ngOnInit() {
+    this.service.getAuthUser().subscribe(
+      (user: User) => {
+        this.loggedUser=user;
+        if(this.loggedUser.userRole.toLocaleString()  === "ADMIN" || this.loggedUser.userRole.toLocaleString()  === "MANAGER" ){
+          this.isAdminOrManager=true;
+        }
+      }
+    );
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
       this.initForm();

@@ -5,9 +5,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ro.esolutions.eipl.types.MabecCode;
+import ro.esolutions.eipl.types.ProtectionType;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,12 +27,13 @@ public class EquipmentModel {
     @NotNull
     private MabecCode mabecCode;
 
-    @NotBlank
-    private String protectionType;
+    private ProtectionType protectionType;
 
     @NotBlank
     private String size;
 
     @NotBlank
     private String sex;
+
+    private LocalDate expirationDate;
 }

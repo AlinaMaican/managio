@@ -4,6 +4,9 @@ import { Employee} from "./employee.model";
 import { EmployeeService} from "./employee.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {User} from "../users/model/user.model";
+import {UserService} from "../users/user.service";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-employee',
@@ -18,13 +21,23 @@ export class EmployeeComponent implements OnInit,OnDestroy {
   file: File;
   groupedEmployees: Employee[][];
   stringForm: FormGroup;
+  loggedUser:User;
+  isAdminOrManager=false;
 
   constructor(private route: ActivatedRoute, private employeeService: EmployeeService, private router: Router,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,private service:UserService) {
     this.createForm();
   }
 
   ngOnInit(): void {
+    this.service.getAuthUser().subscribe(
+      (user: User) => {
+        this.loggedUser=user;
+        if(this.loggedUser.userRole.toLocaleString()  === "ADMIN" || this.loggedUser.userRole.toLocaleString()  === "MANAGER" ){
+          this.isAdminOrManager=true;
+        }
+      }
+    );
     this.employeeSubscription = this.employeeService.getAllEmployees().subscribe(
       (employee: Employee[]) => this.employeesGrid(employee));
     this.initForm();
@@ -37,9 +50,17 @@ export class EmployeeComponent implements OnInit,OnDestroy {
   }
 
   fill(): void {
-    this.employeeSubscription.unsubscribe();
-    this.employeeSubscription = this.employeeService.getFilteredEmployees(this.stringForm.get("searchValue").value).subscribe(
-      (employee: Employee[]) => this.employeesGrid(employee));
+    //this.employeeSubscription.unsubscribe();
+     this.employeeService.getFilteredEmployees(this.stringForm.get("searchValue").value)
+       .subscribe(
+      res => {
+          this.employeesGrid(res)
+      },
+         (error:HttpErrorResponse) => {
+           if(error.status === 400){
+             alert("You found me!");
+           }
+         });
   }
 
   employeesGrid(employee: Employee[]): void {

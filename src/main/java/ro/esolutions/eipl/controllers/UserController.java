@@ -5,6 +5,7 @@ import org.apache.logging.log4j.util.Strings;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -64,14 +65,13 @@ public class UserController {
     }
 
     @GetMapping("/me")
-    public ResponseEntity<UserModel> getAuthUser() {
+    public ResponseEntity<UserModel> getLoggedUser() {
         return ResponseEntity.ok(userService.getUserById(getAuthenticatedIdOrThrow()));
     }
 
-    @PostMapping("/password")
-    public ResponseEntity<UserModel> resetPassword(@RequestBody final String newPassword) {
-//      newPassword can never be empty because otherwise a HttpMessageNotReadableException would be thrown
-        //  TODO stefan.popescu - 2018-09-03T03:41:43 use Spring provided @NotBlank validator
+    @PostMapping("/password/{user_id}")
+    public ResponseEntity<UserModel> resetPassword(@RequestBody final String newPassword,
+                                                   @PathVariable("user_id") final Long userId) {
         AbstractBindingResult bindingResult = new AbstractBindingResult("password") {
             @Override
             public Object getTarget() {
@@ -85,7 +85,7 @@ public class UserController {
         };
         if (Strings.isBlank(newPassword)) bindingResult.rejectValue("password", "NotBlank");
         throwIfErrors(bindingResult);
-        return ResponseEntity.ok(userService.changePasswordById(getAuthenticatedIdOrThrow(), newPassword));
+        return ResponseEntity.ok(userService.changePasswordById(userId, newPassword));
     }
 
     private void throwIfErrors(BindingResult bindingResult) {

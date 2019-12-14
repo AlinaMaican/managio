@@ -1,8 +1,18 @@
-<div class="container-fluid ">
+<div class="row padding-top-30-bottom-10">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-white-14">
+      <li class="breadcrumb-item"><a href="#">MANAGIO</a></li>
+      <li class="breadcrumb-item"><a>{{'navbar.management-users' | translate}}</a></li>
+      <li class="breadcrumb-item active"><a href="#/management-users">{{'user-list.title' | translate}}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{'edit-user.title' | translate}}</li>
+    </ol>
+  </nav>
+</div>
+<div class="container-fluid padding-top-30-bottom-10">
   <div class="row">
     <div class="col-xs-4 offset-4">
       <div class="row card-body text-secondary">
-        <h2>Edit user</h2>
+        <h2>{{'edit-user.title' | translate}}</h2>
       </div>
       <div class="row">
         <div class="col-xs-10 offset-1">
@@ -45,7 +55,6 @@
             <div class="form-group">
               <label>{{'edit-user.choose' | translate}}
                 <select formControlName="userRole" class="form-control">
-                  <option value="USER">{{'edit-user.user' | translate}}</option>
                   <option value="ADMIN">{{'edit-user.admin' | translate}}</option>
                   <option value="MANAGER">{{'edit-user.manager' | translate}}</option>
                   <option value="CONSULTANT">{{'edit-user.consultant' | translate}}</option>
@@ -73,7 +82,7 @@
 
             <div class="col-xs-12">
               <div class="d-flex w-100 justify-content-between">
-                <button class="btn btn-secondary btn-block rounded m-0" routerLink="/">
+                <button class="btn btn-secondary btn-block rounded m-0" routerLink="/management-users">
                   <span>{{'edit-user.cancel' | translate}}</span>
                 </button>
                 <div class="m-3"></div>

@@ -1,9 +1,8 @@
 <div class="row padding-top-30-bottom-10">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb breadcrumb-white-14">
-      <li class="breadcrumb-item"><a href="#">EIPL</a></li>
-      <li class="breadcrumb-item"><a href="#">Management forms</a></li>
-      <li class="breadcrumb-item active" aria-current="page">EquipmentModel</li>
+      <li class="breadcrumb-item"><a href="#">MANAGIO</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{'equipment.title' | translate}}</li>
     </ol>
   </nav>
 </div>
@@ -12,15 +11,17 @@
     <h1 class="text-center">{{'equipment.title' | translate}}</h1>
   </div>
 </div>
-<form name="equipmentForm">
+<div class="row">
   <div class="d-flex w-100 justify-content-between">
-    <label for="file-upload" class="btn btn-success width-140-margin-right-15">
+    <form name="equipmentForm" class="float-left" *ngIf="isAdminOrManager">
+    <label for="file-upload" class="btn btn-success">
       {{'equipment.upload' | translate}} </label>
     <input id="file-upload" type="file" (change)="upload($event)" accept=".csv"/>
-    <label class="btn btn-primary width-140" data-toggle="modal" data-target="#addEquipmentModal"
-           (click)="initForm()">Add</label>
+    </form>
+    <label style="margin-top: 16px;" class="btn btn-primary width-140" data-toggle="modal" *ngIf="isAdminOrManager" data-target="#addEquipmentModal"
+           (click)="initForm()">{{'equipment.add' | translate}}</label>
   </div>
-</form>
+</div>
 <div class="row">
   <table class="table">
     <thead class="table-active">
@@ -30,6 +31,7 @@
       <th scope="col">{{'equipment.mabec-code' | translate}}</th>
       <th scope="col">{{'equipment.protection-type' | translate}}</th>
       <th scope="col">{{'equipment.size' | translate}}</th>
+      <th scope="col">{{'equipment.expiration-date' | translate}}</th>
       <th scope="col">{{'equipment.sex' | translate}}</th>
     </tr>
     </thead>
@@ -40,6 +42,7 @@
       <td>{{equipment.mabecCode}}</td>
       <td>{{equipment.protectionType}}</td>
       <td>{{equipment.size}}</td>
+      <td>{{equipment.expirationDate}}</td>
       <td>{{equipment.sex}}</td>
     </tr>
     </tbody>
@@ -70,14 +73,16 @@
               <label>{{'equipment.mabec-code' | translate}}
                 <select class="form-control" formControlName="mabecCode" id="'my-select">
                   <option value="" disabled selected>{{'equipment.mabec-code' | translate}}</option>
-                  <option *ngFor="let o of optionArray" [value]="o"> {{o}}</option>
+                  <option *ngFor="let o of mabecOptionArray" [value]="o"> {{o}}</option>
                 </select>
               </label>
             </div>
             <div class="form-group">
-              <label for="protectionType">{{'equipment.protection-type' | translate}}</label>
-              <input type="text" placeholder="{{'equipment.protection-type' | translate}}"
-                     required="required" id="protectionType" class="form-control" formControlName="protectionType">
+              <label>{{'equipment.protection-type' | translate}}</label>
+              <select class="form-control" formControlName="protectionType" id="select-protection">
+                <option value="" disabled selected>{{'equipment.protection-type' | translate}}</option>
+                <option *ngFor="let o of protectionOptionArray" [value]="o"> {{o}}</option>
+              </select>
             </div>
             <div class="form-group">
               <label for="size">{{'equipment.size' | translate}}</label>
@@ -85,6 +90,10 @@
                      required="required" id="size" class="form-control" formControlName="size">
               <small *ngIf="addequipment.get('size').errors">*Size should only contain capital letters or numbers
               </small>
+            </div>
+            <div class="form-group">
+              <label for="expirationDate">{{'equipment.expiration-date' | translate}}</label>
+             <input type="date" class="form-control" formControlName="expirationDate" id= "expirationDate" required="required">
             </div>
             <fieldset class="form-group">
               <label>{{'equipment.sex' | translate}}
@@ -107,7 +116,7 @@
       </div>
       <div class="modal-footer">
         <div class="col-6">
-          <button type="button" class="btn btn-default btn-sm float-left btn-width-140" data-dismiss="modal">
+          <button type="button" class="btn btn-secondary btn-sm float-left btn-width-140" data-dismiss="modal">
             <span>{{'equipment.cancel' | translate}}</span>
           </button>
         </div>

@@ -5,6 +5,7 @@ import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {UserWithPassword} from "./model/user-with-password.model";
 import {Service} from "../service";
+import {EmployeeEquipmentModel} from "../employee-equipment/employee-equipment.model";
 
 @Injectable()
 export class UserService extends Service<User>{
@@ -19,8 +20,8 @@ export class UserService extends Service<User>{
     return this.httpClient.get<User>(this.basicUrl + '/me' );
   }
 
-  resetPassword(password: string): Observable<User> {
-    return this.httpClient.post<User>(this.basicUrl + '/password', password, {});
+  resetPassword(userId:number,password: string): Observable<User> {
+    return this.httpClient.post<User>(this.basicUrl + '/password/'+userId, password, {});
   }
 
   getUserById(index: number): Observable<User> {
@@ -33,5 +34,9 @@ export class UserService extends Service<User>{
 
   addUser(newUser: UserWithPassword): Observable<{}> {
     return this.httpClient.post<User>(this.basicUrl, newUser, {});
+  }
+
+  deleteUser(user:User): Observable<Object> {
+    return this.httpClient.delete(`${this.basicUrl}/${user.id}`);
   }
 }

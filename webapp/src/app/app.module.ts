@@ -19,7 +19,6 @@ import {EquipmentService} from './equipments/equipment.service';
 import {EmployeeComponent} from './employees/employee.component';
 import {PaginationComponent} from './pagination/pagination.component';
 import {ExpiringEquipmentsComponent} from './reports/expiring-equipments/expiring-equipment.component';
-import {ExpiringEquipmentService} from './reports/expiring-equipments/expiring-equipment.service';
 import {EmployeeEquipmentComponent} from './employees/equipment/employee-equipment.component';
 import {AvailableEquipmentListComponent} from "./available-equipment-list/available-equipment-list.component";
 import {EmployeeEquipmentService} from "./employee-equipment/employee-equipment.service";
@@ -28,6 +27,9 @@ import {DatePipe} from '@angular/common';
 import {EditEmployeeComponent} from "./employees/edit-employee/edit-employee.component";
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {AssignedEquipmentComponent} from "./reports/assigned-equipment/assigned-equipment.component";
+import {AssignedEquipmentService} from "./reports/assigned-equipment/assigned-equipment.service";
+import {DashboardComponent} from "./dashboard/dashboard.component";
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
     EmployeeEquipmentComponent,
     EditEmployeeComponent,
     UnusedEquipmentsComponent,
-    AvailableEquipmentListComponent
+    AvailableEquipmentListComponent,
+    AssignedEquipmentComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -67,8 +71,8 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
     UserService,
     EquipmentService,
     EmployeeService,
-    ExpiringEquipmentService,
     EmployeeEquipmentService,
+    AssignedEquipmentService,
     DatePipe
   ],
   bootstrap: [AppComponent]

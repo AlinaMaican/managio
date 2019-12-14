@@ -1,9 +1,8 @@
 <div class="row padding-top-30-bottom-10">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb breadcrumb-white-14">
-      <li class="breadcrumb-item"><a href="#">EIPL</a></li>
-      <li class="breadcrumb-item"><a href="#">Employee</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Employee List</li>
+      <li class="breadcrumb-item"><a href="#">MANAGIO</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{'employee.title' | translate}}</li>
     </ol>
   </nav>
 </div>
@@ -17,9 +16,10 @@
   </div>
 </div>
 <div class="container-fluid">
+  <div class="row">
   <div class="d-flex w-100 justify-content-between">
-    <form name="employeeForm" class="float-left">
-      <label for="file-upload" class="btn btn-success width-140-margin-right-15">
+    <form name="employeeForm" class="float-left" *ngIf="isAdminOrManager">
+      <label for="file-upload" class="btn btn-success">
         {{'employee.upload' | translate}} </label>
       <input id="file-upload" type="file" (change)="upload($event)" accept=".csv"/>
     </form>
@@ -33,6 +33,7 @@
       </span>
       </div>
     </form>
+  </div>
   </div>
   <div class="row">
     <table class="table">

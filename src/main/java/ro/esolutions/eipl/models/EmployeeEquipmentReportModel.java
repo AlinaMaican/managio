@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ro.esolutions.eipl.types.ProtectionType;
 
 import java.time.LocalDate;
 
@@ -17,7 +18,7 @@ public class EmployeeEquipmentReportModel {
     private String firstName;
     private String equipmentName;
     private String equipmentCode;
-    private String protectionType;
+    private ProtectionType protectionType;
     private String size;
     private LocalDate endDate;
 }

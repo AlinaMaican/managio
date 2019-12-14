@@ -1,21 +1,34 @@
 {
   "navbar": {
     "management-users": "MANAGEMENT USERS",
-    "management-forms": "MANAGEMENT FORMS",
     "employees": "EMPLOYEES",
     "reports": "REPORTS",
-    "protection-type": "Protection type",
-    "structural-unit": "Structural unit",
-    "equipments": "Equipments",
-    "working-stations": "Working stations",
-    "frequency": "Frequency",
-    "clothing-sizes": "Clothing sizes",
-    "shoe-sizes": "Shoe sizes",
-    "helmet-sizes": "Helmet sizes",
-    "expiring-equipments": "Expiring equipments",
+    "equipments": "EQUIPMENTS",
+    "expiring-equipments": "Expired equipments",
     "edit-profile": "Edit profile",
+    "assigned-equipments": "Assigned equipments",
     "unused-equipments": "Unused equipments",
     "sign-out": "Sign out"
+  },
+
+  "dashboard":{
+    "title":"Welcome to your dashboard!",
+    "title-last-added":"Last added equipments",
+    "title-to-end":"Assigned equipments about to end this week",
+    "title-to-expire":"Equipments about to expire this week",
+    "name": "Name",
+    "code": "Code",
+    "mabecCode":"MABEC code",
+    "protectionType": "Protection type",
+    "size": "Size",
+    "sex": "Sex",
+    "expirationDate": "Expiration date",
+    "lastname": "Last name",
+    "firstname": "First name",
+    "endDate": "End date",
+    "message1": "This app is here to help you manage all your employees and their equipments",
+    "message2": "It's intuitive and easy to use",
+    "message3": "Have a nice try!"
   },
 
   "user-list": {
@@ -27,7 +40,8 @@
     "email": "Email",
     "status": "Status",
     "role": "Role",
-    "actions": "Actions"
+    "actions": "Actions",
+    "warning":"Are you sure you want to delete user "
   },
 
   "user-profile": {
@@ -45,7 +59,7 @@
     "save": "Save",
     "language": "Choose language:",
     "english": "English",
-    "romana": "Romana"
+    "romana": "Romanian"
   },
 
   "add-user": {
@@ -64,6 +78,7 @@
   },
 
   "edit-user": {
+    "title":"Edit user",
     "username": "Username",
     "firstname": "First Name",
     "lastname": "Last Name",
@@ -100,6 +115,7 @@
     "female": "Female",
     "cancel": "Cancel",
     "save": "Save",
+    "expiration-date":"Expiration date",
     "warning1": "*Size should only contain capital letters and numbers"
   },
 
@@ -108,6 +124,16 @@
     "employee": "Employee",
     "actions": "Actions",
     "upload": "Upload"
+  },
+
+  "employee-info":{
+    "title":"Employee info",
+    "working-station":"Working station",
+    "helmet-size":"Helmet size",
+    "clothing-size":"Clothing size",
+    "footwear-size":"Footwear size",
+    "save":"Save",
+    "cancel":"Cancel"
   },
 
   "employee-equipment": {
@@ -126,8 +152,26 @@
     "yes": "Yes"
   },
 
-  "expiring-equipment": {
-    "title": "Expiring equipments",
+  "employee-assign-equipment":{
+    "title": "Available equipments",
+    "allocate-button":"Allocate equipments",
+    "name": "Name",
+    "code": "Code",
+    "mabecCode":"MABEC code",
+    "protectionType": "Protection type",
+    "size": "Size",
+    "sex": "Sex",
+    "expirationDate": "Expiration date",
+    "allocate":"Alocate",
+    "start-date": "Start date",
+    "end-date": "End date",
+    "warning":"Are you sure you want to allocate the following equipments?",
+    "save":"Save",
+    "cancel":"Cancel"
+},
+
+  "assigned-equipment": {
+    "title": "Assigned equipments",
     "export": "Export",
     "lastname": "Last name",
     "firstname": "First name",
@@ -135,7 +179,33 @@
     "code": "Equipment code",
     "type": "Protection type",
     "size": "Size",
-    "end-date": "End date"
+    "endDate": "End date of the assignment"
+  },
+
+  "expired-equipment": {
+    "title": "Expired equipments",
+    "export": "Export",
+    "name": "Name",
+    "equipment": "Equipment",
+    "code": "Equipment code",
+    "mabecCode":"MABEC code",
+    "protectionType": "Protection type",
+    "size": "Size",
+    "sex": "Sex",
+    "expirationDate": "Expiration date"
+  },
+
+  "unused-equipment": {
+    "title": "Unused equipments",
+    "export": "Export",
+    "name": "Name",
+    "equipment": "Equipment",
+    "code": "Equipment code",
+    "mabecCode":"MABEC code",
+    "protectionType": "Protection type",
+    "sex": "Sex",
+    "size": "Size",
+    "expirationDate": "Expiration date"
   },
 
   "pagination": {

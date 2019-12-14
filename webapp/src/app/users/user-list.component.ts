@@ -12,7 +12,7 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   public userSubscription: Subscription;
   users: User[];
-
+  targetUser:User;
   baseURL: string = 'management-users';
 
   constructor(public userService: UserService) {
@@ -29,5 +29,15 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   getPaginatedList(paginatedList: User[]) {
     this.users = paginatedList;
+  }
+
+  prepareDelete(user:User) {
+    this.targetUser = user;
+  }
+
+  deleteUser() {
+    let deleteObject = Object.assign({}, this.targetUser);
+    this.userService.deleteUser(deleteObject).subscribe(
+      null, null, () => location.reload());
   }
 }

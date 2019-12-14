@@ -32,7 +32,24 @@ export class EquipmentService extends Service<EquipmentModel> {
     return this.httpClient.get<EquipmentModel[]>(this.basicUrl, {params: param});
   }
 
+  getFilteredAvailableEquipments(searchValue: string): Observable<EquipmentModel[]> {
+    let param = new HttpParams().append('name_contains', searchValue);
+    return this.httpClient.get<EquipmentModel[]>(this.basicUrl+'/filtered/available', {params: param});
+  }
+
   getUnusedEquipments(): Observable<EquipmentModel[]> {
     return this.httpClient.get<EquipmentModel[]>(this.basicUrl + '/reports/unused');
+  }
+
+  getExpiredEquipments():Observable<EquipmentModel[]> {
+    return this.httpClient.get<EquipmentModel[]>(this.basicUrl + '/reports/expired');
+  }
+
+  getLastAddedEquipments():Observable<EquipmentModel[]> {
+    return this.httpClient.get<EquipmentModel[]>(this.basicUrl + '/lastAddedEquipments');
+  }
+
+  getEquipmentsABoutToExpireInAWeek():Observable<EquipmentModel[]> {
+    return this.httpClient.get<EquipmentModel[]>(this.basicUrl + '/equipmentsAboutToExpireThisWeek');
   }
 }

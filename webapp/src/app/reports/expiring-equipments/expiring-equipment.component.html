@@ -1,9 +1,9 @@
 <div class="row padding-top-30-bottom-10">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb breadcrumb-white-14">
-      <li class="breadcrumb-item"><a href="#">EIPL</a></li>
-      <li class="breadcrumb-item"><a href="#">Reports</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Expiring Equipments</li>
+      <li class="breadcrumb-item"><a href="#">MANAGIO</a></li>
+      <li class="breadcrumb-item"><a>{{'navbar.reports' |translate}}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{'expired-equipment.title' | translate}}</li>
     </ol>
   </nav>
 </div>
@@ -11,43 +11,36 @@
   <div class="col-md-6 offset-md-3">
     <div class="text-center">
       <div>
-        <h1>{{'expiring-equipment.title' | translate}}</h1>
+        <h1>{{'expired-equipment.title' | translate}}</h1>
       </div>
     </div>
   </div>
 </div>
 <div class="row">
-  <a href="/api/employeeEquipment/reports/expiring/download"
-     class="btn btn-warning margin-7 width-140-margin-right-15">{{'expiring-equipment.export' | translate}}</a>
+  <a [download]="getDownloadName()" [href]="expiredEquipmentsCSVDownloadUrl" type="text/csv"
+     class="btn btn-warning margin-7 width-140-margin-right-15">{{'expired-equipment.export' | translate}}</a>
   <table class="table">
     <thead class="table-active">
     <tr scope="row">
-      <th scope="col">{{'expiring-equipment.lastname' | translate}}</th>
-      <th scope="col">{{'expiring-equipment.firstname' | translate}}</th>
-      <th scope="col">{{'expiring-equipment.equipment' | translate}}</th>
-      <th scope="col">{{'expiring-equipment.code' | translate}}</th>
-      <th scope="col">{{'expiring-equipment.type' | translate}}</th>
-      <th scope="col">{{'expiring-equipment.size' | translate}}</th>
-      <th scope="col">{{'expiring-equipment.end-date' | translate}}</th>
+      <th scope="col">{{'expired-equipment.name' | translate}}</th>
+      <th scope="col">{{'expired-equipment.code' | translate}}</th>
+      <th scope="col">{{'expired-equipment.mabecCode' | translate}}</th>
+      <th scope="col">{{'expired-equipment.protectionType' | translate}}</th>
+      <th scope="col">{{'expired-equipment.size' | translate}}</th>
+      <th scope="col">{{'expired-equipment.sex' | translate}}</th>
+      <th scope="col">{{'expired-equipment.expirationDate' | translate}}</th>
     </tr>
     </thead>
     <tbody class="table-hover">
-    <tr *ngFor="let expiringEquipment of this.expiringEquipments">
-      <td>{{expiringEquipment.lastName}}</td>
-      <td>{{expiringEquipment.firstName}}</td>
-      <td>{{expiringEquipment.equipmentName}}</td>
-      <td>{{expiringEquipment.equipmentCode}}</td>
+    <tr *ngFor="let expiringEquipment of expiringEquipments">
+      <td>{{expiringEquipment.name}}</td>
+      <td>{{expiringEquipment.code}}</td>
+      <td>{{expiringEquipment.mabecCode}}</td>
       <td>{{expiringEquipment.protectionType}}</td>
       <td>{{expiringEquipment.size}}</td>
-      <td>{{expiringEquipment.endDate}}</td>
-      <td></td>
+      <td>{{expiringEquipment.sex}}</td>
+      <td>{{expiringEquipment.expirationDate}}</td>
     </tr>
     </tbody>
   </table>
 </div>
-<app-pagination
-  [service]="expiringEquipmentService"
-  [subscription]="employeeEquipmentSubscription"
-  [baseURL]="baseURL"
-  (retrieveContent)="getPaginatedList($event)">
-</app-pagination>

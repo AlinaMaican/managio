@@ -44,7 +44,7 @@ public class EmployeeEquipmentService {
                 .collect(Collectors.toList());
     }
 
-    public List<EmployeeEquipmentReportModel> getExpiringEmployeeEquipmentsReport() {
+    public List<EmployeeEquipmentReportModel> getAssignedEmployeeEquipmentsReport() {
         return employeeEquipmentRepository.findByEndDateLessThan(LocalDate.now().plusDays(DAYS_UNTIL_EXPIRES))
                 .stream()
                 .map(EmployeeEquipmentReportMapper::fromEntityToModel)
@@ -75,10 +75,21 @@ public class EmployeeEquipmentService {
     }
 
     public void deleteEmployeeEquipmentById(final long id) {
+        Equipment  equipment = employeeEquipmentRepository.getEmployeeEquipmentById(id).getEquipment();
+        equipment.setIsAvailable(true);
+        equipmentRepository.save(equipment);
         employeeEquipmentRepository.deleteById(id);
     }
 
-    public Page<EmployeeEquipmentReportModel> getExpiringEmployeeEquipmentsReportPaginated(final int page, final int size) {
+    public List<EmployeeEquipmentModel> getEmployeeEquipmentAboutToExpireThisWeek(){
+        LocalDate  startDate = LocalDate.now();
+        LocalDate  endDate = LocalDate.now().plusWeeks(1);
+        return employeeEquipmentRepository.findByEndDateBetween(startDate,endDate).stream()
+                .map(EmployeeEquipmentMapper::fromEntityToModel)
+                .collect(Collectors.toList());
+    }
+
+    public Page<EmployeeEquipmentReportModel> getAssignedEmployeeEquipmentsReportPaginated(final int page, final int size) {
         return employeeEquipmentRepository.findByEndDateLessThan(
                 LocalDate.now().plusDays(DAYS_UNTIL_EXPIRES), PageRequest.of(page, size))
                 .map(EmployeeEquipmentReportMapper::fromEntityToModel);

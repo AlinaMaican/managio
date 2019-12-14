@@ -5,8 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ro.esolutions.eipl.types.MabecCode;
+import ro.esolutions.eipl.types.ProtectionType;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -34,11 +36,16 @@ public class Equipment {
     @Enumerated(EnumType.STRING)
     private MabecCode mabecCode;
 
-    private String protectionType;
+    @Enumerated(EnumType.STRING)
+    private ProtectionType protectionType;
 
     private String size;
 
     private String sex;
 
     private Boolean isAvailable;
+
+    private LocalDate dateOfCreation;
+
+    private LocalDate dateOfExpiration;
 }

@@ -25,7 +25,7 @@ public final class EmployeeEquipmentReportMapper {
                 employeeEquipment.getEmployee().getLastName()+ ',' +
                 employeeEquipment.getEquipment().getName()+ ',' +
                 employeeEquipment.getEquipment().getCode()+ ',' +
-                employeeEquipment.getEquipment().getProtectionType()+ ',' +
+                employeeEquipment.getEquipment().getProtectionType().toString()+ ',' +
                 employeeEquipment.getEquipment().getSize()+ ',' +
                 employeeEquipment.getEndDate();
     }

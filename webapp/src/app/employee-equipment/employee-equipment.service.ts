@@ -4,6 +4,7 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/internal/Observable";
 import {EmployeeEquipmentModel} from "./employee-equipment.model";
 
+
 @Injectable()
 export class EmployeeEquipmentService {
   private employeeEquipmentUrl = environment.resourcesUrl + '/employeeEquipment';
@@ -27,5 +28,8 @@ export class EmployeeEquipmentService {
 
   saveAllocatedEquipments(selectedEmployeeEquipments: EmployeeEquipmentModel[], employeeId: number) {
     return this.httpClient.post<EmployeeEquipmentModel[]>(this.employeeEquipmentUrl + '/saveAllocatedEquipments/' + employeeId, selectedEmployeeEquipments, {});
+  }
+  getEmployeeEquipmentAboutToEndInAWeek():Observable<EmployeeEquipmentModel[]>{
+      return this.httpClient.get<EmployeeEquipmentModel[]>(this.employeeEquipmentUrl+ '/employeeEquipmentsAboutToEndThisAWeek');
   }
 }

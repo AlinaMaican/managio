@@ -17,7 +17,7 @@ import {TranslateService} from "@ngx-translate/core";
 
 export class UserProfileComponent implements OnInit, OnDestroy {
   subscription: Subscription = null;
-  userProfileForm: FormGroup;
+  public userProfileForm: FormGroup;
   userProfileModel: UserProfileModel = {
     'id': undefined,
     'username': '',
@@ -39,6 +39,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   useLanguage(language: string) {
     this.translate.use(language);
+    document.getElementById("idInput").hidden=false;
   }
   ngOnInit(): void {
     this.route.params
@@ -51,6 +52,13 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     this.subscription = this.userService.getAuthUser().subscribe(
       (user: User) => {
         this.userProfileModel = UserProfileMapper.fromUserToUserProfile(user);
+        this.userProfileForm.patchValue({
+          userId: this.userProfileModel.id,
+          username:this.userProfileModel.username,
+          firstName:this.userProfileModel.firstName,
+          lastName:this.userProfileModel.lastName,
+          email:this.userProfileModel.email,
+        });
       },
       (response: HttpErrorResponse) => {
         if (response.status == 400) this.hasPasswordErrors = true;
@@ -60,6 +68,11 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.userProfileForm = new FormGroup({
+      'userId':new FormControl(''),
+      'username':new FormControl(''),
+      'lastName':new FormControl(''),
+      'firstName': new FormControl(''),
+      'email': new FormControl(''),
       'password': new FormControl('', Validators.compose(
         [Validators.required, Validators.pattern(this.minLength8Min1LetterMin1Number)]
       )),
@@ -68,9 +81,9 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   }
 
   resetPassword() {
-    this.userService.resetPassword(this.userProfileForm.value.password).subscribe(
+    console.log(this.userProfileForm.value.userId);
+    this.userService.resetPassword(this.userProfileForm.value.userId,this.userProfileForm.value.password).subscribe(
       () => {
-        this.router.navigateByUrl('/')
       }
     );
   }

