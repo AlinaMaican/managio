@@ -1,0 +1,52 @@
+<div class="row padding-top-30-bottom-10">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-white-14">
+      <li class="breadcrumb-item"><a href="#">MANAGIO</a></li>
+      <li class="breadcrumb-item"><a>{{'navbar.reports' |translate}}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{'assigned-equipment.title' | translate}}</li>
+    </ol>
+  </nav>
+</div>
+<div class="row padding-top-10-bottom-30">
+  <div class="col-md-6 offset-md-3">
+    <div class="text-center">
+      <div>
+        <h1>{{'assigned-equipment.title' | translate}}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <a href="/api/employeeEquipment/reports/assigned/download"
+     class="btn btn-warning margin-7 width-140-margin-right-15">{{'assigned-equipment.export' | translate}}</a>
+  <table class="table">
+    <thead class="table-active">
+    <tr scope="row">
+      <th scope="col">{{'assigned-equipment.lastname' | translate}}</th>
+      <th scope="col">{{'assigned-equipment.firstname' | translate}}</th>
+      <th scope="col">{{'assigned-equipment.equipment' | translate}}</th>
+      <th scope="col">{{'assigned-equipment.code' | translate}}</th>
+      <th scope="col">{{'assigned-equipment.type' | translate}}</th>
+      <th scope="col">{{'assigned-equipment.size' | translate}}</th>
+      <th scope="col">{{'assigned-equipment.endDate' | translate}}</th>
+    </tr>
+    </thead>
+    <tbody class="table-hover">
+    <tr *ngFor="let assignedEquipment of this.assignedEquipments">
+      <td>{{assignedEquipment.lastName}}</td>
+      <td>{{assignedEquipment.firstName}}</td>
+      <td>{{assignedEquipment.equipmentName}}</td>
+      <td>{{assignedEquipment.equipmentCode}}</td>
+      <td>{{assignedEquipment.protectionType}}</td>
+      <td>{{assignedEquipment.size}}</td>
+      <td>{{assignedEquipment.endDate}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<app-pagination *ngIf="isConsultant"
+  [service]="assignedEquipmentService"
+  [subscription]="employeeEquipmentSubscription"
+  [baseURL]="baseURL"
+  (retrieveContent)="getPaginatedList($event)">
+</app-pagination>

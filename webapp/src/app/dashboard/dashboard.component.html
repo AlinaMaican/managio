@@ -1,0 +1,103 @@
+<main role="main" style="margin-left: 0px;">
+  <section class="panel important">
+    <h2>{{'dashboard.title' | translate}}</h2>
+    <ul>
+      <li>{{'dashboard.message1' | translate}}</li>
+      <li>{{'dashboard.message2' | translate}}</li>
+      <li>{{'dashboard.message3' | translate}}</li>
+    </ul>
+  </section>
+  <section class="panel important">
+    <h2>{{'dashboard.title-last-added' | translate}}</h2>
+    <div class="row">
+    <table class="table" style="margin:2%;">
+      <thead class="table-active">
+      <tr scope="row">
+        <th scope="col">{{'dashboard.name' | translate}}</th>
+        <th scope="col">{{'dashboard.code' | translate}}</th>
+        <th scope="col">{{'dashboard.mabecCode' | translate}}</th>
+        <th scope="col">{{'dashboard.protectionType' | translate}}</th>
+        <th scope="col">{{'dashboard.size' | translate}}</th>
+        <th scope="col">{{'dashboard.sex' | translate}}</th>
+        <th scope="col">{{'dashboard.expirationDate' | translate}}</th>
+      </tr>
+      </thead>
+      <tbody class="table-hover">
+      <tr *ngFor="let lastAddedEquipment of lastAddedEquipments">
+        <td>{{lastAddedEquipment.name}}</td>
+        <td>{{lastAddedEquipment.code}}</td>
+        <td>{{lastAddedEquipment.mabecCode}}</td>
+        <td>{{lastAddedEquipment.protectionType}}</td>
+        <td>{{lastAddedEquipment.size}}</td>
+        <td>{{lastAddedEquipment.sex}}</td>
+        <td>{{lastAddedEquipment.expirationDate}}</td>
+      </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+  <section class="panel important">
+    <h2>{{'dashboard.title-to-end' | translate}}</h2>
+    <div class="row">
+      <table class="table" style="margin:2%;">
+        <thead class="table-active">
+        <tr scope="row">
+          <th scope="col">{{'dashboard.firstname' | translate}}</th>
+          <th scope="col">{{'dashboard.lastname' | translate}}</th>
+          <th scope="col">{{'dashboard.name' | translate}}</th>
+          <th scope="col">{{'dashboard.mabecCode' | translate}}</th>
+          <th scope="col">{{'dashboard.protectionType' | translate}}</th>
+          <th scope="col">{{'dashboard.size' | translate}}</th>
+          <th scope="col">{{'dashboard.sex' | translate}}</th>
+          <th scope="col">{{'dashboard.expirationDate' | translate}}</th>
+          <th scope="col">{{'dashboard.endDate' | translate}}</th>
+        </tr>
+        </thead>
+        <tbody class="table-hover">
+        <tr *ngFor="let employeeEquipmentAboutToEndInAWeek of employeeEquipmentsAboutToEndInAWeek">
+          <td>{{employeeEquipmentAboutToEndInAWeek.employee.firstName}}</td>
+          <td>{{employeeEquipmentAboutToEndInAWeek.employee.lastName}}</td>
+          <td>{{employeeEquipmentAboutToEndInAWeek.equipment.name}}</td>
+          <td>{{employeeEquipmentAboutToEndInAWeek.equipment.mabecCode}}</td>
+          <td>{{employeeEquipmentAboutToEndInAWeek.equipment.protectionType}}</td>
+          <td>{{employeeEquipmentAboutToEndInAWeek.equipment.size}}</td>
+          <td>{{employeeEquipmentAboutToEndInAWeek.equipment.sex}}</td>
+          <td>{{employeeEquipmentAboutToEndInAWeek.equipment.expirationDate}}</td>
+          <td>{{employeeEquipmentAboutToEndInAWeek.endDate}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section class="panel important">
+    <h2>{{'dashboard.title-to-expire' | translate}}</h2>
+    <div class="row">
+    <table class="table" style="margin:2%;">
+      <thead class="table-active">
+      <tr>
+        <th scope="col">{{'dashboard.name' | translate}}</th>
+        <th scope="col">{{'dashboard.code' | translate}}</th>
+        <th scope="col">{{'dashboard.mabecCode' | translate}}</th>
+        <th scope="col">{{'dashboard.protectionType' | translate}}</th>
+        <th scope="col">{{'dashboard.size' | translate}}</th>
+        <th scope="col">{{'dashboard.sex' | translate}}</th>
+        <th scope="col">{{'dashboard.expirationDate' | translate}}</th>
+      </tr>
+      </thead>
+      <tbody class="table-hover">
+      <tr *ngFor="let equipmentAboutToExpire of equipmentsAboutToExpire">
+        <td>{{equipmentAboutToExpire.name}}</td>
+        <td>{{equipmentAboutToExpire.code}}</td>
+        <td>{{equipmentAboutToExpire.mabecCode}}</td>
+        <td>{{equipmentAboutToExpire.protectionType}}</td>
+        <td>{{equipmentAboutToExpire.size}}</td>
+        <td>{{equipmentAboutToExpire.sex}}</td>
+        <td>{{equipmentAboutToExpire.expirationDate}}</td>
+      </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+</main>
+
