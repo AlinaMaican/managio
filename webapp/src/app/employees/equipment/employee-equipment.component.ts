@@ -6,6 +6,7 @@ import {EmployeeEquipmentModel} from "../../employee-equipment/employee-equipmen
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../users/user.service";
 import {User} from "../../users/model/user.model";
+import {Employee} from "../employee.model";
 
 @Component({
   selector: 'app-equipment',
@@ -17,6 +18,7 @@ export class EmployeeEquipmentComponent implements OnInit, OnDestroy {
   private employeeEquipmentSubscription: Subscription;
   employeeEquipmentList: EmployeeEquipmentModel[] = [];
   loggedUser:User;
+  public today;
   isAdminOrManager=false;
   editEquipmentForm: FormGroup;
   targetEmployeeEquipment: EmployeeEquipmentModel;
@@ -28,6 +30,7 @@ export class EmployeeEquipmentComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.today = new Date().toISOString().split('T')[0];
     this.service.getAuthUser().subscribe(
       (user: User) => {
         this.loggedUser=user;

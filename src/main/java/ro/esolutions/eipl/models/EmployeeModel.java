@@ -5,7 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 
 @Data
 @NoArgsConstructor
@@ -14,14 +15,11 @@ import javax.validation.constraints.NotBlank;
 public class EmployeeModel {
 
     private Long id;
-
-    @NotBlank
+    @NotNull
     private String firstName;
-
-    @NotBlank
+    @NotNull
     private String lastName;
-
-    @NotBlank
+    @NotNull
     private String workingStation;
 
     private String helmetSize;

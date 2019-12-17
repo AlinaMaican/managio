@@ -33,6 +33,11 @@ public class EmployeeEquipmentController {
         return ResponseEntity.ok(employeeEquipmentService.getAssignedEmployeeEquipmentsReportPaginated(page, size));
     }
 
+    @GetMapping("/getAll")
+    public ResponseEntity<List<EmployeeEquipmentReportModel>> getAllAssignedEmployeeEquipments() {
+        return ResponseEntity.ok(employeeEquipmentService.getAssignedEmployeeEquipmentsReport());
+    }
+
     @GetMapping()
     public ResponseEntity<List<EmployeeEquipmentModel>> getAllEmployeeEquipmentsForEmployee(@RequestParam("employeeId") final Long employeeId) {
         return ResponseEntity.ok(employeeEquipmentService.getAllEmployeeEquipmentsForEmployee(employeeId));

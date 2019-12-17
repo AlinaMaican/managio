@@ -5,15 +5,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
 public class LoginFormModel {
-    @NotBlank
+    @NotNull
     private String username;
-    @NotBlank
+    @NotNull
     private String password;
 }

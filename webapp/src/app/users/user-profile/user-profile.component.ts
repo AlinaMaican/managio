@@ -18,6 +18,7 @@ import {TranslateService} from "@ngx-translate/core";
 export class UserProfileComponent implements OnInit, OnDestroy {
   subscription: Subscription = null;
   public userProfileForm: FormGroup;
+  public isAdmin=false;
   userProfileModel: UserProfileModel = {
     'id': undefined,
     'username': '',
@@ -39,9 +40,18 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   useLanguage(language: string) {
     this.translate.use(language);
-    document.getElementById("idInput").hidden=false;
+    if(this.isAdmin === false) {
+      document.getElementById("idInput").hidden = false;
+    }
   }
   ngOnInit(): void {
+    this.userService.getAuthUser().subscribe(
+      (user: User) => {
+        if(user.userRole.toLocaleString()  === "ADMIN"){
+          this.isAdmin=true;
+        }
+      }
+    );
     this.route.params
       .subscribe(
         (params: Params) => {
@@ -84,6 +94,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     console.log(this.userProfileForm.value.userId);
     this.userService.resetPassword(this.userProfileForm.value.userId,this.userProfileForm.value.password).subscribe(
       () => {
+        location.reload();
       }
     );
   }

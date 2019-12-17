@@ -1,6 +1,5 @@
 package ro.esolutions.eipl.services;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
@@ -12,14 +11,12 @@ import org.springframework.web.multipart.MultipartFile;
 import ro.esolutions.eipl.entities.Employee;
 import ro.esolutions.eipl.exceptions.EmployeeNotFoundException;
 import ro.esolutions.eipl.exceptions.EmployeeUploadFileNotValid;
-import ro.esolutions.eipl.exceptions.ResourceNotFoundException;
 import ro.esolutions.eipl.mappers.EmployeeMapper;
 import ro.esolutions.eipl.models.EmployeeModel;
 import ro.esolutions.eipl.repositories.EmployeeDAO;
 import ro.esolutions.eipl.repositories.EmployeeRepository;
 
 import javax.persistence.EntityManager;
-import java.util.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,20 +26,22 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import static ro.esolutions.eipl.mappers.EmployeeMapper.fromEntityToModel;
-import static ro.esolutions.eipl.mappers.EmployeeMapper.fromModelToEntity;
 
 @Service
 @Transactional
-@RequiredArgsConstructor
 @Slf4j
 public class EmployeeService {
 
-    @NonNull
     private final EmployeeRepository employeeRepository;
     private final EmployeeDAO employeeDAO;
 
     @Autowired
     EntityManager entityManager;
+
+    public EmployeeService(EmployeeRepository employeeRepository, EmployeeDAO employeeDAO) {
+        this.employeeRepository = employeeRepository;
+        this.employeeDAO = employeeDAO;
+    }
 
 
     public List<EmployeeModel> getAllEmployees() {
@@ -71,7 +70,6 @@ public class EmployeeService {
                     }).collect(Collectors.toList());
             employeeRepository.saveAll(employeesToSave);
         } catch (IOException e) {
-            log.error(e.getMessage(), e);
             throw new EmployeeUploadFileNotValid();
         }
     }

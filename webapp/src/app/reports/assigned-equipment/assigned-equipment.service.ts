@@ -16,7 +16,7 @@ export class AssignedEquipmentService extends Service<AssignedEquipmentModel>{
   }
 
   getAllAssignedEquipment(): Observable<AssignedEquipmentModel[]> {
-    return this.httpClient.get<AssignedEquipmentModel[]>(this.basicUrl);
+    return this.httpClient.get<AssignedEquipmentModel[]>(this.basicUrl+'/getAll');
   }
 
 }

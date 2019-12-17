@@ -94,12 +94,12 @@ export class AvailableEquipmentListComponent implements OnInit {
       (user: User) => {
         if(user.userRole.toLocaleString()  === "MANAGER"){
           this.isManager=true;
+          this.userService.updateUserById(this.getUserForm().value, 4)
+              .subscribe();
         }
       }
     );
-    if(this.isManager) {
-      this.userService.updateUserById(this.getUserForm().value, 2)
-        .subscribe();
-    }
+
+
   }
 }

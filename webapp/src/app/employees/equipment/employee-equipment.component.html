@@ -59,12 +59,12 @@
         <form [formGroup]="editEquipmentForm">
           <label>
             {{'employee-equipment.start-date' | translate}}
-            <input type="date" name="start-date" class="form-control" formControlName="startDate">
+            <input type="date" name="start-date" class="form-control" formControlName="startDate" [min]=this.today>
           </label>
 
           <label>
             {{'employee-equipment.end-date' | translate}}
-            <input type="date" name="end-date" class="form-control" formControlName="endDate">
+            <input type="date" name="end-date" class="form-control" formControlName="endDate" [min]=this.today>
           </label>
         </form>
       </div>
